@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<head th:replace="fragments/head :: headFragment"></head>
+<body>
+	<div class="super_container">
+		<header th:replace="fragments/header :: headerFragment"></header>
+		<div th:replace="fragments/headermenu :: headermenuFragment"></div>
+		<th:block layout:fragment="customContents"></th:block>
+		<footer th:replace="fragments/footer :: footerFragment"></footer>
+	</div>
+	
+<!-- 사용자 지정 자바스크립트 라이브러리 파일 -->
+<th:block layout:fragment="customFooterScript"></th:block>
+</body>
+</html>
