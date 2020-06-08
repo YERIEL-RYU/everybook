@@ -1,0 +1,126 @@
+								<!-- Accordions -->
+								<div class="accordions">
+									
+									<div class="elements_accordions">
+
+										<div class="accordion_container">
+											<div class="accordion d-flex flex-row align-items-center"><div>Can I just enroll in a single course?</div></div>
+											<div class="accordion_panel">
+												<p>Lorem ipsun gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a.</p>
+											</div>
+										</div>
+
+										<div class="accordion_container">
+											<div class="accordion d-flex flex-row align-items-center active"><div>I'm not interested in the entire Specialization?</div></div>
+											<div class="accordion_panel">
+												<p>Lorem ipsun gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a.</p>
+											</div>
+										</div>
+
+										<div class="accordion_container">
+											<div class="accordion d-flex flex-row align-items-center"><div>What is the refund policy?</div></div>
+											<div class="accordion_panel">
+												<p>Lorem ipsun gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a.</p>
+											</div>
+										</div>
+
+										<div class="accordion_container">
+											<div class="accordion d-flex flex-row align-items-center"><div>What background knowledge is necessary?</div></div>
+											<div class="accordion_panel">
+												<p>Lorem ipsun gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a.</p>
+											</div>
+										</div>
+
+										<div class="accordion_container">
+											<div class="accordion d-flex flex-row align-items-center"><div>Do i need to take the courses in a specific order?</div></div>
+											<div class="accordion_panel">
+												<p>Lorem ipsun gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a.</p>
+											</div>
+										</div>
+
+									</div>
+
+								</div>
+								
+								
+								
+								
+								<!-- Dropdowns -->
+								<ul class="dropdowns">
+									<li class="has_children">
+										<div class="dropdown_item">
+											<div class="dropdown_item_title"><span>Lecture 1:</span> Lorem Ipsn gravida nibh vel velit auctor aliquet.</div>
+											<div class="dropdown_item_text">
+												<p>Lorem Ipsn gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus.</p>
+											</div>
+										</div>
+										<ul>
+											<li>
+												<div class="dropdown_item">
+													<div class="dropdown_item_title"><span>Lecture 1.1:</span> Lorem Ipsn gravida nibh vel velit auctor aliquet.</div>
+													<div class="dropdown_item_text">
+														<p>Lorem Ipsn gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus.</p>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="dropdown_item">
+													<div class="dropdown_item_title"><span>Lecture 1.2:</span> Lorem Ipsn gravida nibh vel velit auctor aliquet.</div>
+													<div class="dropdown_item_text">
+														<p>Lorem Ipsn gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus.</p>
+													</div>
+												</div>
+											</li>
+										</ul>
+									</li>
+									<li class="has_children">
+										<div class="dropdown_item">
+											<div class="dropdown_item_title"><span>Lecture 2:</span> Lorem Ipsn gravida nibh vel velit auctor aliquet.</div>
+											<div class="dropdown_item_text">
+												<p>Lorem Ipsn gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus.</p>
+											</div>
+										</div>
+										<ul>
+											<li>
+												<div class="dropdown_item">
+													<div class="dropdown_item_title"><span>Lecture 2.1:</span> Lorem Ipsn gravida nibh vel velit auctor aliquet.</div>
+													<div class="dropdown_item_text">
+														<p>Lorem Ipsn gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus.</p>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="dropdown_item">
+													<div class="dropdown_item_title"><span>Lecture 2.2:</span> Lorem Ipsn gravida nibh vel velit auctor aliquet.</div>
+													<div class="dropdown_item_text">
+														<p>Lorem Ipsn gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus.</p>
+													</div>
+												</div>
+											</li>
+										</ul>
+									</li>
+									<li>
+										<div class="dropdown_item">
+											<div class="dropdown_item_title"><span>Lecture 3:</span> Lorem Ipsn gravida nibh vel velit auctor aliquet.</div>
+											<div class="dropdown_item_text">
+												<p>Lorem Ipsn gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus.</p>
+											</div>
+										</div>
+									</li>
+									<li>
+										<div class="dropdown_item">
+											<div class="dropdown_item_title"><span>Lecture 4:</span> Lorem Ipsn gravida nibh vel velit auctor aliquet.</div>
+											<div class="dropdown_item_text">
+												<p>Lorem Ipsn gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus.</p>
+											</div>
+										</div>
+									</li>
+									<li>
+										<div class="dropdown_item">
+											<div class="dropdown_item_title"><span>Lecture 5:</span> Lorem Ipsn gravida nibh vel velit auctor aliquet.</div>
+											<div class="dropdown_item_text">
+												<p>Lorem Ipsn gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus.</p>
+											</div>
+										</div>
+									</li>
+								</ul>								
