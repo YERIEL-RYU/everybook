@@ -160,21 +160,21 @@
 										<div class="dropdown_item_title"><span>예약</span></div>
 										<div class="dropdown_item_text">
 											<p>도서예약불가</p>
-											<button type="submit" class="comment_button" data-toggle="modal" data-target=".bs-example-modal-sm">예약하기</button>
-											<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
- 												<div class="modal-dialog modal-sm">
+											<button type="submit" class="comment_button" data-toggle="modal" data-target=".bs-example-modal-lg">예약하기</button>
+											<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+ 												<div class="modal-dialog modal-lg">
     												<div class="modal-content">
     													<div class="modal-header">
 													        <h4 class="modal-title">예약하기</h4>
 													        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 													     </div>
 													     <div class="modal-body">
-													        <p>현재 시간 <span th:text="${#dates.createNowForTimeZone()}"></span></p>
+													        <p>현재 시간   <span th:text="${#dates.format(#dates.createNow(), 'yyyy년 MM월  dd일  HH시 mm분')}"></span></p>
 													        <p><small>지금으로부터 24시간 예약이 유지되며 시간 경과로 예약 취소시에는 벌점이 부과 됩니다.</small></p>
 													     </div>
 													     <div class="modal-footer">
-													        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-													        <button type="button" class="btn btn-primary">예약</button>
+													        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+													        <button type="button" class="btn btn-primary">예약 하시겠습니까?</button>
 													     </div>
    													</div>
 												</div>
