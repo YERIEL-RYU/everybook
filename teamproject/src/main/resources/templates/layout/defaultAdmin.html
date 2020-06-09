@@ -15,8 +15,8 @@
 		
 		<div th:replace="fragments/admin/footerAdmin :: footerFragment"></div>
 	</div>
+	
 	<!-- 사용자 지정 자바스크립트 라이브러리 파일 -->
-	<th:block layout:fragment="customFooterScript">
 		<!-- jQuery -->
 		<script src="plugins/jquery/jquery.min.js"></script>
 		<!-- Bootstrap -->
@@ -39,6 +39,7 @@
 		<!-- ChartJS -->
 		<script src="plugins/chart.js/Chart.min.js"></script>
 		
+	<th:block layout:fragment="customFooterScript">
 	</th:block>
 </body>
 </html>
