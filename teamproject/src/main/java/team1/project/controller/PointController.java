@@ -6,9 +6,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class PointController {
 	
-	@GetMapping("/officePointSandard")
-	public String officePointSandard() {
-		return "point/officePointSandard";
+	@GetMapping("/officePointHistoryAdd")
+	public String officePointHistoryAdd() {
+		return "point/officePointHistoryAdd";
+	}
+	
+	@GetMapping("/officePointStandard")
+	public String officePointStandard() {
+		return "point/officePointStandard";
 	}
 	
 	@GetMapping("/myPoint")
