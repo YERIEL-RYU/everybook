@@ -8,6 +8,6 @@ public class ReserveController {
 	
 	@GetMapping("/myReserve")
 	public String myReserve() {
-		return "reserve/reserve";
+		return "reserve/myReserve";
 	}
 }
