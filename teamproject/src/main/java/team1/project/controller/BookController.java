@@ -7,7 +7,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class BookController {
 	@GetMapping("/bookDetail")
 	public String bookDetail() {
-		return "book/bookdetail";
+		return "book/bookDetail";
 	}
-
+	@GetMapping("/bookList")
+	public String bookList() {
+		return "book/bookList";
+	}
+	@GetMapping("/officeAddbook")
+	public String officeAddbook() {
+		return "admin/officeAddbook";
+	}
+	@GetMapping("/officeBooklist")
+	public String officeBooklist() {
+		return "admin/officeBooklist";
+	}
 }
