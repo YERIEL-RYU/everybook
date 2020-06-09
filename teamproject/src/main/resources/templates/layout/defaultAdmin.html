@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head th:replace="fragments/admin/headAdmin :: headFragment"></head>
+
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+	<div id="wrapper">
+		<div th:replace="fragments/admin/headerAdmin :: headerFragment"></div>
+		
+		<div th:replace="fragments/admin/leftmenuAdmin :: leftmenuFragment"></div>
+		
+		<div id="rightcolumn">
+			<th:block layout:fragment="customContents"></th:block>
+		</div>
+		
+		<div th:replace="fragments/admin/footerAdmin :: footerFragment"></div>
+	</div>
+	<!-- 사용자 지정 자바스크립트 라이브러리 파일 -->
+	<th:block layout:fragment="customFooterScript">
+		<!-- jQuery -->
+		<script src="plugins/jquery/jquery.min.js"></script>
+		<!-- Bootstrap -->
+		<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<!-- overlayScrollbars -->
+		<script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+		<!-- AdminLTE App -->
+		<script src="dist/js/adminlte.js"></script>	
+		<!-- ionicons.com 아이콘 -->
+		<script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+		<!-- OPTIONAL SCRIPTS -->
+		<script src="dist/js/demo.js"></script>
+		
+		<!-- PAGE PLUGINS -->
+		<!-- jQuery Mapael -->
+		<script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
+		<script src="plugins/raphael/raphael.min.js"></script>
+		<script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
+		<script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
+		<!-- ChartJS -->
+		<script src="plugins/chart.js/Chart.min.js"></script>
+		
+	</th:block>
+</body>
+</html>

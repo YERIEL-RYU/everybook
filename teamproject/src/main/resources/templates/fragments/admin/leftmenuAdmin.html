@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+	<!-- Begin Left Column -->
+	<div id="leftcolumn" th:fragment="leftmenuFragment">
+		<!-- Main Sidebar Container -->	
+		<aside class="main-sidebar sidebar-dark-primary elevation-4">
+			<!-- Brand Logo -->
+			<a href="#" class="brand-link">
+				<img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+				     style="opacity: .8">
+				<span class="brand-text font-weight-light">everyBook</span>
+			</a>
+					
+			<!-- Sidebar -->
+			<div class="sidebar">
+				<!-- Sidebar user panel (optional) -->
+				<div class="user-panel mt-3 pb-3 mb-3 d-flex">
+					<div class="image">
+						<img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+					</div>
+					<div class="info">
+						<a href="#" class="d-block">관리자님</a>
+					</div>
+				</div>
+			
+				<!-- Sidebar Menu -->
+				<nav class="mt-2">
+					<!-- 드롭버튼 -->				
+					<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+				    	<li class="nav-header">User Management</li>
+				    	<!-- 드롭버튼 -->				
+				     	<!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
+						<li class="nav-item has-treeview">
+							<a href="#" class="nav-link">
+							<ion-icon name="person-circle"></ion-icon>
+							<p>
+								회원 관리
+								<i class="fas fa-angle-left right"></i>
+							</p>
+						    </a>
+							<ul class="nav nav-treeview">
+							  <li class="nav-item">
+							    <a href="pages/layout/top-nav.html" class="nav-link">
+									<p>회원 목록</p>
+							    </a>
+							  </li>
+							</ul>
+							<ul class="nav nav-treeview">
+							  <li class="nav-item">
+							    <a href="pages/layout/top-nav.html" class="nav-link">
+									<p>회원 등록</p>
+							    </a>
+							  </li>
+							</ul>
+							<ul class="nav nav-treeview">
+							  <li class="nav-item">
+							    <a href="pages/layout/top-nav.html" class="nav-link">
+									<p>회원 로그인 이력</p>
+							    </a>
+							  </li>
+							</ul>
+							<ul class="nav nav-treeview">
+							  <li class="nav-item">
+							    <a href="pages/layout/top-nav.html" class="nav-link">
+									<p>휴면 회원 목록</p>
+							    </a>
+							  </li>
+							</ul>
+						</li>
+						<li class="nav-item has-treeview">
+							<a href="#" class="nav-link">
+						    <ion-icon name="people-circle"></ion-icon>
+							<p>
+								직원 관리
+								<i class="fas fa-angle-left right"></i>
+							</p>
+						    </a>
+							<ul class="nav nav-treeview">
+							  <li class="nav-item">
+							    <a href="pages/layout/top-nav.html" class="nav-link">
+									<p>내 정보</p>
+							    </a>
+							  </li>
+							</ul>
+							<ul class="nav nav-treeview">
+							  <li class="nav-item">
+							    <a href="pages/layout/top-nav.html" class="nav-link">
+									<p>직원 목록</p>
+							    </a>
+							  </li>
+							</ul>
+						</li>
+						<li class="nav-item has-treeview">
+							<a href="#" class="nav-link">
+						    <ion-icon name="gift"></ion-icon>
+							<p>
+								상벌점 관리
+								<i class="fas fa-angle-left right"></i>
+							</p>
+						    </a>
+							<ul class="nav nav-treeview">
+							  <li class="nav-item">
+							    <a href="pages/layout/top-nav.html" class="nav-link">
+									<p>상벌점 기준</p>
+							    </a>
+							  </li>
+							</ul>
+							<ul class="nav nav-treeview">
+							  <li class="nav-item">
+							    <a href="pages/layout/top-nav.html" class="nav-link">
+									<p>상벌점 등록</p>
+							    </a>
+							  </li>
+							</ul>
+							<ul class="nav nav-treeview">
+							  <li class="nav-item">
+							    <a href="pages/layout/top-nav.html" class="nav-link">
+									<p>상벌점 내역 목록</p>
+							    </a>
+							  </li>
+							</ul>
+						</li>
+					</ul>
+					<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+				    	<li class="nav-header">Book Management</li>
+						<li class="nav-item has-treeview">
+							<a href="#" class="nav-link">
+						    <ion-icon name="library"></ion-icon>
+							<p>
+								도서 관리
+								<i class="fas fa-angle-left right"></i>
+							</p>
+						    </a>
+							<ul class="nav nav-treeview">
+							  <li class="nav-item">
+							    <a href="pages/layout/top-nav.html" class="nav-link">
+									<p>소장도서 리스트</p>
+							    </a>
+							  </li>
+							</ul>
+							<ul class="nav nav-treeview">
+							  <li class="nav-item">
+							    <a href="pages/layout/top-nav.html" class="nav-link">
+									<p>소장도서 등록</p>
+							    </a>
+							  </li>
+							</ul>
+							<ul class="nav nav-treeview">
+							  <li class="nav-item">
+							    <a href="pages/layout/top-nav.html" class="nav-link">
+									<p>삭제도서 리스트</p>
+							    </a>
+							  </li>
+							</ul>
+							<ul class="nav nav-treeview">
+							  <li class="nav-item">
+							    <a href="pages/layout/top-nav.html" class="nav-link">
+									<p>신청도서 리스트</p>
+							    </a>
+							  </li>
+							</ul>
+							<ul class="nav nav-treeview">
+							  <li class="nav-item">
+							    <a href="pages/layout/top-nav.html" class="nav-link">
+									<p>신청도서 등록</p>
+							    </a>
+							  </li>
+							</ul>
+						</li>
+						<li class="nav-item has-treeview">
+							<a href="#" class="nav-link">
+						    <ion-icon name="book"></ion-icon>
+							<p>
+								도서평 관리
+								<i class="fas fa-angle-left right"></i>
+							</p>
+						    </a>
+							<ul class="nav nav-treeview">
+							  <li class="nav-item">
+							    <a href="pages/layout/top-nav.html" class="nav-link">
+									<p>도서평 리스트</p>
+							    </a>
+							  </li>
+							</ul>
+							<ul class="nav nav-treeview">
+							  <li class="nav-item">
+							    <a href="pages/layout/top-nav.html" class="nav-link">
+									<p>도서평 등록</p>
+							    </a>
+							  </li>
+							</ul>
+							<ul class="nav nav-treeview">
+							  <li class="nav-item">
+							    <a href="pages/layout/top-nav.html" class="nav-link">
+									<p>도서평 신고 리스트</p>
+							    </a>
+							  </li>
+							</ul>
+							<ul class="nav nav-treeview">
+							  <li class="nav-item">
+							    <a href="pages/layout/top-nav.html" class="nav-link">
+									<p>도서평 신고 등록</p>
+							    </a>
+							  </li>
+							</ul>
+						</li>
+						<li class="nav-item has-treeview">
+							<a href="#" class="nav-link">
+						    <ion-icon name="file-tray-full"></ion-icon>
+							<p>
+								대여 / 반납 / 예약 관리
+								<i class="fas fa-angle-left right"></i>
+							</p>
+						    </a>
+							<ul class="nav nav-treeview">
+							  <li class="nav-item">
+							    <a href="pages/layout/top-nav.html" class="nav-link">
+									<p>대여 신청 목록</p>
+							    </a>
+							  </li>
+							</ul>
+							<ul class="nav nav-treeview">
+							  <li class="nav-item">
+							    <a href="pages/layout/top-nav.html" class="nav-link">
+									<p>연장 신청 목록</p>
+							    </a>
+							  </li>
+							</ul>
+							<ul class="nav nav-treeview">
+							  <li class="nav-item">
+							    <a href="pages/layout/top-nav.html" class="nav-link">
+									<p>반납 신청 목록</p>
+							    </a>
+							  </li>
+							</ul>
+							<ul class="nav nav-treeview">
+							  <li class="nav-item">
+							    <a href="pages/layout/top-nav.html" class="nav-link">
+									<p>예약 신청 목록</p>
+							    </a>
+							  </li>
+							</ul>
+						</li>
+						<li class="nav-item has-treeview">
+							<a href="#" class="nav-link">
+						    <ion-icon name="receipt"></ion-icon>
+							<p>
+								도서 수서 관리
+								<i class="fas fa-angle-left right"></i>
+							</p>
+						    </a>
+							<ul class="nav nav-treeview">
+							  <li class="nav-item">
+							    <a href="pages/layout/top-nav.html" class="nav-link">
+									<p>구매 예정 도서 목록</p>
+							    </a>
+							  </li>
+							</ul>
+							<ul class="nav nav-treeview">
+							  <li class="nav-item">
+							    <a href="pages/layout/top-nav.html" class="nav-link">
+									<p>구매 예정 도서 등록</p>
+							    </a>
+							  </li>
+							</ul>
+							<ul class="nav nav-treeview">
+							  <li class="nav-item">
+							    <a href="pages/layout/top-nav.html" class="nav-link">
+									<p>주문 도서 리스트</p>
+							    </a>
+							  </li>
+							</ul>
+						</li>
+					</ul>
+					<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+				    	<li class="nav-header">Library Mangement</li>
+						<li class="nav-item">
+							<a href="#" class="nav-link">
+								<ion-icon name="list"></ion-icon>
+								<p>
+									게시판 관리
+									<span class="badge badge-info right">2</span>
+								</p>
+							</a>
+						</li>
+						<li class="nav-item has-treeview">
+							<a href="#" class="nav-link">
+						    <ion-icon name="server"></ion-icon>
+							<p>
+								예산 관리
+								<i class="fas fa-angle-left right"></i>
+							</p>
+						    </a>
+							<ul class="nav nav-treeview">
+							  <li class="nav-item">
+							    <a href="pages/layout/top-nav.html" class="nav-link">
+									<p>예산 목록</p>
+							    </a>
+							  </li>
+							</ul>
+							<ul class="nav nav-treeview">
+							  <li class="nav-item">
+							    <a href="pages/layout/top-nav.html" class="nav-link">
+									<p>예산 등록</p>
+							    </a>
+							  </li>
+							</ul>
+							<ul class="nav nav-treeview">
+							  <li class="nav-item">
+							    <a href="pages/layout/top-nav.html" class="nav-link">
+									<p>계정 과목 목록</p>
+							    </a>
+							  </li>
+							</ul>
+							<ul class="nav nav-treeview">
+							  <li class="nav-item">
+							    <a href="pages/layout/top-nav.html" class="nav-link">
+									<p>계정 과목 등록</p>
+							    </a>
+							  </li>
+							</ul>
+						</li>
+					</ul>
+					<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+				    	<li class="nav-header">Chart</li>
+						<li class="nav-item">
+							<a href="#" class="nav-link">
+								<ion-icon name="bar-chart"></ion-icon>
+								<p>
+									통계 관리
+								</p>
+							</a>
+						</li>
+					</ul>
+				</nav>
+				<!-- /.sidebar-menu -->
+			</div>
+			<!-- /.sidebar -->
+		</aside>			
+	</div>
+	<!-- End Left Column -->
+</html>
