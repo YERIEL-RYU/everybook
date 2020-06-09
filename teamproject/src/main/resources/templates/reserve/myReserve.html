@@ -17,11 +17,11 @@
 	<th:block layout:fragment="customHeader">
 		<nav class="main_nav_contaner ml-auto">
 			<ul class="main_nav">
-				<li><a href="about.html">통합검색</a></li>
+				<li><a href="about.html">#통합검색</a></li>
 				<li class="active"><a href="courses.html">나의 도서관</a></li>
-				<li><a href="#">공지사항</a></li>
-				<li><a href="#">이용안내</a></li>
-				<li><a href="#">도서관 위치</a></li>
+				<li><a href="#">#공지사항</a></li>
+				<li><a href="#">#이용안내</a></li>
+				<li><a href="#">#도서관 위치</a></li>
 			</ul>
 			<div class="search_button"><i class="fa fa-search" aria-hidden="true"></i></div>
 		</nav>
@@ -65,7 +65,24 @@
 					</div>
 					<div class="courses_container">
 						<div class="text-right" style="margin: 10px 10px;">
-							<button class="btn btn-info btn-sm" type="button" >예약 취소</button>
+							<button class="btn btn-info btn-sm" type="button"  data-toggle="modal" data-target=".bs-example-modal-sm">예약 취소</button>
+						</div>
+						<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+							<div class="modal-dialog modal-sm">
+								<div class="modal-content">
+									<div class="modal-header">
+								        <h4 class="modal-title">도서 예약 취소하기</h4>
+								        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								     </div>
+								     <div class="modal-body">
+								        <p>해당 도서 예약을 취소 하시겠습니까?</p>
+								     </div>
+								     <div class="modal-footer">
+								        <button type="button"class="btn btn-default" data-dismiss="modal">닫기</button>
+								        <button type="button" class="btn btn-primary">예약 취소</button>
+								     </div>
+								</div>
+							</div>
 						</div>
 						<div class="table-responsive">
 							<table class="table">
@@ -90,14 +107,12 @@
 										<li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
 									</ul>
 									<div class="courses_show_container ml-auto clearfix">
-										<div class="courses_show_text">Showing <span class="courses_showing">1-6</span> of <span class="courses_total">26</span> results:</div>
 										<div class="courses_show_content">
-											<span>Show: </span>
+											<span>목록수: </span>
 											<select id="courses_show_select" class="courses_show_select">
-												<option>06</option>
-												<option>12</option>
-												<option>24</option>
-												<option>36</option>
+												<option>10</option>
+												<option>30</option>
+												<option>50</option>
 											</select>
 										</div>
 									</div>
