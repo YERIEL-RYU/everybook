@@ -9,13 +9,13 @@ public class OfficerController {
 	@GetMapping("/officerList")
 	public String officerList() {
 		
-		return "admin/office/officerList";
+		return "office/officerList";
 	}
 	
 	//직원관리 - 내 정보
 	@GetMapping("/myOffice")
 	public String myOffice() {
 		
-		return "admin/office/myOffice";
+		return "office/myOffice";
 	}
 }
