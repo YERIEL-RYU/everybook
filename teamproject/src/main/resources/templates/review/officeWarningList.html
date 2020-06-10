@@ -4,17 +4,17 @@
   layout:decorator="@{layout/defaultAdmin}">
 
 	<th:block layout:fragment="customTitle">
-		<title>도서평 목록</title>
+		<title>도서평 신고 목록</title>
 	</th:block>
 
 	<th:block layout:fragment="customContents">
 		<div class="content-wrapper">
 		 	<section class="content-header">
-				<h1>도서평 목록</h1>
+				<h1>도서평 신고 목록</h1>
 			</section>
 		<section class="content">
 		
-			<div class="card card-info">
+			<div class="card card-danger">
 	            <div class="card-header">
 	              <h3 class="card-title">목록</h3>
 	            </div>
@@ -23,24 +23,26 @@
 	                <thead>
 	                  <tr>
 	                    <th>도서명</th>
-	                    <th>도서평 내용</th>
 	                    <th>작성자</th>
+	                    <th>신고자</th>
+	                    <th>신고날짜</th>
 	                  </tr>
 	                </thead>
 	                <tbody>
 	            		<tr>
-		                    <td>도서명1</td>
 		                    <td>
 		                    	<button type="button" class="btn btn-link" data-toggle="modal" data-target="#modal-lg" style="padding-top: 0px;">
-                 				도서평 간략
+                 				도서명1
                 				</button>
 		                    </td>
 		                    <td>아이디1</td>
+		                    <td>신고한아이디1</td>
+		                    <td>2020-06-10</td>
 		                    <td class="project-actions text-right">
-						        <a class="btn btn-info btn-sm" href="#">
+						        <a class="btn btn-primary btn-sm" href="#">
 						            <i class="fas fa-pencil-alt">
 						            </i>
-									수정
+									벌점 등록
 						        </a>
 						        <a class="btn btn-danger btn-sm" href="#">
 						            <i class="fas fa-trash">
@@ -50,18 +52,19 @@
 						    </td>
 	                  	</tr>
 	                  	<tr>
-		                    <td>도서명2</td>
 		                    <td>
 		                    	<button type="button" class="btn btn-link" data-toggle="modal" data-target="#modal-lg" style="padding-top: 0px;">
-                 				도서평 간략
+                 				도서명2
                 				</button>
 		                    </td>
 		                    <td>아이디1</td>
+		                    <td>신고한아이디1</td>
+		                    <td>2020-06-10</td>
 		                    <td class="project-actions text-right">
-						        <a class="btn btn-info btn-sm" href="#">
+						        <a class="btn btn-primary btn-sm" href="#">
 						            <i class="fas fa-pencil-alt">
 						            </i>
-									수정
+									벌점 등록
 						        </a>
 						        <a class="btn btn-danger btn-sm" href="#">
 						            <i class="fas fa-trash">
@@ -71,18 +74,19 @@
 						    </td>
 	                  	</tr>
 	                  	<tr>
-		                    <td>도서명3</td>
 		                    <td>
 		                    	<button type="button" class="btn btn-link" data-toggle="modal" data-target="#modal-lg" style="padding-top: 0px;">
-                 				도서평 간략
+                 				도서명3
                 				</button>
 		                    </td>
 		                    <td>아이디1</td>
+		                    <td>신고한아이디1</td>
+		                    <td>2020-06-10</td>
 		                    <td class="project-actions text-right">
-						        <a class="btn btn-info btn-sm" href="#">
+						        <a class="btn btn-primary btn-sm" href="#">
 						            <i class="fas fa-pencil-alt">
 						            </i>
-									수정
+									벌점 등록
 						        </a>
 						        <a class="btn btn-danger btn-sm" href="#">
 						            <i class="fas fa-trash">
@@ -94,8 +98,8 @@
 	                </tbody>
 	              </table>
 	            </div>
-	            <!-- /.card-body -->
-	            <div class="modal fade" id="modal-lg">
+				<!-- /.card-body -->
+				<div class="modal fade" id="modal-lg">
 					<div class="modal-dialog modal-lg">
 						<div class="modal-content">
 							<div class="modal-header">
@@ -106,6 +110,9 @@
 							</div>
 							<div class="modal-body" style="border-bottom: 1px solid #e9ecef;">
 								<p>작성한 도서평내용&hellip;</p>
+							</div>
+							<div class="modal-body">
+								<p>작성한 신고사유&hellip;</p>
 							</div>
 							<div class="modal-footer justify-content-between">
 								<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
