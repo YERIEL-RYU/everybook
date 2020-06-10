@@ -4,7 +4,7 @@
   layout:decorator="@{layout/defaultAdmin}">
 
 <th:block layout:fragment="customTitle">
-	<title>회원 상벌점 등록</title>
+	<title>온라인 도서 예약 리스트 등록</title>
 </th:block>
 
 <th:block layout:fragment="customCss">
@@ -17,7 +17,7 @@
 		<!-- Content Header (Page header) -->
 		<div class="content-header">
 			<div class="container-fluid">
-				<h1 class="m-0 text-dark">회원 상벌점 등록</h1>
+				<h1 class="m-0 text-dark">대여 가능한 도서 온라인 예약 등록</h1>
 			</div><!-- /.container-fluid -->
 		</div>
 		<!-- /.content-header -->
@@ -34,46 +34,63 @@
 								<form role="form">
 									<div class="row">
 										<div class="col-sm-3">
-											<select class="form-control">
-												<option> 상태 </option>
-											</select>									
+											<div class="form-group">
+						                        <select class="form-control custom-select">
+						                          <option>예약 코드</option>
+						                          <option>예약 회원 아이디</option>
+						                          <option>예약 도서 코드</option>
+						                          <option>예약 도서 청구 코드</option>
+						                          <option>예약 도서 제목</option>
+						                          <option>예약날짜</option>
+						                          <option>등록자</option>
+						                        </select>
+						                    </div>
 										</div>
 										<div class="col-sm-9">
 											<div class="row">
-												<div class="col-sm-10">
-													<input class="form-control" type="search" placeholder="Search" aria-label="Search">
+												<div class="col-sm-9">
+													<input class="form-control" type="search">
 												</div>
-												<div class="col-sm-2">
+												<div class="col-sm-3">
 													<div class="input-group-append">
-														<button class="btn btn-navbar" type="submit">
-															<i class="fas fa-search"></i>
-														</button>
-													</div>
-												</div>
-											</div>
+					                          			 <button class="btn btn-navbar" type="submit">
+					                           			  <i class="fas fa-search"></i>
+					                          			  </button>
+					                          		</div>
+				                          		</div>
+			                          		</div>
 										</div>
-									</div>
+				                    </div>							
 								</form>
 							</div>
 							<div class="col-sm-3">
-								<button type="button" class="btn btn-outline-info btn-flat"  data-toggle="modal" data-target=".bs-add-modal-lg">#승인</button>
+								<div class="btn-group">
+									<button type="button" class="btn btn-outline-secondary btn-flat"  data-toggle="modal" data-target=".bs-ok-modal-lg">#승인</button>
+								</div>							
 							</div>
-						</div>
+						</div>	
 						<!-- start 기준 등록  modal -->
-						<div class="modal fade bs-add-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+						<div class="modal fade bs-ok-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 							<div class="modal-dialog modal-lg">
 								<div class="modal-content">
 									<div class="modal-header">
-								        <h4 class="modal-title">회원 상벌점 승인</h4>
+								        <h4 class="modal-title">예약 승인</h4>
 								        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 								     </div>
 								     <div class="modal-body">
-								        <label for="inputEmail3">해당 내역을 승인 하시겠습니까?</label>
+								        <label for="inputEmail3">해당도서 예약 내역을 승인 하시겠습니까?</label>
 						          		<div>
 											<select class="form-control">
 												<option>승인</option>
 												<option>거절</option>
 											</select>
+						          		</div>
+						          		<div hidden>
+						          			<select>
+						          				<option>거절 이유</option>
+						          				<option>해당 도서 없음</option>
+						          				<option></option>
+						          			</select>
 						          		</div>
 								     </div>
 								     <div class="modal-footer">
@@ -92,37 +109,37 @@
 		                  <thead>
 			                  <tr>
 			                  	<th><input type="checkbox"></th>
-			                    <th>상벌점 내역 코드</th>
-			                    <th>회원 아이디</th>
-			                    <th>상벌점 기준 코드</th>
-			                    <th>상벌점 점수 이름</th>
-			                    <th>점수</th>
+			                    <th>예약 코드</th>
+			                    <th>예약 회원 아이디</th>
+			                    <th>예약 도서 코드</th>
+			                    <th>예약 도서 청구 코드</th>
+			                    <th>예약 도서 제목</th>
+			                    <th>예약날짜</th>
 			                    <th>상태</th>
-			                    <th>등록날짜</th>
 			                  </tr>
 		                  </thead>
 		                  <tbody>
 			                  <tr>
 			                  	<td><input type="checkbox"></td>
-			                    <td>history001</td>
+			                    <td>rtcan_001</td>
 			                    <td>member001</td>
-			                    <td>1</td>
-			                    <td>도서평작성</td>
-			                    <td>+1</td>
+			                    <td>book_001</td>
+			                    <td></td>
+			                    <td>해빙</td>
+			                    <td>2020.06.10</td>
 			                    <td>대기</td>
-			                    <td>2020.06.09</td>
 			                  </tr>
 		                  </tbody>
 		                  <tfoot>
 			                  <tr>
 			                  	<th><input type="checkbox"></th>
-			                    <th>상벌점 내역 코드</th>
-			                    <th>회원 아이디</th>
-			                    <th>상벌점 기준 코드</th>
-			                    <th>상벌점 점수 이름</th>
-			                    <th>점수</th>
+			                    <th>예약 코드</th>
+			                    <th>예약 회원 아이디</th>
+			                    <th>예약 도서 코드</th>
+			                    <th>예약 도서 청구 코드</th>
+			                    <th>예약 도서 제목</th>
+			                    <th>예약날짜</th>
 			                    <th>상태</th>
-			                    <th>등록날짜</th>
 			                  </tr>
 		                  </tfoot>
 		                </table>

@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+  		xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+  layout:decorator="@{layout/defaultAdmin}">
+
+<th:block layout:fragment="customTitle">
+	<title>도서관 리스트</title>
+</th:block>
+
+<th:block layout:fragment="customCss">
+<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+</th:block>
+
+<th:block layout:fragment="customContents">
+	<!-- Content Wrapper. Contains page content -->
+	<div class="content-wrapper">
+		<!-- Content Header (Page header) -->
+		<div class="content-header">
+			<div class="container-fluid">
+				<h1 class="m-0 text-dark">도서관 리스트</h1>
+			</div><!-- /.container-fluid -->
+		</div>
+		<!-- /.content-header -->
+	 	
+	 	<!-- Main content -->
+		<section class="content">
+			<div class="container-fluid">
+				
+				<div class="card">
+					<!-- start card-header -->
+					<div class="card-header">
+						<div class="row">
+							<div class="col-sm-8">
+								<form role="form">
+									<div class="row">
+										<div class="col-sm-3">
+											<div class="form-group">
+						                        <select class="form-control custom-select">
+						                          <option>도서관 코드</option>
+						                          <option>지역 코드</option>
+						                          <option>지역 대분류</option>
+						                          <option>지역 소분류</option>
+						                          <option>설립 주체</option>
+						                          <option>개관일자</option>
+						                          <option>전화번호</option>
+						                        </select>
+						                    </div>
+										</div>
+										<div class="col-sm-9">
+											<div class="row">
+												<div class="col-sm-10">
+													<input class="form-control" type="search">
+												</div>
+												<div class="col-sm-2">
+													<div class="input-group-append">
+					                          			 <button class="btn btn-navbar" type="submit">
+					                           			  <i class="fas fa-search"></i>
+					                          			  </button>
+					                          		</div>
+				                          		</div>
+			                          		</div>
+										</div>
+				                    </div>							
+								</form>
+							</div>
+							<div class="col-sm-4">							
+								<div class="btn-group">
+									<button type="button" class="btn btn-outline-info btn-flat"  data-toggle="modal" data-target=".bs-add-modal-lg">#지역 등록</button>
+									<button type="button" class="btn btn-outline-secondary btn-flat"  data-toggle="modal" data-target=".bs-modify-modal-lg">#지역 수정</button>
+									<button type="button" class="btn btn-outline-danger btn-flat"  data-toggle="modal" data-target=".bs-delete-sm">#지역 삭제</button>
+								</div>
+							</div>
+						</div>
+
+						<!-- start 도서관 등록  modal -->
+						<div class="modal fade bs-add-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+							<div class="modal-dialog modal-lg">
+								<div class="modal-content">
+									
+									<!-- form start -->
+									<form role="form" action="#">
+										<div class="modal-header">
+											<h4 class="modal-title">도서관 등록하기</h4>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+										</div>
+										<!-- start modal-body -->
+										<div class="modal-body">
+											<div class="form-group row">
+												<label for="inputEmail3" class="col-sm-2 col-form-label">지역 대분류</label>
+								         		<div class="col-sm-10">
+													<select class="form-control">
+                    									    <option>강원</option>
+                         									<option>경기</option>
+                       								</select>
+								         		</div>
+								           	</div>
+											<div class="form-group row">
+												<label for="inputEmail3" class="col-sm-2 col-form-label">지역 소분류</label>
+								          		<div class="col-sm-10">
+													<select class="form-control">
+                    									    <option>강원</option>
+                         									<option>경기</option>
+                       								</select>
+								          		</div>
+								           </div>
+											<div class="form-group row">
+												<label for="inputEmail3" class="col-sm-2 col-form-label">이름</label>
+								          		<div class="col-sm-10">
+													<input type="text" class="form-control" placeholder="도서관 이름">
+								          		</div>
+								           </div>
+											<div class="form-group row">
+												<label for="inputEmail3" class="col-sm-2 col-form-label">설립 주체</label>
+								          		<div class="col-sm-10">
+													<input type="text" class="form-control" placeholder="도서관 설립주체">
+								          		</div>
+								           </div>
+											<div class="form-group row">
+												<label for="inputEmail3" class="col-sm-2 col-form-label">개관일자</label>
+								          		<div class="col-sm-10">
+													<input type="text" class="form-control" placeholder="도서관 개관일자">
+								          		</div>
+								           </div>
+											<div class="form-group row">
+												<label for="inputEmail3" class="col-sm-2 col-form-label">전화번호</label>
+								          		<div class="col-sm-10">
+													<input type="text" class="form-control" placeholder="도서관 전화번혼">
+								          		</div>
+								           </div>
+											<div class="form-group row">
+												<label for="inputEmail3" class="col-sm-2 col-form-label">홈페이지</label>
+								          		<div class="col-sm-10">
+													<input type="text" class="form-control" placeholder="도서관 홈페이지">
+								          		</div>
+								           </div>
+										</div>
+										<!-- end modal-body -->
+										<div class="modal-footer">
+											<button type="button" class="btn btn-primary">도서관 등록</button>
+										</div>
+									</form>
+									<!-- form end -->
+								</div>	
+							</div>
+						</div>
+						<!--  end 도서관 등록 modal -->
+						<!-- start 도서관 수정  modal -->
+						<div class="modal fade bs-modify-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+							<div class="modal-dialog modal-lg">
+								<div class="modal-content">
+									
+									<!-- form start -->
+									<form role="form" action="#">
+										<div class="modal-header">
+											<h4 class="modal-title">도서관 수정하기</h4>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+										</div>
+										<!-- start modal-body -->
+										<div class="modal-body">
+											<div class="form-group row">
+												<label for="inputEmail3" class="col-sm-2 col-form-label">도서관 코드</label>
+								          		<div class="col-sm-10">
+													<input type="text" class="form-control" value="" readonly="readonly">
+								          		</div>
+								           </div>
+											<div class="form-group row">
+												<label for="inputEmail3" class="col-sm-2 col-form-label">지역 대분류</label>
+								         		<div class="col-sm-10">
+													<select class="form-control">
+                    									    <option>강원</option>
+                         									<option>경기</option>
+                       								</select>
+								         		</div>
+								           	</div>
+											<div class="form-group row">
+												<label for="inputEmail3" class="col-sm-2 col-form-label">지역 소분류</label>
+								          		<div class="col-sm-10">
+													<select class="form-control">
+                    									    <option>강원</option>
+                         									<option>경기</option>
+                       								</select>
+								          		</div>
+								           </div>
+											<div class="form-group row">
+												<label for="inputEmail3" class="col-sm-2 col-form-label">이름</label>
+								          		<div class="col-sm-10">
+													<input type="text" class="form-control" placeholder="도서관 이름">
+								          		</div>
+								           </div>
+											<div class="form-group row">
+												<label for="inputEmail3" class="col-sm-2 col-form-label">설립 주체</label>
+								          		<div class="col-sm-10">
+													<input type="text" class="form-control" placeholder="도서관 설립주체">
+								          		</div>
+								           </div>
+											<div class="form-group row">
+												<label for="inputEmail3" class="col-sm-2 col-form-label">개관일자</label>
+								          		<div class="col-sm-10">
+													<input type="text" class="form-control" placeholder="도서관 개관일자">
+								          		</div>
+								           </div>
+											<div class="form-group row">
+												<label for="inputEmail3" class="col-sm-2 col-form-label">전화번호</label>
+								          		<div class="col-sm-10">
+													<input type="text" class="form-control" placeholder="도서관 전화번혼">
+								          		</div>
+								           </div>
+											<div class="form-group row">
+												<label for="inputEmail3" class="col-sm-2 col-form-label">홈페이지</label>
+								          		<div class="col-sm-10">
+													<input type="text" class="form-control" placeholder="도서관 홈페이지">
+								          		</div>
+								           </div>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-primary">도서관 수정</button>
+										</div>
+										<!-- end modal-body -->
+									</form>
+									<!-- form end -->
+								</div>	
+							</div>
+						</div>
+						<!--  end 도서관 수정 modal -->	
+
+						<!-- start 도서관 삭제  modal -->
+						<div class="modal fade bs-delete-sm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+							<div class="modal-dialog modal-sm">
+								<div class="modal-content">
+									
+									<!-- form start -->
+									<form role="form" action="#">
+										<div class="modal-header">
+											<h4 class="modal-title">도서관 삭제하기</h4>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+										</div>
+										<div class="modal-body">
+								            <div class="form-group">
+												<label>도서관 코드</label>
+								         		<div>
+													<input type="text" class="form-control" value="region_001" readonly="readonly">
+								         		</div>
+								           	</div>
+											<div class="form-group">
+												<p>해당 도서관을 삭제 하시겠습니까?</p>
+												<p><small>삭제를 원하시면 비밀 번호를 입력하세요.</small></p>	
+								            </div>
+											<div class="form-group">
+												<label>비밀번호 확인</label>
+								          		<div>
+													<input type="password" class="form-control" placeholder="비밀번호를 입력하세요">
+								          		</div>
+								           </div>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-primary">도서관 삭제</button>
+										</div>
+									</form>
+									<!-- form end -->
+								</div>	
+							</div>
+						</div>
+						<!--  end 도서관 삭제 modal -->
+					</div>
+					<!--end card-header -->
+					
+					<div class="card-body">
+						<table class="table table-bordered table-hover" style="text-align: center;">
+		                  <thead>
+			                  <tr>
+			                  	<th><input type="checkbox"></th>
+			                    <th>도서관 코드</th>
+			                    <th>지역 코드</th>
+			                    <th>지역 대분류</th>
+			                    <th>지역 소분류</th>
+			                    <th>이름</th>
+			                    <th>설립 주체</th>
+			                    <th>개관일자</th>
+			                    <th>전화번호</th>
+			                    <th>홈페이지</th>
+			                    <th>등록날짜</th>
+			                    <th>등록자</th>
+			                  </tr>
+		                  </thead>
+		                  <tbody>
+			                  <tr>
+			                  	<td><input type="checkbox"></td>
+			                    <td>library_001</td>
+			                    <td>region_001</td>
+			                    <td>전북</td>
+			                    <td>전주</td>
+			                    <td>금암도서관</td>
+			                    <td>공공도서관</td>
+			                    <td>2000</td>
+			                    <td>063-222-2222</td>
+			                    <td>도서관.com</td>
+			                    <td>2020.06.01</td>
+			                    <td>id001</td>
+			                  </tr>
+		                  </tbody>
+		                  <tfoot>
+			                  <tr>
+			                  	<th><input type="checkbox"></th>
+			                    <th>도서관 코드</th>
+			                    <th>지역 코드</th>
+			                    <th>지역 대분류</th>
+			                    <th>지역 소분류</th>
+			                    <th>이름</th>
+			                    <th>설립 주체</th>
+			                    <th>개관일자</th>
+			                    <th>전화번호</th>
+			                    <th>홈페이지</th>
+			                    <th>등록날짜</th>
+			                    <th>등록자</th>
+			                  </tr>
+		                  </tfoot>
+		                </table>
+					</div>
+					<!-- /.card-body -->
+					<div class="card-footer clearfix">
+						<ul class="pagination pagination-sm m-0 float-right">
+							<li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
+							<li class="page-item"><a class="page-link" href="#">1</a></li>
+							<li class="page-item"><a class="page-link" href="#">2</a></li>
+							<li class="page-item"><a class="page-link" href="#">3</a></li>
+							<li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- /.content -->
+	</div>
+	<!-- /.content-wrapper -->
+	
+	<!-- Control Sidebar -->
+	<aside class="control-sidebar control-sidebar-dark">
+	  <!-- Control sidebar content goes here -->
+	</aside>
+	<!-- /.control-sidebar -->
+</th:block>
+
+</html>

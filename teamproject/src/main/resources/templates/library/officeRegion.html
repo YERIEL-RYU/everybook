@@ -4,7 +4,7 @@
   layout:decorator="@{layout/defaultAdmin}">
 
 <th:block layout:fragment="customTitle">
-	<title>상벌점 기준</title>
+	<title>지역 코드</title>
 </th:block>
 
 <th:block layout:fragment="customCss">
@@ -17,7 +17,7 @@
 		<!-- Content Header (Page header) -->
 		<div class="content-header">
 			<div class="container-fluid">
-				<h1 class="m-0 text-dark">상벌점 기준</h1>
+				<h1 class="m-0 text-dark">지역 코드</h1>
 			</div><!-- /.container-fluid -->
 		</div>
 		<!-- /.content-header -->
@@ -43,10 +43,10 @@
 										</div>
 										<div class="col-sm-9">
 											<div class="row">
-												<div class="col-sm-9">
+												<div class="col-sm-10">
 													<input class="form-control" type="search">
 												</div>
-												<div class="col-sm-3">
+												<div class="col-sm-2">
 													<div class="input-group-append">
 					                          			 <button class="btn btn-navbar" type="submit">
 					                           			  <i class="fas fa-search"></i>
@@ -60,9 +60,9 @@
 							</div>
 							<div class="col-sm-4">							
 								<div class="btn-group">
-									<button type="button" class="btn btn-outline-info btn-flat"  data-toggle="modal" data-target=".bs-add-modal-lg">#기준 등록</button>
-									<button type="button" class="btn btn-outline-secondary btn-flat"  data-toggle="modal" data-target=".bs-modify-modal-lg">#기준 수정</button>
-									<button type="button" class="btn btn-outline-danger btn-flat"  data-toggle="modal" data-target=".bs-delete-sm">#기준 삭제</button>
+									<button type="button" class="btn btn-outline-info btn-flat"  data-toggle="modal" data-target=".bs-add-modal-lg">#지역 등록</button>
+									<button type="button" class="btn btn-outline-secondary btn-flat"  data-toggle="modal" data-target=".bs-modify-modal-lg">#지역 수정</button>
+									<button type="button" class="btn btn-outline-danger btn-flat"  data-toggle="modal" data-target=".bs-delete-sm">#지역 삭제</button>
 								</div>
 							</div>
 						</div>
@@ -75,34 +75,28 @@
 										<!-- form start -->
 										<form role="form" action="#">
 											<div class="modal-header">
-												<h4 class="modal-title">상벌절 기준 등록하기</h4>
+												<h4 class="modal-title">지역코드 등록하기</h4>
 												<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 											</div>
 											<div class="modal-body">
 												<div class="form-group row">
-													<label for="inputEmail3" class="col-sm-2 col-form-label">상점 / 벌점</label>
+													<label for="inputEmail3" class="col-sm-2 col-form-label">지역 대분류</label>
 									         		<div class="col-sm-10">
 														<select class="form-control">
-                     									    <option>상점</option>
-                          									<option>벌점</option>
+                     									    <option>강원</option>
+                          									<option>경기</option>
                         								</select>
 									         		</div>
 									           	</div>
 												<div class="form-group row">
-													<label for="inputEmail3" class="col-sm-2 col-form-label">점수내용</label>
+													<label for="inputEmail3" class="col-sm-2 col-form-label">지역 소분류</label>
 									          		<div class="col-sm-10">
 														<input type="text" class="form-control" placeholder="점수 내용을 입력하세요">
 									          		</div>
 									           </div>
-												<div class="form-group row">
-													<label for="inputEmail3" class="col-sm-2 col-form-label">점수</label>
-									          		<div class="col-sm-10">
-														<input type="number" class="form-control" placeholder="해당 점수를 입력하세요 (숫자만)">
-									          		</div>
-									           </div>
 											</div>
 											<div class="modal-footer">
-												<button type="button" class="btn btn-primary">기준 등록</button>
+												<button type="button" class="btn btn-primary">코드 등록</button>
 											</div>
 										</form>
 										<!-- form end -->
@@ -118,35 +112,29 @@
 										<!-- form start -->
 										<form role="form" action="#">
 											<div class="modal-header">
-												<h4 class="modal-title">상벌절 기준 수정하기</h4>
+												<h4 class="modal-title">지역코드 수정하기</h4>
 												<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 											</div>
 											<div class="modal-body">
 												<div class="form-group row">
-													<label for="inputEmail3" class="col-sm-2 col-form-label">상벌점 코드</label>
+													<label for="inputEmail3" class="col-sm-2 col-form-label">지역 코드</label>
 									         		<div class="col-sm-10">
 														<input type="text" class="form-control" value="region_001" readonly="readonly">
 									         		</div>
-									           	</div>											
+									           	</div>
 												<div class="form-group row">
-													<label for="inputEmail3" class="col-sm-2 col-form-label">상점 / 벌점</label>
+													<label for="inputEmail3" class="col-sm-2 col-form-label">지역 대분류</label>
 									         		<div class="col-sm-10">
 														<select class="form-control">
-                     									    <option>상점</option>
-                          									<option>벌점</option>
+                     									    <option>강원</option>
+                          									<option>경기</option>
                         								</select>
 									         		</div>
 									           	</div>
 												<div class="form-group row">
-													<label for="inputEmail3" class="col-sm-2 col-form-label">점수내용</label>
+													<label for="inputEmail3" class="col-sm-2 col-form-label">지역 소분류</label>
 									          		<div class="col-sm-10">
 														<input type="text" class="form-control" placeholder="점수 내용을 입력하세요">
-									          		</div>
-									           </div>
-												<div class="form-group row">
-													<label for="inputEmail3" class="col-sm-2 col-form-label">점수</label>
-									          		<div class="col-sm-10">
-														<input type="number" class="form-control" placeholder="해당 점수를 입력하세요 (숫자만)">
 									          		</div>
 									           </div>
 											</div>
@@ -167,12 +155,19 @@
 										<!-- form start -->
 										<form role="form" action="#">
 											<div class="modal-header">
-												<h4 class="modal-title">상벌절 기준 삭제하기</h4>
+												<h4 class="modal-title">지역코드 삭제하기</h4>
 												<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 											</div>
 											<div class="modal-body">
-												<div class="form-group row">
-													<p>해당 상벌점 기준을 삭제 하시겠습니까?</p>		
+									            <div class="form-group">
+													<label>지역 코드</label>
+									         		<div>
+														<input type="text" class="form-control" value="region_001" readonly="readonly">
+									         		</div>
+									           	</div>
+												<div class="form-group">
+													<p>해당 지역코드을 삭제 하시겠습니까?</p>
+													<p><small>삭제를 원하시면 비밀 번호를 입력하세요.</small></p>	
 									            </div>
 												<div class="form-group">
 													<label>비밀번호 확인</label>
@@ -182,7 +177,7 @@
 									           </div>
 											</div>
 											<div class="modal-footer">
-												<button type="button" class="btn btn-primary">기준 삭제</button>
+												<button type="button" class="btn btn-primary">지역코드 삭제</button>
 											</div>
 										</form>
 										<!-- form end -->
@@ -198,10 +193,9 @@
 		                  <thead>
 			                  <tr>
 			                  	<th><input type="checkbox"></th>
-			                    <th>상벌점 코드</th>
-			                    <th>상점 / 벌점</th>
-			                    <th>점수 내용</th>
-			                    <th>점수</th>
+			                    <th>지역 코드</th>
+			                    <th>지역 대분류</th>
+			                    <th>지역 소분류</th>
 			                    <th>등록날짜</th>
 			                    <th>등록자</th>
 			                  </tr>
@@ -211,7 +205,6 @@
 			                  	<td><input type="checkbox"></td>
 			                    <td>1</td>
 			                    <td>상점이죠</td>
-			                    <td>도서평 5개</td>
 			                    <td>1</td>
 			                    <td>2020.06.09</td>
 			                    <td>id001</td>
@@ -220,10 +213,9 @@
 		                  <tfoot>
 			                  <tr>
 			                  	<th><input type="checkbox"></th>
-			                    <th>상벌점 코드</th>
-			                    <th>상점 / 벌점</th>
-			                    <th>점수 내용</th>
-			                    <th>점수</th>
+			                    <th>지역 코드</th>
+			                    <th>지역 대분류</th>
+			                    <th>지역 소분류</th>
 			                    <th>등록날짜</th>
 			                    <th>등록자</th>
 			                  </tr>
