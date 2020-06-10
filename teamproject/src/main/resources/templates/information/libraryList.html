@@ -13,14 +13,55 @@
 	
 	background: #f2f4f5;
 }
+.search form
+{
+	position: relative;
+	width: 100%;
+	height: 92px;
+}
+.search_select
+{
+	position: relative;
+	width:150px;
+	height:46px;
+	border-radius: 3px;
+	-webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    -webkit-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+	-webkit-user-select: none;
+	background-image: url(../images/down.png);
+	background-position: center right;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	padding-left: 10px;
+}
 .search_input
 {
-	width: 240px;
+
+	width: 300px;
 	height: 46px;
 	border: solid 1px #d9d9d9;
 	border-radius: 3px;
 	background: #FFFFFF;
 	padding-left: 20px;
+	margin-left: 10px;
+}
+.search_form_button
+{
+	width: 161px;
+	height: 46px;
+	background: #14bdee;
+	color: #FFFFFF;
+	font-size: 14px;
+	font-weight: 500;
+	text-transform: uppercase;
+	border: none;
+	outline: none;
+	border-radius: 3px;
+	cursor: pointer;
 }
 		</style>
   	</th:block>
@@ -73,12 +114,12 @@
 						<div class="blog_title"><i class="fa fa-quote-left" aria-hidden="true"></i>도서관 목록</div>					
 					</div>
 					<div class="search_container">
-						<form action="#" id="courses_search_form" class="courses_search_form d-flex flex-row align-items-center justify-content-start">
-							<select>
+						<form action="#" id="courses_search_form" class="search_form d-flex flex-row align-items-center justify-content-start">
+							<select class="search_select">
 								<option>검색 조건</option>
 							</select>
-							<input type="text" class="courses_search_input">
-							<button action="submit" class="courses_search_button ml-auto">검색</button>
+							<input type="text" class="search_input">
+							<button action="submit" class="search_form_button ml-auto">검색</button>
 						</form>
 					</div>
 					<div class="table-responsive">
@@ -94,6 +135,28 @@
 									<th> 도서관 홈페이지 </th>
 								</tr>	
 							</thead>
+							<tbody>
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+							</tbody>
+							<tfoot>
+								<tr>
+									<th> 도서관명 </th>
+									<th> 시 / 도</th>
+									<th> 시 / 군/ 구 </th>
+									<th> 도서관 설립주체 </th>
+									<th> 도서관 주소 </th>
+									<th> 도서관 전화번호 </th>
+									<th> 도서관 홈페이지 </th>
+								</tr>	
+							</tfoot>
 						</table>							
 					</div>
 					
