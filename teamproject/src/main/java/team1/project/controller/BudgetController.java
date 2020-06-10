@@ -6,24 +6,33 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class BudgetController {
 	
+		@GetMapping("/modifyBudget")
+		public String modifyBudget() {
+			return "admin/budget/modifyBudget";
+		}
 	
-		@GetMapping("/officeBudgetlist")
-		public String officeBudget() {
-			return "admin/officeBudgetlist";
+		@GetMapping("/modifyAccount")
+		public String modifyAccount() {
+			return "budget/modifyAccount";
+		}
+	
+		@GetMapping("/listBudget")
+		public String listBudget() {
+			return "budget/listBudget";
 		}
 
-		@GetMapping("/officeAccountlist")
-		public String officeAccountlist() {
-			return "admin/officeAccountlist";
+		@GetMapping("/listAccount")
+		public String listAccount() {
+			return "budget/listAccount";
 		}
 		
-		@GetMapping("/officeAddbudget")
-		public String officeAddbudget() {
-			return "admin/officeAddbudget";
+		@GetMapping("/addBudget")
+		public String addBudget() {
+			return "budget/addBudget";
 		}
 		
-		@GetMapping("/officeAddaccount")
-		public String officeAddaccount() {
-			return "admin/officeAddaccount";
+		@GetMapping("/addAccount")
+		public String addAccount() {
+			return "budget/addAccount";
 		}
 }
