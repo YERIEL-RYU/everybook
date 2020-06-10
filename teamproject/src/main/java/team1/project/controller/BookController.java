@@ -15,10 +15,10 @@ public class BookController {
 	}
 	@GetMapping("/officeAddbook")
 	public String officeAddbook() {
-		return "admin/officeAddbook";
+		return "book/officeAddbook";
 	}
 	@GetMapping("/officeBooklist")
 	public String officeBooklist() {
-		return "admin/officeBooklist";
+		return "book/officeBooklist";
 	}
 }
