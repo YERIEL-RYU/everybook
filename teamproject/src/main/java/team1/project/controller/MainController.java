@@ -6,6 +6,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class MainController {
 	
+	@GetMapping("/libraryList")
+	public String getLibraryList() {
+		return "information/libraryList";
+	}
+	
 	@GetMapping("/office")
 	public String admin() {
 		return "admin/indexAdmin";
