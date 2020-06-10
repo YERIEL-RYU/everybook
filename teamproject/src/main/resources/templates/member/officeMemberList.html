@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+  		xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+  layout:decorator="@{layout/defaultAdmin}">
+  
+	<th:block layout:fragment="customTitle">
+		<title>회원 목록</title>
+	</th:block>
+	<th:block layout:fragment="customContents">
+		<div class="content-wrapper">
+			<section class="content-header">
+				<h1>회원 목록</h1>
+			</section>
+			<section class="content">
+				<div class="card card-primary">
+					<div class="card-header">
+						<h3 class="card-title">목록</h3>
+		            </div>
+		            <div class="card-body p-0">
+						<table class="table table-striped projects">
+							<thead>
+								<tr>
+									<th style="width: 10%">
+										회원 아이디
+									</th>
+									<th style="width: 10%" class="text-center">
+										회원 이름
+									</th>
+									<th style="width: 10%" class="text-center">
+										회원 레벨
+									</th>
+									<th style="width: 10%" class="text-center">
+										현재 대여권수
+									</th>
+									<th style="width: 10%" class="text-center">
+										현재 예약권수
+									</th>
+									<th style="width: 10%" class="text-center">
+										작성한 도서평수
+									</th>
+									<th style="width: 10%" class="text-center">
+										신고된 도서평수
+									</th>
+									<th style="width: 10%" class="text-center">
+										현재 회원 상태
+									</th>
+									<th style="width: 10%">
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										<a>
+										    member_001
+										</a>
+									</td>
+									<td style="text-align: center;">
+										<a>
+											홍01
+										</a>
+									</td>
+									<td style="text-align: center;">
+										<a>
+											2권
+										</a>
+									</td>
+									<td style="text-align: center;">
+										<a>
+											5권
+										</a>
+									</td>
+									<td style="text-align: center;">
+										<a>
+											1권
+										</a>
+									</td>
+									<td style="text-align: center;">
+										<a>
+											10건
+										</a>
+									</td>
+									<td style="text-align: center;">
+										<a>
+											0건
+										</a>
+									</td>
+								    <td class="project-state">
+							        	<span class="badge badge-success">처리완료</span>
+								    </td>
+								    <td class="project-actions text-right">
+										<a class="btn btn-primary btn-sm" href="#">
+										<i class="fas fa-folder">
+										</i>
+											상세
+										</a>
+								        <a class="btn btn-info btn-sm" href="#">
+								            <i class="fas fa-pencil-alt">
+								            </i>
+											수정
+								        </a>
+								        <a class="btn btn-danger btn-sm" href="#">
+								            <i class="fas fa-trash">
+								            </i>
+								        	삭제
+								        </a>
+								    </td>
+								</tr>
+								<tr>
+									<td>
+										<a>
+										    member_002
+										</a>
+									</td>
+									<td style="text-align: center;">
+										<a>
+											홍01
+										</a>
+									</td>
+									<td style="text-align: center;">
+										<a>
+											2권
+										</a>
+									</td>
+									<td style="text-align: center;">
+										<a>
+											5권
+										</a>
+									</td>
+									<td style="text-align: center;">
+										<a>
+											1권
+										</a>
+									</td>
+									<td style="text-align: center;">
+										<a>
+											10건
+										</a>
+									</td>
+									<td style="text-align: center;">
+										<a>
+											0건
+										</a>
+									</td>
+								    <td class="project-state">
+							        	<span class="badge badge-danger">처리중</span>
+								    </td>
+								    <td class="project-actions text-right">
+								    	<a class="btn btn-primary btn-sm" href="#">
+										<i class="fas fa-folder">
+										</i>
+											상세
+										</a>
+								        <a class="btn btn-info btn-sm" href="#">
+								            <i class="fas fa-pencil-alt">
+								            </i>
+											수정
+								        </a>
+								        <a class="btn btn-danger btn-sm" href="#">
+								            <i class="fas fa-trash">
+								            </i>
+								        	삭제
+								        </a>
+								    </td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="row">
+						<div class="col-sm-12 col-md-5">
+							<div class="dataTables_info" id="example1_info" role="status" aria-live="polite">
+							Showing 1 to 10 of 57 entries
+							</div>
+						</div>
+						<div class="col-sm-12 col-md-7">
+							<div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
+								<ul class="pagination">
+									<li class="paginate_button page-item previous disabled" id="example1_previous">
+										<a href="#" aria-controls="example1" data-dt-idx="0" tabindex="0" class="page-link">
+											Previous
+										</a>
+									</li>
+									<li class="paginate_button page-item active">
+										<a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0" class="page-link">
+											1
+										</a>
+									</li>
+									<li class="paginate_button page-item ">
+										<a href="#" aria-controls="example1" data-dt-idx="2" tabindex="0" class="page-link">
+											2
+										</a>
+									</li>
+									<li class="paginate_button page-item ">
+										<a href="#" aria-controls="example1" data-dt-idx="3" tabindex="0" class="page-link">
+											3
+										</a>
+									</li>
+									<li class="paginate_button page-item ">
+										<a href="#" aria-controls="example1" data-dt-idx="4" tabindex="0" class="page-link">
+											4
+										</a>
+									</li>
+									<li class="paginate_button page-item ">
+										<a href="#" aria-controls="example1" data-dt-idx="5" tabindex="0" class="page-link">
+											5
+										</a>
+									</li>
+									<li class="paginate_button page-item ">
+										<a href="#" aria-controls="example1" data-dt-idx="6" tabindex="0" class="page-link">
+											6
+										</a>
+									</li>
+									<li class="paginate_button page-item next" id="example1_next">
+										<a href="#" aria-controls="example1" data-dt-idx="7" tabindex="0" class="page-link">
+											Next
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	</th:block>
+</html>	

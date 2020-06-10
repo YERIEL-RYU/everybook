@@ -6,6 +6,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ReviewController {
 
+	@GetMapping("officeWarningList")
+	public String officeWarningList() {
+		return "review/officeWarningList";
+	}
+	
+	@GetMapping("officeModifyReview")
+	public String officeModifyReview() {
+		return "review/officeModifyReview";
+	}
+	
 	@GetMapping("officeReviewList")
 	public String officeReviewList() {
 		return "review/officeReviewList";
