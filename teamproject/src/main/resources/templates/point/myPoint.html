@@ -8,7 +8,9 @@
 		<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
 		<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">  	
 		<link rel="stylesheet" type="text/css" href="styles/courses.css">
+		<link rel="stylesheet" type="text/css" href="styles/course.css">
 		<link rel="stylesheet" type="text/css" href="styles/courses_responsive.css">
+		<link rel="stylesheet" type="text/css" href="styles/course_responsive.css">
   	</th:block>
 	<th:block layout:fragment="customTitle">
 		<title> 도서 예약 내역  </title>
@@ -103,36 +105,47 @@
 				</div>	
 				<!-- Courses Sidebar -->
 				<div class="col-lg-4">
-					<div class="sidebar">
-
-						<!-- Categories -->
-						<div class="sidebar_section">
-							<div class="sidebar_section_title">나의 도서관</div>
-							<div class="sidebar_categories">
-
-								<ul>
-									<li><p class="lead"><a href="#">나의 서재</a></p></li>
-								</ul>
-								<ul id ="menu">
-									<li><a href="#">#대여 도서  / 연장 신청 / 도서평 작성</a></li>
-									<li><a href="myReserve">도서 예약 내역</a></li>
-									<li><a href="#">#나의 신청 도서</a></li>
-									<li><a href="#">3나의 도서평 내역</a></li>
-								</ul>
-								<ul>
-									<li><p class="lead"><a href="#">#희망 도서 신청</a></p></li>
-								</ul>
-								<ul>
-									<li><p class="lead"><a href="#">#도서 예약 신청</a></p></li>
-								</ul>
-								<ul>
-									<li><p class="lead"><a href="myPoint">나의 점수 내역</a></p></li>
-								</ul>
-								
-							</div>
+					<div class="course_container">	
+						<div class="course_tabs_container">
+							<div class="tab_panels">
+								<div class="tab_panel active">
+									<div class="tab_panel_title">나의 도서관</div>
+									<div class="tab_panel_content">
+										<div class="tab_panel_faq">
+											<!-- Accordions -->
+											<div class="accordions">
+												
+												<div class="elements_accordions">
+			
+													<div class="accordion_container">
+														<div class="accordion d-flex flex-row align-items-center"><div>나의 서재</div></div>
+														<div class="accordion_panel">
+															<p><a href="#">#대여 도서 / 연장 신청</a></p>
+															<p><a href="#">#나의 대여 이력 / 도서평 작성</a></p>
+															<p><a href="#">#도서 예약 내역</a></p>
+															<p><a href="#">#나의 신청 도서</a></p>
+															<p><a href="#">#나의 도서평 내역</a></p>
+														</div>
+													</div>
+			
+													<div class="accordion_container">
+														<div class="accordion d-flex flex-row align-items-center active"><div><a href="#">#희망 도서 신청</a></div></div>
+													</div>
+			
+													<div class="accordion_container">
+														<div class="accordion d-flex flex-row align-items-center"><div><a href="#">#나의 점수 내역</a></div></div>
+													</div>
+			
+												</div>
+			
+											</div>	
+										</div>
+									</div>
+								</div>			
+							</div>					
 						</div>
-						
 					</div>
+
 				</div>
 				
 			</div>
@@ -154,6 +167,7 @@
 		<script src="plugins/parallax-js-master/parallax.min.js"></script>
 		<script src="plugins/colorbox/jquery.colorbox-min.js"></script>
 		<script src="js/courses.js"></script>
+		<script src="js/course.js"></script>
 	</th:block>
 	
 </html>
