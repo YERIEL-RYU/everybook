@@ -24,13 +24,13 @@ public class MainController {
 	}
 	
 	@GetMapping("/office")
-	public String admin() {
+	public String office() {
 		return "admin/indexAdmin";
 	}
 	
-	@GetMapping("/mylibrary")
-	public String courses() {
-		return "mylibrary/mylibrary";
+	@GetMapping("/myLibrary")
+	public String myLibrary() {
+		return "information/myLibrary";
 	}
 	
 	@GetMapping("/")
