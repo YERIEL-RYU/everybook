@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+  		xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+  layout:decorator="@{layout/defaultAdmin}">
+
+	<th:block layout:fragment="customTitle">
+		<title>회원 등록</title>
+	</th:block>
+	
+	<th:block layout:fragment="customCss">
+		<!-- Tempusdominus Bbootstrap 4 -->
+		<link rel="stylesheet" href="../../plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+	</th:block>
+	
+	<th:block layout:fragment="customContents">
+		<div class="content-wrapper">
+		 	<section class="content-header">
+				<div class="register-logo">
+					<a>회원 등록</a>
+				</div>
+			</section>
+			<section class="content">
+				<div class="container-fluid">
+			        <div class="row">
+			          	<!-- left column -->
+						<div class="col-md-12">
+						  	<!-- jquery validation -->
+							<div class="card card-primary card-outline">
+							 	<!-- form start -->
+								<form role="form" id="quickForm">
+									<div class="card-body">
+										<div class="form-group">
+											<label for="exampleInputmemberId1">아이디</label>
+											<input type="text" name="memberId" class="form-control" id="memberId" placeholder="아이디">
+										</div>
+										<div class="form-group">
+											<label for="exampleInputPassword1">비밀번호</label>
+											<input type="password" name="memberPw" class="form-control" id="memberPw" placeholder="비밀번호">
+										</div>
+										<div class="form-group">
+											<label for="exampleInputPassword1">이름</label>
+											<input type="text" name="memberName" class="form-control" id="memberName" placeholder="이름">
+										</div>
+										<div class="form-group">
+											<label for="exampleInputPassword1">생년월일</label>
+											<div class="input-group date" id="reservationdate" data-target-input="nearest">
+						                        <input type="text" name="memberBirth" class="form-control datetimepicker-input" data-target="#reservationdate" placeholder="생년월일">
+						                        <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+						                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+						                        </div>
+						                    </div>
+										</div>
+										<div class="form-group">
+											<label for="exampleInputPassword1">주소</label>
+											<input type="text" name="memberAddress" class="form-control" id="memberAddress" placeholder="주소">
+										</div>
+										<div class="form-group">
+											<label for="exampleInputPassword1">휴대폰번호</label>
+											<input type="text" name="memberTel" class="form-control" id="memberTel" placeholder="휴대폰번호">
+										</div>
+										<div class="form-group">
+											<label for="exampleInputPassword1">이메일</label>
+											<input type="text" name="memberEmail" class="form-control" id="memberEmail" placeholder="이메일">
+										</div>
+									</div>
+								  	<!-- /.card-body -->
+										<div class="col-md-2 offset-11" style="margin-bottom: 30px; padding-right: 20px;">
+											<button type="submit" class="btn btn-primary" >회원등록</button>
+										</div>
+								</form>
+							</div>
+						  	<!-- /.card -->
+						</div>
+						<!--/.col (left) -->
+						<div class="col-md-6">
+						</div>
+			        </div>
+			        <!-- /.row -->
+     			</div><!-- /.container-fluid -->
+         	</section>	
+		</div>	
+	</th:block>
+	<th:block layout:fragment="customFooterScript">
+		<!-- jquery-validation -->
+		<script src="../../plugins/jquery-validation/jquery.validate.min.js"></script>
+		<script src="../../plugins/jquery-validation/additional-methods.min.js"></script>
+		
+		<!-- Select2 -->
+		<script src="../../plugins/select2/js/select2.full.min.js"></script>
+		<!-- InputMask -->
+		<script src="../../plugins/moment/moment.min.js"></script>
+		<script src="../../plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
+		<!-- bootstrap color picker -->
+		<script src="../../plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
+		<!-- Tempusdominus Bootstrap 4 -->
+		<script src="../../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+		
+	
+		<script type="text/javascript">
+			$(document).ready(function () {
+			  $.validator.setDefaults({
+			    submitHandler: function () {
+			      alert( "회원 등록 완료" );
+			    }
+			  });
+			  $('#quickForm').validate({
+			    rules: {
+			    	memberId: {
+			        required: true,
+			      },
+			      memberPw: {
+			        required: true,
+			        minlength: 5
+			      },
+			      memberName: {
+			        required: true,
+			      },
+			      memberBirth: {
+			        required: true,
+			      },
+			      memberAddress: {
+			        required: true,
+			      },
+			      memberTel: {
+			        required: true,
+			      },
+			      memberEmail: {
+			        required: true,
+			      },
+			    },
+			    messages: {
+			    	memberId: {
+			        required: "아이디를 입력해주세요.",
+			      },
+			      memberPw: {
+			        required: "비밀번호를 입력해주세요.",
+			        minlength: "5자 이상인 비밀번호를 입력해 주세요."
+			      },
+			      memberName: {
+			        required: "이름을 입력해주세요.",
+			      },
+			      memberBirth: {
+			        required: "생년월일을 입력해주세요.",
+			      },
+			      memberAddress: {
+			        required: "주소를 입력해주세요.",
+			      },
+			      memberTel: {
+			        required: "휴대폰번호를 입력해주세요.",
+			      },
+			      memberEmail: {
+			        required: "이메일을 입력해주세요.",
+			      },
+			    },
+			    errorElement: 'span',
+			    errorPlacement: function (error, element) {
+			      error.addClass('invalid-feedback');
+			      element.closest('.form-group').append(error);
+			    },
+			    highlight: function (element, errorClass, validClass) {
+			      $(element).addClass('is-invalid');
+			    },
+			    unhighlight: function (element, errorClass, validClass) {
+			      $(element).removeClass('is-invalid');
+			    }
+			  });
+			});
+			
+			$(function () {
+				
+			    //Date range picker
+			    $('#reservationdate').datetimepicker({
+			        format: 'L'
+			    });
+			
+			 })
+		</script>
+	</th:block>
+	
+	
+</html>

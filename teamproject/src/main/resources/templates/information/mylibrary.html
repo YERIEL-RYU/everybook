@@ -2,19 +2,20 @@
 <html xmlns:th="http://www.thymeleaf.org"
   xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
   layout:decorator="@{layout/default}">
-<th:block layout:fragment="customCss">
-	<link href="plugins/colorbox/colorbox.css" rel="stylesheet" type="text/css">
-	<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
-	<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
-	<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">  	
-	<link rel="stylesheet" type="text/css" href="styles/courses.css">
-	<link rel="stylesheet" type="text/css" href="styles/course.css">
-	<link rel="stylesheet" type="text/css" href="styles/courses_responsive.css">
-	<link rel="stylesheet" type="text/css" href="styles/course_responsive.css">
-</th:block>
-<th:block layout:fragment="customTitle">
-	<title> 도서평 작성 </title>
-</th:block>
+  	<th:block layout:fragment="customCss">
+		<link href="plugins/colorbox/colorbox.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+		<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+		<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">  	
+		<link rel="stylesheet" type="text/css" href="styles/courses.css">
+		<link rel="stylesheet" type="text/css" href="styles/course.css">
+		<link rel="stylesheet" type="text/css" href="styles/courses_responsive.css">
+  		<link rel="stylesheet" type="text/css" href="styles/course_responsive.css">
+
+  	</th:block>
+	<th:block layout:fragment="customTitle">
+		<title> 나의 도서관 </title>
+	</th:block>
 	<!-- header 부분에 메뉴 활성화 -->
 	<th:block layout:fragment="customHeader">
 		<nav class="main_nav_contaner ml-auto">
@@ -38,10 +39,8 @@
 					<div class="col">
 						<div class="breadcrumbs">
 							<ul>
-								<li><a href="#">#EveryBook</a></li>
-								<li><a href="#">#나의 도서관</a></li>
-								<li><a href="#">#나의 서재</a></li>
-								<li><a href="#">#나의 대여 이력 / 도서평 작성</a></li>
+								<li><a href="#">EveryBook</a></li>
+								<li><a href="#">나의 도서관</a></li>
 							</ul>
 						</div>
 					</div>
@@ -58,32 +57,78 @@
 
 				<!-- Courses Main Content -->
 				<div class="col-lg-8">
+					<div class="courses_content_title">이번 달 나의 활동</div>
 					<div class="courses_container">
 						<div class="row courses_row">
 							
-							<!-- Course -->
-							<div class="col-lg-12 course_col">
+							<div class="col-lg-6 course_col">
 								<div class="course">
 									<div class="course_body">
-										<div class="course_form">
-											<form action="#">
-												<div class="form_title">
-													도서 명
-													<h3 class="course_title"><a href="course.html">더 해빙=The Having : 부와 행운을 끌어당기는 힘</a></h3>
-												</div>
-												<div style="margin-top: 30px;">
-													<div class="form_title">도서평 내용</div>
-													<input type="text" class="courses_search_input" required="required" style="width: 622px;">
-												</div>
-												<div style="margin-top: 30px;">
-													<button type="submit" class="courses_search_button ml-auto" style="margin-top: 15px;" >도서평 등록</button>
-												</div>
-											</form>
+										<h3 class="course_title">대여 도서</h3>
+										<div class="course_teacher"><a href="#">#상세보기</a></div>
+									</div>
+									<div class="course_footer">
+										<div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
+											<div class="course_info">
+												<i class="fa fa-graduation-cap" aria-hidden="true"></i>												
+											</div>											
+											<div class="course_price ml-auto">5권</div>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
+							
+							<div class="col-lg-6 course_col">
+								<div class="course">
+									<div class="course_body">
+										<h3 class="course_title">예약 도서</h3>
+										<div class="course_teacher"><a href="#">#상세보기</a></div>
+									</div>
+									<div class="course_footer">
+										<div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
+											<div class="course_info">
+												<i class="fa fa-graduation-cap" aria-hidden="true"></i>												
+											</div>											
+											<div class="course_price ml-auto">2권</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<div class="col-lg-6 course_col">
+								<div class="course">
+									<div class="course_body">
+										<h3 class="course_title">신청 도서</h3>
+										<div class="course_teacher"><a href="#">#상세보기</a></div>
+									</div>
+									<div class="course_footer">
+										<div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
+											<div class="course_info">
+												<i class="fa fa-graduation-cap" aria-hidden="true"></i>												
+											</div>											
+											<div class="course_price ml-auto">1권</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<div class="col-lg-6 course_col">
+								<div class="course">
+									<div class="course_body">
+										<h3 class="course_title">나의 점수</h3>
+										<div class="course_teacher"><a href="#">#상세보기</a></div>
+									</div>
+									<div class="course_footer">
+										<div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
+											<div class="course_info">
+												<i class="fa fa-star" aria-hidden="true"></i>
+											</div>
+											<div class="course_price ml-auto">+30점</div>
+										</div>
+									</div>
+								</div>
+							</div>							
+						</div>						
 					</div>
 				</div>	
 				<!-- Courses Sidebar -->
@@ -128,6 +173,7 @@
 							</div>					
 						</div>
 					</div>
+
 				</div>
 				
 			</div>
