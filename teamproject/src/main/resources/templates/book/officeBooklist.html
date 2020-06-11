@@ -4,9 +4,23 @@
   layout:decorator="@{layout/defaultAdmin}">
 
 <th:block layout:fragment="customTitle">
-	<title>직원관리 시스템</title>
+	<title>도서현황 리스트</title>
 </th:block>
 
+<th:block layout:fragment="customCss">
+<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+</th:block>
+       <div class="card">
+         <div class="card-header">
+           <h3 class="card-title">DataTable with minimal features & hover style</h3>
+         </div>
+         <!-- /.card-header -->
+         <div class="card-body">
+     
+         </div>
+         <!-- /.card-body -->
+       </div>
+       <!-- /.card -->
 <div class="wrapper">
 <th:block layout:fragment="customContents">
 	<!-- Content Wrapper. Contains page content -->
@@ -123,8 +137,8 @@
                       <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">인문학</font></font></td>
                       <td><span class="tag tag-success"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">보유</font></font></span></td>
                       <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">수오서재</font></font></td>
-                      <td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">수정</font></font></a></td>
-                  	  <td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">삭제</font></font></a></td>
+                       <td><button type="button" class="btn btn-outline-info btn-flat"  data-toggle="modal" data-target=".bs-add-modal-lg">수정</button></td>
+					  <td><button type="button" class="btn btn-outline-danger btn-flat"  data-toggle="modal" data-target=".bs-delete-sm">삭제</button></td>
                     </tr>
                     <tr>
                       <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">정의란 무엇인가</font></font></td>
@@ -132,8 +146,8 @@
                       <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">인문학</font></font></td>
                       <td><span class="tag tag-warning"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">대여</font></font></span></td>
                       <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">와이즈 베리</font></font></td>
-                      <td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">수정</font></font></a></td>
-                  	  <td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">삭제</font></font></a></td>
+                       <td><button type="button" class="btn btn-outline-info btn-flat"  data-toggle="modal" data-target=".bs-add-modal-lg">수정</button></td>
+					  <td><button type="button" class="btn btn-outline-danger btn-flat"  data-toggle="modal" data-target=".bs-delete-sm">삭제</button></td>
                     </tr>
                     <tr>
                       <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">7년의 밤</font></font></td>
@@ -141,8 +155,8 @@
                       <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">소설</font></font></td>
                       <td><span class="tag tag-primary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">보유</font></font></span></td>
                       <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">은행나무</font></font></td>
-                      <td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">수정</font></font></a></td>
-                  	  <td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">삭제</font></font></a></td>
+                       <td><button type="button" class="btn btn-outline-info btn-flat"  data-toggle="modal" data-target=".bs-add-modal-lg">수정</button></td>
+					  <td><button type="button" class="btn btn-outline-danger btn-flat"  data-toggle="modal" data-target=".bs-delete-sm">삭제</button></td>
                     </tr>
                     <tr>
                       <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">말 그릇</font></font></td>
@@ -150,8 +164,8 @@
                       <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">인문학</font></font></td>
                       <td><span class="tag tag-danger"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">대여</font></font></span></td>
                       <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">카시오페아</font></font></td>
-                      <td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">수정</font></font></a></td>
-                  	  <td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">삭제</font></font></a></td>
+                       <td><button type="button" class="btn btn-outline-info btn-flat"  data-toggle="modal" data-target=".bs-add-modal-lg">수정</button></td>
+					  <td><button type="button" class="btn btn-outline-danger btn-flat"  data-toggle="modal" data-target=".bs-delete-sm">삭제</button></td>
                     </tr>
                     <tr>
                       <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">기억 1</font></font></td>
@@ -159,8 +173,8 @@
                       <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">소설</font></font></td>
                       <td><span class="tag tag-success"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">보유</font></font></span></td>
                       <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">열린 책들</font></font></td>
-                      <td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">수정</font></font></a></td>
-                  	  <td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">삭제</font></font></a></td>    
+                       <td><button type="button" class="btn btn-outline-info btn-flat"  data-toggle="modal" data-target=".bs-add-modal-lg">수정</button></td>
+					  <td><button type="button" class="btn btn-outline-danger btn-flat"  data-toggle="modal" data-target=".bs-delete-sm">삭제</button></td>
                     </tr>
                     <tr>
                       <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">애쓰지 않고 편안하게</font></font></td>
@@ -168,8 +182,8 @@
                       <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">소설</font></font></td>
                       <td><span class="tag tag-warning"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">보유</font></font></span></td>
                       <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">놀(다산북스)</font></font></td>
-                      <td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">수정</font></font></a></td>
-                  	  <td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">삭제</font></font></a></td>
+                       <td><button type="button" class="btn btn-outline-info btn-flat"  data-toggle="modal" data-target=".bs-add-modal-lg">수정</button></td>
+					  <td><button type="button" class="btn btn-outline-danger btn-flat"  data-toggle="modal" data-target=".bs-delete-sm">삭제</button></td>
                     </tr>
                     <tr>
                       <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">코로나 투자전쟁</font></font></td>
@@ -177,8 +191,8 @@
                       <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">자기계발</font></font></td>
                       <td><span class="tag tag-primary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">대여</font></font></span></td>
                       <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">페이지2북스</font></font></td>
-                      <td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">수정</font></font></a></td>
-                  	  <td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">삭제</font></font></a></td>
+                       <td><button type="button" class="btn btn-outline-info btn-flat"  data-toggle="modal" data-target=".bs-add-modal-lg">수정</button></td>
+					  <td><button type="button" class="btn btn-outline-danger btn-flat"  data-toggle="modal" data-target=".bs-delete-sm">삭제</button></td>
                     </tr>
                     <tr>
                       <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">돈의 속성</font></font></td>
@@ -186,8 +200,8 @@
                       <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">자기계발</font></font></td>
                       <td><span class="tag tag-danger"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">보유</font></font></span></td>
                       <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">스노우폭스북스</font></font></td>
-                      <td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">수정</font></font></a></td>
-                  	  <td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">삭제</font></font></a></td>
+                      <td><button type="button" class="btn btn-outline-info btn-flat"  data-toggle="modal" data-target=".bs-add-modal-lg">수정</button></td>
+					  <td><button type="button" class="btn btn-outline-danger btn-flat"  data-toggle="modal" data-target=".bs-delete-sm">삭제</button></td>
                     </tr>
                   </tbody>
                 </table>
@@ -199,6 +213,116 @@
         </div>
   <!-- /.content-wrapper -->
 
+<!-- start 도서관 수정  modal -->
+		<div class="modal fade bs-add-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					
+					<!-- form start -->
+					<form role="form" action="#">
+						<div class="modal-header">
+							<h4 class="modal-title">소장도서 수정하기</h4>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						</div>
+						<!-- start modal-body -->
+						<div class="modal-body">
+							<div class="form-group row">
+								<label for="inputEmail3" class="col-sm-4 col-form-label">ISBN코드</label>
+				          		<div class="col-sm-10">
+									<input type="text" class="form-control" placeholder="ISBN코드">
+				          		</div>
+				           	</div>
+							<div class="form-group row">
+								<div class="form-group row">
+								<label for="inputEmail3" class="col-sm-4 col-form-label">도서이름</label>
+				          		<div class="col-sm-10">
+									<input type="text" class="form-control" placeholder="도서이름">
+				          		</div>
+				           </div>
+							<div class="form-group row">
+								<label for="inputEmail3" class="col-sm-4 col-form-label">도서저자</label>
+				          		<div class="col-sm-10">
+									<input type="text" class="form-control" placeholder="도서저자">
+				          		</div>
+				           </div>
+							<div class="form-group row">
+								<label for="inputEmail3" class="col-sm-4 col-form-label">도서출판사</label>
+				          		<div class="col-sm-10">
+									<input type="text" class="form-control" placeholder="도서출판사">
+				          		</div>
+				           </div>
+							<div class="form-group row">
+								<label for="inputEmail3" class="col-sm-4 col-form-label">도서가격</label>
+				          		<div class="col-sm-10">
+									<input type="text" class="form-control" placeholder="도서가격">
+				          		</div>
+				           </div>
+							<div class="form-group row">
+								<label for="inputEmail3" class="col-sm-4 col-form-label">도서관</label>
+				          		<div class="col-sm-10">
+									<input type="text" class="form-control" placeholder="도서관 ">
+				          		</div>
+				           </div>
+							<div class="form-group row">
+								<label for="inputEmail3" class="col-sm-5 col-form-label">도서등록날짜</label>
+				          		<div class="col-sm-10">
+									<input type="text" class="form-control" placeholder="도서관 등록날짜">
+				          		</div>
+				           </div>
+						</div>
+						<!-- end modal-body -->
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary">소장도서 수정</button>
+						</div>
+					</form>
+					<!-- form end -->
+				</div>	
+			</div>
+		</div>
+</section>
+
+
+
+	<!-- start 도서관 삭제  modal -->
+			<div class="modal fade bs-delete-sm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-sm">
+					<div class="modal-content">
+						
+						<!-- form start -->
+						<form role="form" action="#">
+							<div class="modal-header">
+								<h4 class="modal-title">도서관 삭제하기</h4>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
+							</div>
+							<div class="modal-body">
+					            <div class="form-group">
+									<label>ISBN 코드</label>
+					         		<div>
+										<input type="text" class="form-control" value="region_001" readonly="readonly">
+					         		</div>
+					           	</div>
+								<div class="form-group">
+									<p>해당 도서를 삭제 하시겠습니까?</p>
+									<p><small>삭제를 원하시면 비밀 번호를 입력하세요.</small></p>	
+					            </div>
+								<div class="form-group">
+									<label>비밀번호 확인</label>
+					          		<div>
+										<input type="password" class="form-control" placeholder="비밀번호를 입력하세요">
+					          		</div>
+					           </div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-primary">소장도서 삭제</button>
+							</div>
+						</form>
+						<!-- form end -->
+					</div>	
+				</div>
+			</div>
+			<!--  end 도서관 삭제 modal -->
+		</div>
+</th:block>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
