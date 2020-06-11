@@ -6,6 +6,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class OfficerController {
 	
+	@GetMapping("/addOfficer")
+	public String addOfficer() {
+		return "office/addOfficer";
+	}
+	
 	@GetMapping("/officerList")
 	public String officerList() {
 		

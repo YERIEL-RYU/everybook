@@ -4,7 +4,7 @@
 	  layout:decorator="@{layout/defaultAdmin}">
 
 <th:block layout:fragment="customTitle">
-	<title>직원 목록</title>
+	<title>대여 관리</title>
 </th:block>
                
 <th:block layout:fragment="customContents">
@@ -12,13 +12,9 @@
 	<div class="content-wrapper">
 		<!-- Content Header (Page header) -->
 		<div class="content-header">
-			<div class="container-fluid">
-				<div class="row mb-2">
-					<div class="col-sm-6">
-						<h1 class="m-0 text-dark">대여 관리</h1>
-					</div><!-- /.col -->
-				</div><!-- /.row -->
-			</div><!-- /.container-fluid -->
+			<div class="register-logo">
+	    		<b>대여 관리</b>
+	  		</div>
 		</div>
 		<!-- /.content-header -->
 
@@ -205,7 +201,7 @@
 		<!-- /.row -->
 			
 			<div class="row">
-				<div class="col-md-12" style="text-align: center">				
+				<div class="col-md-12" style="text-align: center; margin-bottom: 10px">				
 					<button type="button" class="fc-today-button btn btn-info" data-toggle="modal" data-target="#modal-primary">대여하기</button>			
 				</div>
 			</div>
@@ -230,16 +226,129 @@
 		        <!-- /.modal-dialog -->
       		</div>
       <!-- /.modal -->
+     	<div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">대여 도서 리스트</font></font></h3>
+
+                <div class="card-tools">
+                  <div class="input-group input-group-sm" style="width: 150px;">
+                    <input type="text" name="table_search" class="form-control float-right" placeholder="도서이름">
+
+                    <div class="input-group-append">
+                      <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0" style="height: 300px;">
+                <table class="table table-head-fixed text-nowrap">
+                  <thead>
+                    <tr>
+                      <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">도서이름</font></font></th>
+                      <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">청구기호</font></font></th>
+                      <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">저자</font></font></th>
+                      <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">카테고리</font></font></th>
+                      <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">상태</font></font></th>
+                      <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">도서출판사</font></font></th>
+                      <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">수정</font></font></th>
+                  	  <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">삭제</font></font></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">더 해빙</font></font></td>
+                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">bk001-008</font></font></td>
+                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">이서윤</font></font></td>
+                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">인문학</font></font></td>
+                      <td><span class="tag tag-success"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">보유</font></font></span></td>
+                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">수오서재</font></font></td>
+                      <td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">수정</font></font></a></td>
+                  	  <td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">삭제</font></font></a></td>
+                    </tr>
+                    <tr>
+                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">정의란 무엇인가</font></font></td>
+                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">bk001-007</font></font></td>                      
+                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">마이클 센델</font></font></td>
+                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">인문학</font></font></td>
+                      <td><span class="tag tag-warning"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">대여</font></font></span></td>
+                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">와이즈 베리</font></font></td>
+                      <td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">수정</font></font></a></td>
+                  	  <td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">삭제</font></font></a></td>
+                    </tr>
+                    <tr>
+                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">7년의 밤</font></font></td>
+                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">bk001-006</font></font></td>                     
+                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">정유정</font></font></td>
+                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">소설</font></font></td>
+                      <td><span class="tag tag-primary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">보유</font></font></span></td>
+                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">은행나무</font></font></td>
+                      <td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">수정</font></font></a></td>
+                  	  <td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">삭제</font></font></a></td>
+                    </tr>
+                    <tr>
+                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">말 그릇</font></font></td>
+                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">bk001-005</font></font></td>
+                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">김윤나</font></font></td>
+                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">인문학</font></font></td>
+                      <td><span class="tag tag-danger"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">대여</font></font></span></td>
+                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">카시오페아</font></font></td>
+                      <td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">수정</font></font></a></td>
+                  	  <td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">삭제</font></font></a></td>
+                    </tr>
+                    <tr>
+                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">기억 1</font></font></td>
+                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">bk001-004</font></font></td>
+                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">베르나르 베르베르</font></font></td>
+                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">소설</font></font></td>
+                      <td><span class="tag tag-success"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">보유</font></font></span></td>
+                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">열린 책들</font></font></td>
+                      <td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">수정</font></font></a></td>
+                  	  <td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">삭제</font></font></a></td>    
+                    </tr>
+                    <tr>
+                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">애쓰지 않고 편안하게</font></font></td>
+                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">bk001-003</font></font></td>
+                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">김수현</font></font></td>
+                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">소설</font></font></td>
+                      <td><span class="tag tag-warning"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">보유</font></font></span></td>
+                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">놀(다산북스)</font></font></td>
+                      <td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">수정</font></font></a></td>
+                  	  <td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">삭제</font></font></a></td>
+                    </tr>
+                    <tr>
+                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">코로나 투자전쟁</font></font></td>
+                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">bk001-002</font></font></td>
+                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">정채진, 박석중 외</font></font></td>
+                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">자기계발</font></font></td>
+                      <td><span class="tag tag-primary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">대여</font></font></span></td>
+                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">페이지2북스</font></font></td>
+                      <td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">수정</font></font></a></td>
+                  	  <td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">삭제</font></font></a></td>
+                    </tr>
+                    <tr>
+                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">돈의 속성</font></font></td>
+                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">bk001-001</font></font></td>
+                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">김승호</font></font></td>
+                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">자기계발</font></font></td>
+                      <td><span class="tag tag-danger"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">보유</font></font></span></td>
+                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">스노우폭스북스</font></font></td>
+                      <td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">수정</font></font></a></td>
+                  	  <td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">삭제</font></font></a></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
 	</section>
 	<!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
-	
-	<!-- Control Sidebar -->
-	<aside class="control-sidebar control-sidebar-dark">
-	  <!-- Control sidebar content goes here -->
-	</aside>
-	<!-- /.control-sidebar -->
+
 </th:block>
 
 </html>
