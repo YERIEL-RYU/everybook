@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	  layout:decorator="@{layout/defaultAdmin}">
+
+<th:block layout:fragment="customTitle">
+	<title>직원 등록</title>
+</th:block>
+
+<th:block layout:fragment="customContents">
+	<!-- Content Wrapper. Contains page content -->
+	<div class="content-wrapper">
+		<!-- Content Header (Page header) -->
+
+		<!-- /.content-header -->
+	 	<!-- Main content -->
+	<section class="content">			
+	  <div class="register-logo">
+	    <b>직원 등록</b>
+	  </div>
+	  <div class="card" style="margin-left: 150px; margin-right: 150px">
+	    <div class="card-body register-card-body" style="margin-left: 30px; margin-right: 30px">
+	      <p class="login-box-msg">Register a new officer</p>
+	
+	      <form action="#" method="post">
+	       <label for="inputPassword3" class="col-sm-2 col-form-label">아이디</label>
+	        <div class="input-group mb-1">
+	          <input type="text" class="form-control" placeholder="Officer Id">
+	          <div class="input-group-append">
+	            <div class="input-group-text">
+	              <span class="fas fa-user"></span>
+	            </div>
+	          </div>
+	        </div>
+	       <label for="inputPassword3" class="col-sm-2 col-form-label">패스워드</label>
+	        <div class="input-group mb-1">
+	          <input type="password" class="form-control" placeholder="Officer Password">
+	          <div class="input-group-append">
+	            <div class="input-group-text">
+	              <span class="fas fa-lock"></span>
+	            </div>
+	          </div>
+	        </div>
+	       <label for="inputPassword3" class="col-sm-2 col-form-label">성명</label>        
+	        <div class="input-group mb-1">
+	          <input type="text" class="form-control" placeholder="Officer Name">
+	          <div class="input-group-append">
+	            <div class="input-group-text">
+	              <span class="fas fa-user"></span>
+	            </div>
+	          </div>
+	        </div>
+	       <label for="inputPassword3" class="col-sm-2 col-form-label">생년월일</label>                
+	        <div class="input-group mb-4">
+	          <input type="date" class="form-control" placeholder="Officer BirthDay">
+	          <div class="input-group-append">
+	          </div>
+	        </div>
+	        <div class="row" style="text-align: center">
+		       <label for="inputPassword3" class="col-sm-2 col-form-label">레벨코드</label>                
+		        <div class="input-group mb-1 col-sm-3">
+		          <input type="text" class="form-control" placeholder="Officer Email">
+		          <div class="input-group-append">
+		            <div class="input-group-text">
+		              <span class="fas fa-envelope"></span>
+		            </div>
+		          </div>
+		        </div>
+		        
+		       <label for="inputPassword3" class="col-sm-2 col-form-label offset-1">도서관코드</label>                
+		        <div class="input-group mb-1 col-sm-3">
+		          <input type="text" class="form-control" placeholder="Officer Email">
+		          <div class="input-group-append">
+		            <div class="input-group-text">
+		              <span class="fas fa-envelope"></span>
+		            </div>
+		          </div>
+		        </div>
+	        </div>
+	       <label for="inputPassword3" class="col-sm-2 col-form-label">주소</label>                
+	        <div class="input-group mb-1">
+	          <input type="text" class="form-control" placeholder="Officer Address">
+	          <div class="input-group-append">
+	            <div class="input-group-text">
+	              <span class="fas fa-envelope"></span>
+	            </div>
+	          </div>
+	        </div>
+	       <label for="inputPassword3" class="col-sm-2 col-form-label">전화번호</label>                
+	        <div class="input-group mb-1">
+	          <input type="text" class="form-control" placeholder="Officer Tel">
+	          <div class="input-group-append">
+	            <div class="input-group-text">
+	              <span class="fas fa-envelope"></span>
+	            </div>
+	          </div>
+	        </div>
+	       <label for="inputPassword3" class="col-sm-2 col-form-label">이메일</label>                
+	        <div class="input-group mb-1">
+	          <input type="text" class="form-control" placeholder="Officer Email">
+	          <div class="input-group-append">
+	            <div class="input-group-text">
+	              <span class="fas fa-envelope"></span>
+	            </div>
+	          </div>
+	        </div>
+	        <div class="row">
+	          <!-- /.col -->
+	          <div class="col-md-3 offset-3" style="text-align: center">
+	            <button type="submit" class="btn btn-primary btn-block">뒤로가기</button>
+	          </div>
+	            <div class="social-auth-links text-center">
+	        <p>- OR -</p>
+	      </div>
+	          <div class="col-md-3" style="text-align: center">
+	            <button type="submit" class="btn btn-danger btn-block">등록하기</button>
+	          </div>
+	          <!-- /.col -->
+	        </div>
+	      </form>
+	    </div>
+	    <!-- /.form-box -->
+	  </div><!-- /.card -->
+	</section>
+		<!-- /.content -->
+</div>
+	<!-- /.content-wrapper -->
+
+</th:block>
+
+</html>
