@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+  layout:decorator="@{layout/default}">
+	<th:block layout:fragment="customCss">
+		<link href="plugins/colorbox/colorbox.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+		<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+		<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
+		<link rel="stylesheet" type="text/css" href="styles/course.css">
+		<link rel="stylesheet" type="text/css" href="styles/course_responsive.css">
+		<link rel="stylesheet" type="text/css" href="styles/blog_single.css">
+		<link rel="stylesheet" type="text/css" href="styles/blog_single_responsive.css">
+	</th:block>
+	<th:block layout:fragment="customTitle">
+	<title> 희망 도서 신청</title>
+	</th:block>
+	
+	<th:block layout:fragment="customCss">
+  <!-- overlayScrollbars -->
+  	<link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+	</th:block>
+
+	<!-- header 부분에 메뉴 활성화 -->
+	<th:block layout:fragment="customHeader">
+		<nav class="main_nav_contaner ml-auto">
+			<ul class="main_nav">
+				<li class="active"><a href="#">통합검색</a></li>
+				<li><a href="courses.html">나의 도서관</a></li>
+				<li><a href="#">공지사항</a></li>
+				<li><a href="#">이용안내</a></li>
+				<li><a href="#">도서관 위치</a></li>
+			</ul>
+			<div class="search_button"><i class="fa fa-search" aria-hidden="true"></i></div>
+		</nav>
+	</th:block>
+	<th:block layout:fragment="customContents">
+		<div class="home">
+			<div class="breadcrumbs_container">
+				<div class="container">
+					<div class="row">
+						<div class="col">
+							<div class="breadcrumbs">
+								<ul>
+									<li><a href="#">#EveryBook</a></li>
+									<li><a href="#">#회원가입</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="course">
+		<!-- Contact -->
+			<div class="contact">
+				<!-- Contact Info -->
+	
+				<div class="contact_info_container">
+					<div class="container">
+						<div class="row">
+							<!-- Contact Form -->
+							<div class="col-lg-12">
+								<div class="contact_form">
+									<form action="#" class="comment_form">
+										<div class="row">
+											<div class="form_title col-sm-2" style="text-align: center; line-height: 3;">도서 이름</div>
+												<div class="col-sm-10" style="margin-bottom: 20px">
+													<input type="text" class="comment_input" required="required">
+												</div>
+											<div class="form_title col-sm-2" style="text-align: center; line-height: 3;">도서 이름</div>
+												<div class="col-sm-10" style="margin-bottom: 20px">
+													<input type="text" class="comment_input" required="required">
+												</div>
+											<div class="form_title col-sm-2" style="text-align: center; line-height: 3;">도서 이름</div>
+												<div class="col-sm-10" style="margin-bottom: 20px">
+													<input type="text" class="comment_input" required="required">
+												</div>
+											<div class="form_title col-sm-2" style="text-align: center; line-height: 3;">도서 이름</div>
+												<div class="col-sm-10" style="margin-bottom: 20px">
+													<input type="text" class="comment_input" required="required">
+												</div>
+											<div class="form_title col-sm-2" style="text-align: center; line-height: 3;">도서 이름</div>
+												<div class="col-sm-10" style="margin-bottom: 20px">
+													<input type="text" class="comment_input" required="required">
+												</div>
+											<div class="form_title col-sm-2" style="text-align: center; line-height: 3;">도서 이름</div>
+												<div class="col-sm-10" style="margin-bottom: 20px">
+													<input type="text" class="comment_input" required="required">
+												</div>
+											<div class="form_title col-sm-2" style="text-align: center; line-height: 3;">도서 이름</div>
+												<div class="col-sm-10" style="margin-bottom: 20px">
+													<input type="text" class="comment_input" required="required">
+												</div>
+										</div>
+										
+										<div class="row">
+											<div class="col-sm-1 offset-10">
+												<button type="submit" class="comment_button trans_200">회원가입</button>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>		
+			</div>
+		</div>	
+	</th:block>
+	<th:block layout:fragment="customFooterScript">
+		<!-- OPTIONAL SCRIPTS -->
+		<script src="dist/js/demo.js"></script>
+		<!-- overlayScrollbars -->
+		<script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+		<!-- ionicons.com 아이콘 -->
+		<script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+<!-- PAGE PLUGINS -->
+		<!-- jQuery Mapael -->
+		<script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
+		<script src="plugins/raphael/raphael.min.js"></script>
+		<script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
+		<script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
+		<!-- ChartJS -->
+		<script src="plugins/chart.js/Chart.min.js"></script>
+		<!-- PAGE SCRIPTS -->
+		<script src="dist/js/pages/dashboard2.js"></script>
+</th:block>
+</html>
