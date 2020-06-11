@@ -8,7 +8,7 @@ public class BudgetController {
 	
 		@GetMapping("/modifyBudget")
 		public String modifyBudget() {
-			return "admin/budget/modifyBudget";
+			return "budget/modifyBudget";
 		}
 	
 		@GetMapping("/modifyAccount")
