@@ -26,80 +26,82 @@
 					<div class="card">
 						<div class="card-body">
 							<div class="row">
-								<table id="example1" class="table table-bordered table-striped">
-									<thead>
-										<tr>
-										  <th>회원 아이디</th>
-										  <th>회원 이름</th>
-										  <th>회원 레벨</th>
-										  <th>현재 대여권수</th>
-										  <th>현재 예약권수</th>
-										  <th>작성한 도서평수</th>
-										  <th>신고된 도서평수</th>
-										  <th>회원 상태</th>
-										  <th data-orderable="false">수정</th>
-										  <th data-orderable="false">삭제</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
+								<div class="col-12">
+									<table id="example1" class="table table-bordered table-striped">
+										<thead>
+											<tr>
+											  <th>회원 아이디</th>
+											  <th>회원 이름</th>
+											  <th>회원 레벨</th>
+											  <th>현재 대여권수</th>
+											  <th>현재 예약권수</th>
+											  <th>작성한 도서평수</th>
+											  <th>신고된 도서평수</th>
+											  <th>회원 상태</th>
+											  <th data-orderable="false">수정</th>
+											  <th data-orderable="false">삭제</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>
+													<label>
+														<a href="#">member_001</a>
+													</label>
+												</td>
+												<td>홍01</td>
+												<td>level3</td>
+												<td> 4</td>
+												<td>X</td>
+												<td>X</td>
+												<td>X</td>
+												<td class="project-state">
+													<span class="badge badge-success">대여가능</span>
+												</td>
+												<td>
+													<a class="btn btn-info btn-sm" href="#">
+														<i class="fas fa-pencil-alt"></i>
+														수정
+													</a>
+												</td>
+												<td>
+												   	<a class="btn btn-danger btn-sm" href="#">
+												        <i class="fas fa-trash"></i>
+												    	삭제
+												    </a>
+												</td>
+											</tr>
+											<tr>
 											<td>
 												<label>
-													<a href="#">member_001</a>
+													<a href="#">member_002</a>
 												</label>
 											</td>
-											<td>홍01</td>
-											<td>level3</td>
-											<td> 4</td>
+											<td>홍02</td>
+											<td>level4</td>
+											<td> 3</td>
 											<td>X</td>
 											<td>X</td>
 											<td>X</td>
 											<td class="project-state">
-												<span class="badge badge-success">대여가능</span>
+												<span class="badge badge-danger">연체중</span>
 											</td>
 											<td>
 												<a class="btn btn-info btn-sm" href="#">
-													<i class="fas fa-pencil-alt"></i>
+											        <i class="fas fa-pencil-alt"></i>
 													수정
-												</a>
-											</td>
-											<td>
-											   	<a class="btn btn-danger btn-sm" href="#">
-											        <i class="fas fa-trash"></i>
-											    	삭제
-											    </a>
-											</td>
-										</tr>
-										<tr>
-										<td>
-											<label>
-												<a href="#">member_002</a>
-											</label>
-										</td>
-										<td>홍02</td>
-										<td>level4</td>
-										<td> 3</td>
-										<td>X</td>
-										<td>X</td>
-										<td>X</td>
-										<td class="project-state">
-											<span class="badge badge-danger">연체중</span>
-										</td>
-										<td>
-											<a class="btn btn-info btn-sm" href="#">
-										        <i class="fas fa-pencil-alt"></i>
-												수정
-											 </a>
-										 </td>
-										 <td>
-										 	<a class="btn btn-danger btn-sm" href="#">
-										    	<i class="fas fa-trash"></i>
-										     	삭제
-										 	</a>
-										 </td>
-										</tr>
-									</tbody>
-								</table>
+												 </a>
+											 </td>
+											 <td>
+											 	<a class="btn btn-danger btn-sm" href="#">
+											    	<i class="fas fa-trash"></i>
+											     	삭제
+											 	</a>
+											 </td>
+											</tr>
+										</tbody>
+									</table>
+								</div>	
 							</div>
 						</div>
 					    <!-- /.card-body -->
