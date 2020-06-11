@@ -7,6 +7,11 @@
 	<title>직원관리 시스템</title>
 </th:block>
 
+<th:block layout:fragment="customCss">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+</th:block>
+
 <th:block layout:fragment="customContents">
 	<!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -123,15 +128,25 @@
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
-
-<!-- jQuery -->
-<script src="../../plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="../../dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../../dist/js/demo.js"></script>
+</th:block>
+<th:block layout:fragment="customFooterScript">
+		<!-- OPTIONAL SCRIPTS -->
+		<script src="dist/js/demo.js"></script>
+		<!-- overlayScrollbars -->
+		<script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+		<!-- ionicons.com 아이콘 -->
+		<script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+<!-- PAGE PLUGINS -->
+		<!-- jQuery Mapael -->
+		<script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
+		<script src="plugins/raphael/raphael.min.js"></script>
+		<script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
+		<script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
+		<!-- ChartJS -->
+		<script src="plugins/chart.js/Chart.min.js"></script>
+		<!-- PAGE SCRIPTS -->
+		<script src="dist/js/pages/dashboard2.js"></script>
+</th:block>
 </body>
 </html>
 	
