@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org">
 	<!-- Begin Left Column -->
-	<div class="leftcolumn" th:fragment="leftmenuFragment">
 		<!-- Main Sidebar Container -->	
-		<aside class="main-sidebar sidebar-dark-primary elevation-4">
+		<aside class="main-sidebar sidebar-dark-primary elevation-4"  th:fragment="leftmenuFragment">
 			<!-- Brand Logo -->
-			<a href="#" class="brand-link">
+			<a href="office" class="brand-link">
 				<img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
 				     style="opacity: .8">
 				<span class="brand-text font-weight-light">everyBook</span>
@@ -40,14 +39,14 @@
 						    </a>
 							<ul class="nav nav-treeview">
 							  <li class="nav-item">
-							    <a href="#" class="nav-link">
+							    <a href="officeMemberList" class="nav-link">
 									<p>회원 리스트</p>
 							    </a>
 							  </li>
 							</ul>
 							<ul class="nav nav-treeview">
 							  <li class="nav-item">
-							    <a href="#" class="nav-link">
+							    <a href="addMember" class="nav-link">
 									<p>회원 등록</p>
 							    </a>
 							  </li>
@@ -64,21 +63,28 @@
 							<a href="#" class="nav-link">
 						    <ion-icon name="people-circle"></ion-icon>
 							<p>
-								#직원 관리
+								직원 관리
 								<i class="fas fa-angle-left right"></i>
 							</p>
 						    </a>
 							<ul class="nav nav-treeview">
 							  <li class="nav-item">
-							    <a href="#" class="nav-link">
+							    <a href="myOffice" class="nav-link">
 									<p>내 정보</p>
 							    </a>
 							  </li>
 							</ul>
 							<ul class="nav nav-treeview">
 							  <li class="nav-item">
-							    <a href="#" class="nav-link">
+							    <a href="officerList" class="nav-link">
 									<p>직원 리스트</p>
+							    </a>
+							  </li>
+							</ul>
+							<ul class="nav nav-treeview">
+							  <li class="nav-item">
+							    <a href="addOfficer" class="nav-link">
+									<p>직원 등록</p>
 							    </a>
 							  </li>
 							</ul>
@@ -93,21 +99,21 @@
 						    </a>
 							<ul class="nav nav-treeview">
 							  <li class="nav-item">
-							    <a href="#" class="nav-link">
+							    <a href="officePointStandard" class="nav-link">
 									<p>상벌점 기준</p>
 							    </a>
 							  </li>
 							</ul>
 							<ul class="nav nav-treeview">
 							  <li class="nav-item">
-							    <a href="#" class="nav-link">
+							    <a href="officePointHistoryAdd" class="nav-link">
 									<p>상벌점 등록</p>
 							    </a>
 							  </li>
 							</ul>
 							<ul class="nav nav-treeview">
 							  <li class="nav-item">
-							    <a href="#" class="nav-link">
+							    <a href="officePointHistoryList" class="nav-link">
 									<p>상벌점 내역 리스트</p>
 							    </a>
 							  </li>
@@ -126,14 +132,14 @@
 						    </a>
 							<ul class="nav nav-treeview">
 							  <li class="nav-item">
-							    <a href="#" class="nav-link">
+							    <a href="officeBooklist" class="nav-link">
 									<p>소장 도서 리스트</p>
 							    </a>
 							  </li>
 							</ul>
 							<ul class="nav nav-treeview">
 							  <li class="nav-item">
-							    <a href="#" class="nav-link">
+							    <a href="officeAddbook" class="nav-link">
 									<p>소장 도서 등록</p>
 							    </a>
 							  </li>
@@ -154,28 +160,28 @@
 							</ul>
 							<ul class="nav nav-treeview">
 							  <li class="nav-item">
-							    <a href="#" class="nav-link">
+							    <a href="officeLostList" class="nav-link">
 									<p>분실 도서 리스트</p>
 							    </a>
 							  </li>
 							</ul>
 							<ul class="nav nav-treeview">
 							  <li class="nav-item">
-							    <a href="#" class="nav-link">
+							    <a href="officeAddLost" class="nav-link">
 									<p>분실 도서 등록</p>
 							    </a>
 							  </li>
 							</ul>
 							<ul class="nav nav-treeview">
 							  <li class="nav-item">
-							    <a href="#" class="nav-link">
+							    <a href="officeBrokenList" class="nav-link">
 									<p>파손 도서 리스트</p>
 							    </a>
 							  </li>
 							</ul>
 							<ul class="nav nav-treeview">
 							  <li class="nav-item">
-							    <a href="#" class="nav-link">
+							    <a href="officeAddBroken" class="nav-link">
 									<p>파손 도서 등록</p>
 							    </a>
 							  </li>
@@ -191,14 +197,14 @@
 						    </a>
 							<ul class="nav nav-treeview">
 							  <li class="nav-item">
-							    <a href="#" class="nav-link">
+							    <a href="officeReviewList" class="nav-link">
 									<p>도서평 리스트</p>
 							    </a>
 							  </li>
 							</ul>
 							<ul class="nav nav-treeview">
 							  <li class="nav-item">
-							    <a href="#" class="nav-link">
+							    <a href="officeWarningList" class="nav-link">
 									<p>도서평 신고 리스트</p>
 							    </a>
 							  </li>
@@ -214,7 +220,7 @@
 						    </a>
 							<ul class="nav nav-treeview">
 							  <li class="nav-item">
-							    <a href="#" class="nav-link">
+							    <a href="officeBookRent" class="nav-link">
 									<p>대여 신청 리스트</p>
 							    </a>
 							  </li>
@@ -228,15 +234,36 @@
 							</ul>
 							<ul class="nav nav-treeview">
 							  <li class="nav-item">
-							    <a href="#" class="nav-link">
+							    <a href="officeBookReturn" class="nav-link">
 									<p>반납 신청 리스트</p>
 							    </a>
 							  </li>
 							</ul>
 							<ul class="nav nav-treeview">
 							  <li class="nav-item">
-							    <a href="#" class="nav-link">
-									<p>예약 신청 리스트</p>
+							    <a href="officeRtingReserveList" class="nav-link">
+									<p>오프라인 예약 신청 리스트</p>
+							    </a>
+							  </li>
+							</ul>
+							<ul class="nav nav-treeview">
+							  <li class="nav-item">
+							    <a href="officeRtingReserveAdd" class="nav-link">
+									<p>오프라인 예약 신청 등록</p>
+							    </a>
+							  </li>
+							</ul>
+							<ul class="nav nav-treeview">
+							  <li class="nav-item">
+							    <a href="officeRtcanReserveList" class="nav-link">
+									<p>온라인 예약 신청 리스트</p>
+							    </a>
+							  </li>
+							</ul>
+							<ul class="nav nav-treeview">
+							  <li class="nav-item">
+							    <a href="officeRtcanReserveAdd" class="nav-link">
+									<p>온라인 예약 신청 등록</p>
 							    </a>
 							  </li>
 							</ul>
@@ -286,12 +313,12 @@
 								<ion-icon name="list"></ion-icon>
 								<p>
 									지역관리
-									<span class="badge badge-info right"></span>
+									<i class="fas fa-angle-left right"></i>
 								</p>
 							</a>
 							<ul class="nav nav-treeview">
 							  <li class="nav-item">
-							    <a href="#" class="nav-link">
+							    <a href="officeRegion" class="nav-link">
 									<p>지역 리스트</p>
 							    </a>
 							  </li>
@@ -307,7 +334,7 @@
 							</a>
 							<ul class="nav nav-treeview">
 							  <li class="nav-item">
-							    <a href="#" class="nav-link">
+							    <a href="officeLibrary" class="nav-link">
 									<p>도서관 리스트</p>
 							    </a>
 							  </li>
@@ -318,7 +345,7 @@
 								<ion-icon name="list"></ion-icon>
 								<p>
 									게시판 관리
-									<span class="badge badge-info right">2</span>
+									<i class="fas fa-angle-left right"></i>
 								</p>
 							</a>
 						</li>
@@ -332,28 +359,28 @@
 						    </a>
 							<ul class="nav nav-treeview">
 							  <li class="nav-item">
-							    <a href="#" class="nav-link">
+							    <a href="listBudget" class="nav-link">
 									<p>예산 리스트</p>
 							    </a>
 							  </li>
 							</ul>
 							<ul class="nav nav-treeview">
 							  <li class="nav-item">
-							    <a href="#" class="nav-link">
+							    <a href="addBudget" class="nav-link">
 									<p>예산 등록</p>
 							    </a>
 							  </li>
 							</ul>
 							<ul class="nav nav-treeview">
 							  <li class="nav-item">
-							    <a href="#" class="nav-link">
+							    <a href="listAccount" class="nav-link">
 									<p>계정 과목 리스트</p>
 							    </a>
 							  </li>
 							</ul>
 							<ul class="nav nav-treeview">
 							  <li class="nav-item">
-							    <a href="#" class="nav-link">
+							    <a href="addAccount" class="nav-link">
 									<p>계정 과목 등록</p>
 							    </a>
 							  </li>
@@ -376,6 +403,5 @@
 			</div>
 			<!-- /.sidebar -->
 		</aside>			
-	</div>
 	<!-- End Left Column -->
 </html>

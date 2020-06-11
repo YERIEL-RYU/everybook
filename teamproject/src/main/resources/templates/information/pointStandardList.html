@@ -66,7 +66,7 @@
 		</style>
   	</th:block>
 	<th:block layout:fragment="customTitle">
-		<title> 이용안내 > 도서관 목록 </title>
+		<title> 이용안내 > 상벌점 기준 </title>
 	</th:block>
 	<!-- header 부분에 메뉴 활성화 -->
 	<th:block layout:fragment="customHeader">
@@ -92,8 +92,8 @@
 						<div class="breadcrumbs">
 							<ul>
 								<li><a href="index">EveryBook</a></li>
-								<li><a href="#">이용안내</a></li>
-								<li><a href="libraryList">도서관 목록</a></li>
+								<li><a href="">이용안내</a></li>
+								<li><a href="pointStandardList">상버점 기준</a></li>
 							</ul>
 						</div>
 					</div>
@@ -125,38 +125,29 @@
 					<div class="table-responsive">
 						<table class="table">
 							<thead>
-								<tr>
-									<th> 도서관명 </th>
-									<th> 시 / 도</th>
-									<th> 시 / 군/ 구 </th>
-									<th> 도서관 설립주체 </th>
-									<th> 도서관 주소 </th>
-									<th> 도서관 전화번호 </th>
-									<th> 도서관 홈페이지 </th>
-								</tr>	
-							</thead>
-							<tbody>
-								<tr>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
-							</tbody>
-							<tfoot>
-								<tr>
-									<th> 도서관명 </th>
-									<th> 시 / 도</th>
-									<th> 시 / 군/ 구 </th>
-									<th> 도서관 설립주체 </th>
-									<th> 도서관 주소 </th>
-									<th> 도서관 전화번호 </th>
-									<th> 도서관 홈페이지 </th>
-								</tr>	
-							</tfoot>
+			                  <tr>
+			                    <th>상벌점 코드</th>
+			                    <th>상점 / 벌점</th>
+			                    <th>점수 내용</th>
+			                    <th>점수</th>
+			                  </tr>
+		                  </thead>
+		                  <tbody>
+			                  <tr>
+			                    <td>1</td>
+			                    <td>상점이죠</td>
+			                    <td>도서평 5개</td>
+			                    <td>1</td>
+			                  </tr>
+		                  </tbody>
+		                  <tfoot>
+			                  <tr>
+			                    <th>상벌점 코드</th>
+			                    <th>상점 / 벌점</th>
+			                    <th>점수 내용</th>
+			                    <th>점수</th>
+			                  </tr>
+		                  </tfoot>
 						</table>							
 					</div>
 					
@@ -167,7 +158,7 @@
 
 						<!-- Categories -->
 						<div class="sidebar_section">
-							<div class="sidebar_section_title">이용안내</div>
+							<div class="sidebar_section_title">Categories</div>
 							<div class="sidebar_categories">
 								<ul class="categories_list">
 									<li><a href="libraryList" class="clearfix">>> 도서관 목록</a></li>

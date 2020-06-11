@@ -6,67 +6,10 @@
 		<link href="plugins/colorbox/colorbox.css" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" type="text/css" href="styles/blog_single.css">
 		<link rel="stylesheet" type="text/css" href="styles/blog_single_responsive.css">
-		<style>
-.search_container
-{
-	padding: 10px 20px;
-	
-	background: #f2f4f5;
-}
-.search form
-{
-	position: relative;
-	width: 100%;
-	height: 92px;
-}
-.search_select
-{
-	position: relative;
-	width:150px;
-	height:46px;
-	border-radius: 3px;
-	-webkit-appearance: none;
-    -moz-appearance: none;
-    -ms-appearance: none;
-    -o-appearance: none;
-    appearance: none;
-    -webkit-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
-	-webkit-user-select: none;
-	background-image: url(../images/down.png);
-	background-position: center right;
-	background-repeat: no-repeat;
-	cursor: pointer;
-	padding-left: 10px;
-}
-.search_input
-{
 
-	width: 300px;
-	height: 46px;
-	border: solid 1px #d9d9d9;
-	border-radius: 3px;
-	background: #FFFFFF;
-	padding-left: 20px;
-	margin-left: 10px;
-}
-.search_form_button
-{
-	width: 161px;
-	height: 46px;
-	background: #14bdee;
-	color: #FFFFFF;
-	font-size: 14px;
-	font-weight: 500;
-	text-transform: uppercase;
-	border: none;
-	outline: none;
-	border-radius: 3px;
-	cursor: pointer;
-}
-		</style>
   	</th:block>
 	<th:block layout:fragment="customTitle">
-		<title> 이용안내 > 도서관 목록 </title>
+		<title> 이용안내 > 이용 시간 </title>
 	</th:block>
 	<!-- header 부분에 메뉴 활성화 -->
 	<th:block layout:fragment="customHeader">
@@ -93,7 +36,7 @@
 							<ul>
 								<li><a href="index">EveryBook</a></li>
 								<li><a href="#">이용안내</a></li>
-								<li><a href="libraryList">도서관 목록</a></li>
+								<li><a href="libraryList">이용시간</a></li>
 							</ul>
 						</div>
 					</div>
@@ -111,53 +54,32 @@
 				<!-- Main Content -->
 				<div class="col-lg-8">
 					<div class="blog_content">
-						<div class="blog_title"><i class="fa fa-quote-left" aria-hidden="true"></i>도서관 목록</div>					
-					</div>
-					<div class="search_container">
-						<form action="#" id="courses_search_form" class="search_form d-flex flex-row align-items-center justify-content-start">
-							<select class="search_select">
-								<option>검색 조건</option>
-							</select>
-							<input type="text" class="search_input">
-							<button action="submit" class="search_form_button ml-auto">검색</button>
-						</form>
-					</div>
-					<div class="table-responsive">
-						<table class="table">
-							<thead>
-								<tr>
-									<th> 도서관명 </th>
-									<th> 시 / 도</th>
-									<th> 시 / 군/ 구 </th>
-									<th> 도서관 설립주체 </th>
-									<th> 도서관 주소 </th>
-									<th> 도서관 전화번호 </th>
-									<th> 도서관 홈페이지 </th>
-								</tr>	
-							</thead>
-							<tbody>
-								<tr>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
-							</tbody>
-							<tfoot>
-								<tr>
-									<th> 도서관명 </th>
-									<th> 시 / 도</th>
-									<th> 시 / 군/ 구 </th>
-									<th> 도서관 설립주체 </th>
-									<th> 도서관 주소 </th>
-									<th> 도서관 전화번호 </th>
-									<th> 도서관 홈페이지 </th>
-								</tr>	
-							</tfoot>
-						</table>							
+						<div class="blog_title"><i class="fa fa-quote-left" aria-hidden="true"></i>이용시간</div>		
+						<p></p>
+						<div class="table-responsive">
+							<table class="table">
+								<thead>
+									<tr>
+										<th>구 분</th>
+										<th>화요일~금요일</th>
+										<th>토&middot;일요일</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tbody>
+										<tr>
+											<th scope="row">일반자료실</th>
+											<td>09:00~19:00</td>
+											<td>09:00~17:00</td>
+										</tr>
+								</tbody>
+							</table>							
+						</div>
+						<div class="blog_subtitle">자료실 쉬는날</div>
+						<p>매주 월요일 및 법정공휴일 휴무(2011년 1월 1일부터) <span class="fc_red">※ 열람실은 개방</span></p>
+						<div class="blog_subtitle">휴관일</div>
+						<p>신정, 설날, 추석 당일은 휴관</p>
+						
 					</div>
 					
 				</div>	

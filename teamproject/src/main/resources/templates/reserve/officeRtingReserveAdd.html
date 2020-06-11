@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	  layout:decorator="@{layout/defaultAdmin}">
+
+<th:block layout:fragment="customTitle">
+	<title>오프라인 예약 등록</title>
+</th:block>
+               
+<th:block layout:fragment="customContents">
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+	<!-- Content Header (Page header) -->
+	<div class="content-header">
+		<div class="container-fluid">
+			<h1 class="m-0 text-dark">오프라인 예약 등록</h1>
+		</div><!-- /.container-fluid -->
+	</div>
+	<!-- /.content-header -->
+
+	<!-- Main content -->
+	<section class="content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="card  card-white">				
+						<!-- /.card-header -->
+						<div class="card-header">
+							
+							<!-- Book Search Form -->
+							<div class="row">
+								<div class="col-sm-2">			                
+									<a>도서 코드</a>																							               																																				
+								</div>	
+								<!-- SEARCH FORM -->
+								<div class="col-sm-10">	                     	
+									<div class="input-group input-group-sm">
+										<input class="form-control" type="search" placeholder="Book Code" aria-label="Search">
+										<div class="input-group-append">
+											<button class="btn btn-navbar" type="submit">
+												<i class="fas fa-search"></i>
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>	
+						<!-- /.card-header -->
+					
+						<!-- card-body -->	
+						<div class="card-body">
+							<!-- form start -->
+							<form class="form-horizontal">
+								<div class="form-group row">
+									<label for="inputEmail3" class="col-sm-2 col-form-label">도서 코드</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" placeholder="Book Code">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="inputEmail3" class="col-sm-2 col-form-label">ISBN</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" placeholder="ISBN">
+									</div>	
+								</div>
+								<div class="form-group row">
+									<label for="inputEmail3" class="col-sm-2 col-form-label">청구기호</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" placeholder="Library Book Code">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="inputPassword3" class="col-sm-2 col-form-label">도서이름</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="inputPassword3" placeholder="Book Name">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="inputPassword3" class="col-sm-2 col-form-label">출판사</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="inputPassword3" placeholder="Publisher Code">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="inputPassword3" class="col-sm-2 col-form-label">저자</label>
+									<div class="col-sm-4">
+										<input type="text" class="form-control" id="inputPassword3" placeholder="Writer Name">
+									</div>
+									<label for="inputPassword3" class="col-sm-2 col-form-label">가격</label>
+									<div class="col-sm-4">
+										<input type="text" class="form-control" id="inputPassword3" placeholder="Book Price">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="inputPassword3" class="col-sm-2 col-form-label">출간날짜</label>
+									<div class="col-sm-4">
+										<input type="text" class="form-control" id="inputPassword3" placeholder="Book Publish Date">
+									</div>
+									<label for="inputPassword3" class="col-sm-2 col-form-label">등록날짜</label>
+									<div class="col-sm-4">
+										<input type="text" class="form-control" id="inputPassword3" placeholder="Book Reg Date">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-sm-2 col-form-label">도서상태</label>
+										<div class="col-sm-2">
+											<button type="button" class="fc-today-button btn btn-primary">대여중</button>
+										</div>
+									<label class="col-sm-2 col-form-label">예약상태</label>
+									<div class="col-sm-2">
+										<button type="button" class="fc-today-button btn btn-primary"> 가능</button>
+									</div>
+									<label class="col-sm-2 col-form-label">예약 권수</label>
+									<div class="col-sm-2">
+										<button type="button" class="fc-today-button btn btn-primary">3</button>
+									</div>
+								</div>                 
+							</form>
+						<!-- /.card-body -->
+						</div>
+					<!-- /.card -->
+					</div>
+				</div>
+					
+				<div class="col-md-6">				
+					<!-- Book Serch Form -->
+					<div class="card card-white">
+						<div class="card-header">
+							<div class="row">
+								<div class="col-sm-2">			                
+									<a>회원 아이디</a>																							               																																				
+								</div>	
+								
+								<!-- SEARCH FORM -->
+								<div class="col-sm-10">		                     	
+									<div class="input-group input-group-sm">
+										<input class="form-control" type="search" placeholder="Member Id" aria-label="Search">
+										<div class="input-group-append">
+											<button class="btn btn-navbar" type="submit">
+												<i class="fas fa-search"></i>
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>		                    
+						<!-- /.card-header -->
+						</div>
+						
+					<!-- form start -->
+						<div class="card-body">
+							<!-- form start -->
+							<form class="form-horizontal">
+								<div class="form-group row">
+									<label for="inputEmail3" class="col-sm-2 col-form-label">회원 아이디</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="inputEmail3" placeholder="Member Id">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="inputEmail3" class="col-sm-2 col-form-label">회원 이름</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="inputEmail3" placeholder="Member Name">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="inputEmail3" class="col-sm-2 col-form-label">생년 월일</label>
+									<div class="col-sm-10">
+										<input type="Date" class="form-control" id="inputEmail3" placeholder="Member Name">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="inputPassword3" class="col-sm-2 col-form-label">회원 레벨</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="inputPassword3" placeholder="Member Level">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="inputPassword3" class="col-sm-2 col-form-label">주소</label>
+									<div class="col-sm-10">
+										<input type="email" class="form-control" id="inputPassword3" placeholder="Member Address">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="inputPassword3" class="col-sm-2 col-form-label">전화번호</label>
+									<div class="col-sm-10">
+										<input type="email" class="form-control" id="inputPassword3" placeholder="Member Tel">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="inputPassword3" class="col-sm-2 col-form-label">이메일</label>
+									<div class="col-sm-10">
+										<input type="email" class="form-control" id="inputPassword3" placeholder="Member Email">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="inputPassword3" class="col-sm-2 col-form-label">현재대여</label>
+									<div class="col-sm-1">
+										<button type="button" class="fc-today-button btn btn-danger">3</button>
+									</div>
+									<label for="inputPassword3" class="col-sm-3 col-form-label">예약가능 여부</label>
+									<div class="col-sm-2">
+										<button type="button" class="fc-today-button btn btn-danger">가능</button>
+									</div>
+									<label for="inputPassword3" class="col-sm-3 col-form-label">예약가능권수</label> 
+									<div class="col-sm-1">
+										<button type="button" class="fc-today-button btn btn-danger">2</button>  
+									</div>             
+								 </div>	            
+							</form>
+						<!-- /.card-body -->
+						</div>
+					<!-- /.card -->
+					</div>
+					<!-- /.col -->
+				</div>
+				<!-- /.row -->
+			</div>
+			
+			<div class="row">
+				<div class="col-md-12" style="text-align: center">				
+					<button type="button" class="fc-today-button btn btn-info" data-toggle="modal" data-target="#modal-primary">예약하기</button>			
+				</div>
+			</div>
+				
+			<!-- moadal -->
+			<div class="modal fade" id="modal-primary">
+				<div class="modal-dialog">
+					<div class="modal-content bg-default">
+						<div class="modal-header">
+							<h4 class="modal-title">예약관리</h4>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<p>예약 하시겠습니까?</p>
+						</div>
+						<div class="modal-footer justify-content-between">
+							<button type="button" class="btn" data-dismiss="modal">Close</button>
+							<button type="button" class="btn">예약하기</button>
+						</div>
+					<!-- /.modal-content -->
+					</div>
+					<!-- /.modal-dialog -->
+				<!-- /.modal -->
+				</div>
+			</div>
+		</div>	
+	</section>
+	<!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+</th:block>
+
+</html>
