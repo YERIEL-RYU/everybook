@@ -6,6 +6,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ReserveController {
 	
+	@GetMapping("/officeRtingReserveAdd")
+	public String rtingReserveAdd() {
+		return "reserve/officeRtingReserveAdd";
+	}
+	
+	@GetMapping("/officeRtingReserveList")
+	public String rtingReserveList() {
+		return "reserve/officeRtingReserve";
+	}
+	
+	
 	@GetMapping("/officeRtcanReserveList")
 	public String rtcanReserveList() {
 		return "reserve/officeRtcanReserveList.html";
