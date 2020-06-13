@@ -11,14 +11,10 @@
 		<link rel="stylesheet" type="text/css" href="styles/course_responsive.css">
 		<link rel="stylesheet" type="text/css" href="styles/blog_single.css">
 		<link rel="stylesheet" type="text/css" href="styles/blog_single_responsive.css">
+		<link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
 	</th:block>
 	<th:block layout:fragment="customTitle">
 	<title> 희망 도서 신청</title>
-	</th:block>
-	
-	<th:block layout:fragment="customCss">
-  <!-- overlayScrollbars -->
-  	<link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
 	</th:block>
 
 	<!-- header 부분에 메뉴 활성화 -->
@@ -42,8 +38,9 @@
 						<div class="col">
 							<div class="breadcrumbs">
 								<ul>
-									<li><a href="#">#EveryBook</a></li>
-									<li><a href="#">#회원가입</a></li>
+									<li><a href="#">EveryBook</a></li>
+									<li><a href="mylibrary">나의 도서관</a></li>
+									<li><a href="#">희망도서 신청</a></li>
 								</ul>
 							</div>
 						</div>
@@ -60,7 +57,7 @@
 					<div class="container">
 						<div class="row">
 							<!-- Contact Form -->
-							<div class="col-lg-12">
+							<div class="col-lg-8">
 								<div class="contact_form">
 									<form action="#" class="comment_form">
 										<div class="row">
@@ -68,62 +65,108 @@
 												<div class="col-sm-10" style="margin-bottom: 20px">
 													<input type="text" class="comment_input" required="required">
 												</div>
-											<div class="form_title col-sm-2" style="text-align: center; line-height: 3;">도서 이름</div>
+											<div class="form_title col-sm-2" style="text-align: center; line-height: 3;">ISBN</div>
 												<div class="col-sm-10" style="margin-bottom: 20px">
 													<input type="text" class="comment_input" required="required">
 												</div>
-											<div class="form_title col-sm-2" style="text-align: center; line-height: 3;">도서 이름</div>
+											<div class="form_title col-sm-2" style="text-align: center; line-height: 3;">도서관 코드</div>
 												<div class="col-sm-10" style="margin-bottom: 20px">
 													<input type="text" class="comment_input" required="required">
 												</div>
-											<div class="form_title col-sm-2" style="text-align: center; line-height: 3;">도서 이름</div>
+											<div class="form_title col-sm-2" style="text-align: center; line-height: 3;">발행 년도</div>
 												<div class="col-sm-10" style="margin-bottom: 20px">
 													<input type="text" class="comment_input" required="required">
 												</div>
-											<div class="form_title col-sm-2" style="text-align: center; line-height: 3;">도서 이름</div>
+											<div class="form_title col-sm-2" style="text-align: center; line-height: 3;">저자</div>
 												<div class="col-sm-10" style="margin-bottom: 20px">
 													<input type="text" class="comment_input" required="required">
-												</div>
-											<div class="form_title col-sm-2" style="text-align: center; line-height: 3;">도서 이름</div>
-												<div class="col-sm-10" style="margin-bottom: 20px">
-													<input type="text" class="comment_input" required="required">
-												</div>
-											<div class="form_title col-sm-2" style="text-align: center; line-height: 3;">도서 이름</div>
-												<div class="col-sm-10" style="margin-bottom: 20px">
-													<input type="text" class="comment_input" required="required">
-												</div>
+												</div>											
 										</div>
 										
 										<div class="row">
 											<div class="col-sm-1 offset-10">
-												<button type="submit" class="comment_button trans_200">회원가입</button>
+												<button type="button" class="comment_button" data-toggle="modal" data-target=".bs-example-modal-sm">신청하기</button>
 											</div>
 										</div>
-									</form>
+										<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+										<div class="modal-dialog modal-sm">
+											<div class="modal-content">
+												<div class="modal-header">
+											        <h4 class="modal-title">희망 도서 신청</h4>
+											        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+											     </div>
+											     <div class="modal-body">
+											        <p>희망 도서를 신청하시겠습니까?</p>
+											     </div>
+											     <div class="modal-footer">
+											        <button type="button"class="btn btn-default" data-dismiss="modal">닫기</button>
+											        <button type="button" class="btn btn-primary">도서 신청</button>
+											     </div>
+											</div>
+										</div>
+										</div>
+									</form>									
 								</div>
 							</div>
+							<div class="col-lg-4">
+					<div class="course_container">	
+						<div class="course_tabs_container">
+							<div class="tab_panels">
+								<div class="tab_panel active">
+									<div class="tab_panel_title">나의 도서관</div>
+									<div class="tab_panel_content">
+										<div class="tab_panel_faq">
+											<!-- Accordions -->
+											<div class="accordions">
+												
+												<div class="elements_accordions">
+			
+													<div class="accordion_container">
+														<div class="accordion d-flex flex-row align-items-center"><div>나의 서재</div></div>
+														<div class="accordion_panel">
+															<p><a href="#">#대여 도서 / 연장 신청</a></p>
+															<p><a href="#">#나의 대여 이력 / 도서평 작성</a></p>
+															<p><a href="myReserve">도서 예약 내역</a></p>
+															<p><a href="#">#나의 신청 도서</a></p>
+															<p><a href="#">#나의 도서평 내역</a></p>
+														</div>
+													</div>
+			
+													<div class="accordion_container">
+														<div class="accordion d-flex flex-row align-items-center active"><div><a href="#">#희망 도서 신청</a></div></div>
+													</div>
+			
+													<div class="accordion_container">
+														<div class="accordion d-flex flex-row align-items-center"><div><a href="myPoint">나의 점수 내역</a></div></div>
+													</div>
+			
+												</div>
+			
+											</div>	
+										</div>
+									</div>
+								</div>			
+							</div>					
 						</div>
 					</div>
-				</div>		
-			</div>
+
+				</div>
+						</div>
+					</div>				
+				</div>						
+			</div>			
 		</div>	
 	</th:block>
 	<th:block layout:fragment="customFooterScript">
-		<!-- OPTIONAL SCRIPTS -->
-		<script src="dist/js/demo.js"></script>
-		<!-- overlayScrollbars -->
-		<script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-		<!-- ionicons.com 아이콘 -->
-		<script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
-<!-- PAGE PLUGINS -->
-		<!-- jQuery Mapael -->
-		<script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
-		<script src="plugins/raphael/raphael.min.js"></script>
-		<script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
-		<script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
-		<!-- ChartJS -->
-		<script src="plugins/chart.js/Chart.min.js"></script>
-		<!-- PAGE SCRIPTS -->
-		<script src="dist/js/pages/dashboard2.js"></script>
-</th:block>
+		<script src="js/jquery-3.2.1.min.js"></script>
+		<script src="styles/bootstrap4/popper.js"></script>
+		<script src="styles/bootstrap4/bootstrap.min.js"></script>
+		<script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+		<script src="plugins/easing/easing.js"></script>
+		<script src="plugins/parallax-js-master/parallax.min.js"></script>
+		<script src="plugins/colorbox/jquery.colorbox-min.js"></script>
+		<script src="js/courses.js"></script>
+		<script src="js/course.js"></script>
+	</th:block>
+	
 </html>
