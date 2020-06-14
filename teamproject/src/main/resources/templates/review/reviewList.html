@@ -4,18 +4,20 @@
   layout:decorator="@{layout/default}">
   	<th:block layout:fragment="customCss">
 		<link href="plugins/colorbox/colorbox.css" rel="stylesheet" type="text/css">
-		<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
-		<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
-		<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">  	
 		<link rel="stylesheet" type="text/css" href="styles/courses.css">
 		<link rel="stylesheet" type="text/css" href="styles/course.css">
 		<link rel="stylesheet" type="text/css" href="styles/courses_responsive.css">
   		<link rel="stylesheet" type="text/css" href="styles/course_responsive.css">
+  		<link rel="stylesheet" type="text/css" href="styles/blog.css">
+		<link rel="stylesheet" type="text/css" href="styles/blog_responsive.css">
+		<link rel="stylesheet" type="text/css" href="styles/blog_single.css">
+		<link rel="stylesheet" type="text/css" href="styles/blog_single_responsive.css">
   	</th:block>
+  	
 	<th:block layout:fragment="customTitle">
 		<title> 나의 도서평 내역 </title>
 	</th:block>
-	<!-- header 부분에 메뉴 활성화 -->
+	
 	<th:block layout:fragment="customHeader">
 		<nav class="main_nav_contaner ml-auto">
 			<ul class="main_nav">
@@ -31,100 +33,114 @@
 	
 	<th:block layout:fragment="customContents">	
 		<!-- Home -->
-	<div class="home">
-		<div class="breadcrumbs_container">
-			<div class="container">
-				<div class="row">
-					<div class="col">
-						<div class="breadcrumbs">
-							<ul>
-								<li><a href="#">#EveryBook</a></li>
-								<li><a href="#">#나의 도서관</a></li>
-								<li><a href="#">#나의 서재</a></li>
-								<li><a href="#">#나의 도서평 내역</a></li>
-							</ul>
+		<div class="home">
+			<div class="breadcrumbs_container">
+				<div class="container">
+					<div class="row">
+						<div class="col">
+							<div class="breadcrumbs">
+								<ul>
+									<li><a href="#">#EveryBook</a></li>
+									<li><a href="#">#나의 도서관</a></li>
+									<li><a href="#">#나의 서재</a></li>
+									<li><a href="#">#나의 도서평 내역</a></li>
+								</ul>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>			
-	</div>
+			</div>			
+		</div>
 	
 		<!-- Courses -->
 
-	<div class="courses">
-		<div class="container">
-			<div class="row">
-
-				<!-- Courses Main Content -->
-				<div class="col-lg-8">
-					<div class="courses_container">
-						<div class="row courses_row">
-							
-							<!-- Course -->
-							<div class="col-lg-6 course_col">
-								<div class="course">
-									<div class="course_image" style="margin-left: 100px;"><img src="images/book_1.PNG" alt=""></div>
-									<div class="course_body">
-										<form action="#">
-										<h3 class="course_title"><a href="course.html">Software Training</a></h3>
-										<div class="course_teacher">Mr. John Taylor</div>
-										<div class="course_text">
-											<p>도서평 내용입니다.</p>
-										</div>
-										<div>
-											<button type="submit" class="courses_search_button " style="margin-top: 15px; width: 50px;">수정</button>
-										</div>
-										</form>
-									</div>
-								</div>
-							</div>	
-							<div class="col-lg-6 course_col">
-								<div class="course">
-									<div class="course_image" style="margin-left: 100px;"><img src="images/book_1.PNG" alt=""></div>
-									<div class="course_body">
-										<h3 class="course_title"><a href="course.html">Software Training</a></h3>
-										<div class="course_teacher">Mr. John Taylor</div>
-										<div class="course_text">
-											<p>도서평 내용입니다.</p>
-										</div>
-										<div>
-											<button type="submit" class="courses_search_button " style="margin-top: 15px; width: 50px;">수정</button>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-6 course_col">
-								<div class="course">
-									<div class="course_image" style="margin-left: 100px;"><img src="images/book_1.PNG" alt=""></div>
-									<div class="course_body">
-										<h3 class="course_title"><a href="course.html">Software Training</a></h3>
-										<div class="course_teacher">Mr. John Taylor</div>
-										<div class="course_text">
-											<p>도서평 내용입니다.</p>
-										</div>
-										<div>
-											<button type="submit" class="courses_search_button " style="margin-top: 15px; width: 50px;">수정</button>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-6 course_col">
-								<div class="course">
-									<div class="course_image" style="margin-left: 100px;"><img src="images/book_1.PNG" alt=""></div>
-									<div class="course_body">
-										<h3 class="course_title"><a href="course.html">Software Training</a></h3>
-										<div class="course_teacher">Mr. John Taylor</div>
-										<div class="course_text">
-											<p>도서평 내용입니다.</p>
-										</div>
-										<div>
-											<button type="submit" class="courses_search_button " style="margin-top: 15px; width: 50px;">수정</button>
-										</div>
-									</div>
-								</div>
-							</div>
+		<div class="courses">
+			<div class="container">
+				
+				<div class="row">
+					<div class="col-lg-8">
+						<div class="blog_content">
+							<div class="blog_title" style="padding-bottom: 30px;">나의 도서평 내역</div>					
 						</div>
+						<div class="col">
+							<div class="blog_post_container">
+								<div class="blog_post_body">
+									<form action="modifyReview" method="post">
+										<div class="blog_post_title"><a href="bookDetail">Here’s What You Need to Know About Online Testing</a></div>
+										<div class="blog_post_meta">
+											<ul>
+												<li>admin</a></li>
+												<li>november 11, 2017</a></li>
+											</ul>
+										</div>
+										<div class="blog_post_text">
+											<p>Policy analysts generally agree on a need for reform, but not on which path policymakers should take...</p>
+										</div>
+										<div style=" text-align: right;">
+											<button type="submit" class="comment_button trans_200">수정하기</button>
+											<button type="submit" class="comment_button trans_200">삭제하기</button>
+										</div>
+									</form>
+								</div>
+								<hr>
+								<div class="blog_post_body">
+									<form action="modifyReview" method="post">
+										<div class="blog_post_title"><a href="bookDetail">Here’s What You Need to Know About Online Testing</a></div>
+										<div class="blog_post_meta">
+											<ul>
+												<li>admin</a></li>
+												<li>november 11, 2017</a></li>
+											</ul>
+										</div>
+										<div class="blog_post_text">
+											<p>Policy analysts generally agree on a need for reform, but not on which path policymakers should take...</p>
+										</div>
+										<div style=" text-align: right;">
+											<button type="submit" class="comment_button trans_200">수정하기</button>
+											<button type="submit" class="comment_button trans_200">삭제하기</button>
+										</div>
+									</form>
+								</div>
+								<hr>
+								<div class="blog_post_body">
+									<form action="modifyReview" method="post">
+										<div class="blog_post_title"><a href="bookDetail">Here’s What You Need to Know About Online Testing</a></div>
+										<div class="blog_post_meta">
+											<ul>
+												<li>admin</a></li>
+												<li>november 11, 2017</a></li>
+											</ul>
+										</div>
+										<div class="blog_post_text">
+											<p>Policy analysts generally agree on a need for reform, but not on which path policymakers should take...</p>
+										</div>
+										<div style=" text-align: right;">
+											<button type="submit" class="comment_button trans_200">수정하기</button>
+											<button type="submit" class="comment_button trans_200">삭제하기</button>
+										</div>
+									</form>
+								</div>
+								<hr>
+								<div class="blog_post_body">
+									<form action="modifyReview" method="post">
+										<div class="blog_post_title"><a href="bookDetail">Here’s What You Need to Know About Online Testing</a></div>
+										<div class="blog_post_meta">
+											<ul>
+												<li>admin</a></li>
+												<li>november 11, 2017</a></li>
+											</ul>
+										</div>
+										<div class="blog_post_text">
+											<p>Policy analysts generally agree on a need for reform, but not on which path policymakers should take...</p>
+										</div>
+										<div style=" text-align: right;">
+											<button type="submit" class="comment_button trans_200">수정하기</button>
+											<button type="submit" class="comment_button trans_200">삭제하기</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>	
 						<div class="row pagination_row">
 							<div class="col">
 								<div class="pagination_container d-flex flex-row align-items-center justify-content-start">
@@ -150,59 +166,56 @@
 							</div>
 						</div>
 					</div>
-				</div>	
-				<!-- Courses Sidebar -->
-				<div class="col-lg-4">
-					<div class="course_container">	
-						<div class="course_tabs_container">
-							<div class="tab_panels">
-								<div class="tab_panel active">
-									<div class="tab_panel_title">나의 도서관</div>
-									<div class="tab_panel_content">
-										<div class="tab_panel_faq">
-											<!-- Accordions -->
-											<div class="accordions">
-												
-												<div class="elements_accordions">
-			
-													<div class="accordion_container">
-														<div class="accordion d-flex flex-row align-items-center"><div>나의 서재</div></div>
-														<div class="accordion_panel">
-															<p><a href="#">#대여 도서 / 연장 신청</a></p>
-															<p><a href="#">#나의 대여 이력 / 도서평 작성</a></p>
-															<p><a href="#">#도서 예약 내역</a></p>
-															<p><a href="#">#나의 신청 도서</a></p>
-															<p><a href="#">#나의 도서평 내역</a></p>
+					
+					<!-- Courses Sidebar -->
+					<div class="col-lg-4">
+						<div class="course_container">	
+							<div class="course_tabs_container">
+								<div class="tab_panels">
+									<div class="tab_panel active">
+										<div class="tab_panel_title">나의 도서관</div>
+										<div class="tab_panel_content">
+											<div class="tab_panel_faq">
+												<!-- Accordions -->
+												<div class="accordions">
+													
+													<div class="elements_accordions">
+				
+														<div class="accordion_container">
+															<div class="accordion d-flex flex-row align-items-center"><div>나의 서재</div></div>
+															<div class="accordion_panel">
+																<p><a href="#">#대여 도서 / 연장 신청</a></p>
+																<p><a href="#">#나의 대여 이력 / 도서평 작성</a></p>
+																<p><a href="#">#도서 예약 내역</a></p>
+																<p><a href="#">#나의 신청 도서</a></p>
+																<p><a href="#">#나의 도서평 내역</a></p>
+															</div>
 														</div>
+				
+														<div class="accordion_container">
+															<div class="accordion d-flex flex-row align-items-center active"><div><a href="#">#희망 도서 신청</a></div></div>
+														</div>
+				
+														<div class="accordion_container">
+															<div class="accordion d-flex flex-row align-items-center"><div><a href="#">#나의 점수 내역</a></div></div>
+														</div>
+				
 													</div>
-			
-													<div class="accordion_container">
-														<div class="accordion d-flex flex-row align-items-center active"><div><a href="#">#희망 도서 신청</a></div></div>
-													</div>
-			
-													<div class="accordion_container">
-														<div class="accordion d-flex flex-row align-items-center"><div><a href="#">#나의 점수 내역</a></div></div>
-													</div>
-			
-												</div>
-			
-											</div>	
+				
+												</div>	
+											</div>
 										</div>
-									</div>
-								</div>			
-							</div>					
+									</div>			
+								</div>					
+							</div>
 						</div>
 					</div>
-				</div>
+				</div>		
 			</div>		
-		</div>		
-	</div>
-	
-	
+		</div>
 	</th:block>
 	
 	<th:block layout:fragment="customFooterScript">
-		
 		<script src="js/jquery-3.2.1.min.js"></script>
 		<script src="styles/bootstrap4/popper.js"></script>
 		<script src="styles/bootstrap4/bootstrap.min.js"></script>
@@ -212,6 +225,8 @@
 		<script src="plugins/colorbox/jquery.colorbox-min.js"></script>
 		<script src="js/courses.js"></script>
 		<script src="js/course.js"></script>
+		
+		
 	</th:block>
 	
 </html>

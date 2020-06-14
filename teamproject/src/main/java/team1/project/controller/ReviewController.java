@@ -2,10 +2,18 @@ package team1.project.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class ReviewController {
 
+	@PostMapping("modifyReview")
+	public String modifyReview() {
+		return "review/modifyReview";
+	}
+	
+	
+	
 	@GetMapping("officeWarningList")
 	public String officeWarningList() {
 		return "review/officeWarningList";

@@ -7,6 +7,11 @@
 		<title>회원 상세보기</title>
 	</th:block>
 	
+	<th:block layout:fragment="customCss">
+	  <!-- overlayScrollbars -->
+	  <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+	</th:block>
+	
 	<th:block layout:fragment="customContents">
 		<div class="content-wrapper">
 			<section class="content-header">
@@ -37,7 +42,7 @@
 										  <b>현재 신고된 도서평 수</b> <a class="float-right">13,287</a>
 										</li>
 									</ul>
-									<a href="#" class="btn btn-primary btn-block"><b>회원 정보 수정</b></a>
+									<a href="officeModifyMember" class="btn btn-primary btn-block"><b>회원 정보 수정</b></a>
 								</div>
 								<!-- /.card-body -->
 							</div>
@@ -185,6 +190,27 @@
 			</section>
 		</div>
 	</th:block>
+	
+	<th:block layout:fragment="customFooterScript">
+			<!-- OPTIONAL SCRIPTS -->
+			<script src="dist/js/demo.js"></script>
+			<!-- overlayScrollbars -->
+			<script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+			<!-- ionicons.com 아이콘 -->
+			<script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+	<!-- PAGE PLUGINS -->
+			<!-- jQuery Mapael -->
+			<script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
+			<script src="plugins/raphael/raphael.min.js"></script>
+			<script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
+			<script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
+			<!-- ChartJS -->
+			<script src="plugins/chart.js/Chart.min.js"></script>
+			<!-- PAGE SCRIPTS -->
+			<script src="dist/js/pages/dashboard2.js"></script>
+	</th:block>
+	
+	
 	
 	
 	
