@@ -66,46 +66,47 @@
 									<form action="addMember" class="comment_form" method="post">
 										<div class="input_from">
 											<div class="form_title">아이디</div>
-											<input type="text" class="comment_input" required="required">
+											<input type="text" name = "memberId" class="comment_input" required="required">
+											<button type="button" id="id">아이디중복체크</button>
 										</div>
 										<div class="input_from">
 											<div class="form_title">비밀번호</div>
-											<input type="password" class="comment_input" required="required">
+											<input type="password" name = "memberPw" class="comment_input" required="required">
 										</div>
 										<div class="input_from">
 											<div class="form_title">이름</div>
-											<input type="text" class="comment_input" required="required">
+											<input type="text" name = "memberName" class="comment_input" required="required">
 										</div>
 										<div class="input_from">
 											<div class="form_title">생년월일</div>
-											<input type="date" class="comment_input" required="required">
+											<input type="date" name = "memberBirth" class="comment_input" required="required">
 										</div>
 										<div class="input_from">
 											<div class="form_title">주소</div>
 											<div class="row">
 												<div class="col-md-6 input_col">
-													<input type="text" class="comment_input" required="required" placeholder="도">
+													<input type="text" name = "memberAddress" class="comment_input" required="required" placeholder="도">
 												</div>
 												<div class="col-md-6 input_col">
-													<input type="text" class="comment_input" required="required" placeholder="시">
+													<input type="text" name = "memberAddress" class="comment_input" required="required" placeholder="시">
 												</div>
 											</div>
 											<hr>
-											<input type="text" class="comment_input" required="required" placeholder="상세주소">
+											<input type="text" name = "memberAddress" class="comment_input" required="required" placeholder="상세주소">
 										</div>
 										<div class="input_from">
 											<div class="form_title">휴대폰번호</div>
-											<input type="text" class="comment_input" required="required">
+											<input type="text" name = "memberTel" class="comment_input" required="required">
 										</div>
 										<div class="input_from">
 											<div class="form_title">이메일</div>
-											<input type="text" class="comment_input" required="required">
+											<input type="text" name = "memberEmail" class="comment_input" required="required">
 										</div>
 										<div class="input_from">
 											<div class="form_title">도서관</div>
-											<select id="courses_search_select" class="courses_search_select courses_search_input">
+											<select name = "libraryCode" id="courses_search_select" class="courses_search_select courses_search_input">
 												<option>주변 도서관</option>
-												<option>금암 도서관</option>
+												<option value="library_01">금암 도서관</option>
 											</select>
 										</div>
 										<div style="margin-left: 990px;">
@@ -132,5 +133,24 @@
 		<script src="plugins/colorbox/jquery.colorbox-min.js"></script>
 		<script src="js/courses.js"></script>
 		<script src="js/course.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				
+
+				
+				
+				
+				
+				
+				$('.comment_button trans_200').on('click',function(){
+					var address = $("input[name=memberAddress]").length;
+					var addressarr = new Array(address);
+					for(var i=0; i<address; i++){
+						addressarr[i] = $("input[name=memberAddress]").eq(i).val();
+					}
+				});
+			
+			});
+		</script>
 	</th:block>
 </html>
