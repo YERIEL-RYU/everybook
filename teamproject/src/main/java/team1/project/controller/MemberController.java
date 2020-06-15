@@ -7,6 +7,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class MemberController {
 
+	@PostMapping("addMember")
+	public String addMember() {
+		return "";
+	}
+	
 	@GetMapping("officeModifyMember")
 	public String officeModifyMember() {
 		return "member/officeModifyMember";
