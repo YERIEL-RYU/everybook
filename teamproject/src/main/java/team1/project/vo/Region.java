@@ -1,13 +1,11 @@
 package team1.project.vo;
 
-import java.util.Date;
-
 public class Region {
 	private String regionCode;
 	private String regionMajor;
 	private String regionMinor;
 	private String regionRegDate;
-	private String officer;
+	private Officer officer;
 	public String getRegionCode() {
 		return regionCode;
 	}
@@ -32,11 +30,16 @@ public class Region {
 	public void setRegionRegDate(String regionRegDate) {
 		this.regionRegDate = regionRegDate;
 	}
-	public String getOfficer() {
+	public Officer getOfficer() {
 		return officer;
 	}
-	public void setOfficer(String officer) {
+	public void setOfficer(Officer officer) {
 		this.officer = officer;
+	}
+	@Override
+	public String toString() {
+		return "Region [regionCode=" + regionCode + ", regionMajor=" + regionMajor + ", regionMinor=" + regionMinor
+				+ ", regionRegDate=" + regionRegDate + ", officer=" + officer + "]";
 	}
 	
 	
