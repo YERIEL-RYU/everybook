@@ -15,13 +15,14 @@ import team1.project.vo.Officer;
 public class OfficerController {
 	@Autowired OfficerService officerService;
 	
-	/*
-	 * //직원리스트조회
-	 * 
-	 * @GetMapping("/officerList") public String getOfficerList(Model model) {
-	 * List<Officer> list = officerService.getOfficerList();
-	 * model.addAttribute("officerList", list); return "office/officerList"; }
-	 */
+	//직원리스트조회
+	@GetMapping("/officerList")
+	public String getOfficerList(Model model) {
+		List<Officer> list = officerService.getOfficerList();
+		System.out.println(list + " <- list");
+		model.addAttribute("officerList", list);
+		return "office/officerList";
+	}
 	
 	//직원등록처리
 	@PostMapping("/addOfficer")
@@ -35,12 +36,6 @@ public class OfficerController {
 	@GetMapping("/addOfficer")
 	public String addOfficer() {
 		return "office/addOfficer";
-	}
-	
-	@GetMapping("/officerList")
-	public String officerList() {
-		
-		return "office/officerList";
 	}
 	
 	//직원관리

@@ -17,19 +17,19 @@
  		<result property="officerRegDate" column="officer_reg_date"/>
  	</resultMap>	
 
-	<select id="officerList" resultType="team1.project.vo.Officer">
+	<select id="getOfficerList" resultMap="officerResultMap">
 	
 	SELECT 
-		officer_id AS officerID
-		,officer_pw AS officerPW
-		,officer_name AS officerName
-		,officer_birth AS officerBirth
-		,level_code AS level
-		,library_code AS library
-		,officer_address AS officerAddress
-		,officer_tel AS officerTel
-		,officer_email AS officerEmail
-		,officer_reg_date AS officerRegDate
+		officer_id 
+		,officer_pw 
+		,officer_name 
+		,officer_birth 
+		,level_code 
+		,library_code
+		,officer_address
+		,officer_tel
+		,officer_email
+		,officer_reg_date
 	FROM 
 		tb_officer;
 	</select>
