@@ -67,7 +67,6 @@
 										<div class="input_from">
 											<div class="form_title">아이디</div>
 											<input type="text" name = "memberId" class="comment_input" required="required">
-											<button type="button" id="id">아이디중복체크</button>
 										</div>
 										<div class="input_from">
 											<div class="form_title">비밀번호</div>
@@ -135,13 +134,6 @@
 		<script src="js/course.js"></script>
 		<script type="text/javascript">
 			$(function(){
-				
-
-				
-				
-				
-				
-				
 				$('.comment_button trans_200').on('click',function(){
 					var address = $("input[name=memberAddress]").length;
 					var addressarr = new Array(address);
@@ -149,7 +141,6 @@
 						addressarr[i] = $("input[name=memberAddress]").eq(i).val();
 					}
 				});
-			
 			});
 		</script>
 	</th:block>
