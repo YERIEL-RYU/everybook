@@ -15,6 +15,14 @@ public class RegionService {
 	
 	@Autowired private RegionMapper regionMapper;
 	
+	public int addRegion(Region region) {
+		return regionMapper.addRegion(region);
+	}
+	
+	public List<Region> getRegionMajorList(){
+		return regionMapper.getRegionMajorList();
+	}
+	
 	public List<Region> getOfficeRegionList(){
 		return regionMapper.getRegionList();
 	}

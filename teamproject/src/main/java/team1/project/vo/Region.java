@@ -6,7 +6,7 @@ public class Region {
 	private String regionCode;
 	private String regionMajor;
 	private String regionMinor;
-	private Date regionRegDate;
+	private String regionRegDate;
 	private String officer;
 	public String getRegionCode() {
 		return regionCode;
@@ -26,10 +26,10 @@ public class Region {
 	public void setRegionMinor(String regionMinor) {
 		this.regionMinor = regionMinor;
 	}
-	public Date getRegionRegDate() {
+	public String getRegionRegDate() {
 		return regionRegDate;
 	}
-	public void setRegionRegDate(Date regionRegDate) {
+	public void setRegionRegDate(String regionRegDate) {
 		this.regionRegDate = regionRegDate;
 	}
 	public String getOfficer() {

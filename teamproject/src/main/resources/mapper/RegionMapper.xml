@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="team1.project.mapper.RegionMapper.mapper">
+<mapper namespace="team1.project.mapper.RegionMapper">
 	<resultMap type="Region" id="regionSelect">
 		<result property="regionCode" column="region_code"/>
 		<result property="regionMajor" column="region_major"/>
@@ -9,9 +9,15 @@
 		<result property="officer" column="officer_id"/>
 	</resultMap>
 	
+	<select id="getRegionMajorList" resultSets="Region" resultMap="regionSelect">
+		SELECT
+			DISTINCT region_major
+		FROM tb_region
+	</select>
+	
 	<select id="getRegionList" resultSets="Region" resultMap="regionSelect">
-	SELECT *
-	FROM tb_region
+		SELECT *
+		FROM tb_region
 	</select>
 
 </mapper>
