@@ -8,5 +8,10 @@ import team1.project.vo.Region;
 
 @Mapper
 public interface RegionMapper {
+	
+	public int addRegion(Region region);
+	
+	public List<Region> getRegionMajorList();
+	
 	public List<Region> getRegionList();
 }

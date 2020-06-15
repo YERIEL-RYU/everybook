@@ -23,7 +23,9 @@ public class LibraryController {
 	public String getOfficeRegionList(Model model) {
 		System.out.println("========= getOfficeRegionList LibraryController.java ============");
 		List<Region> regionList = regionService.getOfficeRegionList();
+		List<Region> regionMajorList = regionService.getRegionMajorList();
 		model.addAttribute("regionList", regionList);
+		model.addAttribute("regionMajorList", regionMajorList);
 		return "library/officeRegion";
 	}
 }
