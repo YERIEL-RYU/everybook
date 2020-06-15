@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="team1.project.mapper.OfficerMapper">
+ 	
+ 	<resultMap type="Officer" id="officerResultMap">
+ 		<result property="officerId" column="officer_id"/>
+ 		<result property="officerPw" column="officer_pw"/>
+ 		<result property="officerName" column="officer_name"/>
+ 		<result property="level" column="level_code"/>
+ 		<result property="library" column="library_code"/>
+ 		<result property="officerAddress" column="officer_address"/>
+ 		<result property="officerTel" column="officer_tel"/>
+ 		<result property="officerEmail" column="officer_email"/>
+ 		<result property="officerRegDate" column="officer_reg_date"/>
+ 	</resultMap>	
+
+	<select id="officerList" resultType="team1.project.vo.Officer">
+	
+	SELECT 
+		officer_id AS officerID
+		,officer_pw AS officerPW
+		,officer_name AS officerName
+		,officer_birth AS officerBirth
+		,level_code AS level
+		,library_code AS library
+		,officer_address AS officerAddress
+		,officer_tel AS officerTel
+		,officer_email AS officerEmail
+		,officer_reg_date AS officerRegDate
+	FROM 
+		tb_officer;
+	</select>
+
+	<insert id="addOfficer" parameterType="team1.project.vo.Officer">
+	  	INSERT INTO tb_officer(
+			officer_id
+			,officer_pw
+			,officer_name
+			,officer_birth
+			,level_code
+			,library_code
+			,officer_address
+			,officer_tel
+			,officer_email
+			,officer_reg_date
+		)VALUE(
+			#{officerId}
+			,#{officerPw}
+			,#{officerName}
+			,#{officerBirth}
+			,#{level}
+			,#{library}
+			,#{officerAddress}
+			,#{officerTel}
+			,#{officerEmail}
+			,NOW()
+			);
+	  </insert>
+  
+</mapper>
