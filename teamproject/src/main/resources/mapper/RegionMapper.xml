@@ -11,6 +11,7 @@
 		</association>
 	</resultMap>
 	
+	
 	<insert id="addRegion" parameterType="Region">
 		<selectKey order="BEFORE" keyProperty="regionCode" resultType="String">
 			SELECT

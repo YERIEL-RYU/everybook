@@ -16,6 +16,11 @@ import team1.project.vo.Region;
 public class LibraryController {
 	@Autowired private RegionService regionService;
 	
+	@PostMapping("/modifyRegion")
+	public String modifyRegion(Region region, Officer officer) {
+		return "redirect:/officeRegion";
+	}
+	
 	@PostMapping("/addRegion")
 	public String addRegion(Region region, Officer officer) {
 		System.out.println("========= addRegion LibraryController.java ============");

@@ -17,7 +17,7 @@ public class MainController {
 		return "information/libraryList";
 	}	
 
-	@GetMapping("/login")
+	@GetMapping("/")
 	public String login() {
 		return "login";
 
@@ -33,8 +33,9 @@ public class MainController {
 		return "information/myLibrary";
 	}
 	
-	@GetMapping("/")
+	@GetMapping("/index")
 	public String index() {
 		return "index";
 	}
+
 }
