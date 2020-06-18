@@ -6,13 +6,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import team1.project.service.RegionService;
+import team1.project.vo.Officer;
 import team1.project.vo.Region;
 
 @Controller
 public class LibraryController {
 	@Autowired private RegionService regionService;
+	
+	@PostMapping("/modifyRegion")
+	public String modifyRegion(Region region, Officer officer) {
+		return "redirect:/officeRegion";
+	}
+	
+	@PostMapping("/addRegion")
+	public String addRegion(Region region, Officer officer) {
+		System.out.println("========= addRegion LibraryController.java ============");
+		region.setOfficer(officer);
+		System.out.println(region.toString());
+		int i = regionService.addRegion(region);
+		System.out.println("실행결과  " + i);
+		return "redirect:/officeRegion";
+	}
 	
 	@GetMapping("/officeLibrary")
 	public String getOfficeLibraryList() {

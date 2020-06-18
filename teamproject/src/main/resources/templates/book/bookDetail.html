@@ -13,17 +13,21 @@
 <link rel="stylesheet" type="text/css" href="styles/blog_single_responsive.css">
 </th:block>
 <th:block layout:fragment="customTitle">
-<title> 책 상세 페이지 </title>
+<<<<<<< HEAD
+<title> 책 상세 페이지 (유)</title>
+=======
+<title> 도서 상세 페이지 </title>
+>>>>>>> refs/heads/develop
 </th:block>
 	<!-- header 부분에 메뉴 활성화 -->
 	<th:block layout:fragment="customHeader">
 		<nav class="main_nav_contaner ml-auto">
 			<ul class="main_nav">
-				<li class="active"><a href="about.html">통합검색</a></li>
-				<li><a href="courses.html">나의 도서관</a></li>
-				<li><a href="#">공지사항</a></li>
-				<li><a href="#">이용안내</a></li>
-				<li><a href="#">도서관 위치</a></li>
+				<li class="active"><a href="bookList">!통합검색(서)</a></li>
+				<li><a href="myLibrary">!나의 도서관(서)</a></li>
+				<li><a href="#">#공지사항</a></li>
+				<li><a href="libraryList">!이용안내(유)</a></li>
+				<li><a href="#">#도서관 위치</a></li>
 			</ul>
 			<div class="search_button"><i class="fa fa-search" aria-hidden="true"></i></div>
 		</nav>
@@ -38,8 +42,8 @@
 					<div class="col">
 						<div class="breadcrumbs">
 							<ul>
-								<li><a href="#">EveryBook</a></li>
-								<li><a href="#">통합검색</a></li>
+								<li><a href="index">!EveryBook</a></li>
+								<li><a href="bookList">!통합검색</a></li>
 								<li><a href="#">상세 보기</a></li>
 							</ul>
 						</div>

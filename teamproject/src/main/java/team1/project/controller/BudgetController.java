@@ -31,8 +31,8 @@ public class BudgetController {
 			return "budget/addBudget";
 		}
 		
-		@GetMapping("/addAccount")
-		public String addAccount() {
-			return "budget/addAccount";
-		}
+	/*
+	 * @GetMapping("/addAccount") public String addAccount() { return
+	 * "budget/addAccount"; }
+	 */
 }

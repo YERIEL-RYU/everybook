@@ -4,282 +4,168 @@
   layout:decorator="@{layout/defaultAdmin}">
 
 <th:block layout:fragment="customTitle">
-	<title>예산 관리</title>
+	<title>예산 현황</title>
 </th:block>
 
 <th:block layout:fragment="customCss">
-  <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
 </th:block>
 
-<div class="wrapper">
 <th:block layout:fragment="customContents">
 	<!-- Content Wrapper. Contains page content -->
 	<div class="content-wrapper">
 		<!-- Content Header (Page header) -->
 		<div class="content-header">
 			<div class="container-fluid">
-				<div class="row mb-2">
-					<div class="col-sm-6">
-						<h1 class="m-0 text-dark">예산ㆍ집행 현황</h1>
-					</div><!-- /.col -->
-				</div><!-- /.row -->
+				<h1 class="m-0 text-dark">예산 현황</h1>
 			</div><!-- /.container-fluid -->
 		</div>
-		<!-- /.content-header -->
-	 	<!-- Main content -->
+	<!-- /.content-header -->
+		<!-- Main content -->
 		<section class="content">
 			<div class="container-fluid">
-				<!-- Info boxes -->
-				<div class="row">
-					<div class="col-12 col-sm-6 col-md-3">
-					<div class="info-box">
-						<span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
-					
-						<div class="info-box-content">
-							<span class="info-box-text">대출중인 도서</span>
-						  	<span class="info-box-number">
-						    	10
-						    	<small>%</small>
-						  	</span>
-						</div>
-					  	<!-- /.info-box-content -->
-					</div>
-					<!-- /.info-box -->
-					</div>
-					<!-- /.col -->
-					<div class="col-12 col-sm-6 col-md-3">
-						<div class="info-box mb-3">
-							<span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
-							<div class="info-box-content">
-								<span class="info-box-text">반납예정 도서</span>
-								<span class="info-box-number">41,410</span>
-							</div>
-							<!-- /.info-box-content -->
-						</div>
-						<!-- /.info-box -->
-					</div>
-					<!-- /.col -->
-				 
-				 	<!-- fix for small devices only -->
-				 	<div class="clearfix hidden-md-up"></div>
-				
-					<div class="col-12 col-sm-6 col-md-3">
-						<div class="info-box mb-3">
-							<span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
-							
-							<div class="info-box-content">
-								<span class="info-box-text">연체중인 도서</span>
-								<span class="info-box-number">760</span>
-							</div>
-							<!-- /.info-box-content -->
-						</div>
-						<!-- /.info-box -->
-					</div>
-				 	<!-- /.col -->
-					<div class="col-12 col-sm-6 col-md-3">
-						<div class="info-box mb-3">
-							<span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
-							
-							<div class="info-box-content">
-								<span class="info-box-text">회원 수</span>
-								<span class="info-box-number">2,000</span>
-							</div>
-							<!-- /.info-box-content -->
-						</div>
-						<!-- /.info-box -->
-					</div>
-					<!-- /.col -->
-				</div>
-				<!-- /.row -->
-			</div><!--/. container-fluid -->
-			
-			<div class="col-md-12">
-	        	<!-- 예산현황 도서 -->
+				<!-- 예산현황 도서 -->
 				<div class="card">
+					<!-- start card-header -->
 					<div class="card-header">
-						<h3 class="card-title">예산 현황</h3>
+						<div class="row">
+							<div class="col-sm-8">
+								<form role="form">
+									<div class="row">
+										<div class="col-sm-3">
+											<div class="form-group">
+						                        <select class="form-control custom-select">
+						                          <option>예산 코드</option>
+						                          <option>도서관 코드</option>
+						                          <option>도서관 이름</option>
+						                          <option>계정과목 코드</option>
+						                          <option>계정과목 이름</option>
+						                          <option>등록자</option>
+						                        </select>
+						                    </div>
+										</div>
+										<div class="col-sm-9">
+											<div class="row">
+												<div class="col-sm-10">
+													<input class="form-control" type="search">
+												</div>
+												<div class="col-sm-2">
+													<div class="input-group-append">
+					                          			 <button class="btn btn-navbar" type="submit">
+					                           			  <i class="fas fa-search"></i>
+					                          			  </button>
+					                          		</div>
+				                          		</div>
+			                          		</div>
+										</div>
+				                    </div>							
+								</form>
+							</div>
+							<div class="col-sm-4">		
+								<div class="text-right">
+								<div class="btn-group">
+									<a class="btn btn-outline-info btn-flat" href="/addBudget">#예산 등록</a>
+									<button type="button" class="btn btn-outline-secondary btn-flat"  data-toggle="modal" data-target=".bs-modify-modal-lg">#예산 수정</button>
+									<button type="button" class="btn btn-outline-danger btn-flat"  data-toggle="modal" data-target=".bs-delete-sm">#예산 삭제</button>
+								</div>
+								</div>					
+							</div>
+						</div>
+						<div th:replace="budget/modifyBudget:: modifyBudgetFragment"></div>
+						<!-- start 기준 삭제  modal -->
+						<div class="modal fade bs-delete-sm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+							<div class="modal-dialog modal-sm">
+								<div class="modal-content">
+									
+									<!-- form start -->
+									<form role="form" action="#">
+										<div class="modal-header">
+											<h4 class="modal-title">지역코드 삭제하기</h4>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+										</div>
+										<div class="modal-body">
+								            <div class="form-group">
+												<label>지역 코드</label>
+								         		<div>
+													<input type="text" class="form-control" value="region_001" readonly="readonly">
+								         		</div>
+								           	</div>
+											<div class="form-group">
+												<p>해당 지역코드을 삭제 하시겠습니까?</p>
+												<p><small>삭제를 원하시면 비밀 번호를 입력하세요.</small></p>	
+								            </div>
+											<div class="form-group">
+												<label>비밀번호 확인</label>
+								          		<div>
+													<input type="password" class="form-control" placeholder="비밀번호를 입력하세요">
+								          		</div>
+								           </div>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-primary">지역코드 삭제</button>
+										</div>
+									</form>
+									<!-- form end -->
+								</div>	
+							</div>
+						</div>
+						<!--  end 기준 삭제 modal -->
+					</div>
+					<!--end card-header -->
 					
-						<div class="card-tools">
-						  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-						  </button>
-						</div>
-						<table class="table m-0">
-								<thead>
-									<tr>
-										<th>도서관 이름</th>
-										<th>사용목적</th>
-										<th>금액</th>
-										<th>작성일</th>
-										<th>수정</th>
-										<th>삭제</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td><a>금암</a></td>
-										<td><a href="#">도서구입</a></td>
-										<td><span class="badge badge-success">3000000</span></td>
-										<td>
-											<div class="sparkbar" data-color="#00a65a" data-height="20">2020-06-04</div>
-										</td>
-										<td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">수정</font></font></a></td>
-                  	 				    <td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">삭제</font></font></a></td>
-									</tr>
-									<tr>
-										<td>삼천</td>
-										<td><a href="#">도서구입</a></td>
-										<td><span class="badge badge-warning">5000000</span></td>
-										<td>
-											<div class="sparkbar" data-color="#f39c12" data-height="20">2020-06-15</div>
-										</td>
-										<td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">수정</font></font></a></td>
-                  	 				    <td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">삭제</font></font></a></td>
-									</tr>
-									<tr>
-										<td>쪽구름</td>
-										<td><a href="#">도서구입</a></td>
-										<td><span class="badge badge-danger">1000000</span></td>
-										<td>
-											<div class="sparkbar" data-color="#f56954" data-height="20">2020-06-20</div>
-										</td>
-										<td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">수정</font></font></a></td>
-                  	 				    <td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">삭제</font></font></a></td>
-									</tr>
-									<tr>
-										<td>삼천</td>
-										<td><a href="#">운영</a></td>
-										<td><span class="badge badge-info">200000000</span></td>
-										<td>
-											<div class="sparkbar" data-color="#00c0ef" data-height="20">2020-06-25</div>
-										</td>
-										<td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">수정</font></font></a></td>
-                  	 				    <td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">삭제</font></font></a></td>
-									</tr>
-								</tbody>
-							</table>
-					</div>
-					<!-- /.card-header -->
-					<div class="card-body p-0">
-						<ul class="users-list clearfix">
-							
-						</ul>
-					  	<!-- /.users-list -->
-					</div>
-		         	<!-- /.card-body -->
-				<div class="card-footer text-center">
-					<a href="javascript::">예산추가하기</a>
-				</div>
-				<!-- /.card-footer -->
-				</div>
-	            <!--/.card -->
-            </div>
-			<!-- /.col -->
-			<div class="col-md-12">
-	            <!-- TABLE: 공지사항 -->
-				<div class="card">
-					<div class="card-header border-transparent">
-						<h3 class="card-title">집행현황</h3>
-					
-						<div class="card-tools">
-							<button type="button" class="btn btn-tool" data-card-widget="collapse">
-								<i class="fas fa-minus"></i>
-							</button>
-						</div>
-					</div>
-					<!-- /.card-header -->
-					<div class="card-body p-0">
-						<div class="table-responsive">
-							<table class="table m-0">
-								<thead>
-									<tr>
-										<th>분류</th>
-										<th>제목</th>
-										<th>도서관명</th>
-										<th>작성일</th>
-										<th>수정</th>
-										<th>삭제</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td><a>OR9842</a></td>
-										<td><a href="#">휴관일 안내</a></td>
-										<td><span class="badge badge-success">금암</span></td>
-										<td>
-											<div class="sparkbar" data-color="#00a65a" data-height="20">2020-06-04</div>
-										</td>
-										<td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">수정</font></font></a></td>
-                  	                    <td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">삭제</font></font></a></td>
-									</tr>
-									<tr>
-										<td>OR1848</td>
-										<td><a href="#">쪽구름 도서관 부분 개관</a></td>
-										<td><span class="badge badge-warning">쪽구름</span></td>
-										<td>
-											<div class="sparkbar" data-color="#f39c12" data-height="20">2020-06-25</div>
-										</td>
-										<td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">수정</font></font></a></td>
-                  	  					<td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">삭제</font></font></a></td>
-									</tr>
-									<tr>
-										<td>OR7429</td>
-										<td><a href="#">2020년 전주시 생애 첫 도서관 이야기 참가자 모집안내(5/26변경)</a></td>
-										<td><span class="badge badge-danger">전체</span></td>
-										<td>
-											<div class="sparkbar" data-color="#f56954" data-height="20">2020-06-25</div>
-										</td>
-										<td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">수정</font></font></a></td>
-                  	  					<td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">삭제</font></font></a></td>
-									</tr>
-									<tr>
-										<td>OR7429</td>
-										<td><a href="#">삼천도서관 개방형 창의도서관 조성 공사에 따른 휴관 공고</a></td>
-										<td><span class="badge badge-info">삼천</span></td>
-										<td>
-											<div class="sparkbar" data-color="#00c0ef" data-height="20">2020-06-25</div>
-										</td>
-										<td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">수정</font></font></a></td>
-               					   	    <td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">삭제</font></font></a></td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					  	<!-- /.table-responsive -->
-					</div>
+					<div class="card-body">
+						<table id="region-table" class="table table-bordered table-hover" style="text-align: center;">
+		                  <thead>
+			                  <tr>
+			                  	<th><input type="checkbox"></th>
+			                    <th>예산 코드</th>
+			                    <th>도서관 코드</th>
+			                    <th>도서관 이름</th>
+								<th>계정과목 코드</th>
+								<th>계정과목 이름</th>
+								<th>금액</th>
+								<th>등록 날짜</th>
+								<th>등록 직원</th>
+			                  </tr>
+		                  </thead>
+		                  <tbody>
+			                  <tr>
+			                  	<td><input type="checkbox"></td>
+			                    <td>code_yeah</td>
+			                    <td>library_yeah</td>
+			                    <td>금암</td>
+								<td>account_</td>
+								<td>도서구입비</td>
+								<td>3000000</td>
+								<td>2020-06-04</td>
+								<td>id_001</td>
+			                  </tr>
+		                  </tbody>
+		                  <tfoot>
+			                  <tr>
+			                  	<th><input type="checkbox"></th>
+			                    <th>예산 코드</th>
+			                    <th>도서관 코드</th>
+			                    <th>도서관 이름</th>
+								<th>계정과목 코드</th>
+								<th>계정과목 이름</th>
+								<th>금액</th>
+								<th>등록 날짜</th>
+								<th>등록 직원</th>
+			                  </tr>
+		                  </tfoot>
+		                </table>
 					<!-- /.card-body -->
-					<div class="card-footer clearfix">
-					  <a href="javascript:void(0)" class="btn btn-sm btn-info float-left">새 집행 현황 추가하기</a>
-					  <a href="javascript:void(0)" class="btn btn-sm btn-secondary float-right">모든 리스트보기</a>
 					</div>
-					<!-- /.card-footer -->
+				<!-- card -->	
 				</div>
-            	<!-- /.card -->
+			<!--/. container-fluid -->	
 			</div>
-			<!-- /.col -->
-		</section>
 		<!-- /.content -->
+		</section>
 	<!-- /.content-wrapper -->
 	</div>
 </th:block>
-	</div>
-	<th:block layout:fragment="customFooterScript">
-		<!-- OPTIONAL SCRIPTS -->
-		<script src="dist/js/demo.js"></script>
-		<!-- overlayScrollbars -->
-		<script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-		<!-- ionicons.com 아이콘 -->
-		<script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
-<!-- PAGE PLUGINS -->
-		<!-- jQuery Mapael -->
-		<script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
-		<script src="plugins/raphael/raphael.min.js"></script>
-		<script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
-		<script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
-		<!-- ChartJS -->
-		<script src="plugins/chart.js/Chart.min.js"></script>
-		<!-- PAGE SCRIPTS -->
-		<script src="dist/js/pages/dashboard2.js"></script>
+<th:block layout:fragment="customFooterScript">
 </th:block>
 
 </html>
