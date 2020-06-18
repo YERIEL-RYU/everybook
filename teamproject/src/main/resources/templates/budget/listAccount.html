@@ -4,225 +4,131 @@
   layout:decorator="@{layout/defaultAdmin}">
 
 <th:block layout:fragment="customTitle">
-	<title>직원관리 시스템</title>
+	<title>계정과목 리스트</title>
 </th:block>
 
 <th:block layout:fragment="customCss">
-  <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
 </th:block>
 
-<div class="wrapper">
 <th:block layout:fragment="customContents">
 	<!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-  		<div class="content-header">
+	<div class="content-wrapper">
+		<!-- content-header -->
+		<div class="content-header">
 			<div class="container-fluid">
-				<div class="row mb-2">
-					<div class="col-sm-6">
-						<h1 class="m-0 text-dark">계정과목 목록</h1>
-					</div><!-- /.col -->
-				</div><!-- /.row -->
+				<h1 class="m-0 text-dark">계정과목 목록</h1>
 			</div><!-- /.container-fluid -->
-		</div>
 		<!-- /.content-header -->
-	 	<!-- Main content -->
+		</div>
+		
+		<!-- Main content -->
 		<section class="content">
 			<div class="container-fluid">
-				<!-- Info boxes -->
 				<div class="row">
-					<div class="col-12 col-sm-6 col-md-3">
-					<div class="info-box">
-						<span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
-					
-						<div class="info-box-content">
-							<span class="info-box-text">대출중인 도서</span>
-						  	<span class="info-box-number">
-						    	10
-						    	<small>%</small>
-						  	</span>
-						</div>
-					  	<!-- /.info-box-content -->
-					</div>
-					<!-- /.info-box -->
-					</div>
-					<!-- /.col -->
-					<div class="col-12 col-sm-6 col-md-3">
-						<div class="info-box mb-3">
-							<span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
-							<div class="info-box-content">
-								<span class="info-box-text">반납예정 도서</span>
-								<span class="info-box-number">41,410</span>
+					<div class="col-12">
+						<div class="card">
+							<!-- start card-header -->
+							<div class="card-header">
+								<div class="row">
+									<div class="col-sm-8">
+										<form role="form">
+											<div class="row">
+												<div class="col-sm-3">
+													<div class="form-group">
+								                        <select class="form-control custom-select">
+								                          <option>계정과목 코드</option>
+								                          <option>계정과목 이름</option>
+								                          <option>계정과목 분류</option>
+								                          <option>계정과목 내용</option>
+								                          <option>등록자</option>
+								                        </select>
+								                    </div>
+												</div>
+												<div class="col-sm-9">
+													<div class="row">
+														<div class="col-sm-10">
+															<input class="form-control" type="search">
+														</div>
+														<div class="col-sm-2">
+															<div class="input-group-append">
+							                          			 <button class="btn btn-navbar" type="submit">!
+							                           			  <i class="fas fa-search"></i>
+							                          			  </button>
+							                          		</div>
+						                          		</div>
+					                          		</div>
+												</div>
+						                    </div>							
+										</form>
+									</div>
+									<div class="col-sm-4">		
+										<div class="text-right">
+											<div class="btn-group">
+												<button type="button" class="btn btn-outline-info btn-flat"  data-toggle="modal" data-target=".bs-add-modal-lg">!계정과목 등록</button>
+												<button type="button" class="btn btn-outline-secondary btn-flat"  data-toggle="modal" data-target=".bs-modify-modal-lg">!계정과목 수정</button>
+												<button type="button" class="btn btn-outline-danger btn-flat"  data-toggle="modal" data-target=".bs-delete-sm">#계정과목 삭제</button>
+											</div>
+										</div>					
+									</div>
+								</div>
 							</div>
-							<!-- /.info-box-content -->
-						</div>
-						<!-- /.info-box -->
-					</div>
-					<!-- /.col -->
-					 	<!-- fix for small devices only -->
-				 	<div class="clearfix hidden-md-up"></div>
-				
-					<div class="col-12 col-sm-6 col-md-3">
-						<div class="info-box mb-3">
-							<span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
+							<!--end card-header -->
 							
-							<div class="info-box-content">
-								<span class="info-box-text">연체중인 도서</span>
-								<span class="info-box-number">760</span>
-							</div>
-							<!-- /.info-box-content -->
-						</div>
-						<!-- /.info-box -->
-					</div>
-				 	<!-- /.col -->
-					<div class="col-12 col-sm-6 col-md-3">
-						<div class="info-box mb-3">
-							<span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+							<div th:replace="budget/addAccount:: addAccountFragment"></div>
+							<div th:replace="budget/modifyAccount:: modifyAccountFragment"></div>
 							
-							<div class="info-box-content">
-								<span class="info-box-text">회원 수</span>
-								<span class="info-box-number">2,000</span>
+							<div class="card-body">
+								<table id="region-table" class="table table-bordered table-hover" style="text-align: center;">
+				                  <thead>
+					                  <tr>
+					                  	<th><input type="checkbox"></th>
+					                    <th>계정과목 코드</th>
+					                    <th>계정과목</th>
+					                    <th>계정과목 분류</th>
+					                    <th>계정과목 내용</th>
+										<th>등록 날짜</th>
+										<th>등록 직원</th>
+					                  </tr>
+				                  </thead>
+				                  <tbody>
+					                  <tr>
+					                  	<td><input type="checkbox"></td>
+										<td>account_</td>
+										<td>도서구입비</td>
+										<td>비용</td>
+										<td>도서를 구입하는 비용</td>
+										<td>2020-06-04</td>
+										<td>id_001</td>
+					                  </tr>
+				                  </tbody>
+				                  <tfoot>
+					                  <tr>
+					                  	<th><input type="checkbox"></th>
+					                   	<th>계정과목 코드</th>
+					                    <th>계정과목 이름</th>
+					                    <th>계정과목 분류</th>
+					                    <th>계정과목 내용</th>
+										<th>등록 날짜</th>
+										<th>등록 직원</th>
+					                  </tr>
+				                  </tfoot>
+				                </table>
+							<!-- /.card-body -->
 							</div>
-							<!-- /.info-box-content -->
+							
 						</div>
-						<!-- /.info-box -->
+						<!-- /.card -->
 					</div>
-					<!-- /.col -->
 				</div>
-				<!-- /.row -->
-			</div><!--/. container-fluid -->				
-   <div class="row">
-          <div class="col-12">
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">계정과목 목록</font></font></h3>
-
-                <div class="card-tools">
-                  <div class="input-group input-group-sm" style="width: 150px;">
-                    <input type="text" name="table_search" class="form-control float-right" placeholder="검색">
-
-                    <div class="input-group-append">
-                      <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body table-responsive p-0" style="height: 300px;">
-                <table class="table table-head-fixed text-nowrap">
-                  <thead>
-                    <tr>
-                      <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">분류</font></font></th>
-                      <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">분류코드</font></font></th>
-                      <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">계정과목이름</font></font></th>
-                      <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">내용</font></font></th>
-                      <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">수정</font></font></th>
-                      <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">삭제</font></font></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">자산</font></font></td>
-                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">101</font></font></td>
-                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">현금</font></font></td>
-                      <td><span class="tag tag-success"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">통화,자기앞수표,타인발행 당좌수표,가계수표</font></font></span></td>
-                  	  <td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">수정</font></font></a></td>
-                  	  <td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">삭제</font></font></a></td>		
-                    </tr>
-                    <tr>
-                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">부채</font></font></td>
-                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">미지급금</font></font></td>
-                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">253</font></font></td>
-                      <td><span class="tag tag-warning"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">고정자산 등을 구입하고 그 대금을 나중에 지급하는 것</font></font></span></td>
-                 	  <td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">수정</font></font></a></td>		
-                   	  <td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">삭제</font></font></a></td>		
-                    </tr>
-                    <tr>
-                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">자본</font></font></td>
-                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">이익준비금</font></font></td>
-                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">351</font></font></td>
-                      <td><span class="tag tag-primary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">이익잉여금의 처분으로 사내 유보된 금액</font></font></span></td>
-                      <td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">수정</font></font></a></td>
-                      <td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">삭제</font></font></a></td>		
-                    </tr>
-                    <tr>
-                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">매출</font></font></td>
-                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">매출</font></font></td>
-                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">412</font></font></td>
-                      <td><span class="tag tag-danger"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">기타매출</font></font></span></td>
-                      <td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">수정</font></font></a></td>
-                      <td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">삭제</font></font></a></td>		
-                    </tr>
-                    <tr>
-                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">비용</font></font></td>
-                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">급여</font></font></td>
-                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">503</font></font></td>
-                      <td><span class="tag tag-success"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">급여</font></font></span></td>
-                      <td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">수정</font></font></a></td>
-                      <td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">삭제</font></font></a></td>		
-                    </tr>
-                    <tr>
-                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">비용</font></font></td>
-                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">상여금</font></font></td>
-                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">803</font></font></td>
-                      <td><span class="tag tag-warning"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">상여금</font></font></span></td>
-                      <td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">수정</font></font></a></td>
-                      <td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">삭제</font></font></a></td>		
-                    </tr>
-                    <tr>
-                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">비용</font></font></td>
-                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">도서인쇄비</font></font></td>
-                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">526</font></font></td>
-                      <td><span class="tag tag-primary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">도서,신문,잡지 같은 것을 비용으로 대금을 송금처리하는것</font></font></span></td>
-                      <td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">수정</font></font></a></td>
-                      <td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">삭제</font></font></a></td>		
-                    </tr>
-                    <tr>
-                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">비용</font></font></td>
-                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">잡손실</font></font></td>
-                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">960</font></font></td>
-                      <td><span class="tag tag-danger"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">분실금,기타 달리 분류되지 않는 영업외 비용</font></font></span></td>
-                  	  <td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">수정</font></font></a></td>
-                  	  <td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">삭제</font></font></a></td>		
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-          </div>
-        </div>
-        </section>
-  <!-- /.content-wrapper -->
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
-</div>
-<!-- ./wrapper -->
+			</div><!--/. container-fluid -->
+		</section>
+	<!-- /.content-wrapper -->
+	</div>
 </th:block>
-</div>
 
 <th:block layout:fragment="customFooterScript">
-		<!-- OPTIONAL SCRIPTS -->
-		<script src="dist/js/demo.js"></script>
-		<!-- overlayScrollbars -->
-		<script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-		<!-- ionicons.com 아이콘 -->
-		<script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
-<!-- PAGE PLUGINS -->
-		<!-- jQuery Mapael -->
-		<script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
-		<script src="plugins/raphael/raphael.min.js"></script>
-		<script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
-		<script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
-		<!-- ChartJS -->
-		<script src="plugins/chart.js/Chart.min.js"></script>
-		<!-- PAGE SCRIPTS -->
-		<script src="dist/js/pages/dashboard2.js"></script>
+	<!-- OPTIONAL SCRIPTS -->
+	<script src="dist/js/demo.js"></script>
 </th:block>
 
 </body>

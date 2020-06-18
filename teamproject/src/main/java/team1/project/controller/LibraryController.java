@@ -22,8 +22,8 @@ public class LibraryController {
 		region.setOfficer(officer);
 		System.out.println(region.toString());
 		int i = regionService.addRegion(region);
-		System.out.println("실행결과" + i);
-		return "library/officeRegion";
+		System.out.println("실행결과  " + i);
+		return "redirect:/officeRegion";
 	}
 	
 	@GetMapping("/officeLibrary")

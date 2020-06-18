@@ -63,131 +63,52 @@
 							<div class="col-sm-4">		
 								<div class="text-right">
 								<div class="btn-group">
-									<button type="button" class="btn btn-outline-info btn-flat"  data-toggle="modal" data-target=".bs-add-modal-lg">#지역 등록</button>
-									<button type="button" class="btn btn-outline-secondary btn-flat"  data-toggle="modal" data-target=".bs-modify-modal-lg">#지역 수정</button>
-									<button type="button" class="btn btn-outline-danger btn-flat"  data-toggle="modal" data-target=".bs-delete-sm">#지역 삭제</button>
+									<a class="btn btn-outline-info btn-flat" href="/addBudget">#예산 등록</a>
+									<button type="button" class="btn btn-outline-secondary btn-flat"  data-toggle="modal" data-target=".bs-modify-modal-lg">#예산 수정</button>
+									<button type="button" class="btn btn-outline-danger btn-flat"  data-toggle="modal" data-target=".bs-delete-sm">#예산 삭제</button>
 								</div>
 								</div>					
 							</div>
 						</div>
-
-							<!-- start 기준 등록  modal -->
-							<div class="modal fade bs-add-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-								<div class="modal-dialog modal-lg">
-									<div class="modal-content">
-										
-										<!-- form start -->
-										<form role="form" action="/addRegion" method="post">
-											<div class="modal-header">
-												<h4 class="modal-title">지역코드 등록하기</h4>
-												<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-											</div>
-											<div class="modal-body">
-												<div class="form-group row">
-													<label class="col-sm-2 col-form-label">지역 대분류</label>
-									         		<div class="col-sm-10">
-														<select class="form-control" name="regionMajor">
-                     									    <option th:each="m : ${regionMajorList}" th:value="${m.regionMajor}">[[${m.regionMajor}]]</option>
-                        								</select>
-									         		</div>
-									           	</div>
-												<div class="form-group row">
-													<label class="col-sm-2 col-form-label">지역 소분류</label>
-									          		<div class="col-sm-10">
-														<input type="text" class="form-control" placeholder="지역을 입력하세요" name="regionMinor">
-									          		</div>
-									           </div>
-											</div>
-											<div class="modal-footer">
-												<button type="submit" class="btn btn-primary">지역코드 등록</button>
-											</div>
-										</form>
-										<!-- form end -->
-									</div>	
-								</div>
+						<div th:replace="budget/modifyBudget:: modifyBudgetFragment"></div>
+						<!-- start 기준 삭제  modal -->
+						<div class="modal fade bs-delete-sm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+							<div class="modal-dialog modal-sm">
+								<div class="modal-content">
+									
+									<!-- form start -->
+									<form role="form" action="#">
+										<div class="modal-header">
+											<h4 class="modal-title">지역코드 삭제하기</h4>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+										</div>
+										<div class="modal-body">
+								            <div class="form-group">
+												<label>지역 코드</label>
+								         		<div>
+													<input type="text" class="form-control" value="region_001" readonly="readonly">
+								         		</div>
+								           	</div>
+											<div class="form-group">
+												<p>해당 지역코드을 삭제 하시겠습니까?</p>
+												<p><small>삭제를 원하시면 비밀 번호를 입력하세요.</small></p>	
+								            </div>
+											<div class="form-group">
+												<label>비밀번호 확인</label>
+								          		<div>
+													<input type="password" class="form-control" placeholder="비밀번호를 입력하세요">
+								          		</div>
+								           </div>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-primary">지역코드 삭제</button>
+										</div>
+									</form>
+									<!-- form end -->
+								</div>	
 							</div>
-							<!--  end 기준 등록 modal -->
-							<!-- start 기준 수정  modal -->
-							<div class="modal fade bs-modify-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-								<div class="modal-dialog modal-lg">
-									<div class="modal-content">
-										
-										<!-- form start -->
-										<form role="form" action="#">
-											<div class="modal-header">
-												<h4 class="modal-title">지역코드 수정하기</h4>
-												<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-											</div>
-											<div class="modal-body">
-												<div class="form-group row">
-													<label for="inputEmail3" class="col-sm-2 col-form-label">지역 코드</label>
-									         		<div class="col-sm-10">
-														<input type="text" class="form-control" value="region_001" readonly="readonly">
-									         		</div>
-									           	</div>
-												<div class="form-group row">
-													<label for="inputEmail3" class="col-sm-2 col-form-label">지역 대분류</label>
-									         		<div class="col-sm-10">
-														<select class="form-control">
-                     									    <option>강원</option>
-                          									<option>경기</option>
-                        								</select>
-									         		</div>
-									           	</div>
-												<div class="form-group row">
-													<label for="inputEmail3" class="col-sm-2 col-form-label">지역 소분류</label>
-									          		<div class="col-sm-10">
-														<input type="text" class="form-control" placeholder="점수 내용을 입력하세요">
-									          		</div>
-									           </div>
-											</div>
-											<div class="modal-footer">
-												<button type="button" class="btn btn-primary">기준 수정</button>
-											</div>
-										</form>
-										<!-- form end -->
-									</div>	
-								</div>
-							</div>
-							<!--  end 기준 수정 modal -->
-							<!-- start 기준 수정  modal -->
-							<div class="modal fade bs-delete-sm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-								<div class="modal-dialog modal-sm">
-									<div class="modal-content">
-										
-										<!-- form start -->
-										<form role="form" action="#">
-											<div class="modal-header">
-												<h4 class="modal-title">지역코드 삭제하기</h4>
-												<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-											</div>
-											<div class="modal-body">
-									            <div class="form-group">
-													<label>지역 코드</label>
-									         		<div>
-														<input type="text" class="form-control" value="region_001" readonly="readonly">
-									         		</div>
-									           	</div>
-												<div class="form-group">
-													<p>해당 지역코드을 삭제 하시겠습니까?</p>
-													<p><small>삭제를 원하시면 비밀 번호를 입력하세요.</small></p>	
-									            </div>
-												<div class="form-group">
-													<label>비밀번호 확인</label>
-									          		<div>
-														<input type="password" class="form-control" placeholder="비밀번호를 입력하세요">
-									          		</div>
-									           </div>
-											</div>
-											<div class="modal-footer">
-												<button type="button" class="btn btn-primary">지역코드 삭제</button>
-											</div>
-										</form>
-										<!-- form end -->
-									</div>	
-								</div>
-							</div>
-							<!--  end 기준 수정 modal -->
+						</div>
+						<!--  end 기준 삭제 modal -->
 					</div>
 					<!--end card-header -->
 					

@@ -13,17 +13,17 @@
 	
 	<insert id="addRegion" parameterType="Region">
 		<selectKey order="BEFORE" keyProperty="regionCode" resultType="String">
-		SELECT
-			(case count(*)
-	 		 when 0 then 'region_001'
-	 		 else CONCAT('goods_', (max(cast(SUBSTR(r.region_code,10,3) AS DECIMAL))+1))
-	 		 END) AS region_code
-		FROM
-			tb_region AS r
+			SELECT
+				(case count(*)
+		 		 when 0 then 'region_001'
+		 		 else CONCAT('\r\nregion_', (max(cast(SUBSTR(r.region_code,10,3) AS DECIMAL))+1))
+		 		 END) AS region_code
+			FROM
+				tb_region AS r
 		</selectKey>
-	INSERT INTO tb_region
-	(region_code, region_major, region_minor, region_reg_date, officer_id)
-	VALUES (#{regionCode}, #{regionMajor}, #{regionMinor}, NOW(), #{officer.officerId})
+		INSERT INTO tb_region
+		(region_code, region_major, region_minor, region_reg_date, officer_id)
+		VALUES (#{regionCode}, #{regionMajor}, #{regionMinor}, NOW(), #{officer.officerId})
 	
 	</insert>
 	
