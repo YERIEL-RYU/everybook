@@ -10,7 +10,6 @@
 <th:block layout:fragment="customCss">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 </th:block>
 
 <th:block layout:fragment="customContents">
@@ -18,13 +17,9 @@
 	<!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
   		<div class="content-header">
-			<div class="container-fluid">
-				<div class="row mb-2">
-					<div class="col-sm-6">
-						<h1 class="m-0 text-dark">도서 현황</h1>
-					</div><!-- /.col -->
-				</div><!-- /.row -->
-			</div><!-- /.container-fluid -->
+			<div class="register-logo">
+	    		<b>소장 도서 리스트</b>
+	  		</div>
 		</div>
 		<!-- /.content-header -->
 	 	<!-- Main content -->
@@ -323,24 +318,7 @@
 <!-- ./wrapper -->
 
 </th:block>
-<th:block layout:fragment="customFooterScript">
-		<!-- OPTIONAL SCRIPTS -->
-		<script src="dist/js/demo.js"></script>
-		<!-- overlayScrollbars -->
-		<script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-		<!-- ionicons.com 아이콘 -->
-		<script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
-<!-- PAGE PLUGINS -->
-		<!-- jQuery Mapael -->
-		<script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
-		<script src="plugins/raphael/raphael.min.js"></script>
-		<script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
-		<script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
-		<!-- ChartJS -->
-		<script src="plugins/chart.js/Chart.min.js"></script>
-		<!-- PAGE SCRIPTS -->
-		<script src="dist/js/pages/dashboard2.js"></script>
-</th:block>
+
 
 
 
