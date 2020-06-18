@@ -45,11 +45,11 @@
 				                <table id="example2" class="table table-bordered table-hover dataTable dtr-inline" role="grid" aria-describedby="example2_info">
 				                  <thead>
 					                  <tr role="row">
-						                  <th class="sorting_desc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending" aria-sort="descending">ID</th>
-						                  <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">PW</th>
-						                  <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">성명</th>
-						                  <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">생년월일</th>
-						                  <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Level</th>
+						                  <th class="sorting_desc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" >ID</th>
+						                  <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" >PW</th>
+						                  <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" >성명</th>
+						                  <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" >생년월일</th>
+						                  <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" >Level</th>
 						                  <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" >Library</th>
 						                  <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" >Address</th>
 						                  <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" >Tel</th>
@@ -60,22 +60,22 @@
 						              </tr>					            	            
 				                  </thead>
 				                  <tbody>
-					                  <tr role="row" class="odd">
-				                    	  <td class="sorting_1" tabindex="0">officer_001</td>
-					                      <td class="">pw_001</td>
-					                      <td class="">서사랑</td>
-					                      <td class="">941214</td>
-					                      <td class="">1</td>
-					                      <td class="">1</td>
-					                      <td class="">전주시 완산구</td>
-					                      <td class="">010-0000-0001</td>
-					                      <td class="">SSR@Library.com</td>
-					                      <td class="">2020-06-01</td>
-					                      <td class="">
+					                  <tr th:each="O : ${officerList}">
+				                    	  <td th:text="${O.officerId}"></td>
+					                      <td th:text="${O.officerPw}"></td>
+					                      <td th:text="${O.officerName}"></td>
+					                      <td th:text="${O.officerBirth}"></td>
+					                      <td th:text="${O.level}"></td>
+					                      <td th:text="${O.library}"></td>
+					                      <td th:text="${O.officerAddress}"></td>
+					                      <td th:text="${O.officerTel}"></td>
+					                      <td th:text="${O.officerEmail}"></td>
+					                      <td th:text="${O.officerRegDate}"></td>
+					                      <td>
 					                      	<a class="btn btn-info btn-sm" href="#">
 								            <i class="fas fa-pencil-alt"></i>수정</a>
 					                      </td>
-					                      <td class="">
+					                      <td>
 					                      	<a class="btn btn-danger btn-sm" href="#">
 								            <i class="fas fa-trash"></i>삭제</a>
 								          </td>

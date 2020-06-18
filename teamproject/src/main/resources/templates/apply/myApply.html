@@ -38,7 +38,7 @@
 					<div class="col">
 						<div class="breadcrumbs">
 							<ul>
-								<li><a href="#">EveryBook</a></li>
+								<li><a href="/">EveryBook</a></li>
 								<li><a href="mylibrary">나의 도서관</a></li>
 								<li><a href="">나의 서재</a></li>
 								<li><a href="myApply">나의 신청 도서</a></li>
@@ -63,7 +63,7 @@
 							<input type="date" class="courses_search_input">
 							<label style="margin-right: 10px;">~ </label>
 							<input type="date" class="courses_search_input">
-							<button action="submit" class="courses_search_button ml-auto">검색</button>
+							<button type="submit" class="courses_search_button ml-auto">검색</button>
 						</form>
 					</div>
 					<div class="courses_container">
@@ -95,17 +95,15 @@
 										<th> 도서명 </th>
 										<th> ISBN </th>
 										<th> 신청 일시 </th>
-										<th> 진행 상태 </th>
 										<th> 신청 취소 </th>
 									</tr>	
 								</thead>
-									<tr>
+									<tr th:each="A : ${myApplyList}">
 										<td></td>										
-										<td> 삼천도서관 </td>
-										<td> JAVA의 정석 </td>
-										<td> bk_00010203 </td>
-										<td> 2020-06-10 </td>
-										<td> 진행 중 </td>
+										<td th:text="${A.library}"></td>
+										<td th:text="${A.bookName}"> </td>
+										<td th:text="${A.bookIsbn}"></td>
+										<td th:text="${A.applyRegDate}"></td>
 										<td><button class="btn btn-info btn-sm" type="button"  data-toggle="modal" data-target=".bs-example-modal-sm">취소</button></td>
 									</tr>	
 							</table>							
@@ -151,11 +149,11 @@
 													<div class="accordion_container">
 														<div class="accordion d-flex flex-row align-items-center"><div>나의 서재</div></div>
 														<div class="accordion_panel">
-															<p><a href="#">#대여 도서 / 연장 신청</a></p>
+															<p><a href="addExpand">대여 도서 / 연장 신청</a></p>
 															<p><a href="myRent">나의 대여 이력 / 도서평 작성</a></p>
 															<p><a href="myReserve">도서 예약 내역</a></p>
 															<p><a href="myApply">나의 신청 도서</a></p>
-															<p><a href="#">#나의 도서평 내역</a></p>
+															<p><a href="reviewList">나의 도서평 내역</a></p>
 														</div>
 													</div>
 			

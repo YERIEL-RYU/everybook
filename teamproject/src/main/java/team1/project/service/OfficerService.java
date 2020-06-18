@@ -15,6 +15,7 @@ public class OfficerService {
 	
 	@Autowired private OfficerMapper officerMapper;
 		
+		//직원리스트
 		public List<Officer> getOfficerList(){
 			List<Officer> list = officerMapper.getOfficerList();
 			return list;

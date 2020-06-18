@@ -59,27 +59,39 @@
 							<!-- Contact Form -->
 							<div class="col-lg-8">
 								<div class="contact_form">
-									<form action="#" class="comment_form">
+									<form action="/addBookApply" class="comment_form" method="post">
 										<div class="row">
-											<div class="form_title col-sm-2" style="text-align: center; line-height: 3;">도서 이름</div>
+											<div class="form_title col-sm-2" style="text-align: center; line-height: 3;">신청 코드</div>
 												<div class="col-sm-10" style="margin-bottom: 20px">
-													<input type="text" class="comment_input" required="required">
+													<input type="text" class="comment_input" name="applyCode" required="required" placeholder="(자동증가 전 임시)">
 												</div>
-											<div class="form_title col-sm-2" style="text-align: center; line-height: 3;">ISBN</div>
+											<div class="form_title col-sm-2" style="text-align: center; line-height: 3;">아이디</div>
 												<div class="col-sm-10" style="margin-bottom: 20px">
-													<input type="text" class="comment_input" required="required">
+													<input type="text" class="comment_input" name="memberId" required="required">
 												</div>
 											<div class="form_title col-sm-2" style="text-align: center; line-height: 3;">도서관 코드</div>
 												<div class="col-sm-10" style="margin-bottom: 20px">
-													<input type="text" class="comment_input" required="required">
+													<input type="text" class="comment_input" name="library" required="required">
 												</div>
-											<div class="form_title col-sm-2" style="text-align: center; line-height: 3;">발행 년도</div>
+											<div class="form_title col-sm-2" style="text-align: center; line-height: 3;">도서 이름</div>
 												<div class="col-sm-10" style="margin-bottom: 20px">
-													<input type="text" class="comment_input" required="required">
+													<input type="text" class="comment_input" name="bookName" required="required">
+												</div>
+											<div class="form_title col-sm-2" style="text-align: center; line-height: 3;">ISBN</div>
+												<div class="col-sm-10" style="margin-bottom: 20px">
+													<input type="text" class="comment_input" name="bookIsbn" required="required">
+												</div>
+											<div class="form_title col-sm-2" style="text-align: center; line-height: 3;">발간일</div>
+												<div class="col-sm-10" style="margin-bottom: 20px">
+													<input type="date" class="comment_input" name="apDate" placeholder="선택">
+												</div>
+											<div class="form_title col-sm-2" style="text-align: center; line-height: 3;">출판사</div>
+												<div class="col-sm-10" style="margin-bottom: 20px">
+													<input type="text" class="comment_input" name="applyPublisher" placeholder="선택">
 												</div>
 											<div class="form_title col-sm-2" style="text-align: center; line-height: 3;">저자</div>
 												<div class="col-sm-10" style="margin-bottom: 20px">
-													<input type="text" class="comment_input" required="required">
+													<input type="text" class="comment_input" name="applyWriter" placeholder="선택">
 												</div>											
 										</div>
 										
@@ -88,6 +100,7 @@
 												<button type="button" class="comment_button" data-toggle="modal" data-target=".bs-example-modal-sm">신청하기</button>
 											</div>
 										</div>
+									
 										<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 										<div class="modal-dialog modal-sm">
 											<div class="modal-content">
@@ -100,11 +113,11 @@
 											     </div>
 											     <div class="modal-footer">
 											        <button type="button"class="btn btn-default" data-dismiss="modal">닫기</button>
-											        <button type="button" class="btn btn-primary">도서 신청</button>
+											        <button type="submit" class="btn btn-primary">도서 신청</button>
 											     </div>
 											</div>
 										</div>
-										</div>
+										</div>							
 									</form>									
 								</div>
 							</div>
@@ -124,11 +137,11 @@
 													<div class="accordion_container">
 														<div class="accordion d-flex flex-row align-items-center"><div>나의 서재</div></div>
 														<div class="accordion_panel">
-															<p><a href="#">#대여 도서 / 연장 신청</a></p>
+															<p><a href="addExpand">대여 도서 / 연장 신청</a></p>
 															<p><a href="myRent">나의 대여 이력 / 도서평 작성</a></p>
 															<p><a href="myReserve">도서 예약 내역</a></p>
 															<p><a href="myApply">나의 신청 도서</a></p>
-															<p><a href="#">#나의 도서평 내역</a></p>
+															<p><a href="reviewList">나의 도서평 내역</a></p>
 														</div>
 													</div>
 			
