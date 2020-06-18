@@ -63,7 +63,7 @@
 							<input type="date" class="courses_search_input">
 							<label style="margin-right: 10px;">~ </label>
 							<input type="date" class="courses_search_input">
-							<button action="submit" class="courses_search_button ml-auto">검색</button>
+							<button type="submit" class="courses_search_button ml-auto">검색</button>
 						</form>
 					</div>
 					<div class="courses_container">
@@ -95,17 +95,15 @@
 										<th> 도서명 </th>
 										<th> ISBN </th>
 										<th> 신청 일시 </th>
-										<th> 진행 상태 </th>
 										<th> 신청 취소 </th>
 									</tr>	
 								</thead>
-									<tr>
+									<tr th:each="A : ${myApplyList}">
 										<td></td>										
-										<td> 삼천도서관 </td>
-										<td> JAVA의 정석 </td>
-										<td> bk_00010203 </td>
-										<td> 2020-06-10 </td>
-										<td> 진행 중 </td>
+										<td th:text="${A.library}"></td>
+										<td th:text="${A.bookName}"> </td>
+										<td th:text="${A.bookIsbn}"></td>
+										<td th:text="${A.applyRegDate}"></td>
 										<td><button class="btn btn-info btn-sm" type="button"  data-toggle="modal" data-target=".bs-example-modal-sm">취소</button></td>
 									</tr>	
 							</table>							

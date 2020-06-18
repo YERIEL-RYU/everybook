@@ -30,7 +30,7 @@ public class OfficerController {
 		System.out.println(officer);
 		
 		officerService.addOfficer(officer);
-		return "office/addOfficer";
+		return "redirect:/addOfficer";
 	}
 	
 	@GetMapping("/addOfficer")

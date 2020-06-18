@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="team1.project.mapper.ApplyMapper">
+ 	
+ 	<resultMap type="Apply" id="applyResultMap">
+ 		<result property="applyCode" column="apply_code"/>
+ 		<result property="library" column="library_code"/>
+ 		<result property="memberId" column="member_id"/>
+ 		<result property="bookName" column="book_name"/>
+ 		<result property="bookIsbn" column="book_ISBN"/>
+ 		<result property="applyPublishDate" column="apply_publish_date"/>
+ 		<result property="applyPublisher" column="apply_publisher"/>
+ 		<result property="applyWriter" column="apply_writer"/>
+ 		<result property="applyRegDate" column="apply_reg_date"/>	
+ 	</resultMap>
+ 	
+ 	<select id="getApplyList" resultMap="applyResultMap">
+ 	SELECT
+		apply_code
+		, library_code
+		, member_id
+		, book_name
+		, book_ISBN
+		, apply_publish_date
+		, apply_publisher
+		, apply_writer
+		, apply_reg_date
+	FROM 
+		tb_book_apply;	
+ 	</select>
+ 	
+ 	<!-- <select id="addApplyCodeMax" resultType="int">
+ 		SELECT 
+ 			MAX(CAST(SUBSTRING(g_code,7) AS DECIMAL)) as maxcol 
+		FROM tb_goods
+ 	</select>  자동증가 일단 보류..-->
+ 	
+	<insert id="addBookApply" parameterType="team1.project.vo.Apply">
+		INSERT INTO tb_book_apply(
+			apply_code
+			, library_code
+			, member_id
+			, book_name
+			, book_ISBN
+			, apply_publish_date
+			, apply_publisher
+			, apply_writer
+			, apply_reg_date
+			)VALUE(
+			#{applyCode}
+			, #{library}
+			, #{memberId}
+			, #{bookName}
+			, #{bookIsbn}
+			, #{applyPublishDate}
+			, #{applyPublisher}
+			, #{applyWriter}
+			, NOW()
+			);	
+	</insert> 
+ 
+ </mapper>
