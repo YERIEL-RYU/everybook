@@ -265,7 +265,7 @@
 	    	if($('[name=checkRow]:checked').length == 1){
 	    		var value = $('[name=checkRow]:checked').val();
 	    		console.log(value);
-	    		/* var request = $.ajax({
+	    		var request = $.ajax({
 	  			  url: "/modifyRegion",
 	  			  method: "get",
 	  			  data: { regionCode : value },
@@ -279,7 +279,7 @@
 	  			 
 	  			request.fail(function( jqXHR, textStatus ) {
 	  			  alert( "Request failed: " + textStatus );
-	  			}); */
+	  			});
 	  			
 		    	
 	    	}else if($('[name=checkRow]:checked').length == 0) {

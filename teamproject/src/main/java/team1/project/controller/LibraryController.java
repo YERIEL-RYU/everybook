@@ -19,14 +19,15 @@ public class LibraryController {
 	@Autowired private RegionService regionService;
 	
 	@GetMapping(value="/modifyRegion", produces = "text/html" )
-	public String getRegion(@RequestParam("regionCode") String regionCode, Model model) {
+	@ResponseBody
+	public Region getRegion(@RequestParam("regionCode") String regionCode, Model model) {
 		System.out.println(regionCode + "  <-getRegion LibraryController.java");
 		System.out.println("========= getRegion LibraryController.java ============");
-		/*
-		 * Region region = regionService.getRegion(regionCode);
-		 * model.addAttribute("region", region);
-		 */
-		return "modal::modifyModal";
+		Region region = regionService.getRegion(regionCode);
+		System.out.println(region.toString());
+		model.addAttribute("region", region);
+		 
+		return region;
 	}
 	
 	@PostMapping("/modifyRegion")
