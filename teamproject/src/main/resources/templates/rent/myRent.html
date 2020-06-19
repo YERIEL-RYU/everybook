@@ -19,10 +19,10 @@
 	<th:block layout:fragment="customHeader">
 		<nav class="main_nav_contaner ml-auto">
 			<ul class="main_nav">
-				<li><a href="bookList">통합검색</a></li>
-				<li class="active"><a href="myLibrary">나의 도서관</a></li>
+				<li><a href="bookList">!통합검색(서)</a></li>
+				<li class="active"><a href="myLibrary">!나의 도서관(서)</a></li>
 				<li><a href="#">#공지사항</a></li>
-				<li><a href="#">#이용안내</a></li>
+				<li><a href="#">!이용안내(유)</a></li>
 				<li><a href="#">#도서관 위치</a></li>
 			</ul>
 			<div class="search_button"><i class="fa fa-search" aria-hidden="true"></i></div>
@@ -38,10 +38,10 @@
 					<div class="col">
 						<div class="breadcrumbs">
 							<ul>
-								<li><a href="/">EveryBook</a></li>
-								<li><a href="mylibrary">나의 도서관</a></li>
-								<li><a href="">나의 서재</a></li>
-								<li><a href="myRent">나의 대여 내역</a></li>
+								<li><a href="index">!EveryBook</a></li>
+								<li><a href="myLibrary">!나의 도서관</a></li>
+								<li><a href="">!나의 서재</a></li>
+								<li><a href="myRent">!나의 대여 내역</a></li>
 							</ul>
 						</div>
 					</div>
@@ -63,12 +63,13 @@
 							<input type="date" class="courses_search_input">
 							<label style="margin-right: 10px;">~ </label>
 							<input type="date" class="courses_search_input">
-							<button action="submit" class="courses_search_button ml-auto">검색</button>
+							<button type="submit" class="courses_search_button ml-auto">#검색(서)</button>
 						</form>
 					</div>
 					<div class="courses_container">
 						<div class="text-right" style="margin: 10px 10px;">
 						</div>
+						<form action="addReview">
 						<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 							<div class="modal-dialog modal-sm">
 								<div class="modal-content">
@@ -81,11 +82,12 @@
 								     </div>
 								     <div class="modal-footer">
 								        <button type="button"class="btn btn-default" data-dismiss="modal">닫기</button>
-								        <button type="button" class="btn btn-primary">작성하기</button>
+								        <button type="submit" class="btn btn-primary">작성하기</button>
 								     </div>
 								</div>
 							</div>
 						</div>
+						</form>
 						<div class="table-responsive">
 							<table class="table">
 								<thead>
@@ -104,7 +106,7 @@
 										<td> JAVA의 정석 </td>
 										<td> 2020-06-10 </td>
 										<td> 대여 </td>
-										<td><button class="btn btn-info btn-sm" type="button"  data-toggle="modal" data-target=".bs-example-modal-sm">도서평 작성</button></td>
+										<td><button class="btn btn-info btn-sm" type="button"  data-toggle="modal" data-target=".bs-example-modal-sm">!도서평 작성(김)</button></td>
 									</tr>	
 							</table>							
 						</div>
@@ -149,20 +151,20 @@
 													<div class="accordion_container">
 														<div class="accordion d-flex flex-row align-items-center"><div>나의 서재</div></div>
 														<div class="accordion_panel">
-															<p><a href="addExpand">대여 도서 / 연장 신청</a></p>
-															<p><a href="myRent">나의 대여 이력 / 도서평 작성</a></p>
-															<p><a href="myReserve">도서 예약 내역</a></p>
-															<p><a href="myApply">나의 신청 도서</a></p>
-															<p><a href="reviewList">나의 도서평 내역</a></p>
+															<p><a href="addExtend">!대여 도서 / 연장 신청(서)</a></p>
+															<p><a href="myRent">!나의 대여 이력(서) / 도서평 작성(김)</a></p>
+															<p><a href="myReserve">!도서 예약 내역(유)</a></p>
+															<p><a href="myApply">!나의 신청 도서(서)</a></p>
+															<p><a href="reviewList">!나의 도서평 내역(김)</a></p>
 														</div>
 													</div>
 			
 													<div class="accordion_container">
-														<div class="accordion d-flex flex-row align-items-center active"><div><a href="addBookApply">희망 도서 신청</a></div></div>
+														<div class="accordion d-flex flex-row align-items-center active"><div><a href="addBookApply">!희망 도서 신청(서)</a></div></div>
 													</div>
 			
 													<div class="accordion_container">
-														<div class="accordion d-flex flex-row align-items-center"><div><a href="myPoint">나의 점수 내역</a></div></div>
+														<div class="accordion d-flex flex-row align-items-center"><div><a href="myPoint">!나의 점수 내역(유)</a></div></div>
 													</div>			
 												</div>			
 											</div>	

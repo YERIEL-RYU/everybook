@@ -38,10 +38,10 @@
 					<div class="col">
 						<div class="breadcrumbs">
 							<ul>
-								<li><a href="/index">EveryBook</a></li>
-								<li><a href="/mylibrary">나의 도서관</a></li>
+								<li><a href="index">!EveryBook</a></li>
+								<li><a href="mylibrary">!나의 도서관</a></li>
 								<li><a href="">나의 서재</a></li>
-								<li><a href="/myApply">나의 신청 도서</a></li>
+								<li><a href="myApply">!나의 신청 도서</a></li>
 							</ul>
 						</div>
 					</div>
@@ -81,7 +81,7 @@
 								     </div>
 								     <div class="modal-footer">
 								        <button type="button"class="btn btn-default" data-dismiss="modal">닫기</button>
-								        <button type="button" class="btn btn-primary">취소하기</button>
+								        <button type="button" class="btn btn-primary">#취소하기</button>
 								     </div>
 								</div>
 							</div>
@@ -95,7 +95,7 @@
 										<th> 도서명 </th>
 										<th> ISBN </th>
 										<th> 신청 일시 </th>
-										<th> 신청 취소 </th>
+										<th> #신청 취소 </th>
 									</tr>	
 								</thead>
 									<tr th:each="A : ${myApplyList}">
@@ -149,20 +149,20 @@
 													<div class="accordion_container">
 														<div class="accordion d-flex flex-row align-items-center"><div>나의 서재</div></div>
 														<div class="accordion_panel">
-															<p><a href="addExpand">대여 도서 / 연장 신청</a></p>
-															<p><a href="myRent">나의 대여 이력 / 도서평 작성</a></p>
-															<p><a href="myReserve">도서 예약 내역</a></p>
-															<p><a href="myApply">나의 신청 도서</a></p>
-															<p><a href="reviewList">나의 도서평 내역</a></p>
+															<p><a href="addExtend">!대여 도서 / 연장 신청(서)</a></p>
+															<p><a href="myRent">!나의 대여 이력(서) / 도서평 작성(김)</a></p>
+															<p><a href="myReserve">!도서 예약 내역(유)</a></p>
+															<p><a href="myApply">!나의 신청 도서(서)</a></p>
+															<p><a href="reviewList">!나의 도서평 내역(김)</a></p>
 														</div>
 													</div>
 			
 													<div class="accordion_container">
-														<div class="accordion d-flex flex-row align-items-center active"><div><a href="addBookApply">희망 도서 신청</a></div></div>
+														<div class="accordion d-flex flex-row align-items-center active"><div><a href="addBookApply">!희망 도서 신청(서)</a></div></div>
 													</div>
 			
 													<div class="accordion_container">
-														<div class="accordion d-flex flex-row align-items-center"><div><a href="myPoint">나의 점수 내역</a></div></div>
+														<div class="accordion d-flex flex-row align-items-center"><div><a href="myPoint">!나의 점수 내역(유)</a></div></div>
 													</div>			
 												</div>			
 											</div>	
