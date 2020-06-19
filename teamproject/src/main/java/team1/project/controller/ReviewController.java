@@ -8,31 +8,31 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class ReviewController {
 
 	
-	@GetMapping("modifyReview")
+	@GetMapping("/modifyReview")
 	public String modifyReview() {
 		return "review/modifyReview";
 	}
-	@GetMapping("officeWarningList")
+	@GetMapping("/officeWarningList")
 	public String officeWarningList() {
 		return "review/officeWarningList";
 	}
 	
-	@GetMapping("officeModifyReview")
+	@GetMapping("/officeModifyReview")
 	public String officeModifyReview() {
 		return "review/officeModifyReview";
 	}
 	
-	@GetMapping("officeReviewList")
+	@GetMapping("/officeReviewList")
 	public String officeReviewList() {
 		return "review/officeReviewList";
 	}
 	
-	@GetMapping("reviewList")
+	@GetMapping("/reviewList")
 	public String reviewList(){
 		return "review/reviewList";
 	}
 	
-	@GetMapping("addReview")
+	@GetMapping("/addReview")
 	public String addReview() {
 		return "review/addReview";
 	}

@@ -39,8 +39,44 @@
 		<result property="memberRegDate" column="member_reg_date"/>
 	</resultMap>
 	
-	<insert id="">
+	<insert id="addLoginOfficer" parameterType="Login">
+		<selectKey order="BEFORE" keyProperty="loginCode" resultType="String">
+			SELECT
+				(case COUNT(*)
+				when 0 then 'officer_login_1'
+				ELSE CONCAT('officer_login_',max(cast(SUBSTRING(login_code,15) AS DECIMAL))+1)
+				END) AS loginCode
+			FROM
+				tb_officer_login
+		</selectKey>
+			INSERT INTO tb_officer_login
+			(login_code
+			, officer_id
+			, login_date)
+			VALUES 
+			(#{loginCode}
+			, #{officerId}
+			, NOW())
+	</insert>
 	
+	<insert id="addLoginMember" parameterType="Login">
+		<selectKey order="BEFORE" keyProperty="loginCode" resultType="String">
+			SELECT
+				(case COUNT(*)
+				when 0 then 'member_login_1'
+				ELSE CONCAT('member_login_',max(cast(SUBSTRING(login_code,14) AS DECIMAL))+1)
+				END) AS loginCode
+			FROM
+				tb_member_login
+		</selectKey>
+			INSERT INTO tb_member_login
+				(login_code
+				, member_id
+				, login_date)
+			VALUES 
+				(#{loginCode}
+				, #{memberId}
+				, NOW())
 	</insert>
 	
  	<select id="getOfficerSelect" parameterType="String" resultMap="officerResultMap">

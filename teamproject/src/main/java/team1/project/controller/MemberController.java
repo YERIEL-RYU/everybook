@@ -16,29 +16,29 @@ public class MemberController {
 	
 	
 	
-	@PostMapping("addMember")
+	@PostMapping("/addMember")
 	public String addMember(Member member) {
 		System.out.println("addMember"+ member.toString());
 		memberService.addMember(member);
 		return "index";
 	}
 	
-	@GetMapping("officeModifyMember")
+	@GetMapping("/officeModifyMember")
 	public String officeModifyMember() {
 		return "member/officeModifyMember";
 	}
 	
-	@PostMapping("modifyMember")
+	@PostMapping("/modifyMember")
 	public String modifyMember() {
 		return "member/modifyMember";
 	}
 	
-	@GetMapping("memberDetail")
+	@GetMapping("/memberDetail")
 	public String memberDetail() {
 		return "member/memberDetail";
 	}
 	
-	@GetMapping("officeMemberLogin")
+	@GetMapping("/officeMemberLogin")
 	public String officeMemberLogin() {
 		return "member/officeMemberLogin";
 	}

@@ -10,12 +10,22 @@
 				<div class="container">
 					<div class="row">
 						<div class="col">
-							<div class="top_bar_content d-flex flex-row align-items-center justify-content-start">
-								<a href="#" style="margin-left: 75%; color: white;"> join </a>
-								<div class="top_bar_login ml-auto">
-									<div class="login_button"><a href="#">Login</a></div>
+							<th:block th:if="${session.SLEVEL} == null">
+								<div class="top_bar_content d-flex flex-row align-items-center justify-content-start">
+									<a href="/addMember" style="margin-left: 75%; color: white;"> join </a>
+									<div class="top_bar_login ml-auto">
+										<div class="login_button"><a href="/">Login</a></div>
+									</div>
 								</div>
-							</div>
+							</th:block>
+							<th:block th:if="${session.SLEVEL} == '6'">
+								<div class="top_bar_content d-flex flex-row align-items-center justify-content-start">
+									<a href="/memberDetail" style="margin-left: 75%; color: white;"> 내 정보 </a>
+									<div class="top_bar_login ml-auto">
+										<div class="login_button"><a href="/logout">Logout</a></div>
+									</div>
+								</div>
+							</th:block>	
 						</div>
 					</div>
 				</div>
@@ -29,7 +39,7 @@
 					<div class="col">
 						<div class="header_content d-flex flex-row align-items-center justify-content-start">
 							<div class="logo_container">
-								<a href="#">
+								<a href="/index">
 									<div class="logo_text">Every<span>Book</span></div>
 								</a>
 							</div>

@@ -1,11 +1,19 @@
 package team1.project.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
+
+import team1.project.vo.Login;
 import team1.project.vo.Member;
 import team1.project.vo.Officer;
 
 @Mapper
 public interface LoginMapper {
+	
+	//직원로그인내역등록
+	public int addLoginOfficer(Login officerId);
+	
+	//회원로그인내역등록
+	public int addLoginMember(Login memberId);
 	
 	//직원검색
 	public Officer getOfficerSelect(String officerId);
