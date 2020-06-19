@@ -2,6 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="team1.project.mapper.LoginMapper">
 
+	<resultMap type="Login" id="memberLogin">
+		<result property="loginCode" column="login_code"/>
+		<result property="memberId" column="member_id"/>
+		<result property="loginDate" column="login_date"/>
+		<result property="logoutDate" column="logout_date"/>
+	</resultMap>
+
+	<resultMap type="Officer" id="officerResultMap">
+ 		<result property="officerId" column="officer_id"/>
+ 		<result property="officerPw" column="officer_pw"/>
+ 		<result property="officerName" column="officer_name"/>
+ 		<result property="officerBirth" column="officer_birth"/>
+ 		<result property="level" column="level_code"/>
+ 		<result property="library" column="library_code"/>
+ 		<result property="officerAddress" column="officer_address"/>
+ 		<result property="officerTel" column="officer_tel"/>
+ 		<result property="officerEmail" column="officer_email"/>
+ 		<result property="officerRegDate" column="officer_reg_date"/>
+ 	</resultMap>
+
 	<resultMap type="Member" id="memberSelect">
 		<result property="memberId" column="member_id"/>
 		<result property="memberPw" column="member_pw"/>
@@ -19,15 +39,30 @@
 		<result property="memberRegDate" column="member_reg_date"/>
 	</resultMap>
 	
+	<insert id="">
+	
+	</insert>
+	
+ 	<select id="getOfficerSelect" parameterType="String" resultMap="officerResultMap">
+		SELECT 
+			officer_id
+			,officer_pw
+			,level_code
+		FROM
+			tb_officer
+		WHERE
+			officer_id = #{officerId}
+	</select>
+	
 	<select id="getMemberSelect" parameterType="String" resultMap="memberSelect">
 		SELECT 
 			member_id 
 			,member_pw
-			,levelCode
+			,level_code
 		FROM 
 			tb_member
 		WHERE
-			m_id=#{memberId}
+			member_id=#{memberId}
 	</select>
 
 </mapper>

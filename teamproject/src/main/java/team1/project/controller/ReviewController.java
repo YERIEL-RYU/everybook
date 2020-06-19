@@ -7,13 +7,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class ReviewController {
 
-	@PostMapping("modifyReview")
+	
+	@GetMapping("modifyReview")
 	public String modifyReview() {
 		return "review/modifyReview";
 	}
-	
-	
-	
 	@GetMapping("officeWarningList")
 	public String officeWarningList() {
 		return "review/officeWarningList";
