@@ -28,11 +28,11 @@
 	<th:block layout:fragment="customHeader">
 		<nav class="main_nav_contaner ml-auto">
 			<ul class="main_nav">
-				<li class="active"><a href="#">통합검색</a></li>
-				<li><a href="myLibrary">나의 도서관</a></li>
-				<li><a href="#">공지사항</a></li>
-				<li><a href="libraryList">이용안내</a></li>
-				<li><a href="#">도서관 위치</a></li>
+				<li><a href="bookList">!통합검색(서)</a></li>
+				<li class="active"><a href="myLibrary">!나의 도서관(서)</a></li>
+				<li><a href="#">#공지사항</a></li>
+				<li><a href="libraryList">!이용안내(유)</a></li>
+				<li><a href="#">#도서관 위치</a></li>
 			</ul>
 			<div class="search_button"><i class="fa fa-search" aria-hidden="true"></i></div>
 		</nav>
@@ -46,8 +46,8 @@
 						<div class="col">
 							<div class="breadcrumbs">
 								<ul>
-									<li><a href="/">EveryBook</a></li>
-									<li><a href="addMember">회원가입</a></li>
+									<li><a href="index">EveryBook(유)</a></li>
+									<li><a href="addMember">!회원가입(김)</a></li>
 								</ul>
 							</div>
 						</div>
@@ -67,7 +67,6 @@
 										<div class="input_from">
 											<div class="form_title">아이디</div>
 											<input type="text" name = "memberId" class="comment_input" required="required">
-											<button type="button" id="id">아이디중복체크</button>
 										</div>
 										<div class="input_from">
 											<div class="form_title">비밀번호</div>
@@ -135,13 +134,6 @@
 		<script src="js/course.js"></script>
 		<script type="text/javascript">
 			$(function(){
-				
-
-				
-				
-				
-				
-				
 				$('.comment_button trans_200').on('click',function(){
 					var address = $("input[name=memberAddress]").length;
 					var addressarr = new Array(address);
@@ -149,7 +141,6 @@
 						addressarr[i] = $("input[name=memberAddress]").eq(i).val();
 					}
 				});
-			
 			});
 		</script>
 	</th:block>

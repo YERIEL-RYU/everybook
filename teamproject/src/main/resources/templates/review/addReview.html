@@ -2,30 +2,32 @@
 <html xmlns:th="http://www.thymeleaf.org"
   xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
   layout:decorator="@{layout/default}">
-<th:block layout:fragment="customCss">
-	<link href="plugins/colorbox/colorbox.css" rel="stylesheet" type="text/css">
-	<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
-	<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
-	<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">  	
-	<link rel="stylesheet" type="text/css" href="styles/courses.css">
-	<link rel="stylesheet" type="text/css" href="styles/course.css">
-	<link rel="stylesheet" type="text/css" href="styles/courses_responsive.css">
-	<link rel="stylesheet" type="text/css" href="styles/course_responsive.css">
-	<link rel="stylesheet" type="text/css" href="styles/blog_single.css">
-		<link rel="stylesheet" type="text/css" href="styles/blog_single_responsive.css">
-</th:block>
-<th:block layout:fragment="customTitle">
-	<title> 도서평 작성 </title>
-</th:block>
+	<th:block layout:fragment="customCss">
+		<link href="plugins/colorbox/colorbox.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+		<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+		<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">  	
+		<link rel="stylesheet" type="text/css" href="styles/courses.css">
+		<link rel="stylesheet" type="text/css" href="styles/course.css">
+		<link rel="stylesheet" type="text/css" href="styles/courses_responsive.css">
+		<link rel="stylesheet" type="text/css" href="styles/course_responsive.css">
+		<link rel="stylesheet" type="text/css" href="styles/blog_single.css">
+			<link rel="stylesheet" type="text/css" href="styles/blog_single_responsive.css">
+	</th:block>
+
+	<th:block layout:fragment="customTitle">
+		<title> 도서평 작성 </title>
+	</th:block>
+
 	<!-- header 부분에 메뉴 활성화 -->
 	<th:block layout:fragment="customHeader">
 		<nav class="main_nav_contaner ml-auto">
 			<ul class="main_nav">
-				<li><a href="about.html">통합검색</a></li>
-				<li class="active"><a href="courses.html">나의 도서관</a></li>
-				<li><a href="#">공지사항</a></li>
-				<li><a href="#">이용안내</a></li>
-				<li><a href="#">도서관 위치</a></li>
+				<li><a href="bookList">!통합검색(서)</a></li>
+				<li class="active"><a href="myLibrary">!나의 도서관(서)</a></li>
+				<li><a href="#">#공지사항</a></li>
+				<li><a href="libraryList">!이용안내(유)</a></li>
+				<li><a href="#">#도서관 위치</a></li>
 			</ul>
 			<div class="search_button"><i class="fa fa-search" aria-hidden="true"></i></div>
 		</nav>
@@ -40,10 +42,10 @@
 					<div class="col">
 						<div class="breadcrumbs">
 							<ul>
-								<li><a href="#">#EveryBook</a></li>
-								<li><a href="#">#나의 도서관</a></li>
-								<li><a href="#">#나의 서재</a></li>
-								<li><a href="#">#나의 대여 이력 / 도서평 작성</a></li>
+								<li><a href="index">EveryBook(유)</a></li>
+								<li><a href="myLibrary">!나의 도서관(서)</a></li>
+								<li><a href="myLibrary">!나의 서재(서)</a></li>
+								<li><a href="myRent">!나의 대여 이력(서) / 도서평 작성(김)</a></li>
 							</ul>
 						</div>
 					</div>
@@ -66,10 +68,10 @@
 								<div class="course">
 									<div class="course_body">
 										<div class="course_form">
-											<form action="#">
+											<form action="addReview">
 												<div class="form_title">
 													도서 명
-													<h3 class="course_title"><a href="#">더 해빙=The Having : 부와 행운을 끌어당기는 힘</a></h3>
+													<h3 class="course_title"><a href="bookDetail">더 해빙=The Having : 부와 행운을 끌어당기는 힘</a></h3>
 												</div>
 												<div class="input_from" style="margin-top: 30px;">
 													<div class="form_title">도서평 내용</div>
@@ -103,20 +105,20 @@
 													<div class="accordion_container">
 														<div class="accordion d-flex flex-row align-items-center"><div>나의 서재</div></div>
 														<div class="accordion_panel">
-															<p><a href="#">#대여 도서 / 연장 신청</a></p>
-															<p><a href="#">#나의 대여 이력 / 도서평 작성</a></p>
-															<p><a href="#">#도서 예약 내역</a></p>
-															<p><a href="#">#나의 신청 도서</a></p>
-															<p><a href="#">#나의 도서평 내역</a></p>
+															<p><a href="#">!대여 도서 / 연장 신청(서)</a></p>
+															<p><a href="myRent">!나의 대여 이력(서) / 도서평 작성(김)</a></p>
+															<p><a href="myReserve">!도서 예약 내역(영)</a></p>
+															<p><a href="myApply">!나의 신청 도서(서)</a></p>
+															<p><a href="reviewList">!나의 도서평 내역(김)</a></p>
 														</div>
 													</div>
 			
 													<div class="accordion_container">
-														<div class="accordion d-flex flex-row align-items-center active"><div><a href="#">#희망 도서 신청</a></div></div>
+														<div class="accordion d-flex flex-row align-items-center active"><div><a href="addBookApply">!희망 도서 신청(서)</a></div></div>
 													</div>
 			
 													<div class="accordion_container">
-														<div class="accordion d-flex flex-row align-items-center"><div><a href="#">#나의 점수 내역</a></div></div>
+														<div class="accordion d-flex flex-row align-items-center"><div><a href="myPoint">!나의 점수 내역(유)</a></div></div>
 													</div>
 			
 												</div>
