@@ -8,13 +8,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	
 	<!-- Font Awesome -->
-	<link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+	<link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
 	<!-- Ionicons -->
 	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 	<!-- icheck bootstrap -->
-	<link rel="stylesheet" href="../../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+	<link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
 	<!-- Theme style -->
-	<link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+	<link rel="stylesheet" href="dist/css/adminlte.min.css">
 	<!-- Google Font: Source Sans Pro -->
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -39,9 +39,9 @@
 					<p class="login-box-msg">
 					<strong>회원</strong>
 					님 환영합니다.</p>
-					<form action="#" method="post">
+					<form action="loginMember" method="post">
 						<div class="input-group mb-3">
-							<input type="email" class="form-control" placeholder="아이디">
+							<input type="text" class="form-control" name="memberId" placeholder="아이디">
 							<div class="input-group-append">
 								<div class="input-group-text">
 									<span class="fas fa-envelope"></span>
@@ -49,7 +49,7 @@
 							</div>
 						</div>
 						<div class="input-group mb-3">
-							<input type="password" class="form-control" placeholder="비밀번호">
+							<input type="password" class="form-control" name="memberPw" placeholder="비밀번호">
 							<div class="input-group-append">
 								<div class="input-group-text">
 									<span class="fas fa-lock"></span>
@@ -63,9 +63,9 @@
 					<p class="login-box-msg">
 					<strong>직원</strong>
 					님 환영합니다.</p>
-					<form action="#" method="post">
+					<form action="loginOfficer" method="post">
 						<div class="input-group mb-3">
-							<input type="email" class="form-control" placeholder="아이디">
+							<input type="text" class="form-control" name ="officerId" placeholder="아이디">
 							<div class="input-group-append">
 								<div class="input-group-text">
 									<span class="fas fa-envelope"></span>
@@ -73,7 +73,7 @@
 							</div>
 						</div>
 						<div class="input-group mb-3">
-							<input type="password" class="form-control" placeholder="비밀번호">
+							<input type="password" class="form-control" name ="officerPw" placeholder="비밀번호">
 							<div class="input-group-append">
 								<div class="input-group-text">
 									<span class="fas fa-lock"></span>
@@ -86,10 +86,10 @@
 				<div class="social-auth-links text-center mb-3">
 					<p>- OR -</p>
 					<p class="mb-1">
-						<a href="#">비회원 통합검색</a>
+						<a href="bookList">비회원 통합검색</a>
 					</p>
 					<p class="mb-0">
-						<a href="#" class="text-center">회원가입</a>
+						<a href="addMember" class="text-center">회원가입</a>
 					</p>
 					<p>김은지가 만듬</p>
 				</div>
@@ -113,11 +113,11 @@
 	<!-- /.login-box -->
 
 	<!-- jQuery -->
-	<script src="../../plugins/jquery/jquery.min.js"></script>
+	<script src="plugins/jquery/jquery.min.js"></script>
 	<!-- Bootstrap 4 -->
-	<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<!-- AdminLTE App -->
-	<script src="../../dist/js/adminlte.min.js"></script>
+	<script src="dist/js/adminlte.min.js"></script>
 	
 	<script type="text/javascript">
 		$(function(){
