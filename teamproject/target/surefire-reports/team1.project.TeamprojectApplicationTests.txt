@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: team1.project.TeamprojectApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.182 s - in team1.project.TeamprojectApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.043 s - in team1.project.TeamprojectApplicationTests

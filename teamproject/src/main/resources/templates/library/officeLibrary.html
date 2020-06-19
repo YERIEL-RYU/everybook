@@ -9,6 +9,8 @@
 
 <th:block layout:fragment="customCss">
 <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
 </th:block>
 
 <th:block layout:fragment="customContents">
@@ -65,9 +67,9 @@
 							</div>
 							<div class="col-sm-4">							
 								<div class="btn-group">
-									<button type="button" class="btn btn-outline-info btn-flat"  data-toggle="modal" data-target=".bs-add-modal-lg">#지역 등록</button>
-									<button type="button" class="btn btn-outline-secondary btn-flat"  data-toggle="modal" data-target=".bs-modify-modal-lg">#지역 수정</button>
-									<button type="button" class="btn btn-outline-danger btn-flat"  data-toggle="modal" data-target=".bs-delete-sm">#지역 삭제</button>
+									<button type="button" class="btn btn-outline-info btn-flat"  data-toggle="modal" data-target=".bs-add-modal-lg">!도서관 등록</button>
+									<button type="button" class="btn btn-outline-secondary btn-flat"  data-toggle="modal" data-target=".bs-modify-modal-lg">!도서관 수정</button>
+									<button type="button" class="btn btn-outline-danger btn-flat"  data-toggle="modal" data-target=".bs-delete-sm">!도서관 삭제</button>
 								</div>
 							</div>
 						</div>
@@ -265,7 +267,7 @@
 					<!--end card-header -->
 					
 					<div class="card-body">
-						<table class="table table-bordered table-hover" style="text-align: center;">
+						<table id="region-table" class="table table-bordered table-hover" style="text-align: center;">
 		                  <thead>
 			                  <tr>
 			                  	<th><input type="checkbox"></th>
@@ -316,16 +318,6 @@
 		                  </tfoot>
 		                </table>
 					</div>
-					<!-- /.card-body -->
-					<div class="card-footer clearfix">
-						<ul class="pagination pagination-sm m-0 float-right">
-							<li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-							<li class="page-item"><a class="page-link" href="#">1</a></li>
-							<li class="page-item"><a class="page-link" href="#">2</a></li>
-							<li class="page-item"><a class="page-link" href="#">3</a></li>
-							<li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-						</ul>
-					</div>
 				</div>
 			</div>
 		</section>
@@ -333,11 +325,38 @@
 	</div>
 	<!-- /.content-wrapper -->
 	
-	<!-- Control Sidebar -->
-	<aside class="control-sidebar control-sidebar-dark">
-	  <!-- Control sidebar content goes here -->
-	</aside>
-	<!-- /.control-sidebar -->
 </th:block>
-
+<th:block layout:fragment="customFooterScript">
+<!-- <script src="dist/js/pages/dashboard2.js"></script> -->
+<script src="plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script>
+	$(function () {
+	    $("#region-table").DataTable({
+	    	"paging": true,
+	        "lengthChange": false,
+	        "searching": false,
+	        "ordering": true,
+	        "info": true,
+	        "autoWidth": false,
+	        "responsive": true,
+	    });
+	    $('#modifyModalBtn').click(function(){
+	    	$('#modifyModal').modal();
+	    });
+		$('#mBtn').click(function(){
+			$('#modifyForm').submit();
+		});
+		$('#checkAll').click(function(){
+			if($("#allCheck").prop("checked")) {
+				$("input[type=checkbox]").prop("checked",true);
+			} else { 
+				$("input[type=checkbox]").prop("checked",false); 
+			}
+		});
+	});
+</script>
+</th:block>
 </html>
