@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import team1.project.service.RegionService;
 import team1.project.vo.Officer;
@@ -16,8 +18,22 @@ import team1.project.vo.Region;
 public class LibraryController {
 	@Autowired private RegionService regionService;
 	
+	@GetMapping(value="/modifyRegion", produces = "text/html" )
+	public String getRegion(@RequestParam("regionCode") String regionCode, Model model) {
+		System.out.println(regionCode + "  <-getRegion LibraryController.java");
+		System.out.println("========= getRegion LibraryController.java ============");
+		/*
+		 * Region region = regionService.getRegion(regionCode);
+		 * model.addAttribute("region", region);
+		 */
+		return "modal::modifyModal";
+	}
+	
 	@PostMapping("/modifyRegion")
 	public String modifyRegion(Region region, Officer officer) {
+		System.out.println("========= addRegion LibraryController.java ============");
+		region.setOfficer(officer);
+		System.out.println(region.toString());
 		return "redirect:/officeRegion";
 	}
 	

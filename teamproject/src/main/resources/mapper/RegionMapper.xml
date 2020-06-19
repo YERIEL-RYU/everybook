@@ -11,6 +11,14 @@
 		</association>
 	</resultMap>
 	
+	<select id="getRegion" parameterType="String" resultMap="regionSelect">
+		SELECT
+			*
+		FROM
+			tb_region
+		WHERE 
+			region_code = #{regionCode}
+	</select>
 	
 	<insert id="addRegion" parameterType="Region">
 		<selectKey order="BEFORE" keyProperty="regionCode" resultType="String">
