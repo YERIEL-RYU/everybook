@@ -89,23 +89,25 @@
 						</div>
 						</form>
 						<div class="table-responsive">
-							<table class="table">
+							<table class="table" style="text-align: center; color: black ">
 								<thead>
 									<tr>
-										<th> <input type="checkbox"> </th>										
-										<th> 도서관명 </th>
+										<th> 대여 코드 </th>										
+										<th> 도서관코드 </th>
 										<th> 도서명 </th>
-										<th> 대여 일시 </th>
+										<th> 대여 일자 </th>
+										<th> 대여 기간 </th>
 										<th> 도서 상태 </th>
 										<th> 도서평 </th>
 									</tr>	
 								</thead>
-									<tr>
-										<td></td>										
-										<td> 삼천도서관 </td>
-										<td> JAVA의 정석 </td>
-										<td> 2020-06-10 </td>
-										<td> 대여 </td>
+									<tr th:each="r : ${rentHistory}">
+										<td th:text="${r.rentCode}"></td>									
+										<td th:text="${r.library}"></td>
+										<td>[[${r.book.bookName}]]</td>
+										<td th:text="${r.rentRegDate}"></td>									
+										<td th:text="${r.rentReturnDate}"></td>
+										<td>[[${r.book.bookSituation}]] </td>
 										<td><button class="btn btn-info btn-sm" type="button"  data-toggle="modal" data-target=".bs-example-modal-sm">!도서평 작성(김)</button></td>
 									</tr>	
 							</table>							
