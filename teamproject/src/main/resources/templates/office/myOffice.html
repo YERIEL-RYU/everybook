@@ -38,62 +38,55 @@
 					<!-- /.card-header -->
 					<div class="card-body p-0">
 						<div class="table-responsive">
-							<table class="table m-0">
-								<thead>
+							<table class="table m-0" style="text-align: center">
+								<tbody th:each ="O : ${getMyOffice}">
 									<tr>
-										<th>분류</th>
-										<th></th>
-									
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>아이디</td>
-										<td>##</td>
+										<th>아이디</th>
+										<td th:text="${O.officerId}"></td>
 									</tr>
 									<tr>
-										<td>패스워드</td>
-										<td>##</td>
+										<th>패스워드</th>
+										<td th:text="${O.officerPw}"></td>
 									</tr>
 									<tr>
-										<td>이름</td>
-										<td>##</td>
+										<th>이름</th>
+										<td th:text="${O.officerName}"></td>
 									</tr>
 									<tr>
-										<td>생년월일</td>
-										<td>##</td>
+										<th>생년월일</th>
+										<td th:text="${O.officerBirth}"></td>
 									</tr>
 									<tr>
-										<td>레벨</td>
-										<td>##</td>
+										<th>레벨</th>
+										<td th:text="${O.level}"></td>
 									</tr>
 									<tr>
-										<td>도서관</td>
-										<td>##</td>
+										<th>도서관</th>
+										<td th:text="${O.library}"></td>
 									</tr>
 									<tr>
-										<td>주소</td>
-										<td>##</td>
+										<th>주소</th>
+										<td th:text="${O.officerAddress}"></td>
 									</tr>
 									<tr>
-										<td>번호</td>
-										<td>##</td>
+										<th>번호</th>
+										<td th:text="${O.officerTel}"></td>
 									</tr>
 									<tr>
-										<td>이메일</td>
-										<td>##</td>
+										<th>이메일</th>
+										<td th:text="${O.officerEmail}"></td>
 									</tr>
 									<tr>
-										<td>등록날짜</td>
-										<td>##</td>
+										<th>등록날짜</th>
+										<td th:text="${#dates.format(O.officerRegDate, 'YYYY-MM-dd')}"></td>
 									</tr>
 									<tr>
-										<td>보유 자격증</td>
-										<td>##</td>
+										<th>보유 자격증</th>
+										<td th:text="${O.license}"></td>
 									</tr>
 									<tr>
-										<td>경력</td>
-										<td>##</td>
+										<th>과거 경력사항</th>
+										<td th:text="${O.career}"></td>
 									</tr>
 								</tbody>
 							</table>
