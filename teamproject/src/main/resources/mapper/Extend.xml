@@ -3,9 +3,8 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="team1.project.mapper.RentMapper">
-	
-	<resultMap type="Rent" id="rentResultMap">
+  <mapper namespace="team1.project.mapper.ExtendMapper">
+  	<resultMap type="Rent" id="rentResultMap">
 	<result property="rentCode" column="rent_code"/>
 	<result property="bookCode" column="book_code"/>
 	<result property="rentDate" column="rent_date"/>
@@ -27,14 +26,13 @@
 			<result property="bookSituation" column="book_situation"/>
 		</association>
 	</resultMap>
-
-
-	<select id="myRentHistoryList" resultMap="rentResultMap" parameterType="String">
+	
+	<select id="myRentList" resultMap="rentResultMap" parameterType="String">
 		SELECT
 			r.rent_code
 			, l.library_name
 			, b.book_name
-			, r.rent_date
+			, r.rent_reg_date
 			, r.rent_return_date
 			, b.book_situation
 		FROM
@@ -48,7 +46,10 @@
 		AND
 			b.library_code = l.library_code
 		AND
-			member_id = #{SID} 		
-	</select> 
+			b.book_situation = '대여중'
+		AND
+			member_id = #{SID}  		
+	</select>  
   
-</mapper>
+  
+  </mapper>
