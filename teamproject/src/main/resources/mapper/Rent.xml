@@ -12,6 +12,7 @@
 	<result property="rentRegDate" column="rent_reg_date"/>
 	<result property="rentReturnDate" column="rent_return_date"/>
 	<result property="officerId" column="officer_id"/>
+		
 		<association property="library" javaType="Library">
 			<result property="libraryName" column="library_name"/>
 		</association>
