@@ -93,7 +93,7 @@
 								<thead>
 									<tr>
 										<th> 대여 코드 </th>										
-										<th> 도서관코드 </th>
+										<th> 도서관 </th>
 										<th> 도서명 </th>
 										<th> 대여 일자 </th>
 										<th> 대여 기간 </th>
@@ -103,7 +103,7 @@
 								</thead>
 									<tr th:each="r : ${rentHistory}">
 										<td th:text="${r.rentCode}"></td>									
-										<td th:text="${r.library}"></td>
+										<td>[[${r.library.libraryName}]]</td>
 										<td>[[${r.book.bookName}]]</td>
 										<td th:text="${r.rentRegDate}"></td>									
 										<td th:text="${r.rentReturnDate}"></td>

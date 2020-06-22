@@ -10,5 +10,5 @@ import team1.project.vo.Rent;
 public interface RentMapper {
 
 	//나의 대여 이력
-	public List<Rent> getRentHistoryList();
+	public List<Rent> myRentHistoryList(String SID);
 }

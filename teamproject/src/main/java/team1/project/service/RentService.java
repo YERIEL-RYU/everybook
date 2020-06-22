@@ -15,8 +15,8 @@ public class RentService {
 	@Autowired private RentMapper rentMapper;
 	
 	//나의 대여 이력
-	public List<Rent> getRentHistoryList(){
-		List<Rent> list = rentMapper.getRentHistoryList();
+	public List<Rent> myRentHistoryList(String SID){
+		List<Rent> list = rentMapper.myRentHistoryList(SID);
 		return list;
 	}
 }

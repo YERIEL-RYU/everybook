@@ -7,7 +7,6 @@
  	
  	<resultMap type="Apply" id="applyResultMap">
  		<result property="applyCode" column="apply_code"/>
- 		<result property="library" column="library_code"/>
  		<result property="memberId" column="member_id"/>
  		<result property="bookName" column="book_name"/>
  		<result property="bookIsbn" column="book_ISBN"/>
@@ -15,9 +14,13 @@
  		<result property="applyPublisher" column="apply_publisher"/>
  		<result property="applyWriter" column="apply_writer"/>
  		<result property="applyRegDate" column="apply_reg_date"/>	
+ 		
+ 		<association property="library" javaType="Library">
+			<result property="libraryName" column="library_name"/>
+		</association>
  	</resultMap>
  	
- 	<select id="getApplyList" resultMap="applyResultMap">
+ 	<select id="myApplyList" resultMap="applyResultMap" parameterType="String">
  	SELECT
 		apply_code
 		, library_code
@@ -29,7 +32,9 @@
 		, apply_writer
 		, apply_reg_date
 	FROM 
-		tb_book_apply;	
+		tb_book_apply	
+	WHERE
+		member_id = #{SID}
  	</select>
  	
  	<!-- <select id="addApplyCodeMax" resultType="int">
@@ -59,7 +64,7 @@
 			, #{applyPublisher}
 			, #{applyWriter}
 			, NOW()
-			);	
+			)	
 	</insert> 
  
  </mapper>

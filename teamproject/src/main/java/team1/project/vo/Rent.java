@@ -2,38 +2,31 @@ package team1.project.vo;
 
 public class Rent {
 	private String rentCode;
-	private String library;
-	private String memberId;
+	private Library library;
+	private Member member;
 	private String bookCode;
 	private String rentDate;
 	private String rentReturnDate;
 	private String rentRegDate;
-	private String officerId;
+	private Officer officer;
 	private Book book;
-	
-	public Book getBook() {
-		return book;
-	}
-	public void setBook(Book book) {
-		this.book = book;
-	}
 	public String getRentCode() {
 		return rentCode;
 	}
 	public void setRentCode(String rentCode) {
 		this.rentCode = rentCode;
 	}
-	public String getLibrary() {
+	public Library getLibrary() {
 		return library;
 	}
-	public void setLibrary(String library) {
+	public void setLibrary(Library library) {
 		this.library = library;
 	}
-	public String getMemberId() {
-		return memberId;
+	public Member getMember() {
+		return member;
 	}
-	public void setMemberId(String memberId) {
-		this.memberId = memberId;
+	public void setMember(Member member) {
+		this.member = member;
 	}
 	public String getBookCode() {
 		return bookCode;
@@ -59,18 +52,25 @@ public class Rent {
 	public void setRentRegDate(String rentRegDate) {
 		this.rentRegDate = rentRegDate;
 	}
-	public String getOfficerId() {
-		return officerId;
+	public Officer getOfficer() {
+		return officer;
 	}
-	public void setOfficerId(String officerId) {
-		this.officerId = officerId;
+	public void setOfficer(Officer officer) {
+		this.officer = officer;
+	}
+	public Book getBook() {
+		return book;
+	}
+	public void setBook(Book book) {
+		this.book = book;
 	}
 	@Override
 	public String toString() {
-		return "Rent [rentCode=" + rentCode + ", library=" + library + ", memberId=" + memberId + ", bookCode="
-				+ bookCode + ", rentDate=" + rentDate + ", rentReturnDate=" + rentReturnDate + ", rentRegDate="
-				+ rentRegDate + ", officerId=" + officerId + "]";
+		return "Rent [rentCode=" + rentCode + ", library=" + library + ", member=" + member + ", bookCode=" + bookCode
+				+ ", rentDate=" + rentDate + ", rentReturnDate=" + rentReturnDate + ", rentRegDate=" + rentRegDate
+				+ ", officer=" + officer + ", book=" + book + "]";
 	}
-	
+			
 	
 }
+

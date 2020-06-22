@@ -70,7 +70,7 @@
 					                      <td th:text="${O.officerAddress}"></td>
 					                      <td th:text="${O.officerTel}"></td>
 					                      <td th:text="${O.officerEmail}"></td>
-					                      <td th:text="${O.officerRegDate}"></td>
+					                      <td th:text="${#dates.format(O.officerRegDate,'YYYY-MM-dd')}"></td>
 					                      <td>
 					                      	<a class="btn btn-info btn-sm" href="#">
 								            <i class="fas fa-pencil-alt"></i>수정</a>

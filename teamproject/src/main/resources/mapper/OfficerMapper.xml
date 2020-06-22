@@ -10,8 +10,8 @@
  		<result property="officerPw" column="officer_pw"/>
  		<result property="officerName" column="officer_name"/>
  		<result property="officerBirth" column="officer_birth"/>
- 		<result property="level" column="level_code"/>
- 		<result property="library" column="library_code"/>
+ 		<result property="level" column="level_name"/>
+ 		<result property="library" column="library_name"/>
  		<result property="officerAddress" column="officer_address"/>
  		<result property="officerTel" column="officer_tel"/>
  		<result property="officerEmail" column="officer_email"/>
@@ -60,18 +60,26 @@
 
 	<select id="getOfficerList" resultMap="officerResultMap">	
 		SELECT 
-			officer_id 
-			,officer_pw 
-			,officer_name 
-			,officer_birth 
-			,level_code 
-			,library_code
-			,officer_address
-			,officer_tel
-			,officer_email
-			,officer_reg_date
+			o.officer_id 
+			,o.officer_pw 
+			,o.officer_name 
+			,o.officer_birth 
+			,v.level_name 
+			,l.library_name
+			,o.officer_address
+			,o.officer_tel
+			,o.officer_email
+			,o.officer_reg_date
 		FROM 
-			tb_officer;
+			tb_officer AS o
+			INNER JOIN
+			tb_library AS l
+			INNER JOIN
+			tb_level AS v
+		ON
+		o.library_code = l.library_code
+		AND
+		o.level_code = v.level_code
 	</select>
 
 	<insert id="addOfficer" parameterType="team1.project.vo.Officer">
