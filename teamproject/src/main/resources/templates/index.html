@@ -56,18 +56,15 @@
 										<div class="home_slider_title">도서를 검색하세요</div>
 										<div class="home_slider_subtitle">책은 한 권 한 권이 하나의 세계다. </br> - W. 워즈워스 -</div>
 										<div class="home_slider_form_container">
-											<form action="#" id="home_search_form_1" class="home_search_form d-flex flex-lg-row flex-column align-items-center justify-content-between">
+											<form action="#" class="home_search_form d-flex flex-lg-row flex-column align-items-center justify-content-between">
 												<div class="d-flex flex-row align-items-center justify-content-start">
 													<input type="search" class="home_search_input" placeholder="도서명을 입력하세요" required="required">
-													<select class="dropdown_item_select home_search_input">
+													<select class="dropdown_item_select home_search_input" name = "regionMajor">
 														<option>:: 지역을 선택하세요 ::</option>
-														<option>Category</option>
-														<option>Category</option>
+														<option th:each="M : ${majorList}" th:value="${M.regionMajor}">[[${M.regionMajor}]]</option>
 													</select>
-													<select class="dropdown_item_select home_search_input">
+													<select class="dropdown_item_select home_search_input" name ="regionMinor">
 														<option>:: 지역을 선택하세요 ::</option>
-														<option>강원</option>
-														<option>경기</option>
 													</select>
 												</div>
 												<button type="submit" class="home_search_button">검색</button>
@@ -231,6 +228,33 @@
 		<script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
 		<script src="plugins/easing/easing.js"></script>
 		<script src="js/custom.js"></script>
+		<script>
+			$(function(){
+				var regionMajor = $('select[name=regionMajor]');
+				$(regionMajor).change(function(){
+					var value = $(this).val();
+					var request = $.ajax({
+			  			  url: "/getRegionMinorList",
+			  			  method: "get",
+			  			  data: { regionMajor : value },
+			  			  dataType: "json"
+			  			});
+			  			 
+			  			request.done(function( data ) {
+			  				console.log(JSON.stringify(data) + " <- ajax");
+			  				var regionMinor = $('select[name=regionMinor]');
+			  				for(var i =0; i < data.length; i++){
+			  					regionMinor.append('<option value ="'+data[i]['regionMinor']+'">'+data[i]['regionMinor']+'</option>');
+			  				}
+			  				
+			  			});
+			  			 
+			  			request.fail(function( jqXHR, textStatus ) {
+			  			  alert( "Request failed: " + textStatus );
+			  			});
+				});
+			});
+		</script>
 	</th:block>
 	
 </html>

@@ -15,6 +15,22 @@ public class RegionService {
 	
 	@Autowired private RegionMapper regionMapper;
 	
+	public List<Region> getRegionMinorList(String regionMajor) {
+		return regionMapper.getRegionMinorList(regionMajor);
+	}
+	
+	public List<Region> getSearchRegion(String sk, String sv){
+		return regionMapper.getSearchRegion(sk, sv);
+	}
+	
+	public int deleteRegion(Region region) {
+		return regionMapper.deleteRegion(region);
+	}
+	
+	public int modifyRegion(Region region) {
+		return regionMapper.modifyRegion(region);
+	}
+	
 	public Region getRegion(String regionCode) {
 		
 		return regionMapper.getRegion(regionCode);
