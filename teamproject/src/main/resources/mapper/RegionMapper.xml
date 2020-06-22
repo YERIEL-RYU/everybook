@@ -75,6 +75,7 @@
 		SELECT
 			region_minor
 		FROM tb_region
+		WHERE region_major = '${regionMajor}'
 	</select>
 	
 	<select id="getRegionMajorList" resultSets="Region" resultMap="regionSelect">

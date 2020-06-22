@@ -219,7 +219,7 @@
 			                  </tr>
 		                  </thead>
 		                  <tbody>
-			                  <tr th:each="r, lists  : ${regionList}">
+			                  <tr th:each="r : ${regionList}">
 			                  	<td><input type="checkbox" name="checkRow" th:value="${r.regionCode}" ></td>
 			                    <td>[[${r.regionCode}]]</td>
 			                    <td>[[${r.regionMajor}]]</td>

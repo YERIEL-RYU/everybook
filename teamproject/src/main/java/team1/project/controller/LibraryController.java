@@ -18,6 +18,17 @@ import team1.project.vo.Region;
 public class LibraryController {
 	@Autowired private RegionService regionService;
 	
+	@GetMapping(value="/getRegionMinorList")
+	@ResponseBody
+	public List<Region> getRegionMinorList(@RequestParam("regionMajor") String regionMajor) {
+		System.out.println(regionMajor + "  <-getRegionMinorList LibraryController.java");
+		System.out.println("========= getRegionMinorList LibraryController.java ============");
+		List<Region> region = regionService.getRegionMinorList(regionMajor);
+		System.out.println(region.toString());
+		 
+		return region;
+	}
+	
 	@GetMapping("/getSearchRegion")
 	public String getSearchRegion(Model model, @RequestParam(value="sk") String sk
 									,@RequestParam(value="sv") String sv) {
