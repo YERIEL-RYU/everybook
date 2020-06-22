@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="team1.project.mapper.PointStandardMapper">
-<!-- 	<resultMap type="PointStandard" id="PsSelect">
+<mapper namespace="team1.project.mapper.PointMapper">
+	<resultMap type="Point" id="PsSelect">
 		<result property="psCode" column="point_standard_code"/>
+		<result property="psDivision" column="point_standard_division"/>
 		<result property="psName" column="point_standard_name"/>
 		<result property="psScore" column="point_standard_score"/>
 		<result property="psRegDate" column="point_standard_reg_date"/>
@@ -12,6 +13,6 @@
 	</resultMap>
 	<select id="getPsList" resultSets="PointStandard" resultMap="PsSelect">
 		SELECT *
-		FROM tb_region
-	</select> -->	
+		FROM tb_point_standard
+	</select>
 </mapper>

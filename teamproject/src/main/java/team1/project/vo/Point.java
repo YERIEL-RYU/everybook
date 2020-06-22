@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Point {
 	private String psCode;
+	private String psDivision;
 	private String psName;
 	private int psScore;
 	private Date psRegDate;
@@ -13,6 +14,12 @@ public class Point {
 	}
 	public void setPsCode(String psCode) {
 		this.psCode = psCode;
+	}
+	public String getPsDivision() {
+		return psDivision;
+	}
+	public void setPsDivision(String psDivision) {
+		this.psDivision = psDivision;
 	}
 	public String getPsName() {
 		return psName;
@@ -37,5 +44,10 @@ public class Point {
 	}
 	public void setOfficer(Officer officer) {
 		this.officer = officer;
+	}
+	@Override
+	public String toString() {
+		return "Point [psCode=" + psCode + ", psDivision=" + psDivision + ", psName=" + psName + ", psScore=" + psScore
+				+ ", psRegDate=" + psRegDate + ", officer=" + officer + "]";
 	}
 }

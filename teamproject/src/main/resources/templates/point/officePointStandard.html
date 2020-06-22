@@ -208,14 +208,14 @@
 			                  </tr>
 		                  </thead>
 		                  <tbody>
-			                  <tr>
+			                  <tr th:each="L : ${psList}">
 			                  	<td><input type="checkbox"></td>
-			                    <td></td>
-			                    <td></td>
-			                    <td></td>
-			                    <td></td>
-			                    <td></td>
-			                    <td></td>
+			                    <td>[[${L.psCode}]]</td>
+			                    <td>[[${L.psDivision}]]</td>
+			                    <td>[[${L.psName}]]</td>
+			                    <td>[[${L.psScore}]]</td>
+			                    <td>[[${L.psRegDate}]]</td>
+			                    <td>[[${L.officer.officerId}]]</td>
 			                  </tr>
 		                  </tbody>
 		                  <tfoot>

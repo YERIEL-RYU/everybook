@@ -1,10 +1,19 @@
 package team1.project.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import team1.project.service.PointService;
+import team1.project.vo.Point;
 
 @Controller
 public class PointController {
+	
+	@Autowired private PointService pointService;
 	
 	@GetMapping("/pointStandard")
 	public String getPsList() {
@@ -22,7 +31,11 @@ public class PointController {
 	}
 	
 	@GetMapping("/officePointStandard")
-	public String getOfficePsList() {
+	public String getOfficePsList(Model model) {
+		System.out.println("======== getOfficePsList PointController.java ========");
+		List<Point> psList = pointService.getPsList();
+		model.addAttribute("psList", psList);
+		
 		return "point/officePointStandard";
 	}
 	
