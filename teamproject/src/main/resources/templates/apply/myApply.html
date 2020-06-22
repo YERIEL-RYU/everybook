@@ -101,7 +101,7 @@
 								</thead>
 									<tr th:each="A : ${myApplyList}">
 										<td><input type="checkbox"></td>										
-										<td></td>
+										<td th:text="${A.library}"></td>
 										<td th:text="${A.applyCode}"></td>
 										<td th:text="${A.bookName}"> </td>
 										<td th:text="${A.bookIsbn}"></td>
