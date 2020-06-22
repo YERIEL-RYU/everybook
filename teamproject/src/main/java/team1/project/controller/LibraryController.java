@@ -18,14 +18,25 @@ import team1.project.vo.Region;
 public class LibraryController {
 	@Autowired private RegionService regionService;
 	
-	@GetMapping(value="/modifyRegion", produces = "text/html" )
+	@PostMapping("/deleteRegion")
+	public String deleteRegion(Region region, Officer officer) {
+		System.out.println("========= deleteRegion LibraryController.java ============");
+		region.setOfficer(officer);
+		System.out.println(region.toString());
+		System.out.println(region.getOfficer().getOfficerId());
+		System.out.println(region.getOfficer().getOfficerPw());
+		int i = regionService.deleteRegion(region);
+		System.out.println("deleteRegion 실행 결과 : "+i);
+		return "redirect:/officeRegion";
+	}
+	
+	@GetMapping(value="/selectRegion")
 	@ResponseBody
-	public Region getRegion(@RequestParam("regionCode") String regionCode, Model model) {
+	public Region getRegion(@RequestParam("regionCode") String regionCode) {
 		System.out.println(regionCode + "  <-getRegion LibraryController.java");
 		System.out.println("========= getRegion LibraryController.java ============");
 		Region region = regionService.getRegion(regionCode);
 		System.out.println(region.toString());
-		model.addAttribute("region", region);
 		 
 		return region;
 	}
@@ -35,6 +46,8 @@ public class LibraryController {
 		System.out.println("========= addRegion LibraryController.java ============");
 		region.setOfficer(officer);
 		System.out.println(region.toString());
+		int i = regionService.modifyRegion(region);
+		System.out.println("modifyRegion 실행결과 : "+i);
 		return "redirect:/officeRegion";
 	}
 	

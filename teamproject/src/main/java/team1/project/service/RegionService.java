@@ -15,6 +15,14 @@ public class RegionService {
 	
 	@Autowired private RegionMapper regionMapper;
 	
+	public int deleteRegion(Region region) {
+		return regionMapper.deleteRegion(region);
+	}
+	
+	public int modifyRegion(Region region) {
+		return regionMapper.modifyRegion(region);
+	}
+	
 	public Region getRegion(String regionCode) {
 		
 		return regionMapper.getRegion(regionCode);

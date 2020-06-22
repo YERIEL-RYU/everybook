@@ -9,6 +9,10 @@ import team1.project.vo.Region;
 @Mapper
 public interface RegionMapper {
 	
+	public int deleteRegion(Region region);
+	
+	public int modifyRegion(Region region);
+	
 	public Region getRegion(String regionCode);
 	
 	public int addRegion(Region region);
