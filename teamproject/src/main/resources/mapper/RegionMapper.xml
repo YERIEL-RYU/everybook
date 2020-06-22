@@ -11,6 +11,17 @@
 		</association>
 	</resultMap>
 	
+	<select id="getSearchRegion"  parameterType="String" resultMap="regionSelect">
+		SELECT
+			*
+		FROM
+			tb_region 
+		<if test="sv != null and sv neq ''.toString()">	
+			WHERE
+				${sk} like CONCAT('%',#{sv},'%')
+		</if>
+	</select>
+	
 	<delete id="deleteRegion">
 		DELETE FROM tb_region 
 		WHERE region_code= #{regionCode} 

@@ -9,6 +9,8 @@ import team1.project.vo.Region;
 @Mapper
 public interface RegionMapper {
 	
+	public List<Region> getSearchRegion(String sk, String sv);
+	
 	public int deleteRegion(Region region);
 	
 	public int modifyRegion(Region region);

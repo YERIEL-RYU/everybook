@@ -18,6 +18,16 @@ import team1.project.vo.Region;
 public class LibraryController {
 	@Autowired private RegionService regionService;
 	
+	@GetMapping("/getSearchRegion")
+	public String getSearchRegion(Model model, @RequestParam(value="sk") String sk
+									,@RequestParam(value="sv") String sv) {
+		System.out.println("========= getSearchRegion LibraryController.java ============");
+		System.out.println(sk +" <- sk;  " + sv + " <- sv;");
+		List<Region> regionList = regionService.getSearchRegion(sk, sv);
+		model.addAttribute("regionList", regionList);
+		return "library/officeRegion";
+	}
+	
 	@PostMapping("/deleteRegion")
 	public String deleteRegion(Region region, Officer officer) {
 		System.out.println("========= deleteRegion LibraryController.java ============");
