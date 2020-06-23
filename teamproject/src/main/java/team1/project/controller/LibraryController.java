@@ -10,13 +10,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import team1.project.service.LibraryService;
 import team1.project.service.RegionService;
+import team1.project.vo.Library;
 import team1.project.vo.Officer;
 import team1.project.vo.Region;
 
 @Controller
 public class LibraryController {
 	@Autowired private RegionService regionService;
+	@Autowired private LibraryService libraryService;
 	
 	@GetMapping(value="/getRegionMinorList")
 	@ResponseBody
@@ -83,7 +86,11 @@ public class LibraryController {
 	}
 	
 	@GetMapping("/officeLibrary")
-	public String getOfficeLibraryList() {
+	public String getOfficeLibraryList(Model model) {
+		System.out.println("==== 도서관 리스트 ===");
+		List<Library> libraryList = libraryService.getLibraryList();
+		System.out.println(libraryList);
+		model.addAttribute("libraryList", libraryList);
 		return "library/officeLibrary";
 	}
 	
