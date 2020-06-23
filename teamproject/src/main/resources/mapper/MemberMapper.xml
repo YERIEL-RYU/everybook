@@ -19,6 +19,9 @@
 		<result property="memberRegDate" column="member_reg_date"/>
 	</resultMap>
 	
+	<!-- 전체회원리스트 -->
+	
+	<!-- 회원수정 -->
 	<update id="ModifyMember" parameterType="Member">
 		UPDATE 
 			tb_member
@@ -33,6 +36,7 @@
 			member_id = #{memberId}
 	</update>
 	
+	<!-- 회원상세보기 -->
 	<select id="DetailMember" parameterType="Member" resultMap="memberSelect">
 		SELECT 
 			member_id
@@ -55,7 +59,8 @@
 		WHERE
 			member_id = #{memberId}
 	</select>
-	 
+	
+	 <!-- 한명회원조회 -->
 	 <select id="selectgetMember" parameterType="String" resultMap="memberSelect">
 	 	SELECT 
 	 		member_id
