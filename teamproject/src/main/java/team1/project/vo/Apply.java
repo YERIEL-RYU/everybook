@@ -9,11 +9,12 @@ public class Apply {
 	private String memberId;
 	private String bookName;
 	private String bookIsbn;
+	private String applyPrice;
+	private String applySituation;
 	private Date applyPublishDate;
 	private String applyPublisher;
 	private String applyWriter;
 	private Date applyRegDate;
-	
 	public String getApplyCode() {
 		return applyCode;
 	}
@@ -32,17 +33,29 @@ public class Apply {
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
 	}
-	public String getBookIsbn() {
-		return bookIsbn;
-	}
-	public void setBookIsbn(String bookIsbn) {
-		this.bookIsbn = bookIsbn;
-	}	
 	public String getBookName() {
 		return bookName;
 	}
 	public void setBookName(String bookName) {
 		this.bookName = bookName;
+	}
+	public String getBookIsbn() {
+		return bookIsbn;
+	}
+	public void setBookIsbn(String bookIsbn) {
+		this.bookIsbn = bookIsbn;
+	}
+	public String getApplyPrice() {
+		return applyPrice;
+	}
+	public void setApplyPrice(String applyPrice) {
+		this.applyPrice = applyPrice;
+	}
+	public String getApplySituation() {
+		return applySituation;
+	}
+	public void setApplySituation(String applySituation) {
+		this.applySituation = applySituation;
 	}
 	public Date getApplyPublishDate() {
 		return applyPublishDate;
@@ -56,7 +69,6 @@ public class Apply {
 	public void setApplyPublisher(String applyPublisher) {
 		this.applyPublisher = applyPublisher;
 	}
-	
 	public String getApplyWriter() {
 		return applyWriter;
 	}
@@ -72,8 +84,10 @@ public class Apply {
 	@Override
 	public String toString() {
 		return "Apply [applyCode=" + applyCode + ", library=" + library + ", memberId=" + memberId + ", bookName="
-				+ bookName + ", bookIsbn=" + bookIsbn + ", applyPublishDate=" + applyPublishDate + ", applyPublisher="
-				+ applyPublisher + ", applyWriter=" + applyWriter + ", applyRegDate=" + applyRegDate + "]";
+				+ bookName + ", bookIsbn=" + bookIsbn + ", applyPrice=" + applyPrice + ", applySituation="
+				+ applySituation + ", applyPublishDate=" + applyPublishDate + ", applyPublisher=" + applyPublisher
+				+ ", applyWriter=" + applyWriter + ", applyRegDate=" + applyRegDate + "]";
 	}
 	
+
 }

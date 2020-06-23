@@ -12,6 +12,9 @@
 	<result property="rentRegDate" column="rent_reg_date"/>
 	<result property="rentReturnDate" column="rent_return_date"/>
 	<result property="officerId" column="officer_id"/>
+	<result property="writer" column="writer_name"/>
+	<result property="category" column="category_name"/>
+	<result property="publisher" column="publisher_name"/>
 		
 		<association property="library" javaType="Library">
 			<result property="libraryName" column="library_name"/>
@@ -25,16 +28,50 @@
 		<association property="book" javaType="Book">
 			<result property="bookName" column="book_name"/>
 			<result property="bookSituation" column="book_situation"/>
+			<result property="bookLibraryCode" column="book_library_code"/>
 		</association>
 	</resultMap>
 
+	<select id="officeRentList" resultMap="rentResultMap" parameterType="String">
+		SELECT
+			r.rent_code
+			, b.book_name
+			, b.book_library_code
+			, w.writer_name
+			, c.category_name
+			, p.publisher_name
+			, b.book_situation
+			, r.rent_date
+		FROM
+			tb_rent AS r
+			INNER JOIN
+			tb_book AS b
+			INNER JOIN 
+			tb_writer AS w
+			INNER JOIN
+			tb_category AS c
+			INNER JOIN
+			tb_publisher AS p
+		ON  
+			r.book_code = b.book_code		
+		AND
+			b.writer_code = w.writer_code	
+		AND
+			b.category_code = c.category_code
+		AND
+			b.publisher_code = p.publisher_code
+		AND
+			b.book_situation = '대여중'
+		ORDER BY
+			r.rent_date
+	</select>
 
 	<select id="myRentHistoryList" resultMap="rentResultMap" parameterType="String">
 		SELECT
 			r.rent_code
 			, l.library_name
 			, b.book_name
-			, r.rent_reg_date
+			, r.rent_date
 			, r.rent_return_date
 			, b.book_situation
 		FROM

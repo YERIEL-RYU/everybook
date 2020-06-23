@@ -248,31 +248,32 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body table-responsive p-0" style="height: 300px;">
-                <table class="table table-head-fixed text-nowrap">
+                <table class="table table-head-fixed text-nowrap" style="text-align: center">
                   <thead>
                     <tr>
-                      <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">도서이름</font></font></th>
-                      <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">청구기호</font></font></th>
-                      <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">저자</font></font></th>
-                      <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">카테고리</font></font></th>
-                      <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">상태</font></font></th>
-                      <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">도서출판사</font></font></th>
-                      <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">수정</font></font></th>
-                  	  <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">삭제</font></font></th>
+                      <th>반납날짜</th>
+                      <th>도서이름</th>
+                      <th>청구기호</th>
+                      <th>저자</th>
+                      <th>카테고리</th>
+                      <th>도서출판사</th>
+                      <th>상태</th>
+                      <th>수정</th>
+                  	  <th>삭제</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">더 해빙</font></font></td>
-                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">bk001-008</font></font></td>
-                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">이서윤</font></font></td>
-                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">인문학</font></font></td>
-                      <td><span class="tag tag-success"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">보유</font></font></span></td>
-                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">수오서재</font></font></td>
-                      <td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">#수정</font></font></a></td>
-                  	  <td><a href="#" class="btn btn-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">#삭제</font></font></a></td>
-                    </tr>
-                    
+                    <tr th:each="R : ${officeReturnList}">
+                      <td th:text="${R.returnDate}"></td>
+                      <td th:text="${R.book.bookName}"></td>
+                      <td th:text="${R.book.bookLibraryCode}"></td>
+                      <td th:text="${R.writer}"></td>
+                      <td th:text="${R.category}"></td>
+                      <td th:text="${R.publisher}"></td>
+                      <td th:text="${R.book.bookSituation}"></td>
+                      <td><a href="#" class="fc-today-button btn btn-primary">#수정</a></td>
+                  	  <td><a href="#" class="fc-today-button btn btn-danger">#삭제</a></td>
+                    </tr>                  
                   </tbody>
                 </table>
               </div>

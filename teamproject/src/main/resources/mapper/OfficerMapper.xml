@@ -10,53 +10,55 @@
  		<result property="officerPw" column="officer_pw"/>
  		<result property="officerName" column="officer_name"/>
  		<result property="officerBirth" column="officer_birth"/>
- 		<result property="level" column="level_name"/>
- 		<result property="library" column="library_name"/>
  		<result property="officerAddress" column="officer_address"/>
  		<result property="officerTel" column="officer_tel"/>
  		<result property="officerEmail" column="officer_email"/>
  		<result property="officerRegDate" column="officer_reg_date"/>
+ 		<result property="level" column="level_name"/>
+ 		<result property="library" column="library_name"/>
+ 		<result property="license" column="license_name"/>
+ 		<result property="career" column="career_name"/>
  	</resultMap>	
- 	
-<!--  	<resultMap type="License" id="LicenseResultMap">
-	 	<result property="licenseCode" column="license_code"/>
-	 	<result property="licenseIssue" column="license_name"/>
-	 	<result property="licenseName" column="license_issue"/>
-	 	<result property="licenseOperation" column="license_operation_date"/>
-	 	<result property="licenseRegDate" column="license_reg_date"/>
- 	</resultMap>
- 	
- 	<resultMap type="OfficerLicense" id="OfficerLicenseResultMap">
- 		<result property="officerLicenseCode" column="officer_license_code"/>
- 		<result property="officerLicenseDate" column="officer_license_date"/>
- 		<result property="officerLicenseRegDate" column="officer_license_reg_date"/>
- 	</resultMap> -->
 
-	<!-- <select id="getMyOffice" parameterType="String" resultType="team1.project.vo.officer">
+	<select id="getMyOffice" parameterType="String" resultMap="officerResultMap">
 		SELECT 
 			O.officer_id
 			,O.officer_pw
 			,O.officer_name
 			,O.officer_birth
-			,O.level_code
-			,O.library_code
+			,V.level_name
+			,B.library_name
 			,O.officer_address
 			,O.officer_tel
 			,O.officer_email
 			,O.officer_reg_date 
-			,L.license_code
+			,S.license_name
 			,C.career_name
 		FROM 
 			tb_officer AS O
 			INNER JOIN
 			tb_officer_license AS L
-			INNER join
+			INNER JOIN 
 			tb_career AS C
+			INNER JOIN
+			tb_license AS S
+			INNER JOIN
+			tb_level AS V
+			INNER JOIN
+			tb_library AS B
 			on
 			O.officer_id=L.officer_id
 			AND 
-			O.officer_id=C.officer_id		
-	</select> -->
+			L.officer_id=C.officer_id
+			AND
+			L.license_code = S.license_code
+			AND
+			O.level_code = V.level_code
+			AND
+			B.library_code = O.library_code
+			WHERE
+			O.officer_id = #{SID}
+	</select>
 
 	<select id="getOfficerList" resultMap="officerResultMap">	
 		SELECT 
