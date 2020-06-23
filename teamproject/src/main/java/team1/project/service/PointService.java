@@ -15,6 +15,18 @@ public class PointService {
 
 	@Autowired private PointStandardMapper pointMapper;
 	
+	public int deletePs(Point point) {
+		return pointMapper.deletePs(point);
+	}
+	
+	public int modifyPs(Point point) {
+		return pointMapper.modifyPs(point);
+	}
+	
+	public Point getSelectPs(String psCode) {
+		return pointMapper.getSelectPs(psCode);
+	}
+	
 	public int addPs(Point point) {
 		return pointMapper.addPs(point);
 	}

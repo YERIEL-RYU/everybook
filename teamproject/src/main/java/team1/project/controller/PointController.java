@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import team1.project.service.PointService;
 import team1.project.vo.Officer;
@@ -16,6 +18,34 @@ import team1.project.vo.Point;
 public class PointController {
 	
 	@Autowired private PointService pointService;
+	
+	@PostMapping("/deletePs")
+	public String deletePs(Point point, Officer officer) {
+		System.out.println("==== 상벌점 기준 삭제 컨트롤러 ====");
+		point.setOfficer(officer);
+		System.out.println(point.toString() +" deletePs PointController.java");
+		int i = pointService.modifyPs(point);
+		System.out.println("실행결과 : " + i);
+		return "redirect:/officePointStandard";
+	}
+	
+	@PostMapping("/modifyPs")
+	public String modifyPs(Point point, Officer officer) {
+		System.out.println("==== 상벌점 기준 수정 컨트롤러 ====");
+		point.setOfficer(officer);
+		System.out.println(point.toString() +" modifyPs PointController.java");
+		int i = pointService.modifyPs(point);
+		System.out.println("실행결과 : " + i);
+		return "redirect:/officePointStandard";
+	}
+	
+	@GetMapping("/getSelectPs")
+	@ResponseBody
+	public Point getSelectPs(@RequestParam("psCode") String psCode) {
+		System.out.println(psCode + " <- psCode pointController.java");
+		Point point = pointService.getSelectPs(psCode);
+		return point;
+	}
 	
 	@PostMapping("/addPs")
 	public String addPs(Point point, Officer officer) {

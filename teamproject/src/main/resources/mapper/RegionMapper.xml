@@ -8,6 +8,7 @@
 		<result property="regionRegDate" column="region_reg_date"/>
 		<association property="officer" javaType="Officer">
 			<result property="officerId" column="officer_id"/>
+			<result property="officerPw" column="officer_pw"/>
 		</association>
 	</resultMap>
 	

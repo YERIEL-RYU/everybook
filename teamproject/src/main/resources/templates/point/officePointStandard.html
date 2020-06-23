@@ -62,9 +62,9 @@
 							</div>
 							<div class="col-sm-4">							
 								<div class="btn-group">
-									<button type="button" class="btn btn-outline-info btn-flat"  data-toggle="modal" data-target=".bs-add-modal-lg">#기준 등록</button>
-									<button type="button" class="btn btn-outline-secondary btn-flat"  data-toggle="modal" data-target=".bs-modify-modal-lg">#기준 수정</button>
-									<button type="button" class="btn btn-outline-danger btn-flat"  data-toggle="modal" data-target=".bs-delete-sm">#기준 삭제</button>
+									<button type="button" class="btn btn-outline-info btn-flat"  data-toggle="modal" data-target=".bs-add-modal-lg">기준 등록</button>
+									<button type="button" class="btn btn-outline-secondary btn-flat" id="modifyModalBtn">기준 수정</button>
+									<button type="button" class="btn btn-outline-danger btn-flat" id="deleteModalBtn">#기준 삭제</button>
 								</div>
 							</div>
 						</div>
@@ -119,12 +119,12 @@
 							</div>
 							<!--  end 기준 등록 modal -->
 							<!-- start 기준 수정  modal -->
-							<div class="modal fade bs-modify-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+							<div class="modal fade bs-modify-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="modifyModal">
 								<div class="modal-dialog modal-lg">
 									<div class="modal-content">
 										
 										<!-- form start -->
-										<form role="form" action="#">
+										<form role="form" action="/modifyPs" method="post">
 											<div class="modal-header">
 												<h4 class="modal-title">상벌절 기준 수정하기</h4>
 												<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -133,33 +133,39 @@
 												<div class="form-group row">
 													<label for="inputEmail3" class="col-sm-2 col-form-label">상벌점 코드</label>
 									         		<div class="col-sm-10">
-														<input type="text" class="form-control" value="region_001" readonly="readonly">
+														<input type="text" id="modifyPsCode" class="form-control" name="psCode" readonly="readonly">
 									         		</div>
 									           	</div>											
 												<div class="form-group row">
 													<label for="inputEmail3" class="col-sm-2 col-form-label">상점 / 벌점</label>
 									         		<div class="col-sm-10">
-														<select class="form-control">
-                     									    <option>상점</option>
-                          									<option>벌점</option>
+														<select class="form-control" id="modifyPsDivision" name="psDivision">
+                     									    <option value="상점">상점</option>
+                          									<option value="상점">벌점</option>
                         								</select>
 									         		</div>
 									           	</div>
 												<div class="form-group row">
-													<label for="inputEmail3" class="col-sm-2 col-form-label">점수내용</label>
+													<label for="inputEmail3" class="col-sm-2 col-form-label">점수이름</label>
 									          		<div class="col-sm-10">
-														<input type="text" class="form-control" placeholder="점수 내용을 입력하세요">
+														<input type="text" id="modifyPsName" class="form-control" name="psName">
 									          		</div>
 									           </div>
 												<div class="form-group row">
 													<label for="inputEmail3" class="col-sm-2 col-form-label">점수</label>
 									          		<div class="col-sm-10">
-														<input type="number" class="form-control" placeholder="해당 점수를 입력하세요 (숫자만)">
+														<input type="number" id="modifyPsScore" class="form-control" name="psScore">
 									          		</div>
 									           </div>
+									           <div class="form-group row">
+												<label for="inputEmail3" class="col-sm-2 col-form-label">등록자</label>
+								          		<div class="col-sm-10">
+													<input type="text" class="form-control" th:value="${session.SID}" name="officerId">
+								          		</div>
+								           </div>
 											</div>
 											<div class="modal-footer">
-												<button type="button" class="btn btn-primary">기준 수정</button>
+												<button type="submit" class="btn btn-primary">기준 수정</button>
 											</div>
 										</form>
 										<!-- form end -->
@@ -168,29 +174,36 @@
 							</div>
 							<!--  end 기준 수정 modal -->
 							<!-- start 기준 수정  modal -->
-							<div class="modal fade bs-delete-sm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+							<div class="modal fade bs-delete-sm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="deleteModal">
 								<div class="modal-dialog modal-sm">
 									<div class="modal-content">
 										
 										<!-- form start -->
-										<form role="form" action="#">
+										<form role="form" action="deletePs" method="post">
 											<div class="modal-header">
 												<h4 class="modal-title">상벌절 기준 삭제하기</h4>
 												<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 											</div>
 											<div class="modal-body">
-												<div class="form-group row">
+												<div class="form-group">
+													<label>상벌점 코드</label>
+								         			<div>
+														<input type="text" class="form-control" id="deletePsCode" readonly="readonly" name="regionCode">
+								         			</div>
+								           		</div>
+												<div class="form-group">
 													<p>해당 상벌점 기준을 삭제 하시겠습니까?</p>		
 									            </div>
 												<div class="form-group">
 													<label>비밀번호 확인</label>
 									          		<div>
+									          			<input type="text" class="form-control" th:value="${session.SID}" name="officerId" hidden="hidden">
 														<input type="password" class="form-control" placeholder="비밀번호를 입력하세요">
 									          		</div>
 									           </div>
 											</div>
 											<div class="modal-footer">
-												<button type="button" class="btn btn-primary">기준 삭제</button>
+												<button type="submit" class="btn btn-primary">기준 삭제</button>
 											</div>
 										</form>
 										<!-- form end -->
@@ -254,6 +267,7 @@
 <script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <script>
 $(function () {
+	//반응형 테이블
     $("#pointStandard-table").DataTable({
     	"paging": true,
         "lengthChange": false,
@@ -262,6 +276,70 @@ $(function () {
         "info": true,
         "autoWidth": false,
         "responsive": true,
+    });
+	//수정 버튼클릭시 수정 모달 실행
+	$('#modifyModalBtn').click(function(){
+		console.log('수정 버튼 클릭');
+		if($('[name=checkRow]:checked').length == 1){
+			var value = $('[name=checkRow]:checked').val();
+			var request = $.ajax({
+	  			  url: "/getSelectPs",
+	  			  method: "get",
+	  			  data: { psCode : value },
+	  			  dataType: "json"
+	  			});
+	  			 
+	  			request.done(function( data ) {
+	  				console.log(JSON.stringify(data) + " <- ajax");
+					$('#modifyPsCode').val(data.psCode);
+					$('#modifyPsDivision').val(data.psDivision);
+					$('#modifyPsName').val(data.psName);
+					$('#modifyPsScore').val(data.psScore);
+			    	$('#modifyModal').modal();
+			    	
+	  			});
+	  			 
+	  			request.fail(function( jqXHR, textStatus ) {
+	  			  alert( "Request failed: " + textStatus );
+	  			});
+			
+		}else if($('[name=checkRow]:checked').length == 0) {
+			alert('수정할 지역코드를 선택하세요');
+		}else{
+			alert('수정할 지역코드를 하나만 선택하세요');
+		}
+	});
+	//삭제 버튼 클릭시 모달
+    $('#deleteModalBtn').click(function(){
+    	console.log("삭제하자");
+    	if($('[name=checkRow]:checked').length == 1){
+    		var value = $('[name=checkRow]:checked').val();
+    		console.log(value);
+    		var request = $.ajax({
+  			  url: "/getSelectPs",
+  			  method: "get",
+  			  data: { psCode : value },
+  			  dataType: "json"
+  			});
+  			 
+  			request.done(function( data ) {
+  				console.log(JSON.stringify(data) + " <- ajax");
+				$('#deletePsCode').val(data.psCode);
+				$('#deleteModal').modal();
+		    	
+  			});
+  			 
+  			request.fail(function( jqXHR, textStatus ) {
+  			  alert( "Request failed: " + textStatus );
+  			});
+  			
+	    	
+    	}else if($('[name=checkRow]:checked').length == 0) {
+    		alert('삭제할 지역코드를 선택하세요');
+    	}else{
+    		console.log('전체삭제를 하겠다고?');
+    		
+    	}
     });
   //전체 선택 & 해제
 	var allCheck = $('[name=checkAll]');
@@ -283,6 +361,7 @@ $(function () {
 			allCheck.prop("checked",false);
 		}
 	});
+
 });
 </script>
 	</th:block>
