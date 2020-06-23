@@ -8,6 +8,9 @@ public class Rent {
 	private String rentDate;
 	private String rentReturnDate;
 	private String rentRegDate;
+	private String publisher;
+	private String writer;
+	private String category;	
 	private Officer officer;
 	private Book book;
 	public String getRentCode() {
@@ -52,6 +55,24 @@ public class Rent {
 	public void setRentRegDate(String rentRegDate) {
 		this.rentRegDate = rentRegDate;
 	}
+	public String getPublisher() {
+		return publisher;
+	}
+	public void setPublisher(String publisher) {
+		this.publisher = publisher;
+	}
+	public String getWriter() {
+		return writer;
+	}
+	public void setWriter(String writer) {
+		this.writer = writer;
+	}
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
 	public Officer getOfficer() {
 		return officer;
 	}
@@ -68,9 +89,10 @@ public class Rent {
 	public String toString() {
 		return "Rent [rentCode=" + rentCode + ", library=" + library + ", member=" + member + ", bookCode=" + bookCode
 				+ ", rentDate=" + rentDate + ", rentReturnDate=" + rentReturnDate + ", rentRegDate=" + rentRegDate
-				+ ", officer=" + officer + ", book=" + book + "]";
+				+ ", publisher=" + publisher + ", writer=" + writer + ", category=" + category + ", officer=" + officer
+				+ ", book=" + book + "]";
 	}
-			
 	
+						
 }
 
