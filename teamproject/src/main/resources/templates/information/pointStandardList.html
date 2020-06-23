@@ -110,16 +110,17 @@
 
 				<!-- Main Content -->
 				<div class="col-lg-8">
-					<div class="blog_content">
-						<div class="blog_title"><i class="fa fa-quote-left" aria-hidden="true"></i>도서관 목록</div>					
-					</div>
+					<div class="blog_content">상벌점 기준</div>					
 					<div class="search_container">
-						<form action="#" id="courses_search_form" class="search_form d-flex flex-row align-items-center justify-content-start">
-							<select class="search_select">
+						<form action="searchPsInfo" id="courses_search_form" method="get" class="search_form d-flex flex-row align-items-center justify-content-start">
+							<select class="search_select" name ="sk">
 								<option>검색 조건</option>
+								<option value="point_standard_code">상벌점 기준 코드</option>
+						        <option value="point_standard_division">상점 / 벌점</option>
+						        <option value="point_standard_score">점수</option>
 							</select>
-							<input type="text" class="search_input">
-							<button action="submit" class="search_form_button ml-auto">!검색</button>
+							<input type="text" class="search_input" name="sv">
+							<button type="submit" class="search_form_button ml-auto">검색</button>
 						</form>
 					</div>
 					<div class="table-responsive">
@@ -128,29 +129,28 @@
 			                  <tr>
 			                    <th>상벌점 코드</th>
 			                    <th>상점 / 벌점</th>
-			                    <th>점수 내용</th>
+			                    <th>점수 이름</th>
 			                    <th>점수</th>
 			                  </tr>
 		                  </thead>
 		                  <tbody>
-			                  <tr>
-			                    <td>1</td>
-			                    <td>상점이죠</td>
-			                    <td>도서평 5개</td>
-			                    <td>1</td>
+			                  <tr th:each="L : ${psList}">
+			                   <td>[[${L.psCode}]]</td>
+			                    <td>[[${L.psDivision}]]</td>
+			                    <td>[[${L.psName}]]</td>
+			                    <td>[[${L.psScore}]]</td>
 			                  </tr>
 		                  </tbody>
 		                  <tfoot>
 			                  <tr>
 			                    <th>상벌점 코드</th>
 			                    <th>상점 / 벌점</th>
-			                    <th>점수 내용</th>
+			                    <th>점수 이름</th>
 			                    <th>점수</th>
 			                  </tr>
 		                  </tfoot>
 						</table>							
 					</div>
-					
 				</div>	
 				<!-- Side menu -->
 				<div class="col-lg-4">

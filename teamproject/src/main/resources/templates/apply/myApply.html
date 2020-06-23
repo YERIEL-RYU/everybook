@@ -87,11 +87,12 @@
 							</div>
 						</div>
 						<div class="table-responsive">
-							<table class="table">
+							<table class="table" style="text-align: center; color: black ">
 								<thead>
 									<tr>
 										<th> <input type="checkbox"> </th>										
 										<th> 도서관명 </th>
+										<th> 신청코드</th>
 										<th> 도서명 </th>
 										<th> ISBN </th>
 										<th> 신청 일시 </th>
@@ -101,12 +102,13 @@
 									<tr th:each="A : ${myApplyList}">
 										<td><input type="checkbox"></td>										
 										<td th:text="${A.library}"></td>
+										<td th:text="${A.applyCode}"></td>
 										<td th:text="${A.bookName}"> </td>
 										<td th:text="${A.bookIsbn}"></td>
-										<td th:text="${A.applyRegDate}"></td>
+										<td th:text="${#dates.format(A.applyRegDate, 'YYYY-MM-dd')}"></td>
 										<td><button class="btn btn-info btn-sm" type="button"  data-toggle="modal" data-target=".bs-example-modal-sm">취소</button></td>
 									</tr>	
-							</table>							
+							</table>				
 						</div>
 						<div class="row pagination_row">
 							<div class="col">

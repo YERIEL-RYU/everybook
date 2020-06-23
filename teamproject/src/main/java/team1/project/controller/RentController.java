@@ -18,21 +18,26 @@ public class RentController {
 	@Autowired private RentService rentService;
 	
 	@GetMapping("/myRent")
-		public String getRentHistoryList(Model model, HttpSession session, Rent rent) {
+		public String myRentHistoryList(Model model, HttpSession session) {
 
-		String SID = (String) session.getAttribute("SID");
+		String SID = (String) session.getAttribute("SID"); //session 아이디값 받아오기.
 		System.out.println(SID + "<--SID");
-		rent.setMemberId(SID);
+
 		
-		List<Rent> list = rentService.getRentHistoryList();
+		List<Rent> list = rentService.myRentHistoryList(SID);
 		System.out.println(list + " <-- list");
 		model.addAttribute("rentHistory", list);
+
 			
 		return "rent/myRent";
 	}
 	
 	@GetMapping("/officeBookRent")
-	public String officeRent() {
+	public String officeRentList(Model model) {
+		List<Rent> list2 = rentService.officeRentList();
+		System.out.println(list2 + " <-- list2");
+		model.addAttribute("officeRentList", list2);
+		
 		return "rent/officeBookRent";
 	}
 }

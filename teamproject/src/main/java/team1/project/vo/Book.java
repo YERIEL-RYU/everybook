@@ -2,7 +2,7 @@ package team1.project.vo;
 
 public class Book {
 	private String bookCode;
-	private String library;
+	private Library library;
 	private String bookLibraryCode;
 	private String bookName;
 	private String category;
@@ -21,10 +21,10 @@ public class Book {
 	public void setBookCode(String bookCode) {
 		this.bookCode = bookCode;
 	}
-	public String getLibrary() {
+	public Library getLibrary() {
 		return library;
 	}
-	public void setLibrary(String library) {
+	public void setLibrary(Library library) {
 		this.library = library;
 	}
 	public String getBookLibraryCode() {

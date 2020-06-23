@@ -45,18 +45,18 @@
 				                <table id="example2" class="table table-bordered table-hover dataTable dtr-inline" role="grid" aria-describedby="example2_info">
 				                  <thead>
 					                  <tr role="row">
-						                  <th class="sorting_desc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" >ID</th>
-						                  <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" >PW</th>
-						                  <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" >성명</th>
-						                  <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" >생년월일</th>
-						                  <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" >Level</th>
-						                  <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" >Library</th>
-						                  <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" >Address</th>
-						                  <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" >Tel</th>
-						                  <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" >Email</th>
-						                  <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" >등록날짜</th>
-						                  <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" >#수정</th>
-						                  <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" >#삭제</th>
+						                  <th>ID</th>
+						                  <th>PW</th>
+						                  <th>성명</th>
+						                  <th>생년월일</th>
+						                  <th>Level</th>
+						                  <th>Library</th>
+						                  <th>Address</th>
+						                  <th>Tel</th>
+						                  <th>Email</th>
+						                  <th>등록날짜</th>
+						                  <th>#수정</th>
+						                  <th>#삭제</th>
 						              </tr>					            	            
 				                  </thead>
 				                  <tbody>
@@ -70,18 +70,61 @@
 					                      <td th:text="${O.officerAddress}"></td>
 					                      <td th:text="${O.officerTel}"></td>
 					                      <td th:text="${O.officerEmail}"></td>
-					                      <td th:text="${O.officerRegDate}"></td>
+					                      <td th:text="${#dates.format(O.officerRegDate,'YYYY-MM-dd')}"></td>
 					                      <td>
-					                      	<a class="btn btn-info btn-sm" href="#">
+					                      	<a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-update" style="color: white">
 								            <i class="fas fa-pencil-alt"></i>수정</a>
 					                      </td>
-					                      <td>
-					                      	<a class="btn btn-danger btn-sm" href="#">
+					                      <td class="">
+					                      	<a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-delete" style="color: white">
 								            <i class="fas fa-trash"></i>삭제</a>
 								          </td>
-					                  </tr>					                  
+					                  </tr>
 				                  </tbody>
 				                </table>
+				                <!-- modal -->
+				                <div class="modal fade" id="modal-delete">
+							        <div class="modal-dialog">
+							          <div class="modal-content bg-default">
+							            <div class="modal-header">
+							              <h4 class="modal-title">직원 리스트</h4>
+							              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							                <span aria-hidden="true">&times;</span></button>
+							            </div>
+							            <div class="modal-body">
+							              <p>삭제 하시겠습니까?</p>
+							            </div>
+							            <div class="modal-footer justify-content-between">
+							              <button type="button" class="btn" data-dismiss="modal">Close</button>
+							              <button type="button" class="btn">#삭제하기</button>
+							            </div>
+							          </div>
+							          <!-- /.modal-content -->
+							        </div>
+							        <!-- /.modal-dialog -->
+					      		</div>
+				                
+				                <div class="modal fade" id="modal-update">
+							        <div class="modal-dialog">
+							          <div class="modal-content bg-default">
+							            <div class="modal-header">
+							              <h4 class="modal-title">직원 리스트</h4>
+							              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							                <span aria-hidden="true">&times;</span></button>
+							            </div>
+							            <div class="modal-body">
+							              <p>수정 하시겠습니까?</p>
+							            </div>
+							            <div class="modal-footer justify-content-between">
+							              <button type="button" class="btn" data-dismiss="modal">Close</button>
+							              <button type="button" class="btn">#수정하기</button>
+							            </div>
+							          </div>
+							          <!-- /.modal-content -->
+							        </div>
+							        <!-- /.modal-dialog -->
+					      		</div>
+					      <!-- /.modal -->
 	                		</div>                		
 	                	</div>
 	               	</div>

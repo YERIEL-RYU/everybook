@@ -1,9 +1,13 @@
 package team1.project.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -17,8 +21,25 @@ public class LoginController {
 	
 	@Autowired private LoginService loginService;
 	
+	@GetMapping("/officeMemberLogin")
+	public String officeMemberLogin(Model model) {
+		List<Login> loginList = new ArrayList<Login>();
+		loginList = loginService.allLoginMember();
+		System.out.println("회원로그인내역 >>>"+loginList);
+		
+		model.addAttribute("memberlogin", loginList);
+		return "member/officeMemberLogin";
+	}
+	
 	@GetMapping("/logout")
-	public String logout(HttpSession session) {
+	public String logout(HttpSession session,Login login) {
+		String loginCode = (String) session.getAttribute("SCODE");
+		login.setLoginCode(loginCode);
+		if("member_login".equals(loginCode.substring(0, 12))) {
+			loginService.updateLoginMember(login);
+		}else if("officer_login".equals(loginCode.substring(0, 13))) {
+			loginService.updateLoginOfficer(login);
+		}
 		session.invalidate();
 		
 		return "redirect:/index";
@@ -41,13 +62,15 @@ public class LoginController {
 				
 				session.setAttribute("SID", o.getOfficerId());
 				session.setAttribute("SLEVEL", o.getLevel());
-				System.out.println(session.getAttribute("SID"));
-				System.out.println(session.getAttribute("SLEVEL"));
+				System.out.println("SID >>"+session.getAttribute("SID"));
+				System.out.println("SLEVEL >>"+session.getAttribute("SLEVEL"));
 				System.out.println("로그인완료");
 				
 				Login login = new Login();
 				login.setOfficerId(o.getOfficerId());
 				loginService.addLoginOfficer(login);
+				session.setAttribute("SCODE", login.getLoginCode());
+				System.out.println("SCODE>>"+session.getAttribute("SCODE"));
 				
 				return "admin/indexAdmin";
 			}
@@ -71,14 +94,17 @@ public class LoginController {
 				
 				session.setAttribute("SID", m.getMemberId());
 				session.setAttribute("SLEVEL", m.getLevelCode());
-				System.out.println(session.getAttribute("SID"));
-				System.out.println(session.getAttribute("SLEVEL"));
+				System.out.println("SID >>"+session.getAttribute("SID"));
+				System.out.println("SLEVEL >>"+session.getAttribute("SLEVEL"));
 				System.out.println("로그인완료");
 				
 				Login login = new Login();
 				login.setMemberId(m.getMemberId());
 				System.out.println("log.getMemberId() >>>>"+login.getMemberId());
 				loginService.addLoginMember(login);
+				System.out.println("로그인코드>>"+login.getLoginCode());
+				session.setAttribute("SCODE", login.getLoginCode());
+				System.out.println("SCODE>>"+session.getAttribute("SCODE"));
 			
 				return "index";
 			}

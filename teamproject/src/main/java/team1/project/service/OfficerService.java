@@ -15,6 +15,13 @@ public class OfficerService {
 	
 	@Autowired private OfficerMapper officerMapper;
 		
+		//나의 정보
+		public List<Officer> getMyOffice(String SID){
+			List<Officer> myList = officerMapper.getMyOffice(SID);
+			
+			return myList;			
+		}
+	
 		//직원리스트
 		public List<Officer> getOfficerList(){
 			List<Officer> list = officerMapper.getOfficerList();

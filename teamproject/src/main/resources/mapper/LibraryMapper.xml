@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="team1.project.mapper.LibraryMapper">
+	<resultMap type="Library" id="librarySelect">
+		<result property="libraryCode" column="library_code"/>
+		<result property="libraryName" column="library_name"/>
+		<result property="librarySetup" column="library_setup"/>
+		<result property="libraryOpen" column="library_open"/>
+		<result property="libraryTel" column="library_tel"/>
+		<result property="libraryPage" column="library_page"/>
+		<result property="libraryRegDate" column="library_reg_date"/>
+		<association property="region" javaType="region">
+			<result property="regionCode" column="region_code"/>
+			<result property="regionMajor" column="region_major"/>
+			<result property="regionMinor" column="region_minor"/>
+		</association>
+		<association property="officer" javaType="Officer">
+			<result property="officerId" column="officer_id"/>
+			<result property="officerPw" column="officer_pw"/>
+		</association>
+	</resultMap>
+	<select id="getLibraryList" resultSets="Library" resultMap="librarySelect">
+		SELECT 	*
+		FROM tb_library AS l
+			INNER join
+				tb_region AS r
+			on
+				l.region_code = r.region_code
+	</select>
+</mapper>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="team1.project.mapper.OverdueMapper">
+  
+  	<resultMap type="Overdue" id="overdueResultMap">
+  	<result property="overdueCode" column="overdue_code"/>
+  	<result property="library" column="library_name"/>
+  	<result property="rent" column="rent_code"/>
+  	<result property="member" column="member_id"/>
+  	<result property="overdueStartDate" column="overdue_start_date"/>
+  	<result property="overdueDate" column="overdue_date"/>
+  	<result property="overdueRegDate" column="overdue_reg_date"/>
+  	<result property="officer" column="officer_id"/>  
+  	
+  	<association property="book" javaType="Book">
+  		<result property="bookName" column="book_name"/>
+  		<result property="bookSituation" column="book_situation"/>
+  		<result property="bookLibraryCode" column="book_library_code"/>
+  	</association>
+  		
+  	</resultMap>
+  
+  	<select id="officeOverdueList" resultMap="overdueResultMap">
+  		SELECT
+			o.overdue_code
+			,b.book_name
+			,b.book_library_code
+			,o.member_id
+			,o.overdue_date
+			,b.book_situation
+		FROM
+			tb_overdue AS o
+			INNER JOIN
+			tb_book AS b
+			ON 
+			o.book_code = b.book_code
+  	</select>
+  
+  </mapper>

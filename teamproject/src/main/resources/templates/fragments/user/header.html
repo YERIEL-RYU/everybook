@@ -18,14 +18,23 @@
 									</div>
 								</div>
 							</th:block>
-							<th:block th:if="${session.SLEVEL} == '6'">
+							<th:block th:if="${session.SLEVEL} == '4' or ${session.SLEVEL} == '5' or ${session.SLEVEL} == '6' or ${session.SLEVEL} == '7' or ${session.SLEVEL} == '8'">
 								<div class="top_bar_content d-flex flex-row align-items-center justify-content-start">
 									<a href="/memberDetail" style="margin-left: 75%; color: white;"> 내 정보 </a>
 									<div class="top_bar_login ml-auto">
 										<div class="login_button"><a href="/logout">Logout</a></div>
 									</div>
 								</div>
-							</th:block>	
+							</th:block>
+							<th:block th:if="${session.SLEVEL} == '1' or ${session.SLEVEL} == '2' or ${session.SLEVEL} == '3'">
+								<div class="top_bar_content d-flex flex-row align-items-center justify-content-start">
+									<a href="/office" style="margin-left: 75%; color: white;"> 직원 업무 </a>
+									<div class="top_bar_login ml-auto">
+										<div class="login_button"><a href="/logout">Logout</a></div>
+									</div>
+								</div>
+							</th:block>
+								
 						</div>
 					</div>
 				</div>

@@ -11,9 +11,10 @@ public class Officer {
 	private String officerTel;
 	private String officerEmail;
 	private Date officerRegDate;
-	private String library;
 	private String level;
-	
+	private String library;
+	private String license;
+	private String career;
 	public String getOfficerId() {
 		return officerId;
 	}
@@ -62,17 +63,38 @@ public class Officer {
 	public void setOfficerRegDate(Date officerRegDate) {
 		this.officerRegDate = officerRegDate;
 	}
-	public String getLibrary() {
-		return library;
-	}
-	public void setLibrary(String library) {
-		this.library = library;
-	}
 	public String getLevel() {
 		return level;
 	}
 	public void setLevel(String level) {
 		this.level = level;
 	}
+	public String getLibrary() {
+		return library;
+	}
+	public void setLibrary(String library) {
+		this.library = library;
+	}
+	public String getLicense() {
+		return license;
+	}
+	public void setLicense(String license) {
+		this.license = license;
+	}
+	public String getCareer() {
+		return career;
+	}
+	public void setCareer(String career) {
+		this.career = career;
+	}
+	@Override
+	public String toString() {
+		return "Officer [officerId=" + officerId + ", officerPw=" + officerPw + ", officerName=" + officerName
+				+ ", officerBirth=" + officerBirth + ", officerAddress=" + officerAddress + ", officerTel=" + officerTel
+				+ ", officerEmail=" + officerEmail + ", officerRegDate=" + officerRegDate + ", level=" + level
+				+ ", library=" + library + ", license=" + license + ", career=" + career + "]";
+	}
 	
+
+
 }
