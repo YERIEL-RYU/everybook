@@ -18,6 +18,16 @@ import team1.project.vo.Point;
 public class PointController {
 	
 	@Autowired private PointService pointService;
+	
+	@GetMapping("/searchPsInfo")
+	public String searchPsInfo(Model model, @RequestParam("sk") String sk, @RequestParam("sv") String sv) {
+		System.out.println("==== 상벌점 기준 검색 컨트롤러 ====");
+		System.out.println(sk + " <- sk;  "+sv +" <- sv;");
+		List<Point> psList = pointService.searchPs(sk, sv);
+		model.addAttribute("psList", psList);
+		return "information/pointStandardList";
+	}
+	
 	@GetMapping("/searchPs")
 	public String searchPs(Model model, @RequestParam("sk") String sk, @RequestParam("sv") String sv) {
 		System.out.println("==== 상벌점 기준 검색 컨트롤러 ====");
@@ -66,7 +76,10 @@ public class PointController {
 	}
 	
 	@GetMapping("/pointStandard")
-	public String getPsList() {
+	public String getPsList(Model model) {
+		System.out.println("======== getPsList PointController.java ========");
+		List<Point> psList = pointService.getPsList();
+		model.addAttribute("psList", psList);
 		return "information/pointStandardList";
 	}
 	
