@@ -16,6 +16,12 @@ public class ApplyService {
 
 	@Autowired private ApplyMapper applyMapper;
 	
+	//신청관리 - 신청도서리스트
+	public List<Apply> officeApplyList(){
+		List<Apply> list2 = applyMapper.officeApplyList();
+		return list2;
+	}
+	
 	//나의신청도서 리스트
 	public List<Apply> myApplyList(String SID){
 		List<Apply> list = applyMapper.myApplyList(SID);

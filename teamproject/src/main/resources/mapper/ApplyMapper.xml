@@ -15,7 +15,21 @@
  		<result property="applyPublisher" column="apply_publisher"/>
  		<result property="applyWriter" column="apply_writer"/>
  		<result property="applyRegDate" column="apply_reg_date"/>	
+ 		<result property="applyPrice" column="apply_price"/>	
+ 		<result property="applySituation" column="apply_situation"/>	
  	</resultMap>
+ 	
+ 	<select id="officeApplyList" resultMap="applyResultMap" parameterType="String">
+ 		SELECT
+			book_name
+			,book_ISBN
+			,member_id
+			,apply_price
+			,apply_reg_date
+			,apply_situation
+		FROM
+			tb_book_apply
+ 	</select>
  	
  	<select id="myApplyList" resultMap="applyResultMap" parameterType="String">
  	SELECT

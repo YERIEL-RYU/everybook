@@ -50,9 +50,13 @@ public class ApplyController {
 	public String addBookApply() {
 		return "apply/addBookApply";
 	}
-	
+	//신청도서관리 - 신청도서리스트
 	@GetMapping("/officeBookApply")
-	public String officeBookApply() {
+	public String officeApplyList(Model model) {
+		List<Apply> list2 = applyService.officeApplyList();
+		System.out.println(list2 + " <- list2");
+		
+		model.addAttribute("officeApplyList", list2);
 		return "apply/officeBookApply";
 	}
 }
