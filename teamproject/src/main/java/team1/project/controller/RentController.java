@@ -33,7 +33,11 @@ public class RentController {
 	}
 	
 	@GetMapping("/officeBookRent")
-	public String officeRent() {
+	public String officeRentList(Model model) {
+		List<Rent> list2 = rentService.officeRentList();
+		System.out.println(list2 + " <-- list2");
+		model.addAttribute("officeRentList", list2);
+		
 		return "rent/officeBookRent";
 	}
 }

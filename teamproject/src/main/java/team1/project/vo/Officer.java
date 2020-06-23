@@ -7,12 +7,14 @@ public class Officer {
 	private String officerPw;
 	private String officerName;
 	private String officerBirth;
-	private String level;
-	private String library;
 	private String officerAddress;
 	private String officerTel;
 	private String officerEmail;
 	private Date officerRegDate;
+	private String level;
+	private String library;
+	private String license;
+	private String career;
 	public String getOfficerId() {
 		return officerId;
 	}
@@ -36,18 +38,6 @@ public class Officer {
 	}
 	public void setOfficerBirth(String officerBirth) {
 		this.officerBirth = officerBirth;
-	}
-	public String getLevel() {
-		return level;
-	}
-	public void setLevel(String level) {
-		this.level = level;
-	}
-	public String getLibrary() {
-		return library;
-	}
-	public void setLibrary(String library) {
-		this.library = library;
 	}
 	public String getOfficerAddress() {
 		return officerAddress;
@@ -73,12 +63,38 @@ public class Officer {
 	public void setOfficerRegDate(Date officerRegDate) {
 		this.officerRegDate = officerRegDate;
 	}
+	public String getLevel() {
+		return level;
+	}
+	public void setLevel(String level) {
+		this.level = level;
+	}
+	public String getLibrary() {
+		return library;
+	}
+	public void setLibrary(String library) {
+		this.library = library;
+	}
+	public String getLicense() {
+		return license;
+	}
+	public void setLicense(String license) {
+		this.license = license;
+	}
+	public String getCareer() {
+		return career;
+	}
+	public void setCareer(String career) {
+		this.career = career;
+	}
 	@Override
 	public String toString() {
 		return "Officer [officerId=" + officerId + ", officerPw=" + officerPw + ", officerName=" + officerName
-				+ ", officerBirth=" + officerBirth + ", level=" + level + ", library=" + library + ", officerAddress="
-				+ officerAddress + ", officerTel=" + officerTel + ", officerEmail=" + officerEmail + ", officerRegDate="
-				+ officerRegDate + "]";
+				+ ", officerBirth=" + officerBirth + ", officerAddress=" + officerAddress + ", officerTel=" + officerTel
+				+ ", officerEmail=" + officerEmail + ", officerRegDate=" + officerRegDate + ", level=" + level
+				+ ", library=" + library + ", license=" + license + ", career=" + career + "]";
 	}
+	
+
 
 }
