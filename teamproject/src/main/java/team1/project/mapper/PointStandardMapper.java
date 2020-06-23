@@ -7,7 +7,9 @@ import org.apache.ibatis.annotations.Mapper;
 import team1.project.vo.Point;
 
 @Mapper
-public interface PointMapper {
+public interface PointStandardMapper {
+	
+	public int addPs(Point point);
 	
 	public List<Point> getPsList();
 

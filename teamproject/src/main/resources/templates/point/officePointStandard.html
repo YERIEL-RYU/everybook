@@ -37,8 +37,9 @@
 										<div class="col-sm-3">
 											<div class="form-group">
 						                        <select class="form-control custom-select">
-						                          <option>option 1</option>
-						                          <option>option 2</option>
+						                          <option>상벌점 기준 코드</option>
+						                          <option>상점 / 벌점</option>
+						                          <option>점수</option>
 						                        </select>
 						                    </div>
 										</div>
@@ -74,36 +75,42 @@
 									<div class="modal-content">
 										
 										<!-- form start -->
-										<form role="form" action="#">
+										<form role="form" action="addPs" method="post">
 											<div class="modal-header">
 												<h4 class="modal-title">상벌절 기준 등록하기</h4>
 												<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 											</div>
 											<div class="modal-body">
 												<div class="form-group row">
-													<label for="inputEmail3" class="col-sm-2 col-form-label">상점 / 벌점</label>
+													<label class="col-sm-2 col-form-label">상점 / 벌점</label>
 									         		<div class="col-sm-10">
-														<select class="form-control">
-                     									    <option>상점</option>
-                          									<option>벌점</option>
+														<select class="form-control" name="psDivision">
+                     									    <option value="상점">상점</option>
+                          									<option value="벌점">벌점</option>
                         								</select>
 									         		</div>
 									           	</div>
 												<div class="form-group row">
-													<label for="inputEmail3" class="col-sm-2 col-form-label">점수내용</label>
+													<label class="col-sm-2 col-form-label">점수 이름</label>
 									          		<div class="col-sm-10">
-														<input type="text" class="form-control" placeholder="점수 내용을 입력하세요">
+														<input type="text" class="form-control" name="psName" placeholder="점수 이름을 입력하세요">
 									          		</div>
 									           </div>
 												<div class="form-group row">
-													<label for="inputEmail3" class="col-sm-2 col-form-label">점수</label>
+													<label class="col-sm-2 col-form-label">점수</label>
 									          		<div class="col-sm-10">
-														<input type="number" class="form-control" placeholder="해당 점수를 입력하세요 (숫자만)">
+														<input type="number" class="form-control" name="psScore" placeholder="해당 점수를 입력하세요 (숫자만)">
+									          		</div>
+									           </div>
+												<div class="form-group row">
+													<label class="col-sm-2 col-form-label">등록자</label>
+									          		<div class="col-sm-10">
+														<input type="text" class="form-control" name="officerId" th:value="${session.SID}">
 									          		</div>
 									           </div>
 											</div>
 											<div class="modal-footer">
-												<button type="button" class="btn btn-primary">기준 등록</button>
+												<button type="submit" class="btn btn-primary">기준 등록</button>
 											</div>
 										</form>
 										<!-- form end -->
@@ -198,7 +205,7 @@
 						<table id="pointStandard-table" class="table table-bordered table-hover" style="text-align: center;">
 		                  <thead>
 			                  <tr>
-			                  	<th><input type="checkbox"></th>
+			                  	<th><input type="checkbox" name="checkAll"></th>
 			                    <th>상벌점 코드</th>
 			                    <th>상점 / 벌점</th>
 			                    <th>점수 내용</th>
@@ -209,18 +216,18 @@
 		                  </thead>
 		                  <tbody>
 			                  <tr th:each="L : ${psList}">
-			                  	<td><input type="checkbox"></td>
+			                  	<td><input type="checkbox" name="checkRow" th:value="${L.psCode}"></td>
 			                    <td>[[${L.psCode}]]</td>
 			                    <td>[[${L.psDivision}]]</td>
 			                    <td>[[${L.psName}]]</td>
 			                    <td>[[${L.psScore}]]</td>
-			                    <td>[[${L.psRegDate}]]</td>
+			                    <td th:text="${#dates.format({L.psRegDate}, 'yyyy-MM-dd')}"></td>
 			                    <td>[[${L.officer.officerId}]]</td>
 			                  </tr>
 		                  </tbody>
 		                  <tfoot>
 			                  <tr>
-			                  	<th><input type="checkbox"></th>
+			                  	<th></th>
 			                    <th>상벌점 코드</th>
 			                    <th>상점 / 벌점</th>
 			                    <th>점수 내용</th>
@@ -256,6 +263,26 @@ $(function () {
         "autoWidth": false,
         "responsive": true,
     });
+  //전체 선택 & 해제
+	var allCheck = $('[name=checkAll]');
+	var checkRow = $('[name=checkRow]');
+	allCheck.click(function(){
+		if(allCheck.is(":checked")) {
+			checkRow.prop("checked",true);
+			console.log("체크하기");
+		}else{			
+			console.log("해제하기");
+			checkRow.prop("checked",false); 
+		}
+	});
+	//하나 취소되면 전체 선택 해제
+	checkRow.click(function(){
+		if($('[name=checkRow]:checked').length == 10){
+			allCheck.prop("checked",true);
+		}else{
+			allCheck.prop("checked",false);
+		}
+	});
 });
 </script>
 	</th:block>
