@@ -36,8 +36,8 @@
 									<div class="row">
 										<div class="col-sm-3">
 											<div class="form-group">
-						                        <select class="form-control custom-select">
-						                          <option>상벌점 기준 코드</option>
+						                        <select class="form-control custom-select" name ="sk">
+						                          <option value="point_standard_division">상벌점 기준 코드</option>
 						                          <option>상점 / 벌점</option>
 						                          <option>점수</option>
 						                        </select>
@@ -173,7 +173,7 @@
 								</div>
 							</div>
 							<!--  end 기준 수정 modal -->
-							<!-- start 기준 수정  modal -->
+							<!-- start 기준 삭제  modal -->
 							<div class="modal fade bs-delete-sm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="deleteModal">
 								<div class="modal-dialog modal-sm">
 									<div class="modal-content">
@@ -188,7 +188,7 @@
 												<div class="form-group">
 													<label>상벌점 코드</label>
 								         			<div>
-														<input type="text" class="form-control" id="deletePsCode" readonly="readonly" name="regionCode">
+														<input type="text" class="form-control" id="deletePsCode" readonly="readonly" name="psCode">
 								         			</div>
 								           		</div>
 												<div class="form-group">
@@ -198,7 +198,7 @@
 													<label>비밀번호 확인</label>
 									          		<div>
 									          			<input type="text" class="form-control" th:value="${session.SID}" name="officerId" hidden="hidden">
-														<input type="password" class="form-control" placeholder="비밀번호를 입력하세요">
+														<input type="password" class="form-control" name="officerPw" placeholder="비밀번호를 입력하세요" >
 									          		</div>
 									           </div>
 											</div>
@@ -210,7 +210,7 @@
 									</div>	
 								</div>
 							</div>
-							<!--  end 기준 수정 modal -->
+							<!--  end 기준 삭제 modal -->
 					</div>
 					<!--end card-header -->
 					
@@ -338,7 +338,6 @@ $(function () {
     		alert('삭제할 지역코드를 선택하세요');
     	}else{
     		console.log('전체삭제를 하겠다고?');
-    		
     	}
     });
   //전체 선택 & 해제

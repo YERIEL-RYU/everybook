@@ -24,7 +24,7 @@ public class PointController {
 		System.out.println("==== 상벌점 기준 삭제 컨트롤러 ====");
 		point.setOfficer(officer);
 		System.out.println(point.toString() +" deletePs PointController.java");
-		int i = pointService.modifyPs(point);
+		int i = pointService.deletePs(point);
 		System.out.println("실행결과 : " + i);
 		return "redirect:/officePointStandard";
 	}

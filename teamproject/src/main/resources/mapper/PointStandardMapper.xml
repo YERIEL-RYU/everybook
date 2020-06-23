@@ -12,9 +12,21 @@
 			<result property="officerPw" column="officer_pw"/>
 		</association>
 	</resultMap>
+	
+	<!-- 상벌점 기준 검색 select -->
+	<select id="getSelectPs" parameterType="String" resultMap="PsSelect">
+		SELECT
+			*
+		FROM
+			tb_point_standard 
+		<if test="sv != null and sv neq ''.toString()">	
+			WHERE
+				${sk} like CONCAT('%',#{sv},'%')
+		</if>
+	</select>
 	<!-- 상벌점 기준 delete -->
-	<delete id="">
-		DELETE FROM tb_region 
+	<delete id="deletePs">
+		DELETE FROM tb_point_standard
 		WHERE point_standard_code = #{psCode} 
 		AND officer_id = (SELECT 
 							officer_id
