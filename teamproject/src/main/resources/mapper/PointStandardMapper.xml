@@ -12,9 +12,8 @@
 			<result property="officerPw" column="officer_pw"/>
 		</association>
 	</resultMap>
-	
 	<!-- 상벌점 기준 검색 select -->
-	<select id="getSelectPs" parameterType="String" resultMap="PsSelect">
+	<select id="searchPs"  parameterType="String" resultMap="PsSelect">
 		SELECT
 			*
 		FROM

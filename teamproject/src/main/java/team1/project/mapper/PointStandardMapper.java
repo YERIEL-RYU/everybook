@@ -9,6 +9,8 @@ import team1.project.vo.Point;
 @Mapper
 public interface PointStandardMapper {
 	
+	public List<Point> searchPs(String sk, String sv);
+	
 	public int deletePs(Point point);
 	
 	public int modifyPs(Point point);

@@ -15,6 +15,10 @@ public class PointService {
 
 	@Autowired private PointStandardMapper pointMapper;
 	
+	public List<Point> searchPs(String sk, String sv){
+		return pointMapper.searchPs(sk, sv);
+	}
+	
 	public int deletePs(Point point) {
 		return pointMapper.deletePs(point);
 	}
