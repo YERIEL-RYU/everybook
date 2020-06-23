@@ -122,7 +122,6 @@
 	</th:block>
 	
 	<th:block layout:fragment="customFooterScript">
-		
 		<script src="js/jquery-3.2.1.min.js"></script>
 		<script src="styles/bootstrap4/popper.js"></script>
 		<script src="styles/bootstrap4/bootstrap.min.js"></script>
@@ -132,16 +131,5 @@
 		<script src="plugins/colorbox/jquery.colorbox-min.js"></script>
 		<script src="js/courses.js"></script>
 		<script src="js/course.js"></script>
-		<script type="text/javascript">
-			$(function(){
-				$('.comment_button trans_200').on('click',function(){
-					var address = $("input[name=memberAddress]").length;
-					var addressarr = new Array(address);
-					for(var i=0; i<address; i++){
-						addressarr[i] = $("input[name=memberAddress]").eq(i).val();
-					}
-				});
-			});
-		</script>
 	</th:block>
 </html>

@@ -66,51 +66,44 @@
 								<div class="blog_content">
 									<div class="blog_title">회원 수정</div>					
 								</div>
-								<div class="contact_form">
-									<form action="#" class="comment_form">
+								<div class="contact_form" th:each="m : ${member}">
+									<form action="/modifyMember" method="post" class="comment_form">
 										<div class="input_from">
 											<div class="form_title">아이디</div>
-											<input type="text" class="comment_input" required="required" disabled="disabled">
+											<input type="text" name = "memberId" th:value="${m.memberId}" class="comment_input" readonly="readonly">
 										</div>
 										<div class="input_from">
 											<div class="form_title">비밀번호</div>
-											<input type="password" class="comment_input" required="required">
+											<input type="password" name = "memberPw" th:value="${m.memberPw}" class="comment_input" required="required">
 										</div>
 										<div class="input_from">
 											<div class="form_title">이름</div>
-											<input type="text" class="comment_input" required="required">
+											<input type="text" name = "memberName" th:value="${m.memberName}" class="comment_input" required="required">
 										</div>
 										<div class="input_from">
 											<div class="form_title">생년월일</div>
-											<input type="date" class="comment_input" required="required">
+											<input type="date" name = "memberBirth" th:value="${m.memberBirth}" class="comment_input" required="required">
 										</div>
 										<div class="input_from">
 											<div class="form_title">주소</div>
 											<div class="row">
 												<div class="col-md-6 input_col">
-													<input type="text" class="comment_input" required="required" placeholder="도">
+													<input type="text" name = "memberAddress" class="comment_input" required="required" placeholder="도">
 												</div>
 												<div class="col-md-6 input_col">
-													<input type="text" class="comment_input" required="required" placeholder="시">
+													<input type="text" name = "memberAddress" class="comment_input" required="required" placeholder="시">
 												</div>
 											</div>
 											<hr>
-											<input type="text" class="comment_input" required="required" placeholder="상세주소">
+											<input type="text" name = "memberAddress" class="comment_input" required="required" placeholder="상세주소">
 										</div>
 										<div class="input_from">
 											<div class="form_title">휴대폰번호</div>
-											<input type="text" class="comment_input" required="required">
+											<input type="text" name = "memberTel" th:value="${m.memberTel}" class="comment_input" required="required">
 										</div>
 										<div class="input_from">
 											<div class="form_title">이메일</div>
-											<input type="text" class="comment_input" required="required">
-										</div>
-										<div class="input_from">
-											<div class="form_title">도서관</div>
-											<select id="courses_search_select" class="courses_search_select courses_search_input">
-												<option>주변 도서관</option>
-												<option>금암 도서관</option>
-											</select>
+											<input type="text" name = "memberEmail" th:value="${m.memberEmail}" class="comment_input" required="required">
 										</div>
 										<div style="margin-left: 990px;">
 											<button type="submit" class="comment_button trans_200">수정완료</button>

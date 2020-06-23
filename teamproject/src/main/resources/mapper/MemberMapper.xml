@@ -19,14 +19,64 @@
 		<result property="memberRegDate" column="member_reg_date"/>
 	</resultMap>
 	
-	<!-- 회원아이디 중복체크 -->
-	<select id="memberIdCK" resultType="int">
+	<update id="ModifyMember" parameterType="Member">
+		UPDATE 
+			tb_member
+		SET
+			member_pw = #{memberPw}
+			,member_name = #{memberName}
+			,member_birth = #{memberBirth}
+			,member_address = #{memberAddress}
+			,member_tel = #{memberTel}
+			,member_email = #{memberEmail}
+		WHERE 
+			member_id = #{memberId}
+	</update>
+	
+	<select id="DetailMember" parameterType="Member" resultMap="memberSelect">
 		SELECT 
-		COUNT(*)
+			member_id
+			,member_pw
+			,member_name
+			,member_birth
+			,member_address
+			,member_tel
+			,member_email
+			,(
+				SELECT
+					library_name
+				FROM 
+					tb_library
+				WHERE 
+					library_code = #{libraryCode}
+			)as library_code
 		FROM
-		tb_member
-		WHERE member_id = #{memberId}
+			tb_member
+		WHERE
+			member_id = #{memberId}
 	</select>
+	 
+	 <select id="selectgetMember" parameterType="String" resultMap="memberSelect">
+	 	SELECT 
+	 		member_id
+	 		, member_pw
+	 		, member_name
+	 		, member_birth
+	 		, level_code
+	 		, member_address
+	 		, member_tel
+	 		, member_email
+	 		, library_code
+	 		, rent_count
+	 		, reserve_count
+	 		, review_count
+	 		, warning_count
+	 		, member_reg_date
+		FROM 
+			tb_member
+		where
+			member_id = #{memberId}
+	 </select>
 	
 	<!-- 회원등록 -->
 	<insert id="addMember" parameterType="Member">
