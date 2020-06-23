@@ -69,7 +69,6 @@ public class LoginController {
 				Login login = new Login();
 				login.setOfficerId(o.getOfficerId());
 				loginService.addLoginOfficer(login);
-				System.out.println("로그인코드"+login.getLoginCode());
 				session.setAttribute("SCODE", login.getLoginCode());
 				System.out.println("SCODE>>"+session.getAttribute("SCODE"));
 				
