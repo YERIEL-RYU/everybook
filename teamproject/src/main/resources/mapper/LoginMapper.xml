@@ -39,6 +39,33 @@
 		<result property="memberRegDate" column="member_reg_date"/>
 	</resultMap>
 	
+	<select id="allLoginMember" resultMap="memberLogin">
+		SELECT 
+			member_id
+			, login_date
+			, logout_date
+		FROM 
+			tb_member_login
+	</select>
+	
+	<update id="updateLoginOfficer" parameterType="Login">
+		UPDATE 
+			tb_officer_login
+		SET
+			logout_date=NOW()
+		WHERE  
+			login_code = #{loginCode}
+	</update>
+	
+	<update id="updateLoginMember" parameterType="Login">
+		UPDATE 
+			tb_member_login
+		SET
+			logout_date=NOW()
+		WHERE
+			login_code = #{loginCode}
+	</update>
+	
 	<insert id="addLoginOfficer" parameterType="Login">
 		<selectKey order="BEFORE" keyProperty="loginCode" resultType="String">
 			SELECT

@@ -129,68 +129,67 @@
 							<div class="blog_title"><i class="fa fa-quote-left" aria-hidden="true"></i>마이페이지</div>					
 						</div>
 						<div class="courses_search_container">
-							<div class="contact_info">
-								<form action="modifyMember" method="post">
-									<div class="contact_info_location">
-										<div class="contact_info_location_title">아이디</div>
-										<ul class="location_list">
-											<li>member_001</li>
-										</ul>
-									</div>
-									<hr>
-									<div class="contact_info_location">
-										<div class="contact_info_location_title">비밀번호</div>
-										<ul class="location_list">
-											<li>pw_001</li>
-										</ul>
-									</div>
-									<hr>
-									<div class="contact_info_location">
-										<div class="contact_info_location_title">이름</div>
-										<ul class="location_list">
-											<li>홍01</li>
-										</ul>
-									</div>
-									<hr>
-									<div class="contact_info_location">
-										<div class="contact_info_location_title">생년월일</div>
-										<ul class="location_list">
-											<li>202-03-02</li>
-										</ul>
-									</div>
-									<hr>
-									<div class="contact_info_location">
-										<div class="contact_info_location_title">주소</div>
-										<ul class="location_list">
-											<li>전주시</li>
-											<li>서신동</li>
-										</ul>
-									</div>
-									<hr>
-									<div class="contact_info_location">
-										<div class="contact_info_location_title">번호</div>
-										<ul class="location_list">
-											<li>010-2222-2222</li>
-										</ul>
-									</div>
-									<hr>
-									<div class="contact_info_location">
-										<div class="contact_info_location_title">이메일</div>
-										<ul class="location_list">
-											<li>test@email.com</li>
-										</ul>
-									</div>
-									<hr>
-									<div class="contact_info_location">
-										<div class="contact_info_location_title">가입한 도서관</div>
-										<ul class="location_list">
-											<li>금암도서관</li>
-										</ul>
-									</div>
-									<div style="margin-left: 500px;">
-										<button type="submit" class="comment_button trans_200">수정하기</button>
-									</div>
-								</form>
+							<div class="contact_info" th:each="m : ${member}">
+								<div class="contact_info_location">
+									<div class="contact_info_location_title">아이디</div>
+									<ul class="location_list">
+										<li th:text="${m.memberId}"></li>
+									</ul>
+								</div>
+								<hr>
+								<div class="contact_info_location">
+									<div class="contact_info_location_title">비밀번호</div>
+									<ul class="location_list">
+										<li th:text="${m.memberPw}"></li>
+									</ul>
+								</div>
+								<hr>
+								<div class="contact_info_location">
+									<div class="contact_info_location_title">이름</div>
+									<ul class="location_list">
+										<li th:text="${m.memberName}"></li>
+									</ul>
+								</div>
+								<hr>
+								<div class="contact_info_location">
+									<div class="contact_info_location_title">생년월일</div>
+									<ul class="location_list">
+										<li th:text="${m.memberBirth}"></li>
+									</ul>
+								</div>
+								<hr>
+								<div class="contact_info_location">
+									<div class="contact_info_location_title">주소</div>
+									<ul class="location_list">
+										<li th:text="${m.memberAddress}"></li>
+									</ul>
+								</div>
+								<hr>
+								<div class="contact_info_location">
+									<div class="contact_info_location_title">번호</div>
+									<ul class="location_list">
+										<li th:text="${m.memberTel}"></li>
+									</ul>
+								</div>
+								<hr>
+								<div class="contact_info_location">
+									<div class="contact_info_location_title">이메일</div>
+									<ul class="location_list">
+										<li th:text="${m.memberEmail}"></li>
+									</ul>
+								</div>
+								<hr>
+								<div class="contact_info_location">
+									<div class="contact_info_location_title">가입한 도서관</div>
+									<ul class="location_list">
+										<li th:text="${m.libraryCode}"></li>
+									</ul>
+								</div>
+								<div style="margin-left: 500px;">
+									<a href="/modifyMember">
+										<button  type="button" class="comment_button trans_200">수정하기</button>
+									</a>
+								</div>
 							</div>
 						</div>
 					</div>
