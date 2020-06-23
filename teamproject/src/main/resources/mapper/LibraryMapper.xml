@@ -9,14 +9,11 @@
 		<result property="libraryTel" column="library_tel"/>
 		<result property="libraryPage" column="library_page"/>
 		<result property="libraryRegDate" column="library_reg_date"/>
+		<result property="officerId" column="officer_id"/>
 		<association property="region" javaType="region">
 			<result property="regionCode" column="region_code"/>
 			<result property="regionMajor" column="region_major"/>
 			<result property="regionMinor" column="region_minor"/>
-		</association>
-		<association property="officer" javaType="Officer">
-			<result property="officerId" column="officer_id"/>
-			<result property="officerPw" column="officer_pw"/>
 		</association>
 	</resultMap>
 	<select id="getLibraryList" resultSets="Library" resultMap="librarySelect">
