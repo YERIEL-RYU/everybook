@@ -2,6 +2,8 @@ package team1.project.controller;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,8 +20,29 @@ import team1.project.vo.Region;
 
 @Controller
 public class LibraryController {
+	
+	private final static Logger logger = LoggerFactory.getLogger(LibraryController.class);
+	
 	@Autowired private RegionService regionService;
 	@Autowired private LibraryService libraryService;
+	
+	@GetMapping(value="/getSelectLibrary")
+	@ResponseBody
+	public Library getSelectLibrary(@RequestParam("LibraryCode") String LibraryCode) {
+		System.out.println("==== 하나 도서관 select ====");
+		
+		return null;
+	}
+	
+	@PostMapping("/addLibrary")
+	public String addLibrary(Library library, Region region) {
+		System.out.println("==== 도서관 등록 ====");
+		library.setRegion(region);
+		System.out.println(library.toString());
+		int i = libraryService.addLibrary(library);
+		System.out.println("실행결과 : "+i);
+		return "redirect:/officeLibrary";
+	}
 	
 	@GetMapping(value="/getRegionMinorList")
 	@ResponseBody
@@ -87,10 +110,12 @@ public class LibraryController {
 	
 	@GetMapping("/officeLibrary")
 	public String getOfficeLibraryList(Model model) {
-		System.out.println("==== 도서관 리스트 ===");
+		logger.info("==== 도서관 리스트 ====");
 		List<Library> libraryList = libraryService.getLibraryList();
-		System.out.println(libraryList);
+		List<Region> regionMajorList = regionService.getRegionMajorList();
+		logger.info("리스트 출력-{}", libraryList);
 		model.addAttribute("libraryList", libraryList);
+		model.addAttribute("regionMajorList", regionMajorList);
 		return "library/officeLibrary";
 	}
 	
