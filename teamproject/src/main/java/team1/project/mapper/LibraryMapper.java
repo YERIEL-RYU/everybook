@@ -9,5 +9,7 @@ import team1.project.vo.Library;
 @Mapper
 public interface LibraryMapper {
 	
+	public int addLibrary(Library library);
+	
 	public List<Library> getLibraryList();
 }
