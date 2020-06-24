@@ -272,12 +272,60 @@
                       <td th:text="${O.category}"></td>
                       <td th:text="${O.publisher}"></td>
                       <td th:text="${O.book.bookSituation}"></td>
-                      <td><a href="#" class="fc-today-button btn btn-primary">#수정</a></td>
-                  	  <td><a href="#" class="fc-today-button btn btn-danger">#삭제</a></td>
-                    </tr>
-                    
-                  </tbody>
-                </table>
+                     <td>
+					                      	<a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-update" style="color: white">
+								            <i class="fas fa-pencil-alt"></i>수정</a>
+					                      </td>
+					                      <td class="">
+					                      	<a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-delete" style="color: white">
+								            <i class="fas fa-trash"></i>삭제</a>
+								          </td>
+					                  </tr>
+				                  </tbody>
+				                </table>
+				                <!-- modal -->
+				                <div class="modal fade" id="modal-delete">
+							        <div class="modal-dialog">
+							          <div class="modal-content bg-default">
+							            <div class="modal-header">
+							              <h4 class="modal-title">대여도서관리</h4>
+							              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							                <span aria-hidden="true">&times;</span></button>
+							            </div>
+							            <div class="modal-body">
+							              <p>삭제 하시겠습니까?</p>
+							            </div>
+							            <div class="modal-footer justify-content-between">
+							              <button type="button" class="btn" data-dismiss="modal">Close</button>
+							              <button type="button" class="btn">#삭제하기</button>
+							            </div>
+							          </div>
+							          <!-- /.modal-content -->
+							        </div>
+							        <!-- /.modal-dialog -->
+					      		</div>
+				                
+				                <div class="modal fade" id="modal-update">
+							        <div class="modal-dialog">
+							          <div class="modal-content bg-default">
+							            <div class="modal-header">
+							              <h4 class="modal-title">대여도서관리</h4>
+							              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							                <span aria-hidden="true">&times;</span></button>
+							            </div>
+							            <div class="modal-body">
+							              <p>수정 하시겠습니까?</p>
+							            </div>
+							            <div class="modal-footer justify-content-between">
+							              <button type="button" class="btn" data-dismiss="modal">Close</button>
+							              <button type="button" class="btn">#수정하기</button>
+							            </div>
+							          </div>
+							          <!-- /.modal-content -->
+							        </div>
+							        <!-- /.modal-dialog -->
+					      		</div>
+					      <!-- /.modal -->
               </div>
               <!-- /.card-body -->
             </div>

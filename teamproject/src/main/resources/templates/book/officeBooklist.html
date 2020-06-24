@@ -8,8 +8,8 @@
 </th:block>
 
 <th:block layout:fragment="customCss">
-  <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+<link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
 </th:block>
 
 <th:block layout:fragment="customContents">
@@ -24,243 +24,147 @@
 		<!-- /.content-header -->
 	 	<!-- Main content -->
 		<section class="content">
-			<div class="container-fluid">
-				<!-- Info boxes -->
-				<div class="row">
-					<div class="col-12 col-sm-6 col-md-3">
-					<div class="info-box">
-						<span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
-					
-						<div class="info-box-content">
-							<span class="info-box-text">대출중인 도서</span>
-						  	<span class="info-box-number">
-						    	10
-						    	<small>%</small>
-						  	</span>
-						</div>
-					  	<!-- /.info-box-content -->
-					</div>
-					<!-- /.info-box -->
-					</div>
-					<!-- /.col -->
-					<div class="col-12 col-sm-6 col-md-3">
-						<div class="info-box mb-3">
-							<span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
-							<div class="info-box-content">
-								<span class="info-box-text">반납예정 도서</span>
-								<span class="info-box-number">41,410</span>
-							</div>
-							<!-- /.info-box-content -->
-						</div>
-						<!-- /.info-box -->
-					</div>
-					<!-- /.col -->
-					 	<!-- fix for small devices only -->
-				 	<div class="clearfix hidden-md-up"></div>
-				
-					<div class="col-12 col-sm-6 col-md-3">
-						<div class="info-box mb-3">
-							<span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
-							
-							<div class="info-box-content">
-								<span class="info-box-text">연체중인 도서</span>
-								<span class="info-box-number">760</span>
-							</div>
-							<!-- /.info-box-content -->
-						</div>
-						<!-- /.info-box -->
-					</div>
-				 	<!-- /.col -->
-					<div class="col-12 col-sm-6 col-md-3">
-						<div class="info-box mb-3">
-							<span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
-							
-							<div class="info-box-content">
-								<span class="info-box-text">회원 수</span>
-								<span class="info-box-number">2,000</span>
-							</div>
-							<!-- /.info-box-content -->
-						</div>
-						<!-- /.info-box -->
-					</div>
-					<!-- /.col -->
-				</div>
-				<!-- /.row -->
-			</div><!--/. container-fluid -->				
+			
    <div class="row">
           <div class="col-12">
             <div class="card">
-              <div class="card-header">
-                <h3 class="card-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">소장도서 테이블</font></font></h3>
-
-                <div class="card-tools">
-                  <div class="input-group input-group-sm" style="width: 150px;">
-                    <input type="text" name="table_search" class="form-control float-right" placeholder="검색">
-
-                    <div class="input-group-append">
-                      <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body table-responsive p-0" style="height: 300px;">
-                <table class="table table-head-fixed text-nowrap">
-                  <thead>
-                    <tr>
-                      <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">도서이름</font></font></th>
-                      <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">저자</font></font></th>
-                      <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">카테고리</font></font></th>
-                      <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">상태</font></font></th>
-                      <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">도서출판사</font></font></th>
-                      <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">수정</font></font></th>
-                  	  <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">삭제</font></font></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">더 해빙</font></font></td>
-                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">이서윤</font></font></td>
-                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">인문학</font></font></td>
-                      <td><span class="tag tag-success"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">보유</font></font></span></td>
-                      <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">수오서재</font></font></td>
-                       <td><button type="button" class="btn btn-outline-info btn-flat"  data-toggle="modal" data-target=".bs-add-modal-lg">#수정</button></td>
-					  <td><button type="button" class="btn btn-outline-danger btn-flat"  data-toggle="modal" data-target=".bs-delete-sm">#삭제</button></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-          </div>
-        </div>
+               <div class="card-header">
+	                <h3 class="card-title">소장 도서 리스트</h3>
+	              </div>
+	              <!-- /.card-header -->
+	              <div class="card-body">
+	                <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">	 
+	                	<div class="row">
+	                		<div class="col-sm-12">
+				                <table id="example2" class="table table-bordered table-hover dataTable dtr-inline" role="grid" aria-describedby="example2_info" style="text-align: center">
+				                  <thead>
+					                  <tr role="row">
+						                  <th>청구기호</th>
+						                  <th>도서이름</th>
+						                  <th>ISBN</th>
+						                  <th>카테고리</th>
+						                  <th>저자</th>
+						                  <th>출판사</th>
+						                  <th>도서가격</th>
+						                  <th>도서상태</th>
+						                  <th>등록날짜</th>
+						                  <th>등록직원아이디</th>
+						                  <th>#수정</th>
+						                  <th>#삭제</th>
+						              </tr>					            	            
+				                  </thead>
+				                  <tbody>
+					                  <tr th:each="B : ${officeBookList}">
+				                    	  <td th:text="${B.bookLibraryCode}"></td>
+					                      <td th:text="${B.bookName}"></td>
+					                      <td th:text="${B.bookIsbn}"></td>
+					                      <td th:text="${B.category}"></td>
+					                      <td th:text="${B.writer}"></td>
+					                      <td th:text="${B.publisher}"></td>
+					                      <td th:text="${B.bookPrice}"></td>
+					                      <td th:text="${B.bookSituation}"></td>
+					                      <td th:text="${B.bookRegDate}"></td>
+					                      <td th:text="${B.officerId}"></td>
+					                      <td>
+					                      	<a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-update" style="color: white">
+								            <i class="fas fa-pencil-alt"></i>수정</a>
+					                      </td>
+					                      <td class="">
+					                      	<a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-delete" style="color: white">
+								            <i class="fas fa-trash"></i>삭제</a>
+								          </td>
+					                  </tr>
+				                  </tbody>
+				                </table>
+				                <!-- modal -->
+				                <div class="modal fade" id="modal-delete">
+							        <div class="modal-dialog">
+							          <div class="modal-content bg-default">
+							            <div class="modal-header">
+							              <h4 class="modal-title">신청도서관리</h4>
+							              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							                <span aria-hidden="true">&times;</span></button>
+							            </div>
+							            <div class="modal-body">
+							              <p>삭제 하시겠습니까?</p>
+							            </div>
+							            <div class="modal-footer justify-content-between">
+							              <button type="button" class="btn" data-dismiss="modal">Close</button>
+							              <button type="button" class="btn">#삭제하기</button>
+							            </div>
+							          </div>
+							          <!-- /.modal-content -->
+							        </div>
+							        <!-- /.modal-dialog -->
+					      		</div>
+				                
+				                <div class="modal fade" id="modal-update">
+							        <div class="modal-dialog">
+							          <div class="modal-content bg-default">
+							            <div class="modal-header">
+							              <h4 class="modal-title">신청도서관리</h4>
+							              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							                <span aria-hidden="true">&times;</span></button>
+							            </div>
+							            <div class="modal-body">
+							              <p>수정 하시겠습니까?</p>
+							            </div>
+							            <div class="modal-footer justify-content-between">
+							              <button type="button" class="btn" data-dismiss="modal">Close</button>
+							              <button type="button" class="btn">#수정하기</button>
+							            </div>
+							          </div>
+							          <!-- /.modal-content -->
+							        </div>
+							        <!-- /.modal-dialog -->
+					      		</div>
+					      <!-- /.modal -->
+	                		</div>                		
+	                	</div>
+	               	</div>
+	              </div>
+	              <!-- /.card-body -->
+	            </div>
+	            <!-- /.card -->	
+	          </div>
+	              <!-- /.card-body -->
+	        </div>
+	        	<!-- /.row -->
+  		</section>
+	</div>
   <!-- /.content-wrapper -->
-
-<!-- start 도서관 수정  modal -->
-		<div class="modal fade bs-add-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-			<div class="modal-dialog modal-lg">
-				<div class="modal-content">
-					
-					<!-- form start -->
-					<form role="form" action="#">
-						<div class="modal-header">
-							<h4 class="modal-title">소장도서 수정하기</h4>
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						</div>
-						<!-- start modal-body -->
-						<div class="modal-body">
-							<div class="form-group row">
-								<label for="inputEmail3" class="col-sm-4 col-form-label">ISBN코드</label>
-				          		<div class="col-sm-10">
-									<input type="text" class="form-control" placeholder="ISBN코드">
-				          		</div>
-				           	</div>
-							<div class="form-group row">
-								<div class="form-group row">
-								<label for="inputEmail3" class="col-sm-4 col-form-label">도서이름</label>
-				          		<div class="col-sm-10">
-									<input type="text" class="form-control" placeholder="도서이름">
-				          		</div>
-				           </div>
-							<div class="form-group row">
-								<label for="inputEmail3" class="col-sm-4 col-form-label">도서저자</label>
-				          		<div class="col-sm-10">
-									<input type="text" class="form-control" placeholder="도서저자">
-				          		</div>
-				           </div>
-							<div class="form-group row">
-								<label for="inputEmail3" class="col-sm-4 col-form-label">도서출판사</label>
-				          		<div class="col-sm-10">
-									<input type="text" class="form-control" placeholder="도서출판사">
-				          		</div>
-				           </div>
-							<div class="form-group row">
-								<label for="inputEmail3" class="col-sm-4 col-form-label">도서가격</label>
-				          		<div class="col-sm-10">
-									<input type="text" class="form-control" placeholder="도서가격">
-				          		</div>
-				           </div>
-							<div class="form-group row">
-								<label for="inputEmail3" class="col-sm-4 col-form-label">도서관</label>
-				          		<div class="col-sm-10">
-									<input type="text" class="form-control" placeholder="도서관 ">
-				          		</div>
-				           </div>
-							<div class="form-group row">
-								<label for="inputEmail3" class="col-sm-5 col-form-label">도서등록날짜</label>
-				          		<div class="col-sm-10">
-									<input type="text" class="form-control" placeholder="도서관 등록날짜">
-				          		</div>
-				           </div>
-						</div>
-						<!-- end modal-body -->
-						<div class="modal-footer">
-							<button type="button" class="btn btn-primary">소장도서 수정</button>
-						</div>
-					</form>
-					<!-- form end -->
-				</div>	
-			</div>
-		</div>
-</section>
-
-
-	<!-- start 도서관 삭제  modal -->
-			<div class="modal fade bs-delete-sm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-				<div class="modal-dialog modal-sm">
-					<div class="modal-content">
-						
-						<!-- form start -->
-						<form role="form" action="#">
-							<div class="modal-header">
-								<h4 class="modal-title">도서관 삭제하기</h4>
-								<button type="button" class="close" data-dismiss="modal" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
-							</div>
-							<div class="modal-body">
-					            <div class="form-group">
-									<label>ISBN 코드</label>
-					         		<div>
-										<input type="text" class="form-control" value="region_001" readonly="readonly">
-					         		</div>
-					           	</div>
-								<div class="form-group">
-									<p>해당 도서를 삭제 하시겠습니까?</p>
-									<p><small>삭제를 원하시면 비밀 번호를 입력하세요.</small></p>	
-					            </div>
-								<div class="form-group">
-									<label>비밀번호 확인</label>
-					          		<div>
-										<input type="password" class="form-control" placeholder="비밀번호를 입력하세요">
-					          		</div>
-					           </div>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-primary">소장도서 삭제</button>
-							</div>
-						</form>
-						<!-- form end -->
-					</div>	
-				</div>
-			</div>
-			<!--  end 도서관 삭제 modal -->
-		</div>
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
-</div>
-<!-- ./wrapper -->
-
 </th:block>
+</div>
+<!-- ./content-wrapper -->
 
-
-
-
-
-
-</body>
+<th:block layout:fragment="customFooterScript">
+<!-- jQuery -->
+<script src="../../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- DataTables -->
+<script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script>
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true,
+      "autoWidth": false,
+    });
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+</script>
+</th:block>
 </html>
+	
 	
