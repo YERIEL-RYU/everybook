@@ -251,6 +251,8 @@
                 <table class="table table-head-fixed text-nowrap" style="text-align: center">
                   <thead>
                     <tr>
+                      <th>반납코드</th>
+                      <th>반납회원</th>
                       <th>반납날짜</th>
                       <th>도서이름</th>
                       <th>청구기호</th>
@@ -258,12 +260,14 @@
                       <th>카테고리</th>
                       <th>도서출판사</th>
                       <th>상태</th>
-                      <th>수정</th>
+                      <th>미반납처리</th>
                   	  <th>삭제</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr th:each="R : ${officeReturnList}">
+                      <td th:text="${R.returnCode}"></td>
+                      <td th:text="${R.member}"></td>
                       <td th:text="${R.returnDate}"></td>
                       <td th:text="${R.book.bookName}"></td>
                       <td th:text="${R.book.bookLibraryCode}"></td>
@@ -273,7 +277,7 @@
                       <td th:text="${R.book.bookSituation}"></td>
                       <td>
 					                      	<a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-update" style="color: white">
-								            <i class="fas fa-pencil-alt"></i>수정</a>
+								            <i class="fas fa-pencil-alt"></i>미반납처리</a>
 					                      </td>
 					                      <td class="">
 					                      	<a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-delete" style="color: white">
@@ -282,8 +286,29 @@
 					                  </tr>
 				                  </tbody>
 				                </table>
-				                <!-- modal -->
-				                <div class="modal fade" id="modal-delete">
+				                <!-- modal --> 
+				                <div class="modal fade" id="modal-update">
+							        <div class="modal-dialog">
+							          <div class="modal-content bg-default">
+							            <div class="modal-header">
+							              <h4 class="modal-title">반납도서관리</h4>
+							              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							                <span aria-hidden="true">&times;</span></button>
+							            </div>
+							            <div class="modal-body">
+							              <p>해당 도서가 '대여 중' 상태로 바뀌어 포인트 1점 감점 됩니다.</p>
+							              <p>정말 하시겠습니까?</p>
+							            </div>
+							            <div class="modal-footer justify-content-between">
+							              <button type="button" class="btn" data-dismiss="modal">Close</button>
+							              <button type="button" class="btn">#OK</button>
+							            </div>
+							          </div>
+							          <!-- /.modal-content -->
+							        </div>
+							        <!-- /.modal-dialog -->
+					      		</div>
+					      		<div class="modal fade" id="modal-delete">
 							        <div class="modal-dialog">
 							          <div class="modal-content bg-default">
 							            <div class="modal-header">
@@ -297,27 +322,6 @@
 							            <div class="modal-footer justify-content-between">
 							              <button type="button" class="btn" data-dismiss="modal">Close</button>
 							              <button type="button" class="btn">#삭제하기</button>
-							            </div>
-							          </div>
-							          <!-- /.modal-content -->
-							        </div>
-							        <!-- /.modal-dialog -->
-					      		</div>
-				                
-				                <div class="modal fade" id="modal-update">
-							        <div class="modal-dialog">
-							          <div class="modal-content bg-default">
-							            <div class="modal-header">
-							              <h4 class="modal-title">반납도서관리</h4>
-							              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							                <span aria-hidden="true">&times;</span></button>
-							            </div>
-							            <div class="modal-body">
-							              <p>수정 하시겠습니까?</p>
-							            </div>
-							            <div class="modal-footer justify-content-between">
-							              <button type="button" class="btn" data-dismiss="modal">Close</button>
-							              <button type="button" class="btn">#수정하기</button>
 							            </div>
 							          </div>
 							          <!-- /.modal-content -->
