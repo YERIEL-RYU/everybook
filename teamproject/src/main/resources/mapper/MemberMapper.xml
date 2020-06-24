@@ -20,6 +20,25 @@
 	</resultMap>
 	
 	<!-- 전체회원리스트 -->
+	<select id="allListMember" parameterType="Member" resultMap="memberSelect">
+		SELECT 
+			member_id
+			, member_name
+			,(
+				select
+					level_name
+				from
+					tb_level
+				where
+					level_code = #{levelCode}
+			) as level_code
+			, rent_count
+			, reserve_count
+			, review_count
+			, warning_count
+		FROM 
+			tb_member
+	</select>
 	
 	<!-- 회원수정 -->
 	<update id="ModifyMember" parameterType="Member">
@@ -60,7 +79,7 @@
 			member_id = #{memberId}
 	</select>
 	
-	 <!-- 한명회원조회 -->
+	 <!-- 한명회원정보조회 -->
 	 <select id="selectgetMember" parameterType="String" resultMap="memberSelect">
 	 	SELECT 
 	 		member_id

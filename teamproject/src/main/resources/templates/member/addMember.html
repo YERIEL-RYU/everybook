@@ -18,6 +18,10 @@
 		{
 		    margin-bottom: 20px;
 		}
+		.contact_form{
+			 padding-left: 200px;
+    		padding-right: 200px;
+		}
 		</style>
 	</th:block>
 	
@@ -60,7 +64,6 @@
 				<div class="contact_info_container">
 					<div class="container">
 						<div class="row">
-							<!-- Contact Form -->
 							<div class="col-lg-12">
 								<div class="contact_form">
 									<form action="addMember" class="comment_form" method="post">
@@ -84,10 +87,15 @@
 											<div class="form_title">주소</div>
 											<div class="row">
 												<div class="col-md-6 input_col">
-													<input type="text" name = "memberAddress" class="comment_input" required="required" placeholder="도">
+													<select name = "libraryCode" id="regionMagjor" class="courses_search_select courses_search_input">
+														<option>--- 도 ---</option>
+														<option th:each=" r: ${regionMagjor}" th:value="${r.regionMajor}">[[${r.regionMajor}]]</option>
+													</select>
 												</div>
 												<div class="col-md-6 input_col">
-													<input type="text" name = "memberAddress" class="comment_input" required="required" placeholder="시">
+													<select name = "libraryCode" id="regionMinor" class="courses_search_select courses_search_input">
+														<option>--- 시 ---</option>
+													</select>
 												</div>
 											</div>
 											<hr>
@@ -108,7 +116,7 @@
 												<option value="library_01">금암 도서관</option>
 											</select>
 										</div>
-										<div style="margin-left: 990px;">
+										<div style="float: right;">
 											<button type="submit" class="comment_button trans_200">회원가입</button>
 										</div>
 									</form>
@@ -131,5 +139,31 @@
 		<script src="plugins/colorbox/jquery.colorbox-min.js"></script>
 		<script src="js/courses.js"></script>
 		<script src="js/course.js"></script>
+		<script>
+			$(function(){
+				$('#regionMagjor').change(function(){
+					var request = $.ajax({
+			  			  url: "/selectRegionMinor",
+			  			  method: "get",
+			  			  data: { regionMagjor : $('#regionMagjor').val() },
+			  			  dataType: "json"
+			  			});
+			  			 
+			  			request.done(function( data ) {
+							console.log(data);
+							var html = '<option value="">---시---</option>';
+							for(var i=0; i<data.length; i++){
+								html += '<option value="'+data[i].regionMinor+'">'+data[i].regionMinor+'</option>';
+							}
+							$('#regionMinor').html(html);
+							$('#regionMinor').selectpicker('refresh');
+			  			});
+			  			 
+			  			request.fail(function( jqXHR, textStatus ) {
+			  			  alert( "Request failed: " + textStatus );
+			  			});
+				});
+			})
+		</script>
 	</th:block>
 </html>

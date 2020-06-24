@@ -1,5 +1,8 @@
 package team1.project.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,15 +10,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import team1.project.service.MemberService;
+import team1.project.service.RegionService;
 import team1.project.vo.Member;
+import team1.project.vo.Region;
 
 @Controller
 public class MemberController {
 
 	@Autowired private MemberService memberService;
-	
+	@Autowired private RegionService regionService;
 	
 	@GetMapping("/officeModifyMember")
 	public String officeModifyMember() {
@@ -64,7 +71,10 @@ public class MemberController {
 	}
 	
 	@GetMapping("/officeMemberList")
-	public String officeMemberList() {
+	public String officeMemberList(Model model) {
+		List<Member> memberList = new ArrayList<Member>();
+		memberService.allListMember();
+		
 		return "member/officeMemberList";
 	}
 	
@@ -74,9 +84,20 @@ public class MemberController {
 		memberService.addMember(member);
 		return "index";
 	}
+
+	/*회원등록화면-지역소분류(시)출력위한 ajax*/
+	@GetMapping(value="/selectRegionMinor")
+	@ResponseBody
+	public List<Region> selectRegionMinor(@RequestParam("regionMagjor") String regionMagjor) {
+		System.out.println("선택한 지역대분류(도) >>>"+regionMagjor);
+		return regionService.getRegionMinorList(regionMagjor);
+	}
 	
+	/*회원등록화면*/
 	@GetMapping("/addMember")
-	public String memberAdd() {
+	public String memberAdd(Model model) {
+		List<Region> regionMagjor = regionService.getRegionMajorList();
+		model.addAttribute("regionMagjor", regionMagjor);
 		return "member/addMember";
 	}
 }
