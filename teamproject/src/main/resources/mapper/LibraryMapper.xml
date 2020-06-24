@@ -9,16 +9,34 @@
 		<result property="libraryTel" column="library_tel"/>
 		<result property="libraryPage" column="library_page"/>
 		<result property="libraryRegDate" column="library_reg_date"/>
+		<result property="officerId" column="officer_id"/>
 		<association property="region" javaType="region">
 			<result property="regionCode" column="region_code"/>
 			<result property="regionMajor" column="region_major"/>
 			<result property="regionMinor" column="region_minor"/>
 		</association>
-		<association property="officer" javaType="Officer">
-			<result property="officerId" column="officer_id"/>
-			<result property="officerPw" column="officer_pw"/>
-		</association>
 	</resultMap>
+	<!-- 도서관 입력 insert -->
+	<insert id="addLibrary" parameterType="Library">
+		<selectKey order="BEFORE" keyProperty="libraryCode" resultType="String">
+		<![CDATA[
+			SELECT 
+   				(case 
+   				when COUNT(*) = 0 then 'library_code_001'
+ 				when COUNT(*) < 10 then CONCAT('library_code_00',(MAX(SUBSTR(library_code,9))+1))
+				when COUNT(*) < 100 then CONCAT('library_code_0',(MAX(SUBSTR(library_code,9))+1))
+   				when COUNT(*) < 1000 then CONCAT('library_code_',(MAX(SUBSTR(library_code,9))+1))
+   				ELSE CONCAT('library_code_',(max(SUBSTRING(library_code,9))+1))
+   				END) AS library_code
+			FROM
+				tb_library
+		]]>	
+		</selectKey>
+		INSERT INTO tb_library
+			(library_code, library_name, library_setup, library_open, library_tel, library_page, library_reg_date, officer_id, region_code)
+		VALUES (#{libraryCode}, #{libraryName}, #{librarySetup}, #{libraryOpen}, #{libraryTel}, #{libraryPage}, NOW(), #{officerId}, #{region.regionCode})
+	</insert>
+	<!-- 도서관 리스트 출력 select -->
 	<select id="getLibraryList" resultSets="Library" resultMap="librarySelect">
 		SELECT 	*
 		FROM tb_library AS l

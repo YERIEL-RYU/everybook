@@ -6,12 +6,12 @@
 <mapper namespace="team1.project.mapper.RentMapper">
 	
 	<resultMap type="Rent" id="rentResultMap">
+	
 	<result property="rentCode" column="rent_code"/>
 	<result property="bookCode" column="book_code"/>
 	<result property="rentDate" column="rent_date"/>
 	<result property="rentRegDate" column="rent_reg_date"/>
 	<result property="rentReturnDate" column="rent_return_date"/>
-	<result property="officerId" column="officer_id"/>
 	<result property="writer" column="writer_name"/>
 	<result property="category" column="category_name"/>
 	<result property="publisher" column="publisher_name"/>

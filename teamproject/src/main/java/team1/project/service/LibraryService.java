@@ -15,6 +15,10 @@ public class LibraryService {
 	
 	@Autowired private LibraryMapper librarymapper;
 	
+	public int addLibrary(Library library) {
+		return librarymapper.addLibrary(library);
+	}
+	
 	public List<Library> getLibraryList(){
 		return librarymapper.getLibraryList();
 	}

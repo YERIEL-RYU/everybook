@@ -12,7 +12,7 @@ public class Library {
 	private String libraryTel;
 	private String libraryPage;
 	private Date libraryRegDate;
-	private Officer officer;
+	private String officerId;
 	public String getLibraryCode() {
 		return libraryCode;
 	}
@@ -61,17 +61,17 @@ public class Library {
 	public void setLibraryRegDate(Date libraryRegDate) {
 		this.libraryRegDate = libraryRegDate;
 	}
-	public Officer getOfficerId() {
-		return officer;
+	public String getOfficerId() {
+		return officerId;
 	}
-	public void setOfficer(Officer officer) {
-		this.officer = officer;
+	public void setOfficerId(String officerId) {
+		this.officerId = officerId;
 	}
 	@Override
 	public String toString() {
 		return "Library [libraryCode=" + libraryCode + ", region=" + region + ", libraryName=" + libraryName
 				+ ", librarySetup=" + librarySetup + ", libraryOpen=" + libraryOpen + ", libraryTel=" + libraryTel
-				+ ", libraryPage=" + libraryPage + ", libraryRegDate=" + libraryRegDate + ", officer=" + officer
+				+ ", libraryPage=" + libraryPage + ", libraryRegDate=" + libraryRegDate + ", officerId=" + officerId
 				+ "]";
 	}
 
