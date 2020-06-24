@@ -26,7 +26,8 @@
 	  <select id="officeReturnList" resultMap="returnResultMap">
 	  	SELECT
 			t.return_date
-			,t.return_code
+			, t.return_code
+			, t.member_id
 			, b.book_name
 			, b.book_library_code
 			, w.writer_name
@@ -53,7 +54,7 @@
 		AND
 			b.publisher_code = p.publisher_code
 		AND
-			b.book_situation = '보유중'
+			b.book_situation = '보유 중'
 		ORDER BY
 			t.return_reg_date DESC
 	  </select>
