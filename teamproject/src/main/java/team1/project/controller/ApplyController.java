@@ -23,11 +23,7 @@ public class ApplyController {
 	
 	//신청도서 등록!
 	@PostMapping("/addBookApply")
-	public String addBookApply(Apply apply, @RequestParam(name = "apDate", required = false) String apDate) throws ParseException {
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd");
-		Date date = format.parse(apDate); //String타입을 Date타입으로 변환
-		apply.setApplyPublishDate(date); // vo에 셋팅
-		System.out.println(apply);
+	public String addBookApply(Apply apply) {
 		
 		 applyService.addBookApply(apply); 
 		

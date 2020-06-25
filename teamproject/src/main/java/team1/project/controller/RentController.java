@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import team1.project.service.RentService;
 import team1.project.vo.Member;
@@ -16,6 +17,12 @@ import team1.project.vo.Rent;
 @Controller
 public class RentController {
 	@Autowired private RentService rentService;
+	
+	@GetMapping("/officeRentDelete")
+		public String officeRentDelete(@RequestParam(value = "rentCode", required=false) String rentCode) {
+		System.out.println(rentCode + " <--rentCode");
+		return "redirect:/officeBookRent";
+	}
 	
 	@GetMapping("/myRent")
 		public String myRentHistoryList(Model model, HttpSession session) {

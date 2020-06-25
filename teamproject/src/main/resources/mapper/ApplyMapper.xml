@@ -79,6 +79,7 @@
 			, member_id
 			, book_name
 			, book_ISBN
+			, apply_price
 			, apply_publish_date
 			, apply_publisher
 			, apply_writer
@@ -89,11 +90,13 @@
 			, #{memberId}
 			, #{bookName}
 			, #{bookIsbn}
+			, #{applyPrice}
 			, #{applyPublishDate}
 			, #{applyPublisher}
 			, #{applyWriter}
 			, NOW()
 			)	
 	</insert> 
+	
  
  </mapper>

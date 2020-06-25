@@ -14,6 +14,12 @@ import team1.project.vo.Rent;
 public class RentService {
 	@Autowired private RentMapper rentMapper;
 	
+	//대여관리 대여리스트 -삭제
+	public int officeRentDelete() {
+		int result = rentMapper.officeRentDelete();
+		return result;
+	}
+	
 	//대여관리 대여리스트
 	public List<Rent> officeRentList(){
 		List<Rent> list2 = rentMapper.officeRentList();

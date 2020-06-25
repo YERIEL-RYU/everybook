@@ -9,7 +9,10 @@ import team1.project.vo.Rent;
 @Mapper
 public interface RentMapper {
 
-	//대여관리 대여리스트
+	//대여관리 - 대여리스트 삭제
+	public int officeRentDelete();
+	
+	//대여관리 - 대여리스트
 	public List<Rent> officeRentList();
 	
 	//나의 대여 이력

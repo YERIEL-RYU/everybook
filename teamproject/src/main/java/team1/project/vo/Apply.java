@@ -11,7 +11,7 @@ public class Apply {
 	private String bookIsbn;
 	private String applyPrice;
 	private String applySituation;
-	private Date applyPublishDate;
+	private String applyPublishDate;
 	private String applyPublisher;
 	private String applyWriter;
 	private Date applyRegDate;
@@ -57,10 +57,10 @@ public class Apply {
 	public void setApplySituation(String applySituation) {
 		this.applySituation = applySituation;
 	}
-	public Date getApplyPublishDate() {
+	public String getApplyPublishDate() {
 		return applyPublishDate;
 	}
-	public void setApplyPublishDate(Date applyPublishDate) {
+	public void setApplyPublishDate(String applyPublishDate) {
 		this.applyPublishDate = applyPublishDate;
 	}
 	public String getApplyPublisher() {
@@ -89,5 +89,5 @@ public class Apply {
 				+ ", applyWriter=" + applyWriter + ", applyRegDate=" + applyRegDate + "]";
 	}
 	
-
+	
 }

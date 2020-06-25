@@ -32,6 +32,10 @@
 		</association>
 	</resultMap>
 	
+	<delete id="officeRentDelete" parameterType="String">
+		DELETE FROM tb_rent WHERE rent_code=#{rentCode}
+	</delete>
+	
 	<select id="officeRentList" resultMap="rentResultMap" parameterType="String">
 		SELECT
 			r.rent_code

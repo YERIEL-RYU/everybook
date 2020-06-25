@@ -46,7 +46,7 @@
 		AND
 			b.library_code = l.library_code
 		AND
-			b.book_situation = '대여중'
+			b.book_situation = '대여 중'
 		AND
 			member_id = #{SID}  		
 	</select>  
