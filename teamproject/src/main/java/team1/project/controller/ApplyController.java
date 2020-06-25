@@ -29,7 +29,7 @@ public class ApplyController {
 		apply.setApplyPublishDate(date); // vo에 셋팅
 		System.out.println(apply);
 		
-		applyService.addBookApply(apply);
+		 applyService.addBookApply(apply); 
 		
 		return "redirect:/myApply";
 	}
