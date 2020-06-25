@@ -17,17 +17,26 @@
 				<div class="input-group input-group-sm">
 					<input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
 					<div class="input-group-append">
-					<button class="btn btn-navbar" type="submit">!
-						<i class="fas fa-search"></i>
-					</button>
+						<button class="btn btn-navbar" type="submit">!
+							<i class="fas fa-search"></i>
+						</button>
 					</div>
 				</div>
 			</form>
-			<ul class="navbar-nav" style="margin-left: 70%">
-				<li class="nav-item d-none d-sm-inline-block">
-					<a href="office" class="nav-link">#Logout(김)</a>
-				</li>
-			</ul>
+			<th:block th:if="${session.SLEVEL} == '1' or ${session.SLEVEL} == '2' or ${session.SLEVEL} == '3'">
+				<ul class="navbar-nav" style="margin-left: 70%">
+					<li class="nav-item d-none d-sm-inline-block">
+						<a href="logout" class="nav-link text-danger">Logout(김)</a>
+					</li>
+				</ul>
+			</th:block>
+			<th:block>
+				<ul class="navbar-nav" style="margin-left: 70%">
+					<li class="nav-item d-none d-sm-inline-block">
+						<a href="/" class="nav-link text-info">Login(김)</a>
+					</li>
+				</ul>
+			</th:block>
 		<!-- end header-->
-		</nav>
+	</nav>
 </html>

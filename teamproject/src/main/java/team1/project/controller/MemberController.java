@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import team1.project.service.MemberService;
 import team1.project.service.RegionService;
+import team1.project.vo.Library;
 import team1.project.vo.Member;
 import team1.project.vo.Region;
 
@@ -78,6 +79,7 @@ public class MemberController {
 		return "member/officeMemberList";
 	}
 	
+	/*회원등록처리*/
 	@PostMapping("/addMember")
 	public String addMember(Member member) {
 		System.out.println("addMember"+ member.toString());
@@ -85,6 +87,24 @@ public class MemberController {
 		return "index";
 	}
 
+	/*회원등록화면-입력된 지역으로 지역도서관 화면출력 ajax*/
+	@GetMapping(value="/selectLibraryCode")
+	@ResponseBody
+	public List<Library> selectLibraryCode(@RequestParam("region") List<String> region){
+		//지역코드 출력
+		System.out.println(region);
+		String rMagjor = region.get(0);
+		String rMinor = region.get(1);
+		System.out.println(rMagjor);
+		System.out.println(rMinor);
+		
+		String regionCode = memberService.selectRegionCode(rMagjor, rMinor);
+		System.out.println(regionCode);
+		
+		//지역도서관 출력
+		return memberService.selectLibraryCode(regionCode);
+	}
+	
 	/*회원등록화면-지역소분류(시)출력위한 ajax*/
 	@GetMapping(value="/selectRegionMinor")
 	@ResponseBody

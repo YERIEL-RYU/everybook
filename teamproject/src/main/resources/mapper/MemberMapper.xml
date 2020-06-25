@@ -2,6 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="team1.project.mapper.MemberMapper">
 
+	<resultMap type="Library" id="librarySelect">
+		<result property="libraryCode" column="library_code"/>
+		<result property="libraryName" column="library_name"/>
+	</resultMap>
+
 	<resultMap type="Member" id="memberSelect">
 		<result property="memberId" column="member_id"/>
 		<result property="memberPw" column="member_pw"/>
@@ -18,6 +23,29 @@
 		<result property="warningCount" column="warning_count"/>
 		<result property="memberRegDate" column="member_reg_date"/>
 	</resultMap>
+	
+	<!-- 지역코드로 해당 지역 도서관 출력 -->
+	<select id="selectLibraryCode" parameterType="String" resultMap="librarySelect">
+		SELECT
+			library_code
+			,library_name 
+		FROM
+			tb_library
+		WHERE
+			region_code = #{regionCode}
+	</select>
+	
+	<!-- 등록화면에서 입력한 지역값으로 지역코드 출력 -->
+	<select id="selectRegionCode" parameterType="String" resultType="String">
+		SELECT
+			region_code
+		FROM
+			tb_region
+		WHERE 
+			region_major = #{rMagjor}
+		AND
+			region_minor = #{rMinor}
+	</select>
 	
 	<!-- 전체회원리스트 -->
 	<select id="allListMember" parameterType="Member" resultMap="memberSelect">

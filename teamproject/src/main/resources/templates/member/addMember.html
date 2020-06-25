@@ -73,51 +73,50 @@
 										</div>
 										<div class="input_from">
 											<div class="form_title">비밀번호</div>
-											<input type="password" name = "memberPw" class="comment_input" required="required">
+											<input type="password" name = "memberPw" class="comment_input">
 										</div>
 										<div class="input_from">
 											<div class="form_title">이름</div>
-											<input type="text" name = "memberName" class="comment_input" required="required">
+											<input type="text" name = "memberName" class="comment_input">
 										</div>
 										<div class="input_from">
 											<div class="form_title">생년월일</div>
-											<input type="date" name = "memberBirth" class="comment_input" required="required">
+											<input type="date" name = "memberBirth" class="comment_input">
 										</div>
 										<div class="input_from">
 											<div class="form_title">주소</div>
 											<div class="row">
 												<div class="col-md-6 input_col">
-													<select name = "libraryCode" id="regionMagjor" class="courses_search_select courses_search_input">
-														<option>--- 도 ---</option>
+													<select name = "memberAddress" id="regionMagjor" class="courses_search_select courses_search_input" data-checked="N">
+														<option>도</option>
 														<option th:each=" r: ${regionMagjor}" th:value="${r.regionMajor}">[[${r.regionMajor}]]</option>
 													</select>
 												</div>
 												<div class="col-md-6 input_col">
-													<select name = "libraryCode" id="regionMinor" class="courses_search_select courses_search_input">
-														<option>--- 시 ---</option>
+													<select name = "memberAddress" id="regionMinor" class="courses_search_select courses_search_input" data-checked="N">
+														<option>시</option>
 													</select>
 												</div>
 											</div>
 											<hr>
-											<input type="text" name = "memberAddress" class="comment_input" required="required" placeholder="상세주소">
+											<input type="text" name = "memberAddress" class="comment_input" placeholder="상세주소">
 										</div>
 										<div class="input_from">
 											<div class="form_title">휴대폰번호</div>
-											<input type="text" name = "memberTel" class="comment_input" required="required">
+											<input type="text" name = "memberTel" class="comment_input" >
 										</div>
 										<div class="input_from">
 											<div class="form_title">이메일</div>
-											<input type="text" name = "memberEmail" class="comment_input" required="required">
+											<input type="text" name = "memberEmail" class="comment_input" >
 										</div>
 										<div class="input_from">
 											<div class="form_title">도서관</div>
-											<select name = "libraryCode" id="courses_search_select" class="courses_search_select courses_search_input">
+											<select name = "libraryCode" id="libraryName" class="courses_search_select courses_search_input" data-checked="N">
 												<option>주변 도서관</option>
-												<option value="library_01">금암 도서관</option>
 											</select>
 										</div>
 										<div style="float: right;">
-											<button type="submit" class="comment_button trans_200">회원가입</button>
+											<button type="submit" class="comment_button">회원가입</button>
 										</div>
 									</form>
 								</div>
@@ -141,28 +140,89 @@
 		<script src="js/course.js"></script>
 		<script>
 			$(function(){
+				
+		  		/* select박스 유효성체크 */
+		  		$('.comment_button').click(function(){
+		  			var rMagjor = $('#regionMagjor').attr('data-checked');
+		  			var rMagjor = $('#regionMinor').attr('data-checked');
+		  			var lName = $('#libraryName').attr('data-checked');
+		  			if('N' == rMagjor){
+		  				alert("지역(도)을 선택해주세요");
+		  				$('#regionMagjor').focus();
+		  				attr('Y');
+		  				return false;
+		  			};
+		  			if('N' == rMagjor){
+		  				alert("지역(시)을 선택해주세요");
+		  				$('#regionMagjor').focus();
+		  				return false;
+		  			};
+		  			if('N' == lName){
+		  				alert("도서관을 선택해주세요");
+		  				$('#regionMagjor').focus();
+		  				return false;
+		  			};
+		  			
+		  			sumbit();
+		  			
+		  		});
+		  		
+		  		
+				/* 지역소분류(시) 화면 출력 */
 				$('#regionMagjor').change(function(){
+					
 					var request = $.ajax({
-			  			  url: "/selectRegionMinor",
-			  			  method: "get",
-			  			  data: { regionMagjor : $('#regionMagjor').val() },
-			  			  dataType: "json"
-			  			});
-			  			 
-			  			request.done(function( data ) {
-							console.log(data);
-							var html = '<option value="">---시---</option>';
-							for(var i=0; i<data.length; i++){
-								html += '<option value="'+data[i].regionMinor+'">'+data[i].regionMinor+'</option>';
-							}
-							$('#regionMinor').html(html);
-							$('#regionMinor').selectpicker('refresh');
-			  			});
-			  			 
-			  			request.fail(function( jqXHR, textStatus ) {
-			  			  alert( "Request failed: " + textStatus );
-			  			});
+									  url: "/selectRegionMinor",
+									  method: "get",
+									  data: { regionMagjor : $('#regionMagjor').val() },
+									  dataType: "json"
+								});
+				 			 
+					request.done(function( data ) {
+						console.log(data);
+						var html = '<option value="">시</option>';
+						for(var i=0; i<data.length; i++){
+							html += '<option value="'+data[i].regionMinor+'">'+data[i].regionMinor+'</option>';
+						}
+						$('#regionMinor').html(html);
+					});
+					 
+					request.fail(function( jqXHR, textStatus ) {
+						alert( "Request failed: " + textStatus );
+					});
+				
 				});
+
+		  		/* 입력된 지역으로 지역도서관 화면출력 */	
+				$('#regionMinor').change(function(){
+					
+			  		var region = [ $('#regionMagjor :selected').val(), $('#regionMinor :selected').val()];	
+			  		console.log(region);
+			  		
+			  		var libraryCode =  $.ajax({
+											url: "/selectLibraryCode",
+											method: "get",
+											data: { region : region },
+											traditional : true,
+											dataType: "json"
+							  			});	
+				  		
+			  		libraryCode.done(function( data ) {
+				  		console.log(data);
+				  		var libraryName = '<option value="">주변 도서관</option>';
+				  		for(var i=0; i<data.length; i++){
+				  			libraryName += '<option value="'+data[i].libraryCode+'">'+data[i].libraryName+'</option>';
+						}
+				  		$('#libraryName').html(libraryName);
+			  		});
+				  			 
+			  		libraryCode.fail(function( jqXHR, textStatus ) {
+		  			  alert( "Request failed: " + textStatus );
+	  				});
+			  		
+				});
+		  		
+		  		
 			})
 		</script>
 	</th:block>

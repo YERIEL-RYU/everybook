@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import team1.project.mapper.MemberMapper;
+import team1.project.vo.Library;
 import team1.project.vo.Member;
 
 @Transactional
@@ -15,6 +16,14 @@ public class MemberService {
 
 	@Autowired private MemberMapper memberMapper;
 	
+	
+	public List<Library> selectLibraryCode(String regionCode){
+		return memberMapper.selectLibraryCode(regionCode);
+	}
+	
+	public String selectRegionCode(String rMagjor, String rMinor) {
+		return memberMapper.selectRegionCode(rMagjor, rMinor);
+	}
 	
 	public List<Member> allListMember(){
 		return memberMapper.allListMember();
