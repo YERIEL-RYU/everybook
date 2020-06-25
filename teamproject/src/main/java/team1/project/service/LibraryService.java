@@ -15,6 +15,22 @@ public class LibraryService {
 	
 	@Autowired private LibraryMapper librarymapper;
 	
+	public List<Library> searchLibrary(String sk, String sv){
+		return librarymapper.searchLibrary(sk, sv);
+	}
+	
+	public int deleteLibrary(Library library) {
+		return librarymapper.deleteLibrary(library);
+	}
+	
+	public int modifyLibrary(Library library) {
+		return librarymapper.modifyLibrary(library);
+	}
+	
+	public Library getSelectLibrary(String libraryCode) {
+		return librarymapper.getSelectLibrary(libraryCode);
+	}
+	
 	public int addLibrary(Library library) {
 		return librarymapper.addLibrary(library);
 	}
