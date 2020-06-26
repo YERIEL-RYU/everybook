@@ -1,6 +1,7 @@
 package team1.project.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,31 +27,83 @@ public class LibraryController {
 	@Autowired private RegionService regionService;
 	@Autowired private LibraryService libraryService;
 	
+	@GetMapping("/getLimitLibrarySearch")
+	public String getLimitLibrarySearch(Model model, @RequestParam(value="sk") String sk, @RequestParam(value="sv") String sv) {
+		logger.info("==== 도서관 검색 ===");
+		Map<String, Object> returnMap = libraryService.getLimitLibrarySearch(sk, sv);
+		model.addAttribute("list", returnMap.get("list"));
+    	model.addAttribute("currentPage",returnMap.get("currentPage"));
+    	model.addAttribute("lastPage",returnMap.get("lastPage"));
+    	model.addAttribute("startPageNum",returnMap.get("startPageNum"));
+    	model.addAttribute("lastPageNum", returnMap.get("lastPageNum"));
+		return "information/libraryList";
+	}
+	
+	@GetMapping("/libraryList")
+	public String getLibraryList(Model model,@RequestParam(value="currentPage", 
+			  									required=false, defaultValue="1") int currentPage) {
+		Map<String, Object> returnMap = libraryService.getLimitLibraryList(currentPage);
+		model.addAttribute("list", returnMap.get("list"));
+    	model.addAttribute("currentPage",returnMap.get("currentPage"));
+    	model.addAttribute("lastPage",returnMap.get("lastPage"));
+    	model.addAttribute("startPageNum",returnMap.get("startPageNum"));
+    	model.addAttribute("lastPageNum", returnMap.get("lastPageNum"));
+		return "information/libraryList";
+	}	
+	
+	@GetMapping("/searchLibrary")
+	public String searchLibrary(Model model, @RequestParam("sk") String sk, @RequestParam("sv") String sv) {
+		logger.info("==== 도서관 검색 ====");
+		List<Library> libraryList = libraryService.searchLibrary(sk, sv);
+		model.addAttribute("libraryList", libraryList);
+		return "library/officeLibrary";
+	}
+	
+	@PostMapping("/deleteLibrary")
+	public String deleteLibrary(Library library) {
+		logger.info("==== 도서관 삭제 ====");
+		logger.info("deleteLibrary -{}",library.toString());
+		int i = libraryService.deleteLibrary(library);
+		logger.info("실행결과 : -{}",i);
+		return "redirect:/officeLibrary";
+	}
+	
+	@PostMapping("/modifyLibrary")
+	public String modifyLibrary(Library library, Region region) {
+		logger.info("==== 도서관 수정 ====");
+		library.setRegion(region);
+		logger.info("library -{}",library.toString());
+		int i = libraryService.modifyLibrary(library);
+		logger.info("실행경결과 : -{}",i);
+		return "redirect:/officeLibrary";
+	}
+	
 	@GetMapping(value="/getSelectLibrary")
 	@ResponseBody
-	public Library getSelectLibrary(@RequestParam("LibraryCode") String LibraryCode) {
-		System.out.println("==== 하나 도서관 select ====");
-		
-		return null;
+	public Library getSelectLibrary(@RequestParam("LibraryCode") String libraryCode) {
+		logger.info("==== 하나 도서관 select ====");
+		Library list = libraryService.getSelectLibrary(libraryCode);
+		logger.info("librarylist-{}", list);
+		return list;
 	}
 	
 	@PostMapping("/addLibrary")
 	public String addLibrary(Library library, Region region) {
-		System.out.println("==== 도서관 등록 ====");
+		logger.info("==== 도서관 등록 ====");
 		library.setRegion(region);
-		System.out.println(library.toString());
+		logger.info(library.toString());
 		int i = libraryService.addLibrary(library);
-		System.out.println("실행결과 : "+i);
+		logger.info("실행결과 : "+i);
 		return "redirect:/officeLibrary";
 	}
 	
 	@GetMapping(value="/getRegionMinorList")
 	@ResponseBody
 	public List<Region> getRegionMinorList(@RequestParam("regionMajor") String regionMajor) {
-		System.out.println(regionMajor + "  <-getRegionMinorList LibraryController.java");
-		System.out.println("========= getRegionMinorList LibraryController.java ============");
+		logger.info(regionMajor + "  <-getRegionMinorList LibraryController.java");
+		logger.info("========= getRegionMinorList LibraryController.java ============");
 		List<Region> region = regionService.getRegionMinorList(regionMajor);
-		System.out.println(region.toString());
+		logger.info(region.toString());
 		 
 		return region;
 	}
@@ -80,10 +133,10 @@ public class LibraryController {
 	@GetMapping(value="/selectRegion")
 	@ResponseBody
 	public Region getRegion(@RequestParam("regionCode") String regionCode) {
-		System.out.println(regionCode + "  <-getRegion LibraryController.java");
-		System.out.println("========= getRegion LibraryController.java ============");
+		logger.info(regionCode + "  {}-getRegion LibraryController.java");
+		logger.info("========= getRegion LibraryController.java ============");
 		Region region = regionService.getRegion(regionCode);
-		System.out.println(region.toString());
+		logger.info(region.toString());
 		 
 		return region;
 	}
