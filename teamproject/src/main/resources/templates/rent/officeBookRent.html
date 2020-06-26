@@ -119,7 +119,7 @@
 		<!-- /.col -->
 						
 				<div class="col-md-6">				
-					  <!-- Book Serch Form -->
+					  <!-- Member Serch Form -->
 			          <div class="card card-white">
 			          	<div class="card-header">
 			                <div class="row">
@@ -203,37 +203,18 @@
 		</div>
 		<!-- /.row -->
 			
+			<!-- modalRent_button -->
 			<div class="row">
 				<div class="col-md-12" style="text-align: center; margin-bottom: 10px">				
-					<button type="button" class="fc-today-button btn btn-info" data-toggle="modal" data-target="#modal-primary">#대여하기</button>			
+					<button type="button" class="fc-today-button btn btn-info" data-toggle="modal" data-target="#modalRent">#대여하기</button>			
 				</div>
 			</div>
-			<!-- modal -->
-			<div class="modal fade" id="modal-primary">
-		        <div class="modal-dialog">
-		          <div class="modal-content bg-default">
-		            <div class="modal-header">
-		              	<h4 class="modal-title">대여관리</h4>
-		              	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-		                <span aria-hidden="true">&times;</span></button>
-		            </div>
-		            <div class="modal-body">
-		              	<p>대여 하시겠습니까?</p>
-		            </div>
-		            <div class="modal-footer justify-content-between">
-		              <button type="button" class="btn" data-dismiss="modal">Close</button>
-		              <button type="button" class="btn">#대여하기</button>
-		            </div>
-		          </div>
-		          <!-- /.modal-content -->
-		        </div>
-		        <!-- /.modal-dialog -->
-      		</div>
-      <!-- /.modal -->
+			<!-- /modalRent_button -->      
+     	
      	<div class="col-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">대여 도서 리스트</font></font></h3>
+                <h3 class="card-title">대여 도서 리스트</h3>
                 <div class="card-tools">
                   <div class="input-group input-group-sm" style="width: 150px;">
                     <input type="text" name="table_search" class="form-control float-right" placeholder="#Search">
@@ -252,7 +233,7 @@
                   </div>
                 </div>
               </div>
-              <!-- /.card-header -->
+           <!-- /.card-header -->
               <div class="card-body table-responsive p-0" style="height: 300px;">
                 <table class="table table-head-fixed text-nowrap" style="text-align: center">
                   <thead>
@@ -272,7 +253,7 @@
                   </thead>
                   <tbody>
                     <tr th:each="O : ${officeRentList}">
-                      <td th:text="${O.rentCode}">[]</td>
+                      <td th:text="${O.rentCode}"></td>
                       <td th:text="${O.member.memberId}"></td>
                       <td th:text="${O.rentDate}"></td>
                       <td th:text="${O.book.bookName}"></td>
@@ -282,10 +263,10 @@
                       <td th:text="${O.publisher}"></td>
                       <td th:text="${O.book.bookSituation}"></td>
                      <td>
-                      	<a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-update" style="color: white">반납처리</a>
+                      	<a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-update" style="color: white">#반납처리</a>
                      </td>
                      <td>
-                      	<button type="button" class="btn btn-danger btn-sm RentDeleteBtn" style="color: white" th:value="${O.rentCode}">삭제</button>
+                      	<button type="button" class="btn btn-danger btn-sm RentDeleteBtn" style="color: white" th:value="${O.rentCode}">삭제(서)</button>
 			         </td>
                     </tr>
                   </tbody>
@@ -301,11 +282,11 @@
 				            </div>
 				            <div class="modal-body">
 				              <p>해당 도서를 '반납' 처리하여 포인트 1점 추가됩니다.</p>
-				              <p>정말 하시겠습니까?</p>
+				              <p style="text-align: center; margin-top: 20px">정말 하시겠습니까?</p>
 				            </div>
 				            <div class="modal-footer justify-content-between">
-				              <button type="button" class="btn" data-dismiss="modal">Close</button>
-				              <a href="#" class="btn">#OK</a>
+				              <button type="button" class="btn" data-dismiss="modal" style="background-color: Snow; border: outset;">Close</button>
+				              <button type="button" class="btn" style="background-color: Snow; border: outset;">#반납처리하기</button>
 				            </div>
 				          </div>
 				          <!-- /.modal-content -->
@@ -324,12 +305,12 @@
 				            </div>
 				            <div class="modal-body">
 				            <label>대여 코드</label>
-				            <input type="text" id="deleteRentCode" readonly="readonly" name="rentCode" style="margin-left: 7px; text-align: center; background-color: FloralWhite; width: 95px">
-				           	<p> 정말 삭제 하시겠습니까?</p>
+				            <input type="text" id="deleteRentCode" readonly="readonly" name="rentCode" style="margin-left: 7px; text-align: center; background-color: Snow; width: 95px; border: ridge;">
+				           	<p style="text-align: center; margin-top: 20px"> 정말 삭제 하시겠습니까?</p>
 				            </div>
 				            <div class="modal-footer justify-content-between">
-				              <button type="button" class="btn" data-dismiss="modal">Close</button>
-				              <button type="submit" class="btn">#삭제하기</button>
+				              <button type="button" class="btn" data-dismiss="modal" style="background-color: Snow; border: outset;">Close</button>
+				              <button type="submit" class="btn" style="background-color: Snow; border: outset;">삭제하기(서)</button>
 				            </div>
 				          </div>
 				          <!-- /.modal-content -->
@@ -341,7 +322,31 @@
               <!-- /.card-body -->
             </div>
             <!-- /.card -->
-          </div>        
+          </div>    
+          
+          <!-- modal -->
+			<div class="modal fade" id="modalRent">
+		        <div class="modal-dialog">
+		          <div class="modal-content bg-default">
+		            <div class="modal-header">
+		              	<h4 class="modal-title">대여관리</h4>
+		              	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		                <span aria-hidden="true">&times;</span></button>
+		            </div>
+		            <div class="modal-body">
+		              	<p>대여 하시겠습니까?</p>
+		            </div>
+		            <div class="modal-footer justify-content-between">
+		              <button type="button" class="btn" data-dismiss="modal" style="background-color: Snow; border: outset;">Close</button>
+		              <button type="button" class="btn" style="background-color: Snow; border: outset;">#대여하기</button>
+		            </div>
+		          </div>
+		          <!-- /.modal-content -->
+		        </div>
+		        <!-- /.modal-dialog -->
+      		</div>
+      <!-- /.modal -->
+              
 	</section>
 </div>
 <!-- /.content-wrapper -->

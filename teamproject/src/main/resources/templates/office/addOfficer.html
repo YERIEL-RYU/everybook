@@ -78,76 +78,99 @@
 		        </div>
 		        
 		       <label for="inputPassword3" class="col-sm-2 col-form-label offset-1">도서관코드</label>                
-		        <div class="input-group mb-1 col-sm-3">
-		          <input type="text" class="form-control" placeholder="Library Code" name="library" id="library">
+		        <div class="input-group mb-1 col-sm-3"><input class="form-control" type="search" placeholder="#Member Id" aria-label="Search">
+                   <button type="button" class="btn btn-default" id="librarySerch"><i class="fas fa-search"></i></button> 
+                   </div>
+	        	</div>
+		       <label for="inputPassword3" class="col-sm-2 col-form-label">주소</label>                
+		        <div class="input-group mb-1">
+		          <input type="text" class="form-control" placeholder="Officer Address" name="officerAddress" id="officerAddress">
 		          <div class="input-group-append">
 		            <div class="input-group-text">
+		              <span class="fas fa-envelope"></span>
 		            </div>
 		          </div>
 		        </div>
-	        </div>
-	       <label for="inputPassword3" class="col-sm-2 col-form-label">주소</label>                
-	        <div class="input-group mb-1">
-	          <input type="text" class="form-control" placeholder="Officer Address" name="officerAddress" id="officerAddress">
-	          <div class="input-group-append">
-	            <div class="input-group-text">
-	              <span class="fas fa-envelope"></span>
-	            </div>
-	          </div>
-	        </div>
-	       <label for="inputPassword3" class="col-sm-2 col-form-label">전화번호</label>                
-	        <div class="input-group mb-1">
-	          <input type="text" class="form-control" placeholder="000-0000-0000" name="officerTel" id="officerTel">
-	          <div class="input-group-append">
-	            <div class="input-group-text">
-	              <span class="fas fa-envelope"></span>
-	            </div>
-	          </div>
-	        </div>
-	       <label for="inputPassword3" class="col-sm-2 col-form-label">이메일</label>                
-	        <div class="input-group mb-1">
-	          <input type="text" class="form-control" placeholder="Officer Email" name="officerEmail" id="officerEmail">
-	          <div class="input-group-append">
-	            <div class="input-group-text">
-	              <span class="fas fa-envelope"></span>
-	            </div>
-	          </div>
-	        </div>
-	        <div class="row">
-	          <!-- /.col -->
-	          <div class="col-md-3 offset-3" style="text-align: center; color: white">
-	            <a href="javascript:history.back();" class="btn btn-primary btn-block">뒤로가기(서)</a>
-	          </div>
-	            <div class="social-auth-links text-center">
-	        <p>- OR -</p>
-	      </div>
-	          <div class="col-md-3" style="text-align: center">
-	            <button type="button" class="btn btn-danger btn-block" id="officerInsert" data-toggle="modal" data-target="#modal-insert">등록하기(서)</button>
-	          </div>
-	          <!-- modal -->
-	          <div class="modal fade" id="modal-insert">
-		        <div class="modal-dialog">
-		          <div class="modal-content bg-default">
-		            <div class="modal-header">
-		              <h4 class="modal-title">직원 등록</h4>
-		              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-		                <span aria-hidden="true">&times;</span></button>
-		            </div>
-		            <div class="modal-body">
-		              <p>직원을 등록 하시겠습니까?</p>
-		            </div>
-		            <div class="modal-footer justify-content-between">
-		              <button type="button" class="btn" data-dismiss="modal">Close</button>
-		              <button type="submit" class="btn">#등록하기</button>
+		       <label for="inputPassword3" class="col-sm-2 col-form-label">전화번호</label>                
+		        <div class="input-group mb-1">
+		          <input type="text" class="form-control" placeholder="000-0000-0000" name="officerTel" id="officerTel">
+		          <div class="input-group-append">
+		            <div class="input-group-text">
+		              <span class="fas fa-envelope"></span>
 		            </div>
 		          </div>
-		          <!-- /.modal-content -->
 		        </div>
-		        <!-- /.modal-dialog -->
-      		</div>
-      <!-- /.modal -->
-	          <!-- /.col -->
+		       <label for="inputPassword3" class="col-sm-2 col-form-label">이메일</label>                
+		        <div class="input-group mb-1">
+		          <input type="text" class="form-control" placeholder="Officer Email" name="officerEmail" id="officerEmail">
+		          <div class="input-group-append">
+		            <div class="input-group-text">
+		              <span class="fas fa-envelope"></span>
+		            </div>
+		          </div>
+		        </div>
+		        <!-- row -->
+		        <div class="row">
+		          <div class="col-md-3 offset-3" style="text-align: center; color: white">
+		            <a href="javascript:history.back();" class="btn btn-primary btn-block" >뒤로가기(서)</a>
+		          </div>
+		            <div class="social-auth-links text-center">
+		        
+		      </div>
+		          <div class="col-md-3" style="text-align: center">
+		            <button type="button" class="btn btn-danger btn-block" id="officerInsert" data-toggle="modal" data-target="insertModal">등록하기(서)</button>
+		          </div>
+		          
+		          <!-- insertModal -->
+		          <div class="modal fade" id="insertModal">
+			        <div class="modal-dialog">
+			          <div class="modal-content bg-default">
+			            <div class="modal-header">
+			              <h4 class="modal-title">직원 등록</h4>
+			              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			                <span aria-hidden="true">&times;</span></button>
+			            </div>
+			            <div class="modal-body">
+			              <p>직원을 등록 하시겠습니까?</p>
+			            </div>
+			            <div class="modal-footer justify-content-between">
+			              <button type="button" class="btn" data-dismiss="modal" style="background-color: Snow; border: outset;">Close</button>
+			              <button type="submit" class="btn" style="background-color: Snow; border: outset;">#등록하기</button>
+			            </div>
+			          </div>
+			          <!-- /.modal-content -->
+			        </div>
+			        <!-- /.modal-dialog -->
+	      		</div>
+      			<!-- /.insertModal -->
+      			
+		          <!-- librarySerchModal -->
+		          <div class="modal fade" id="librarySerchModal">
+			        <div class="modal-dialog">
+			          <div class="modal-content bg-default">
+			            <div class="modal-header">
+			              <h4 class="modal-title">직원 등록</h4>
+			              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			                <span aria-hidden="true">&times;</span></button>
+			            </div>
+			            <div class="modal-body">
+			            <label>도서관 이름</label>
+				            <input type="text" id="" name="" style="margin-left: 7px; width: 250px; text-align: center; background-color: Snow; border: ridge;">
+			              <p style="text-align: center; margin-top: 20px">직원을 등록 하시겠습니까?</p>
+			            </div>
+			            <div class="modal-footer justify-content-between">
+			              <button type="button" class="btn" data-dismiss="modal" style="background-color: Snow; border: outset;">Close</button>
+			              <button type="submit" class="btn" style="background-color: Snow; border: outset;">#등록하기</button>
+			            </div>
+			          </div>
+			          <!-- /.modal-content -->
+			        </div>
+			        <!-- /.modal-dialog -->
+	      		</div>
+      			<!-- /.librarySerchModal -->
+      			
 	        </div>
+	          <!-- /.row -->
 	      </form>
 	    </div>
 	    <!-- /.form-box -->
@@ -158,10 +181,9 @@
 	<!-- /.content-wrapper -->
 </th:block>
 <th:block layout:fragment="customFooterScript">
-		<script src="js/jquery-3.2.1.min.js"></script>
-	<script type="text/javascript">
+<script>
 	$(function (){
-		
+		//유효성 검사
 		$('#officerInsert').click(function(){	
 			var officerId = $('#officerId');
 			var officerPw = $('#officerPw');
@@ -218,11 +240,17 @@
 		        officerEmail.focus();
 		        return false;
 		      }
-		})				
+		});	
+		
+		//도서관 코드 검색 모달창
+		$('#librarySerch').click(function(){
+			console.log("도서관 검색버튼 클릭");
+			$('#librarySerchModal').modal();
+		})
+		
 	})
-	
 	</script>
-	</th:block>
+</th:block>
 
 
 
