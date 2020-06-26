@@ -32,8 +32,21 @@
 		</association>
 	</resultMap>
 	
+	<select id="getRent" parameterType="String" resultMap="rentResultMap">
+		SELECT
+			rent_code
+			, member_id
+		FROM
+			tb_rent
+		WHERE
+			rent_code = #{rentCode}
+	</select>
+	
 	<delete id="officeRentDelete" parameterType="String">
-		DELETE FROM tb_rent WHERE rent_code=#{rentCode}
+		DELETE FROM 
+		tb_rent 
+		WHERE 
+		rent_code=#{rentCode}
 	</delete>
 	
 	<select id="officeRentList" resultMap="rentResultMap" parameterType="String">

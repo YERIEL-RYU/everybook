@@ -14,9 +14,15 @@ import team1.project.vo.Rent;
 public class RentService {
 	@Autowired private RentMapper rentMapper;
 	
+	//코드 검색
+	public Rent getRent(String rentCode) {
+		
+		return rentMapper.getRent(rentCode);
+	}
+	
 	//대여관리 대여리스트 -삭제
-	public int officeRentDelete() {
-		int result = rentMapper.officeRentDelete();
+	public int officeRentDelete(Rent rent) {
+		int result = rentMapper.officeRentDelete(rent);
 		return result;
 	}
 	

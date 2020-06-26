@@ -272,7 +272,7 @@
                   </thead>
                   <tbody>
                     <tr th:each="O : ${officeRentList}">
-                      <td th:text="${O.rentCode}"></td>
+                      <td th:text="${O.rentCode}">[]</td>
                       <td th:text="${O.member.memberId}"></td>
                       <td th:text="${O.rentDate}"></td>
                       <td th:text="${O.book.bookName}"></td>
@@ -285,7 +285,7 @@
                       	<a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-update" style="color: white">반납처리</a>
                      </td>
                      <td>
-                      	<a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-delete" style="color: white">삭제</a>
+                      	<button type="button" class="btn btn-danger btn-sm RentDeleteBtn" style="color: white" th:value="${O.rentCode}">삭제</button>
 			         </td>
                     </tr>
                   </tbody>
@@ -313,24 +313,27 @@
 				        <!-- /.modal-dialog -->
 		      		</div>
 		      				      	
-	                <div class="modal fade" id="modal-delete">
+	                <div class="modal fade" id="deleteModal">
 				        <div class="modal-dialog">
-				          <div class="modal-content bg-default">
+				        <form action="/officeRentDelete" method="post">
+				          <div class="modal-content bg-default" style="width: 70%;">
 				            <div class="modal-header">
 				              <h4 class="modal-title">대여도서관리</h4>
 				              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 				                <span aria-hidden="true">&times;</span></button>
 				            </div>
 				            <div class="modal-body">
-				            <input type="text" th:value="${officeRentList}">
-				              <p>정말 삭제 하시겠습니까?</p>
+				            <label>대여 코드</label>
+				            <input type="text" id="deleteRentCode" readonly="readonly" name="rentCode" style="margin-left: 7px; text-align: center; background-color: FloralWhite; width: 95px">
+				           	<p> 정말 삭제 하시겠습니까?</p>
 				            </div>
 				            <div class="modal-footer justify-content-between">
 				              <button type="button" class="btn" data-dismiss="modal">Close</button>
-				              <a href="#" class="btn">#삭제하기</a>
+				              <button type="submit" class="btn">#삭제하기</button>
 				            </div>
 				          </div>
 				          <!-- /.modal-content -->
+				        </form>
 				        </div>
 				        <!-- /.modal-dialog -->
 		      		</div>		      	
@@ -342,6 +345,39 @@
 	</section>
 </div>
 <!-- /.content-wrapper -->
+</th:block>
+<th:block layout:fragment="customFooterScript">
+<!-- <script src="dist/js/pages/dashboard2.js"></script> -->
+<script src="plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script>
+	$(function(){
+		//삭제 버튼 클릭시 모달
+		$('.RentDeleteBtn').click(function(){
+			console.log("삭제클릭");
+			var value = $(this).val();
+			console.log(value);
+			var request = $.ajax({
+			  url: "/selectRent",
+  			  method: "get",
+  			  data: { rentCode : value },
+  			  dataType: "json"
+			});
+			request.done(function( data ) {
+	 			console.log(JSON.stringify(data) + " <- ajax");
+				$('#deleteRentCode').val(data.rentCode);
+				$('#deleteModal').modal();
+  			});
+			request.fail(function( jqXHR, textStatus ) {
+  			  alert( "Request failed: " + textStatus );
+  			});
+		})
+	})
+
+</script>
+
 </th:block>
 
 
