@@ -59,12 +59,27 @@
  	</select>  자동증가 일단 보류..-->
  	
 	<insert id="addBookApply" parameterType="team1.project.vo.Apply">
+		<selectKey keyProperty="applyCode" resultType="String" order="BEFORE">
+		<![CDATA[
+			SELECT 
+			   (case 
+			   when COUNT(*) = 0 then 'apply_0001'
+			   when COUNT(*) < 10 then CONCAT('apply_000',(max(SUBSTRING(apply_code,7))+1))
+			   when COUNT(*) < 100 then CONCAT('apply_00',(max(SUBSTRING(apply_code,7))+1))
+			   when COUNT(*) < 1000 then CONCAT('apply_0',(max(SUBSTRING(apply_code,7))+1))
+			   ELSE CONCAT('apply_',(max(SUBSTRING(apply_code,7))+1))
+			   END) AS apply_code
+			FROM
+		   		tb_book_apply
+		]]>
+		</selectKey>
 		INSERT INTO tb_book_apply(
 			apply_code
 			, library_code
 			, member_id
 			, book_name
 			, book_ISBN
+			, apply_price
 			, apply_publish_date
 			, apply_publisher
 			, apply_writer
@@ -75,11 +90,13 @@
 			, #{memberId}
 			, #{bookName}
 			, #{bookIsbn}
+			, #{applyPrice}
 			, #{applyPublishDate}
 			, #{applyPublisher}
 			, #{applyWriter}
 			, NOW()
 			)	
 	</insert> 
+	
  
  </mapper>

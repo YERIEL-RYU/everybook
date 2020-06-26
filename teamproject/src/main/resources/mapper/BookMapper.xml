@@ -22,6 +22,35 @@
   	<result property="officerId" column="officer_id"/>
   	</resultMap>
   
+  <!-- 도서코드로 도서정보 검색 -->
+  <select id="officeBookSerch" resultMap="bookResultMap">
+  	SELECT
+	b.book_code
+	, b.book_isbn
+	, b.book_library_code
+	, b.book_name
+	, p.publisher_name
+	, w.writer_name
+	, b.book_price
+	, b.book_publish_date
+	, b.book_reg_date
+	, b.book_situation
+FROM
+	tb_book AS b 
+	INNER JOIN
+	tb_publisher AS p
+	INNER JOIN
+	tb_writer AS w
+	on
+	b.publisher_code = p.publisher_code
+	and
+	b.writer_code = w.writer_code
+	WHERE
+	b.book_code = ${bookCode}
+  
+  </select>
+  
+  <!-- [admin] 소장도서목록 리스트 -->
   <select id="officeBookList" resultMap="bookResultMap">
   	SELECT 
 		 b.book_library_code

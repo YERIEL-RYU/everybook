@@ -59,31 +59,31 @@
 							<!-- Contact Form -->
 							<div class="col-lg-8">
 								<div class="contact_form">
-									<form action="/addBookApply" class="comment_form" method="post">
+									<form action="/addBookApply" class="comment_form" id="applyForm" method="post">
 										<div class="row">
-											<div class="form_title col-sm-2" style="text-align: center; line-height: 3;">신청 코드</div>
-												<div class="col-sm-10" style="margin-bottom: 20px">
-													<input type="text" class="comment_input" name="applyCode" required="required" placeholder="(자동증가 기능 전 임시)">
-												</div>
 											<div class="form_title col-sm-2" style="text-align: center; line-height: 3;">아이디</div>
 												<div class="col-sm-10" style="margin-bottom: 20px">
-													<input type="text" class="comment_input" name="memberId" required="required">
+													<input type="text" class="comment_input" name="memberId" th:value="${session.SID}" readonly="readonly">
 												</div>
 											<div class="form_title col-sm-2" style="text-align: center; line-height: 3;">도서관 코드</div>
 												<div class="col-sm-10" style="margin-bottom: 20px">
-													<input type="text" class="comment_input" name="library" required="required">
+													<input type="text" class="comment_input" name="library" th:value="${session.SLIBRARY}" readonly="readonly">
 												</div>
 											<div class="form_title col-sm-2" style="text-align: center; line-height: 3;">도서 이름</div>
 												<div class="col-sm-10" style="margin-bottom: 20px">
-													<input type="text" class="comment_input" name="bookName" required="required">
+													<input type="text" class="comment_input" name="bookName" id="bookName">
 												</div>
 											<div class="form_title col-sm-2" style="text-align: center; line-height: 3;">ISBN</div>
 												<div class="col-sm-10" style="margin-bottom: 20px">
-													<input type="text" class="comment_input" name="bookIsbn" required="required">
+													<input type="text" class="comment_input" name="bookIsbn" id="Isbn">
+												</div>
+											<div class="form_title col-sm-2" style="text-align: center; line-height: 3;">도서 가격</div>
+												<div class="col-sm-10" style="margin-bottom: 20px">
+													<input type="text" class="comment_input" name="applyPrice" placeholder="선택">
 												</div>
 											<div class="form_title col-sm-2" style="text-align: center; line-height: 3;">발간일</div>
 												<div class="col-sm-10" style="margin-bottom: 20px">
-													<input type="date" class="comment_input" name="apDate" placeholder="선택">
+													<input type="text" class="comment_input" name="applyDate" placeholder="선택">
 												</div>
 											<div class="form_title col-sm-2" style="text-align: center; line-height: 3;">출판사</div>
 												<div class="col-sm-10" style="margin-bottom: 20px">
@@ -97,7 +97,7 @@
 										
 										<div class="row">
 											<div class="col-sm-1 offset-9">
-												<button type="button" class="comment_button" data-toggle="modal" data-target=".bs-example-modal-sm">신청하기(서)</button>
+												<button type="button" class="comment_button" data-toggle="modal" data-target=".bs-example-modal-sm" id="apply">신청하기(서)</button>
 											</div>
 										</div>
 									
@@ -180,6 +180,26 @@
 		<script src="plugins/colorbox/jquery.colorbox-min.js"></script>
 		<script src="js/courses.js"></script>
 		<script src="js/course.js"></script>
+	<script type="text/javascript">
+	$(function (){
+		
+		$('#apply').click(function(){	
+			var bookName = $('#bookName');
+			var isbn = $('#Isbn');
+		 if(bookName.val() == ""){
+		        alert("도서 이름을 입력하세요");
+		        bookName.focus();
+		        return false;
+		      }
+		 if(isbn.val() == ""){
+				 alert("ISBN 코드를 입력하세요");
+				 isbn.focus();
+		        return false;
+			 }
+		})				
+	})
+	
+	</script>
 	</th:block>
 	
 </html>
