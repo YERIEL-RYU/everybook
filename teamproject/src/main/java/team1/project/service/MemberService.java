@@ -16,6 +16,9 @@ public class MemberService {
 
 	@Autowired private MemberMapper memberMapper;
 	
+	public int selectCheckMemberId(String memberId) {
+		return memberMapper.selectCheckMemberId(memberId);
+	}
 	
 	public List<Library> selectLibraryCode(String regionCode){
 		return memberMapper.selectLibraryCode(regionCode);

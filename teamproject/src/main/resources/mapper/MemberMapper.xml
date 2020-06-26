@@ -24,6 +24,16 @@
 		<result property="memberRegDate" column="member_reg_date"/>
 	</resultMap>
 	
+	<!-- 중복된 아이디 체크 -->
+	<select id="selectCheckMemberId" parameterType="String" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			tb_member
+		WHERE 
+			member_id = #{memberId}
+	</select>
+	
 	<!-- 지역코드로 해당 지역 도서관 출력 -->
 	<select id="selectLibraryCode" parameterType="String" resultMap="librarySelect">
 		SELECT
@@ -68,7 +78,7 @@
 			tb_member
 	</select>
 	
-	<!-- 회원수정 -->
+	<!-- 회원수정-->
 	<update id="ModifyMember" parameterType="Member">
 		UPDATE 
 			tb_member

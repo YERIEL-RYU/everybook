@@ -38,6 +38,7 @@ public class MemberController {
 		return "redirect:/index";
 	}
 	
+	//회원 수정화면
 	@GetMapping("/modifyMember")
 	public String modifyMember(HttpSession session,Model model) {
 		String name = (String) session.getAttribute("SID");
@@ -45,11 +46,14 @@ public class MemberController {
 		Member member = memberService.DetailMember(m);
 		System.out.println("상세보기화면 >>"+ member);
 		
-		model.addAttribute("member", member);
+		List<Region> regionMagjor = regionService.getRegionMajorList();
 		
+		model.addAttribute("member", member);
+		model.addAttribute("regionMagjor", regionMagjor);
 		return "member/modifyMember";
 	}
 	
+	//회원 마이페이지(상세보기)
 	@GetMapping("/memberDetail")
 	public String memberDetail(HttpSession session,Model model) {
 		String name = (String) session.getAttribute("SID");
@@ -86,7 +90,15 @@ public class MemberController {
 		memberService.addMember(member);
 		return "index";
 	}
-
+	
+	//회원등록화면-입력된 아이디 중복 체크
+	@GetMapping(value="/selectCheckMemberId")
+	@ResponseBody
+	public int selectCheckMemberId(@RequestParam("memberId") String memberId) {
+		
+		return memberService.selectCheckMemberId(memberId);
+	}
+	
 	/*회원등록화면-입력된 지역으로 지역도서관 화면출력 ajax*/
 	@GetMapping(value="/selectLibraryCode")
 	@ResponseBody

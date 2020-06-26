@@ -10,6 +10,9 @@ import team1.project.vo.Member;
 @Mapper
 public interface MemberMapper {
 
+	//중복된 아이디 체크
+	public int selectCheckMemberId(String memberId);
+	
 	//지역 도서관 출력
 	public List<Library> selectLibraryCode(String regionCode);
 	
