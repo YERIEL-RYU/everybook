@@ -1,6 +1,7 @@
 package team1.project.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +26,30 @@ public class LibraryController {
 	
 	@Autowired private RegionService regionService;
 	@Autowired private LibraryService libraryService;
+	
+	@GetMapping("/getLimitLibrarySearch")
+	public String getLimitLibrarySearch(Model model, @RequestParam(value="sk") String sk, @RequestParam(value="sv") String sv) {
+		logger.info("==== 도서관 검색 ===");
+		Map<String, Object> returnMap = libraryService.getLimitLibrarySearch(sk, sv);
+		model.addAttribute("list", returnMap.get("list"));
+    	model.addAttribute("currentPage",returnMap.get("currentPage"));
+    	model.addAttribute("lastPage",returnMap.get("lastPage"));
+    	model.addAttribute("startPageNum",returnMap.get("startPageNum"));
+    	model.addAttribute("lastPageNum", returnMap.get("lastPageNum"));
+		return "information/libraryList";
+	}
+	
+	@GetMapping("/libraryList")
+	public String getLibraryList(Model model,@RequestParam(value="currentPage", 
+			  									required=false, defaultValue="1") int currentPage) {
+		Map<String, Object> returnMap = libraryService.getLimitLibraryList(currentPage);
+		model.addAttribute("list", returnMap.get("list"));
+    	model.addAttribute("currentPage",returnMap.get("currentPage"));
+    	model.addAttribute("lastPage",returnMap.get("lastPage"));
+    	model.addAttribute("startPageNum",returnMap.get("startPageNum"));
+    	model.addAttribute("lastPageNum", returnMap.get("lastPageNum"));
+		return "information/libraryList";
+	}	
 	
 	@GetMapping("/searchLibrary")
 	public String searchLibrary(Model model, @RequestParam("sk") String sk, @RequestParam("sv") String sv) {

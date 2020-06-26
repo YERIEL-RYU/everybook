@@ -23,6 +23,24 @@
 			COUNT(*) 
 		FROM tb_library
 	</select>
+	<!-- 조건에 따른 리스트 제한있는 검색 -->
+	<select id="getLimitLibrarySearch" parameterType="String" resultSets="Library" resultMap="librarySelect">
+		SELECT
+			l.*,
+			r.region_major,
+			r.region_minor
+		FROM
+			tb_library AS l
+			inner join	
+			tb_region AS r
+			on
+			l.region_code = r.region_code	
+		<if test="sv != null and sv neq ''.toString()">	
+				WHERE
+					${sk} like CONCAT('%',#{sv},'%')
+		</if>
+			LIMIT #{currentPage}, #{rowPerPage}	
+	</select>
 	<!-- 조건에 따른 검색 -->
 	<select id="searchLibrary" resultSets="Library" resultMap="librarySelect">
 		SELECT
@@ -69,7 +87,7 @@
 		</where>
 	</update>
 	<!-- 하나의 도서관 select -->
-	<select id="getSelectLibrary" resultSets="Library" resultMap="librarySelect">
+	<select id="getSelectLibrary" parameterType="java.util.Map" resultSets="Library" resultMap="librarySelect">
 		SELECT
 			l.library_code,
 			l.region_code,
@@ -91,7 +109,6 @@
 		WHERE
 			library_code = #{libraryCode}
 	</select>
-		
 	<!-- 도서관 입력 insert -->
 	<insert id="addLibrary" parameterType="Library">
 		<selectKey order="BEFORE" keyProperty="libraryCode" resultType="String">
@@ -121,7 +138,7 @@
 				tb_region AS r
 			on
 				l.region_code = r.region_code
-		ORDER BY l.library_code DESC 
+		ORDER BY r.region_major ASC, r.region_minor ASC
 		LIMIT #{currentPage}, #{rowPerPage}	
 	</select>
 	<!-- 도서관 리스트 출력 select -->

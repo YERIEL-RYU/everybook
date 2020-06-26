@@ -10,6 +10,8 @@ import team1.project.vo.Library;
 @Mapper
 public interface LibraryMapper {
 	
+	public List<Library> getLimitLibrarySearch(String sk, String sv, Map<String, Integer> map);
+	
 	public List<Library> getLimitLibraryList(Map<String, Integer> map);
 	
 	public int getLibraryCount();

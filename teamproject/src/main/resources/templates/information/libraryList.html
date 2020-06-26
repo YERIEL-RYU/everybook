@@ -117,11 +117,16 @@
 					</div>
 					<div class="search_container" style="margin-top: 10px;">
 						<form action="#" id="courses_search_form" class="search_form d-flex flex-row align-items-center justify-content-start">
-							<select class="search_select">
-								<option>검색 조건</option>
+							<select class="search_select" name="sk">
+								<option value="r.region_major">시/도</option>
+								<option value="r.region_minor">시/군/구</option>
+								<option value="l.library_name">도서관 이름</option>
+								<option value="l.library_setup">설립 주체</option>
+								<option value="l.library_open">개관일자</option>
+								<option value="l.library_tel">전화번호</option>
 							</select>
-							<input type="text" class="search_input">
-							<button type="submit" class="search_form_button ml-auto">#검색</button>
+							<input type="text" class="search_input" name="sv">
+							<button type="submit" class="search_form_button ml-auto">검색</button>
 						</form>
 					</div>
 					<div class="table-responsive" style="margin-top: 10px;">
