@@ -138,9 +138,9 @@
 								<!-- SEARCH FORM -->
 								<div class="col-sm-10">		                     	
 									<div class="input-group input-group-sm">
-										<input class="form-control" type="search" placeholder="Member Id" aria-label="Search">
+										<input class="form-control" type="search" placeholder="Member Id" aria-label="Search" id="searchMemberId" name="memberId">
 										<div class="input-group-append">
-											<button class="btn btn-navbar" type="submit">
+											<button class="btn btn-navbar" type="submit" id="searchMember">
 												<i class="fas fa-search"></i>
 											</button>
 										</div>
@@ -157,57 +157,57 @@
 								<div class="form-group row">
 									<label for="inputEmail3" class="col-sm-2 col-form-label">회원 아이디</label>
 									<div class="col-sm-10">
-										<input type="text" class="form-control" placeholder="Member Id">
+										<input type="text" class="form-control" placeholder="Member Id" id="memberId">
 									</div>
 								</div>
 								<div class="form-group row">
 									<label for="inputEmail3" class="col-sm-2 col-form-label">회원 이름</label>
 									<div class="col-sm-10">
-										<input type="text" class="form-control" placeholder="Member Name">
+										<input type="text" class="form-control" placeholder="Member Name" id="memberName">
 									</div>
 								</div>
 								<div class="form-group row">
 									<label for="inputEmail3" class="col-sm-2 col-form-label">생년 월일</label>
 									<div class="col-sm-10">
-										<input type="Date" class="form-control" placeholder="Member Name">
+										<input type="Date" class="form-control" placeholder="Member birth" id="memberBirth">
 									</div>
 								</div>
 								<div class="form-group row">
 									<label for="inputPassword3" class="col-sm-2 col-form-label">회원 레벨</label>
 									<div class="col-sm-10">
-										<input type="text" class="form-control" placeholder="Member Level">
+										<input type="text" class="form-control" placeholder="Member Level" id="levelCode">
 									</div>
 								</div>
 								<div class="form-group row">
 									<label for="inputPassword3" class="col-sm-2 col-form-label">주소</label>
 									<div class="col-sm-10">
-										<input type="email" class="form-control" placeholder="Member Address">
+										<input type="email" class="form-control" placeholder="Member Address" id="memberAddress">
 									</div>
 								</div>
 								<div class="form-group row">
 									<label for="inputPassword3" class="col-sm-2 col-form-label">전화번호</label>
 									<div class="col-sm-10">
-										<input type="email" class="form-control" placeholder="Member Tel">
+										<input type="email" class="form-control" placeholder="Member Tel" id="memberTel">
 									</div>
 								</div>
 								<div class="form-group row">
 									<label for="inputPassword3" class="col-sm-2 col-form-label">이메일</label>
 									<div class="col-sm-10">
-										<input type="email" class="form-control" placeholder="Member Email">
+										<input type="email" class="form-control" placeholder="Member Email" id="memberEmail">
 									</div>
 								</div>
 								<div class="form-group row">
 									<label for="inputPassword3" class="col-sm-2 col-form-label">현재대여</label>
 									<div class="col-sm-1">
-										<button type="button" class="fc-today-button btn btn-danger">3</button>
+										<button type="button" class="fc-today-button btn btn-danger" id="rentCount"></button>
 									</div>
 									<label for="inputPassword3" class="col-sm-3 col-form-label">예약가능 여부</label>
 									<div class="col-sm-2">
-										<button type="button" class="fc-today-button btn btn-danger">가능</button>
+										<button type="button" class="fc-today-button btn btn-danger" id="reservePossible"></button>
 									</div>
 									<label for="inputPassword3" class="col-sm-3 col-form-label">예약가능권수</label> 
 									<div class="col-sm-1">
-										<button type="button" class="fc-today-button btn btn-danger">2</button>  
+										<button type="button" class="fc-today-button btn btn-danger" id="reserveCount"></button>  
 									</div>             
 								 </div>	            
 							</form>
@@ -256,6 +256,46 @@
 <!-- /.content-wrapper -->
 </th:block>
 <th:block layout:fragment="customFooterScript">	
-
+<script>
+	$(function(){
+		$('#searchMember').on('click',function(){
+			var value = $('#searchMemberId').val();
+			console.log(value);
+			var request = $.ajax({
+	  			  url: "/reseve/getSelectMember",
+	  			  method: "get",
+	  			  data: { memberId : value },
+	  			  dataType: "json"
+	  			});
+	  			 
+	  			request.done(function( data ) {
+	  				console.log(JSON.stringify(data) + " <- ajax");
+	  				$('#memberId').val(data.memberId);
+	  				$('#memberName').val(data.memberName);
+	  				$('#memberBirth').val(data.memberBirth);
+	  				$('#levelCode').val(data.levelCode);
+	  				$('#memberAddress').val(data.memberAddress);
+	  				$('#memberTel').val(data.memberTel);
+	  				$('#memberEmail').val(data.memberTel);
+	  				$('#rentCount').val(data.rentCount);
+	  				$('#rentCount').html(data.rentCount);
+	  				if(data.reserveCount == 5){
+		  				$('#reservePossible').val('예약불가');
+		  				$('#reservePossible').html('예약불가');
+	  					
+	  				}else{
+		  				$('#reservePossible').val('예약가능');
+		  				$('#reservePossible').html('가능');
+	  				}
+	  				$('#reserveCount').val(5-data.reserveCount);
+	  				$('#reserveCount').html(5-data.reserveCount);
+	  			});
+	  			 
+	  			request.fail(function( jqXHR, textStatus ) {
+	  			  alert( "Request failed: " + textStatus );
+	  			});
+		});
+	});
+</script>
 </th:block>
 </html>
