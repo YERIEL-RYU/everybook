@@ -25,7 +25,7 @@
 				<div class="container-fluid">
 			        <div class="row">
 			          	<!-- left column -->
-						<div class="col-md-12">
+						<div class="col-md-8 offset-2">
 						  	<!-- jquery validation -->
 							<div class="card card-primary card-outline">
 							 	<!-- form start -->
@@ -38,6 +38,10 @@
 										<div class="form-group">
 											<label for="exampleInputPassword1">비밀번호</label>
 											<input type="password" name="memberPw" class="form-control" id="memberPw" placeholder="비밀번호">
+										</div>
+										<div class="form-group">
+											<label for="exampleInputPassword1">비밀번호 재확인</label>
+											<input type="password" name="memberPwCk" class="form-control" id="memberPw" placeholder="비밀번호 재확인">
 										</div>
 										<div class="form-group">
 											<label for="exampleInputPassword1">이름</label>
@@ -54,6 +58,19 @@
 										</div>
 										<div class="form-group">
 											<label for="exampleInputPassword1">주소</label>
+											<div class="row">
+												<div class="col-md-6">
+													<select class="form-control">
+							                          <option>option 1</option>
+							                        </select>
+												</div>
+												<div class="col-md-6">
+													<select class="form-control">
+							                          <option>option 1</option>
+							                        </select>
+												</div>
+											</div>
+											<hr>
 											<input type="text" name="memberAddress" class="form-control" id="memberAddress" placeholder="주소">
 										</div>
 										<div class="form-group">
@@ -66,9 +83,9 @@
 										</div>
 									</div>
 								  	<!-- /.card-body -->
-										<div class="col-md-2 offset-11" style="margin-bottom: 30px; padding-right: 20px;">
-											<button type="submit" class="btn btn-primary" >회원등록</button>
-										</div>
+									<div class="col-md-2 offset-10" style="margin-bottom: 30px;">
+										<button type="submit" class="btn btn-primary" >회원등록</button>
+									</div>
 								</form>
 							</div>
 						  	<!-- /.card -->
@@ -97,21 +114,18 @@
 		<script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
 		<!-- ChartJS -->
 		<script src="plugins/chart.js/Chart.min.js"></script>
-		<!-- PAGE SCRIPTS -->
-		<script src="dist/js/pages/dashboard2.js"></script>
 		<!-- jquery-validation -->
-		<script src="../../plugins/jquery-validation/jquery.validate.min.js"></script>
-		<script src="../../plugins/jquery-validation/additional-methods.min.js"></script>
-		
+		<script src="plugins/jquery-validation/jquery.validate.min.js"></script>
+		<script src="plugins/jquery-validation/additional-methods.min.js"></script>
 		<!-- Select2 -->
-		<script src="../../plugins/select2/js/select2.full.min.js"></script>
+		<script src="/plugins/select2/js/select2.full.min.js"></script>
 		<!-- InputMask -->
-		<script src="../../plugins/moment/moment.min.js"></script>
-		<script src="../../plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
+		<script src="plugins/moment/moment.min.js"></script>
+		<script src="plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
 		<!-- bootstrap color picker -->
-		<script src="../../plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
+		<script src="plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
 		<!-- Tempusdominus Bootstrap 4 -->
-		<script src="../../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+		<script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
 		
 	
 		<script type="text/javascript">
@@ -125,34 +139,44 @@
 			    rules: {
 			    	memberId: {
 			        required: true,
+			        minlength: 5
 			      },
 			      memberPw: {
 			        required: true,
 			        minlength: 5
 			      },
-			      memberName: {
+			      memberPwCk: {
 			        required: true,
+			        equalTo: "input[name='memberPw']"
+			      },
+			      memberName: {
+			        required: true
 			      },
 			      memberBirth: {
-			        required: true,
+			        required: true
 			      },
 			      memberAddress: {
-			        required: true,
+			        required: true
 			      },
 			      memberTel: {
-			        required: true,
+			        required: true
 			      },
 			      memberEmail: {
-			        required: true,
-			      },
+			        required: true
+			      }
 			    },
 			    messages: {
 			    	memberId: {
 			        required: "아이디를 입력해주세요.",
+			        minlength: "5자 이상인 아이디를 입력해 주세요."
 			      },
 			      memberPw: {
 			        required: "비밀번호를 입력해주세요.",
 			        minlength: "5자 이상인 비밀번호를 입력해 주세요."
+			      },
+			      memberPwCk: {
+			        required: "비밀번호를 다시 입력해주세요.",
+			        equalTo: "비밀번호가 일치하지 않습니다."
 			      },
 			      memberName: {
 			        required: "이름을 입력해주세요.",
@@ -168,7 +192,7 @@
 			      },
 			      memberEmail: {
 			        required: "이메일을 입력해주세요.",
-			      },
+			      }
 			    },
 			    errorElement: 'span',
 			    errorPlacement: function (error, element) {

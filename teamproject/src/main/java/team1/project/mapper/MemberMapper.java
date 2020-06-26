@@ -1,12 +1,27 @@
 package team1.project.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
+import team1.project.vo.Library;
 import team1.project.vo.Member;
 
 @Mapper
 public interface MemberMapper {
 
+	//중복된 아이디 체크
+	public int selectCheckMemberId(String memberId);
+	
+	//지역 도서관 출력
+	public List<Library> selectLibraryCode(String regionCode);
+	
+	//지역코드 출력
+	public String selectRegionCode(String rMagjor, String rMinor);
+	
+	//전체회원리스트
+	public List<Member> allListMember();
+	
 	//회원수정
 	public int ModifyMember(Member member);
 	

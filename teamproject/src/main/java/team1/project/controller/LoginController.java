@@ -94,8 +94,10 @@ public class LoginController {
 				
 				session.setAttribute("SID", m.getMemberId());
 				session.setAttribute("SLEVEL", m.getLevelCode());
+				session.setAttribute("SLIBRARY", m.getLibraryCode());
 				System.out.println("SID >>"+session.getAttribute("SID"));
 				System.out.println("SLEVEL >>"+session.getAttribute("SLEVEL"));
+				System.out.println("SLIBRARY >>"+session.getAttribute("SLIBRARY"));
 				System.out.println("로그인완료");
 				
 				Login login = new Login();

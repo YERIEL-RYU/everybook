@@ -6,12 +6,12 @@
 <mapper namespace="team1.project.mapper.RentMapper">
 	
 	<resultMap type="Rent" id="rentResultMap">
+	
 	<result property="rentCode" column="rent_code"/>
 	<result property="bookCode" column="book_code"/>
 	<result property="rentDate" column="rent_date"/>
 	<result property="rentRegDate" column="rent_reg_date"/>
 	<result property="rentReturnDate" column="rent_return_date"/>
-	<result property="officerId" column="officer_id"/>
 	<result property="writer" column="writer_name"/>
 	<result property="category" column="category_name"/>
 	<result property="publisher" column="publisher_name"/>
@@ -31,10 +31,28 @@
 			<result property="bookLibraryCode" column="book_library_code"/>
 		</association>
 	</resultMap>
-
+	
+	<select id="getRent" parameterType="String" resultMap="rentResultMap">
+		SELECT
+			rent_code
+			, member_id
+		FROM
+			tb_rent
+		WHERE
+			rent_code = #{rentCode}
+	</select>
+	
+	<delete id="officeRentDelete" parameterType="String">
+		DELETE FROM 
+		tb_rent 
+		WHERE 
+		rent_code=#{rentCode}
+	</delete>
+	
 	<select id="officeRentList" resultMap="rentResultMap" parameterType="String">
 		SELECT
 			r.rent_code
+			, r.member_id
 			, b.book_name
 			, b.book_library_code
 			, w.writer_name
@@ -61,7 +79,7 @@
 		AND
 			b.publisher_code = p.publisher_code
 		AND
-			b.book_situation = '대여중'
+			b.book_situation = '대여 중'
 		ORDER BY
 			r.rent_date
 	</select>

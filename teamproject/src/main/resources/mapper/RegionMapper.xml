@@ -39,7 +39,7 @@
 			<trim prefix="set" suffixOverrides=",">
 				<if test="regionMajor != null and regionMajor != ''.toString()">region_major = #{regionMajor},</if>
 				<if test="regionMinor != null and regionMinor != ''.toString()">region_minor = #{regionMinor},</if>
-				<if test="regionRegDate != null and regionRegDate != ''.toString()">region_reg_date = #{regionRegDate},</if>
+				<if test="regionRegDate != null and regionRegDate != ''.toString()">region_reg_date = now(),</if>
 				<if test="officer.officerId != null and officer.officerId != ''.toString()">officer_id = #{officer.officerId}</if>
 			</trim>
 			<where>
@@ -58,13 +58,18 @@
 	
 	<insert id="addRegion" parameterType="Region">
 		<selectKey order="BEFORE" keyProperty="regionCode" resultType="String">
-			SELECT
-				(case count(*)
-		 		 when 0 then 'region_001'
-		 		 else CONCAT('region_', (MAX(SUBSTR(r.region_code,8))+1))
-		 		 END) AS region_code
-			FROM
-				tb_region AS r
+		<![CDATA[
+			SELECT 
+   				(case 
+   				when COUNT(*) = 0 then 'region_001'
+ 				when COUNT(*) < 10 then CONCAT('region_00',(MAX(SUBSTR(region_code,8))+1))
+				when COUNT(*) < 100 then CONCAT('region_0',(MAX(SUBSTR(region_code,8))+1))
+   				when COUNT(*) < 1000 then CONCAT('region_',(MAX(SUBSTR(region_code,8))+1))
+   				ELSE CONCAT('region_',(MAX(SUBSTR(region_code,8))+1))
+   				END) AS region_code
+				FROM
+				   tb_region
+		]]>		   
 		</selectKey>
 		INSERT INTO tb_region
 		(region_code, region_major, region_minor, region_reg_date, officer_id)
@@ -74,6 +79,7 @@
 	
 	<select id="getRegionMinorList" resultSets="Region" resultMap="regionSelect">
 		SELECT
+			region_code,
 			region_minor
 		FROM tb_region
 		WHERE region_major = '${regionMajor}'

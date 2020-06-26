@@ -2,7 +2,7 @@ package team1.project.vo;
 
 public class Book {
 	private String bookCode;
-	private Library library;
+	private String library;
 	private String bookLibraryCode;
 	private String bookName;
 	private String category;
@@ -12,19 +12,20 @@ public class Book {
 	private String bookPrice;
 	private String bookIsbn;
 	private String bookSituation;
-	private String bookRegdate;
+	private String bookRegDate;
 	private String group;
 	private String budget;
+	private String officerId;
 	public String getBookCode() {
 		return bookCode;
 	}
 	public void setBookCode(String bookCode) {
 		this.bookCode = bookCode;
 	}
-	public Library getLibrary() {
+	public String getLibrary() {
 		return library;
 	}
-	public void setLibrary(Library library) {
+	public void setLibrary(String library) {
 		this.library = library;
 	}
 	public String getBookLibraryCode() {
@@ -81,11 +82,11 @@ public class Book {
 	public void setBookSituation(String bookSituation) {
 		this.bookSituation = bookSituation;
 	}
-	public String getBookRegdate() {
-		return bookRegdate;
+	public String getBookRegDate() {
+		return bookRegDate;
 	}
-	public void setBookRegdate(String bookRegdate) {
-		this.bookRegdate = bookRegdate;
+	public void setBookRegDate(String bookRegDate) {
+		this.bookRegDate = bookRegDate;
 	}
 	public String getGroup() {
 		return group;
@@ -99,14 +100,20 @@ public class Book {
 	public void setBudget(String budget) {
 		this.budget = budget;
 	}
+	public String getOfficerId() {
+		return officerId;
+	}
+	public void setOfficerId(String officerId) {
+		this.officerId = officerId;
+	}
 	@Override
 	public String toString() {
 		return "Book [bookCode=" + bookCode + ", library=" + library + ", bookLibraryCode=" + bookLibraryCode
 				+ ", bookName=" + bookName + ", category=" + category + ", writer=" + writer + ", publisher="
 				+ publisher + ", bookPublishDate=" + bookPublishDate + ", bookPrice=" + bookPrice + ", bookIsbn="
-				+ bookIsbn + ", bookSituation=" + bookSituation + ", bookRegdate=" + bookRegdate + ", group=" + group
-				+ ", budget=" + budget + "]";
+				+ bookIsbn + ", bookSituation=" + bookSituation + ", bookRegDate=" + bookRegDate + ", group=" + group
+				+ ", budget=" + budget + ", officerId=" + officerId + "]";
 	}
-	
+			
 	
 }

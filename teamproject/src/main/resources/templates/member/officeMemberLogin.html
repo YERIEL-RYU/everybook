@@ -32,10 +32,9 @@
 									<table id="example1" class="table table-bordered table-striped">
 										<thead>
 											<tr>
-											  <th>회원 아이디</th>
-											  <th>로그인 시간</th>
-											  <th>로그아웃 시간</th>
-											  <th data-orderable="false">삭제</th>
+												<th>회원 아이디</th>
+												<th>로그인 시간</th>
+												<th>로그아웃 시간</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -43,12 +42,6 @@
 												<td th:text= "${l.memberId}"></td>
 												<td th:text= "${l.loginDate}"></td>
 												<td th:text= "${l.logoutDate}"></td>
-												<td>
-												   	<a class="btn btn-danger btn-sm" href="#">
-												        <i class="fas fa-trash"></i>
-												    	삭제
-												    </a>
-												</td>
 											</tr>
 										</tbody>
 									</table>
@@ -79,8 +72,6 @@
 		<script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
 		<!-- ChartJS -->
 		<script src="plugins/chart.js/Chart.min.js"></script>
-		<!-- PAGE SCRIPTS -->
-		<script src="dist/js/pages/dashboard2.js"></script>
 		<!-- DataTables -->
 		<script src="/plugins/datatables/jquery.dataTables.min.js"></script>
 		<script src="/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>

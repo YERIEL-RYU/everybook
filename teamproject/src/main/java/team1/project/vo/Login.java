@@ -1,6 +1,6 @@
 package team1.project.vo;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Login {
 	private String loginCode;

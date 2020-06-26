@@ -122,6 +122,7 @@
 			member_id 
 			,member_pw
 			,level_code
+			,library_code
 		FROM 
 			tb_member
 		WHERE

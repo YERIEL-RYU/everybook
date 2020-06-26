@@ -18,6 +18,10 @@
 		{
 		    margin-bottom: 20px;
 		}
+		.contact_form{
+			 padding-left: 200px;
+    		padding-right: 200px;
+		}
 		</style>
 	</th:block>
 	
@@ -67,14 +71,20 @@
 									<div class="blog_title">회원 수정</div>					
 								</div>
 								<div class="contact_form" th:each="m : ${member}">
-									<form action="/modifyMember" method="post" class="comment_form">
+									<form action="modifyMember" method="post" class="comment_form">
 										<div class="input_from">
 											<div class="form_title">아이디</div>
 											<input type="text" name = "memberId" th:value="${m.memberId}" class="comment_input" readonly="readonly">
 										</div>
 										<div class="input_from">
 											<div class="form_title">비밀번호</div>
-											<input type="password" name = "memberPw" th:value="${m.memberPw}" class="comment_input" required="required">
+											<input type="password" name = "memberPw" id="memberPw" th:value="${m.memberPw}" class="comment_input" required="required">
+											<label id="memberPwCk" style="color: red; display: none;">비밀번호를 5자 이상 입력하세요.</label>
+										</div>
+										<div class="input_from">
+											<div class="form_title">비밀번호 재확인</div>
+											<input type="password" name = "memberPwRe" id="memberPwRe" class="comment_input" required="required">
+											<label id="memberPwReCk" style="color: red; display: none;">비밀번호가 일치하지 않습니다.</label>
 										</div>
 										<div class="input_from">
 											<div class="form_title">이름</div>
@@ -88,10 +98,17 @@
 											<div class="form_title">주소</div>
 											<div class="row">
 												<div class="col-md-6 input_col">
-													<input type="text" name = "memberAddress" class="comment_input" required="required" placeholder="도">
+													<select name = "memberAddress" id="regionMagjor" class="courses_search_select courses_search_input" data-checked="N">
+														<option th:value="${m.memberAddress}">[[${m.memberAddress}]]</option>
+														<option th:each=" r: ${regionMagjor}" th:value="${r.regionMajor}">[[${r.regionMajor}]]</option>
+													</select>
+													<label id="regionMagjorCk" style="color: red; display: none;">지역(도)를 선택하세요</label>
 												</div>
 												<div class="col-md-6 input_col">
-													<input type="text" name = "memberAddress" class="comment_input" required="required" placeholder="시">
+													<select name = "memberAddress" id="regionMinor" class="courses_search_select courses_search_input" data-checked="N">
+														<option>시</option>
+													</select>
+													<label id="regionMinorCk" style="color: red; display: none;">지역(시)를 선택하세요</label>
 												</div>
 											</div>
 											<hr>
@@ -105,8 +122,8 @@
 											<div class="form_title">이메일</div>
 											<input type="text" name = "memberEmail" th:value="${m.memberEmail}" class="comment_input" required="required">
 										</div>
-										<div style="margin-left: 990px;">
-											<button type="submit" class="comment_button trans_200">수정완료</button>
+										<div style="float: right;">
+											<button type="submit" class="comment_button">수정완료</button>
 										</div>
 									</form>
 								</div>
@@ -129,5 +146,106 @@
 		<script src="plugins/colorbox/jquery.colorbox-min.js"></script>
 		<script src="js/courses.js"></script>
 		<script src="js/course.js"></script>
+		<script>
+			$(function(){
+				
+				var memberPw = $('#memberPw');
+	  			var memberPwCk = $('#memberPwCk');
+	  			
+	  			var memberPwRe = $('#memberPwRe');
+	  			var memberPwReCk = $('#memberPwReCk');
+	  			
+	  			var regionMagjor = $('#regionMagjor');
+	  			var regionMinor = $('#regionMinor');
+	  			var regionMagjorCk = $('#regionMagjorCk');
+	  			var regionMinorCk = $('#regionMinorCk');
+	  			
+	  			/* 비밀번호 글자수 제한 */
+	  			memberPw.keyup(function(){
+	  				
+	  				if(memberPw.val().length < 5){
+	  					memberPwCk.show();
+					}
+					if(memberPw.val().length >= 5){
+						memberPwCk.hide();
+					}  				
+					if(memberPwRe.val() !== memberPw.val()){
+						memberPwReCk.show();
+	  				}
+	  			})
+	  			
+	  			/* 비밀번호 재확인 일치여부 체크 */
+	  			memberPwRe.keyup(function(){
+	  				
+					if(memberPwRe.val() !== memberPw.val()){
+						memberPwReCk.show();
+	  				}
+	  				if(memberPwRe.val() === memberPw.val()){
+	  					memberPwReCk.hide();
+	  				}
+	  				
+	  			})
+				
+				/* 지역소분류(시) 화면 출력 */
+				$('#regionMagjor').change(function(){
+					
+					var request = $.ajax({
+									  url: "/selectRegionMinor",
+									  method: "get",
+									  data: { regionMagjor : $('#regionMagjor').val() },
+									  dataType: "json"
+								});
+				 			 
+					request.done(function( data ) {
+						console.log(data);
+						var html = '<option value="">시</option>';
+						for(var i=0; i<data.length; i++){
+							html += '<option value="'+data[i].regionMinor+'">'+data[i].regionMinor+'</option>';
+						}
+						$('#regionMinor').html(html);
+					});
+					 
+					request.fail(function( jqXHR, textStatus ) {
+						alert( "Request failed: " + textStatus );
+					});
+				
+				});
+				
+				$('.comment_button').click(function(){
+		  			
+		  			/* 비밀번호 체크 유효성검사 */
+		  			if('inline-block' == memberPwCk.css('display')){
+		  				memberPw.focus();
+		  				return false;
+		  			}
+		  			if('inline-block' == memberPwReCk.css('display')){
+		  				memberPwRe.focus();
+		  				return false;
+		  			}
+		  			
+			  		/* select박스 유효성체크 */
+		  			if('도' == regionMagjor.val()){
+		  				regionMagjorCk.show();
+		  				regionMagjor.focus();
+		  				return false;
+		  			}
+		  			if('도' != regionMagjor.val()){
+		  				regionMagjorCk.hide();
+		  			}
+		  			
+		  			if('' == regionMinor.val()){
+		  				regionMinorCk.show();
+		  				regionMinor.focus();
+		  				return false;
+		  			}
+		  			if('' != regionMinor.val()){
+		  				regionMinorCk.hide();
+		  			}
+		  			
+		  			
+		  		});
+	  			
+			})
+		</script>
 	</th:block>
 </html>

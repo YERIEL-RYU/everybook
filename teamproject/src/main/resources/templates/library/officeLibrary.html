@@ -33,18 +33,19 @@
 					<div class="card-header">
 						<div class="row">
 							<div class="col-sm-8">
-								<form role="form">
+								<form role="form" action="getLimitLibrarySearch" method="get">
 									<div class="row">
 										<div class="col-sm-3">
 											<div class="form-group">
 						                        <select class="form-control custom-select" name ="sk">
-						                          <option>도서관 코드</option>
-						                          <option>지역 코드</option>
-						                          <option>지역 대분류</option>
-						                          <option>지역 소분류</option>
-						                          <option>설립 주체</option>
-						                          <option>개관일자</option>
-						                          <option>전화번호</option>
+						                          <option value="l.library_code">도서관 코드</option>
+						                          <option value="l.region_code">지역 코드</option>
+						                          <option value="r.region_major">시/도</option>
+						                          <option value="r.region_minor">시/군/구</option>
+						                          <option value="l.library_name">도서관 이름</option>
+						                          <option value="l.library_setup">설립 주체</option>
+						                          <option value="l.library_open">개관일자</option>
+						                          <option value="l.library_tel">전화번호</option>
 						                        </select>
 						                    </div>
 										</div>
@@ -67,9 +68,9 @@
 							</div>
 							<div class="col-sm-4">							
 								<div class="btn-group">
-									<button type="button" class="btn btn-outline-info btn-flat"  data-toggle="modal" data-target=".bs-add-modal-lg">!도서관 등록</button>
-									<button type="button" class="btn btn-outline-secondary btn-flat"  data-toggle="modal" data-target=".bs-modify-modal-lg">!도서관 수정</button>
-									<button type="button" class="btn btn-outline-danger btn-flat"  data-toggle="modal" data-target=".bs-delete-sm">!도서관 삭제</button>
+									<button type="button" class="btn btn-outline-info btn-flat"  data-toggle="modal" data-target=".bs-add-modal-lg">도서관 등록</button>
+									<button type="button" class="btn btn-outline-secondary btn-flat" id="modifyModalBtn">도서관 수정</button>
+									<button type="button" class="btn btn-outline-danger btn-flat" id="deleteModalBtn">도서관 삭제</button>
 								</div>
 							</div>
 						</div>
@@ -80,7 +81,7 @@
 								<div class="modal-content">
 									
 									<!-- form start -->
-									<form role="form" action="#">
+									<form role="form" action="addLibrary" method="post">
 										<div class="modal-header">
 											<h4 class="modal-title">도서관 등록하기</h4>
 											<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -88,57 +89,62 @@
 										<!-- start modal-body -->
 										<div class="modal-body">
 											<div class="form-group row">
-												<label for="inputEmail3" class="col-sm-2 col-form-label">지역 대분류</label>
+												<label class="col-sm-2 col-form-label">시/도</label>
 								         		<div class="col-sm-10">
-													<select class="form-control">
-                    									    <option>강원</option>
-                         									<option>경기</option>
+													<select class="form-control regionSelect" id="addRegionMajor" name="regionMajor">
+														<option value="">:: 지역을 선택하세요 ::</option>
+                    									<option th:each="m : ${regionMajorList}" th:value="${m.regionMajor}">[[${m.regionMajor}]]</option>   
                        								</select>
 								         		</div>
 								           	</div>
 											<div class="form-group row">
-												<label for="inputEmail3" class="col-sm-2 col-form-label">지역 소분류</label>
+												<label class="col-sm-2 col-form-label">시/군/구</label>
 								          		<div class="col-sm-10">
-													<select class="form-control">
-                    									    <option>강원</option>
-                         									<option>경기</option>
+													<select class="form-control" id="addRegionMinor" name="regionCode">
+                    									  <option value=""> :: 지역을 선택해 주세요 :: </option>
                        								</select>
 								          		</div>
 								           </div>
 											<div class="form-group row">
 												<label for="inputEmail3" class="col-sm-2 col-form-label">이름</label>
 								          		<div class="col-sm-10">
-													<input type="text" class="form-control" placeholder="도서관 이름">
+													<input type="text" class="form-control" placeholder="도서관 이름" name="libraryName">
 								          		</div>
 								           </div>
 											<div class="form-group row">
 												<label for="inputEmail3" class="col-sm-2 col-form-label">설립 주체</label>
 								          		<div class="col-sm-10">
-													<input type="text" class="form-control" placeholder="도서관 설립주체">
+													<input type="text" class="form-control" placeholder="도서관 설립주체" name="librarySetup">
 								          		</div>
 								           </div>
 											<div class="form-group row">
 												<label for="inputEmail3" class="col-sm-2 col-form-label">개관일자</label>
 								          		<div class="col-sm-10">
-													<input type="text" class="form-control" placeholder="도서관 개관일자">
+													<input type="text" class="form-control" placeholder="도서관 개관일자" name="libraryOpen">
 								          		</div>
 								           </div>
 											<div class="form-group row">
 												<label for="inputEmail3" class="col-sm-2 col-form-label">전화번호</label>
 								          		<div class="col-sm-10">
-													<input type="text" class="form-control" placeholder="도서관 전화번혼">
+													<input type="text" class="form-control" placeholder="도서관 전화번호" name="libraryTel">
 								          		</div>
 								           </div>
 											<div class="form-group row">
 												<label for="inputEmail3" class="col-sm-2 col-form-label">홈페이지</label>
 								          		<div class="col-sm-10">
-													<input type="text" class="form-control" placeholder="도서관 홈페이지">
+													<input type="text" class="form-control" placeholder="도서관 홈페이지" name="libraryPage">
+								          		</div>
+								           </div>
+								           <div class="form-group row">
+												<label class="col-sm-2 col-form-label">id</label>
+								          		<div class="col-sm-10">
+													<input type="text" class="form-control" th:value="${session.SID}" name="officerId">
 								          		</div>
 								           </div>
 										</div>
 										<!-- end modal-body -->
 										<div class="modal-footer">
-											<button type="button" class="btn btn-primary">도서관 등록</button>
+											<button type="submit" class="btn btn-primary">도서관 등록</button>
 										</div>
 									</form>
 									<!-- form end -->
@@ -147,12 +153,12 @@
 						</div>
 						<!--  end 도서관 등록 modal -->
 						<!-- start 도서관 수정  modal -->
-						<div class="modal fade bs-modify-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+						<div class="modal fade bs-modify-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="modifyModal">
 							<div class="modal-dialog modal-lg">
 								<div class="modal-content">
 									
 									<!-- form start -->
-									<form role="form" action="#">
+									<form role="form" action="modifyLibrary" method="post" id="modifyForm">
 										<div class="modal-header">
 											<h4 class="modal-title">도서관 수정하기</h4>
 											<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -162,60 +168,65 @@
 											<div class="form-group row">
 												<label for="inputEmail3" class="col-sm-2 col-form-label">도서관 코드</label>
 								          		<div class="col-sm-10">
-													<input type="text" class="form-control" value="" readonly="readonly">
+													<input type="text" class="form-control" id="modifyLibraryCode" name="libraryCode" readonly="readonly">
 								          		</div>
 								           </div>
 											<div class="form-group row">
 												<label for="inputEmail3" class="col-sm-2 col-form-label">지역 대분류</label>
 								         		<div class="col-sm-10">
-													<select class="form-control">
-                    									    <option>강원</option>
-                         									<option>경기</option>
+													<select class="form-control regionSelect" name="regionMajor">
+														<option value="">:: 지역을 선택하세요 ::</option>
+                    									<option th:each="m : ${regionMajorList}" th:value="${m.regionMajor}">[[${m.regionMajor}]]</option>   
                        								</select>
 								         		</div>
 								           	</div>
 											<div class="form-group row">
 												<label for="inputEmail3" class="col-sm-2 col-form-label">지역 소분류</label>
 								          		<div class="col-sm-10">
-													<select class="form-control">
-                    									    <option>강원</option>
-                         									<option>경기</option>
+													<select class="form-control" name="regionCode">
+                    									 <option value=""> :: 지역을 선택해 주세요 :: </option>   
                        								</select>
 								          		</div>
 								           </div>
 											<div class="form-group row">
 												<label for="inputEmail3" class="col-sm-2 col-form-label">이름</label>
 								          		<div class="col-sm-10">
-													<input type="text" class="form-control" placeholder="도서관 이름">
+													<input type="text" class="form-control" name="libraryName">
 								          		</div>
 								           </div>
 											<div class="form-group row">
 												<label for="inputEmail3" class="col-sm-2 col-form-label">설립 주체</label>
 								          		<div class="col-sm-10">
-													<input type="text" class="form-control" placeholder="도서관 설립주체">
+													<input type="text" class="form-control" name="librarySetup">
 								          		</div>
 								           </div>
 											<div class="form-group row">
 												<label for="inputEmail3" class="col-sm-2 col-form-label">개관일자</label>
 								          		<div class="col-sm-10">
-													<input type="text" class="form-control" placeholder="도서관 개관일자">
+													<input type="text" class="form-control" name="libraryOpen">
 								          		</div>
 								           </div>
 											<div class="form-group row">
 												<label for="inputEmail3" class="col-sm-2 col-form-label">전화번호</label>
 								          		<div class="col-sm-10">
-													<input type="text" class="form-control" placeholder="도서관 전화번혼">
+													<input type="text" class="form-control" name="libraryTel">
 								          		</div>
 								           </div>
 											<div class="form-group row">
 												<label for="inputEmail3" class="col-sm-2 col-form-label">홈페이지</label>
 								          		<div class="col-sm-10">
-													<input type="text" class="form-control" placeholder="도서관 홈페이지">
+													<input type="text" class="form-control" name="libraryPage">
+								          		</div>
+								           </div>
+								           <div class="form-group row">
+												<label class="col-sm-2 col-form-label">id</label>
+								          		<div class="col-sm-10">
+													<input type="text" class="form-control" th:value="${session.SID}" name="officerId">
 								          		</div>
 								           </div>
 										</div>
 										<div class="modal-footer">
-											<button type="button" class="btn btn-primary">도서관 수정</button>
+											<button type="submit" class="btn btn-primary">도서관 수정</button>
 										</div>
 										<!-- end modal-body -->
 									</form>
@@ -226,12 +237,12 @@
 						<!--  end 도서관 수정 modal -->	
 
 						<!-- start 도서관 삭제  modal -->
-						<div class="modal fade bs-delete-sm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+						<div class="modal fade bs-delete-sm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="deleteModal">
 							<div class="modal-dialog modal-sm">
 								<div class="modal-content">
 									
 									<!-- form start -->
-									<form role="form" action="#">
+									<form role="form" action="deleteLibrary" method="post">
 										<div class="modal-header">
 											<h4 class="modal-title">도서관 삭제하기</h4>
 											<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -240,7 +251,7 @@
 								            <div class="form-group">
 												<label>도서관 코드</label>
 								         		<div>
-													<input type="text" class="form-control" value="region_001" readonly="readonly">
+													<input type="text" class="form-control" name="libraryCode" readonly="readonly">
 								         		</div>
 								           	</div>
 											<div class="form-group">
@@ -250,12 +261,13 @@
 											<div class="form-group">
 												<label>비밀번호 확인</label>
 								          		<div>
-													<input type="password" class="form-control" placeholder="비밀번호를 입력하세요">
+								          			<input type="text" class="form-control" th:value="${session.SID}" name="officerId" hidden="hidden">
+													<input type="password" class="form-control" name="officerPw" placeholder="비밀번호를 입력하세요">
 								          		</div>
 								           </div>
 										</div>
 										<div class="modal-footer">
-											<button type="button" class="btn btn-primary">도서관 삭제</button>
+											<button type="submit" class="btn btn-primary">도서관 삭제</button>
 										</div>
 									</form>
 									<!-- form end -->
@@ -270,11 +282,11 @@
 						<table id="region-table" class="table table-bordered table-hover" style="text-align: center;">
 		                  <thead>
 			                  <tr>
-			                  	<th><input type="checkbox"></th>
+			                  	<th><input type="checkbox" name="checkAll"></th>
 			                    <th>도서관 코드</th>
 			                    <th>지역 코드</th>
-			                    <th>지역 대분류</th>
-			                    <th>지역 소분류</th>
+			                    <th>시/도</th>
+			                    <th>시/군/구</th>
 			                    <th>이름</th>
 			                    <th>설립 주체</th>
 			                    <th>개관일자</th>
@@ -286,7 +298,7 @@
 		                  </thead>
 		                  <tbody>
 			                  <tr th:each="L : ${libraryList}">
-			                  	<td><input type="checkbox"></td>
+			                  	<td><input type="checkbox" name="checkRow" th:value="${L.libraryCode}" ></td>
 			                    <td th:text="${L.libraryCode}"></td>
 			                    <td th:text="${L.Region.regionCode}"></td>
 			                    <td th:text="${L.Region.regionMajor}"></td>
@@ -297,16 +309,16 @@
 			                    <td th:text="${L.libraryTel}"></td>
 			                    <td th:text="${L.libraryPage}"></td>
 			                    <td th:text="${#dates.format({L.libraryRegDate}, 'yyyy-MM-dd')}"></td>
-			                    <td th:text="${L.officer.officerId}"></td>
+			                    <td th:text="${L.officerId}"></td>
 			                  </tr>
 		                  </tbody>
 		                  <tfoot>
 			                  <tr>
-			                  	<th><input type="checkbox"></th>
+			                  	<th></th>
 			                    <th>도서관 코드</th>
 			                    <th>지역 코드</th>
-			                    <th>지역 대분류</th>
-			                    <th>지역 소분류</th>
+			                    <th>시/도</th>
+			                    <th>시/군/구</th>
 			                    <th>이름</th>
 			                    <th>설립 주체</th>
 			                    <th>개관일자</th>
@@ -327,11 +339,10 @@
 	
 </th:block>
 <th:block layout:fragment="customFooterScript">
-<!-- <script src="dist/js/pages/dashboard2.js"></script> -->
-<script src="plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <script>
 	$(function () {
 	    $("#region-table").DataTable({
@@ -343,17 +354,119 @@
 	        "autoWidth": false,
 	        "responsive": true,
 	    });
-	    $('#modifyModalBtn').click(function(){
-	    	$('#modifyModal').modal();
-	    });
-		$('#mBtn').click(function(){
-			$('#modifyForm').submit();
+	    //모달에서 지역 대분류 선택시 소분류 리스트 출력
+		$('.regionSelect').on('change',function(){
+			var regionMinor = $('[name = regionCode]');
+			value = $(this).val(); //네임값으로 하니 현재 옵션 벨류를 못잡아서 디스로
+			console.log(value);
+			var request = $.ajax({
+	  			  url: "/getRegionMinorList",
+	  			  method: "get",
+	  			  data: { regionMajor : value },
+	  			  dataType: "json"
+	  			});
+	  			 
+	  			request.done(function( data ) {
+	  				console.log(JSON.stringify(data) + " <- ajax");
+	  				var html = '<option value=""> :: 지역을 선택해 주세요 :: </option>';
+	  				for(var i=0; i<data.length;i++){
+	  					html += '<option value="'+data[i]["regionCode"]+'">'+data[i]["regionMinor"]+'</option>'
+	  					regionMinor.html(html);
+	  				}
+			    	
+	  			});
+	  			 
+	  			request.fail(function( jqXHR, textStatus ) {
+	  			  alert( "Request failed: " + textStatus );
+	  			});
 		});
-		$('#checkAll').click(function(){
-			if($("#allCheck").prop("checked")) {
-				$("input[type=checkbox]").prop("checked",true);
-			} else { 
-				$("input[type=checkbox]").prop("checked",false); 
+		//수정 버튼 클릭시 모달 
+	    $('#modifyModalBtn').on('click', function(){
+	    	if($('[name=checkRow]:checked').length == 1){
+	    		var value = $('[name=checkRow]:checked').val();
+	    		console.log(value);
+	    		var request = $.ajax({
+	  			  url: "/getSelectLibrary",
+	  			  method: "get",
+	  			  data: { LibraryCode : value },
+	  			  dataType: "json"
+	  			});
+	  			 
+	  			request.done(function( data ) {
+	  				console.log(JSON.stringify(data) + " <- ajax");
+					$('#modifyLibraryCode').val(data.libraryCode);
+					$('[name = regionMajor]').val(data.region.regionMajor);
+					$('[name = regionMajor]').val(data.region.regionMajor);
+					$('[name = libraryName]').val(data.libraryName);
+					$('[name = librarySetup]').val(data.librarySetup);
+					$('[name = libraryOpen]').val(data.libraryOpen);
+					$('[name = libraryTel]').val(data.libraryTel);
+					$('[name = libraryPage]').val(data.libraryPage);
+					$('[name = libraryRegDate]').val(data.libraryRegDate);
+			    	$('#modifyModal').modal();
+			    	
+	  			});
+	  			 
+	  			request.fail(function( jqXHR, textStatus ) {
+	  			  alert( "Request failed: " + textStatus );
+	  			});
+	  			
+		    	
+	    	}else if($('[name=checkRow]:checked').length == 0) {
+	    		alert('수정할 지역코드를 선택하세요');
+	    	}else{
+	    		alert('수정할 지역코드를 하나만 선택하세요');
+	    	}
+	    });
+	  //삭제 버튼 클릭시 모달
+	    $('#deleteModalBtn').click(function(){
+	    	console.log("삭제하자");
+	    	if($('[name=checkRow]:checked').length == 1){
+	    		var value = $('[name=checkRow]:checked').val();
+	    		console.log(value);
+	    		var request = $.ajax({
+		  			  url: "/getSelectLibrary",
+		  			  method: "get",
+		  			  data: { LibraryCode : value },
+		  			  dataType: "json"
+		  		});
+	  			 
+	  			request.done(function( data ) {
+	  				console.log(JSON.stringify(data) + " <- ajax");
+	  				$('[name = libraryCode]').val(data.libraryCode);
+					$('#deleteModal').modal();
+			    	
+	  			});
+	  			 
+	  			request.fail(function( jqXHR, textStatus ) {
+	  			  alert( "Request failed: " + textStatus );
+	  			});
+	  			
+		    	
+	    	}else if($('[name=checkRow]:checked').length == 0) {
+	    		alert('삭제할 지역코드를 선택하세요');
+	    	}else{
+	    		console.log('전체삭제를 하겠다고?');
+	    	}
+	    });
+	  //전체 체크
+		var allCheck = $('[name=checkAll]');
+		var checkRow = $('[name=checkRow]');
+		allCheck.click(function(){
+			if(allCheck.is(":checked")) {
+				checkRow.prop("checked",true);
+				console.log("체크하기");
+			}else{			
+				console.log("해제하기");
+				checkRow.prop("checked",false); 
+			}
+		});
+		//하나 취소되면 전체 선택 해제
+		checkRow.click(function(){
+			if($('[name=checkRow]:checked').length == 10){
+				allCheck.prop("checked",true);
+			}else{
+				allCheck.prop("checked",false);
 			}
 		});
 	});

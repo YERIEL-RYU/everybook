@@ -18,6 +18,10 @@
 		{
 		    margin-bottom: 20px;
 		}
+		.contact_form{
+			 padding-left: 200px;
+    		padding-right: 200px;
+		}
 		</style>
 	</th:block>
 	
@@ -60,17 +64,23 @@
 				<div class="contact_info_container">
 					<div class="container">
 						<div class="row">
-							<!-- Contact Form -->
 							<div class="col-lg-12">
 								<div class="contact_form">
 									<form action="addMember" class="comment_form" method="post">
 										<div class="input_from">
 											<div class="form_title">아이디</div>
-											<input type="text" name = "memberId" class="comment_input" required="required">
+											<input type="text" name = "memberId" id="memberId" class="comment_input" required="required">
+											<label id="memberIdCk" style="color: red; display: none;">아이디를 5자 이상 입력하세요.</label>
 										</div>
 										<div class="input_from">
 											<div class="form_title">비밀번호</div>
-											<input type="password" name = "memberPw" class="comment_input" required="required">
+											<input type="password" name = "memberPw" id="memberPw" class="comment_input" required="required">
+											<label id="memberPwCk" style="color: red; display: none;">비밀번호를 5자 이상 입력하세요.</label>
+										</div>
+										<div class="input_from">
+											<div class="form_title">비밀번호 재확인</div>
+											<input type="password" name = "memberPwRe" id="memberPwRe" class="comment_input" required="required">
+											<label id="memberPwReCk" style="color: red; display: none;">비밀번호가 일치하지 않습니다.</label>
 										</div>
 										<div class="input_from">
 											<div class="form_title">이름</div>
@@ -84,14 +94,21 @@
 											<div class="form_title">주소</div>
 											<div class="row">
 												<div class="col-md-6 input_col">
-													<input type="text" name = "memberAddress" class="comment_input" required="required" placeholder="도">
+													<select name = "memberAddress" id="regionMagjor" class="courses_search_select courses_search_input" data-checked="N">
+														<option>도</option>
+														<option th:each=" r: ${regionMagjor}" th:value="${r.regionMajor}">[[${r.regionMajor}]]</option>
+													</select>
+													<label id="regionMagjorCk" style="color: red; display: none;">지역(도)를 선택하세요</label>
 												</div>
 												<div class="col-md-6 input_col">
-													<input type="text" name = "memberAddress" class="comment_input" required="required" placeholder="시">
+													<select name = "memberAddress" id="regionMinor" class="courses_search_select courses_search_input" data-checked="N">
+														<option>시</option>
+													</select>
+													<label id="regionMinorCk" style="color: red; display: none;">지역(시)를 선택하세요</label>
 												</div>
 											</div>
 											<hr>
-											<input type="text" name = "memberAddress" class="comment_input" required="required" placeholder="상세주소">
+											<input type="text" name = "memberAddress" class="comment_input" placeholder="상세주소" required="required">
 										</div>
 										<div class="input_from">
 											<div class="form_title">휴대폰번호</div>
@@ -103,13 +120,13 @@
 										</div>
 										<div class="input_from">
 											<div class="form_title">도서관</div>
-											<select name = "libraryCode" id="courses_search_select" class="courses_search_select courses_search_input">
+											<select name = "libraryCode" id="libraryName" class="courses_search_select courses_search_input" data-checked="N">
 												<option>주변 도서관</option>
-												<option value="library_01">금암 도서관</option>
 											</select>
+											<label id="libraryNameCk" style="color: red; display: none;">도서관을 선택하세요</label>
 										</div>
-										<div style="margin-left: 990px;">
-											<button type="submit" class="comment_button trans_200">회원가입</button>
+										<div style="float: right;">
+											<button type="submit" class="comment_button">회원가입</button>
 										</div>
 									</form>
 								</div>
@@ -131,5 +148,188 @@
 		<script src="plugins/colorbox/jquery.colorbox-min.js"></script>
 		<script src="js/courses.js"></script>
 		<script src="js/course.js"></script>
+		<script>
+			$(function(){
+				
+	  			var memberId = $('#memberId');
+	  			var memberIdCk = $('#memberIdCk');
+	  			
+	  			var memberPw = $('#memberPw');
+	  			var memberPwCk = $('#memberPwCk');
+	  			
+	  			var memberPwRe = $('#memberPwRe');
+	  			var memberPwReCk = $('#memberPwReCk');
+	  			
+	  			var regionMagjor = $('#regionMagjor');
+	  			var regionMinor = $('#regionMinor');
+	  			var libraryName = $('#libraryName');
+	  			var regionMagjorCk = $('#regionMagjorCk');
+	  			var regionMinorCk = $('#regionMinorCk');
+	  			var libraryNameCk = $('#libraryNameCk');
+		  			
+	  			memberId.keyup(function(){
+	  				
+					/* 아이디 글자수 제한 */
+	  				if(memberId.val().length < 5){
+	  					memberIdCk.show();
+					}
+					
+					/* 아이디 중복체크 */
+					var request = $.ajax({
+						  url: "/selectCheckMemberId",
+						  method: "get",
+						  data: { memberId : memberId.val() },
+						  dataType: "json"
+					});
+	 			 
+					request.done(function( data ) {
+						console.log(data);
+						if(data == 1){
+							memberIdCk.text("중복된 아이디가 존재합니다.");
+						}
+						if(memberId.val().length >= 5 && data == 0){
+							memberIdCk.hide();
+						}
+					});
+					 
+					request.fail(function( jqXHR, textStatus ) {
+						alert( "Request failed: " + textStatus );
+					}); 
+						
+						
+				});
+				
+  				/* 비밀번호 글자수 제한 */
+	  			memberPw.keyup(function(){
+	  				
+	  				if(memberPw.val().length < 5){
+	  					memberPwCk.show();
+					}
+					if(memberPw.val().length >= 5){
+						memberPwCk.hide();
+					}				
+					if(memberPwRe.val() !== memberPw.val()){
+						memberPwReCk.show();
+	  				}
+	  			})
+	  			
+	  			/* 비밀번호 재확인 일치여부 체크 */
+	  			memberPwRe.keyup(function(){
+	  				
+					if(memberPwRe.val() !== memberPw.val()){
+						memberPwReCk.show();
+	  				}
+	  				if(memberPwRe.val() === memberPw.val()){
+	  					memberPwReCk.hide();
+	  				}
+	  				
+	  			})
+  					
+  			
+	  			
+		  		$('.comment_button').click(function(){
+		  			
+		  			/* 아이디, 비밀번호 체크 유효성검사 */
+		  			if('inline-block' == memberIdCk.css('display')){
+		  				memberId.focus();
+		  				return false;
+		  			}
+		  			if('inline-block' == memberPwCk.css('display')){
+		  				memberPw.focus();
+		  				return false;
+		  			}
+		  			if('inline-block' == memberPwReCk.css('display')){
+		  				memberPwRe.focus();
+		  				return false;
+		  			}
+		  			
+			  		/* select박스 유효성체크 */
+		  			if('도' == regionMagjor.val()){
+		  				regionMagjorCk.show();
+		  				regionMagjor.focus();
+		  				return false;
+		  			}
+		  			if('도' != regionMagjor.val()){
+		  				regionMagjorCk.hide();
+		  			}
+		  			
+		  			if('' == regionMinor.val()){
+		  				regionMinorCk.show();
+		  				regionMinor.focus();
+		  				return false;
+		  			}
+		  			if('' != regionMinor.val()){
+		  				regionMinorCk.hide();
+		  			}
+		  			
+		  			if('' == libraryName.val()){
+		  				libraryNameCk.show();
+		  				libraryName.focus();
+		  				return false;
+		  			}
+		  			if('' != libraryName.val()){
+		  				libraryNameCk.hide();
+		  			}
+		  			
+		  		});
+		  		
+		  		
+				/* 지역소분류(시) 화면 출력 */
+				$('#regionMagjor').change(function(){
+					
+					var request = $.ajax({
+									  url: "/selectRegionMinor",
+									  method: "get",
+									  data: { regionMagjor : $('#regionMagjor').val() },
+									  dataType: "json"
+								});
+				 			 
+					request.done(function( data ) {
+						console.log(data);
+						var html = '<option value="">시</option>';
+						for(var i=0; i<data.length; i++){
+							html += '<option value="'+data[i].regionMinor+'">'+data[i].regionMinor+'</option>';
+						}
+						$('#regionMinor').html(html);
+					});
+					 
+					request.fail(function( jqXHR, textStatus ) {
+						alert( "Request failed: " + textStatus );
+					});
+				
+				});
+
+		  		/* 입력된 지역으로 지역도서관 화면출력 */	
+				$('#regionMinor').change(function(){
+					
+			  		var region = [ $('#regionMagjor :selected').val(), $('#regionMinor :selected').val()];	
+			  		console.log(region);
+			  		
+			  		var libraryCode =  $.ajax({
+											url: "/selectLibraryCode",
+											method: "get",
+											data: { region : region },
+											traditional : true,
+											dataType: "json"
+							  			});	
+				  		
+			  		libraryCode.done(function( data ) {
+				  		console.log(data);
+				  		var libraryName = '<option value="">주변 도서관</option>';
+				  		for(var i=0; i<data.length; i++){
+				  			libraryName += '<option value="'+data[i].libraryCode+'">'+data[i].libraryName+'</option>';
+						}
+				  		$('#libraryName').html(libraryName);
+			  		});
+				  			 
+			  		libraryCode.fail(function( jqXHR, textStatus ) {
+		  			  alert( "Request failed: " + textStatus );
+	  				});
+			  		
+				});
+		  		
+		  		
+			})
+		</script>
 	</th:block>
 </html>

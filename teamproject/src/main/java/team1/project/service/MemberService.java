@@ -1,10 +1,13 @@
 package team1.project.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import team1.project.mapper.MemberMapper;
+import team1.project.vo.Library;
 import team1.project.vo.Member;
 
 @Transactional
@@ -13,6 +16,21 @@ public class MemberService {
 
 	@Autowired private MemberMapper memberMapper;
 	
+	public int selectCheckMemberId(String memberId) {
+		return memberMapper.selectCheckMemberId(memberId);
+	}
+	
+	public List<Library> selectLibraryCode(String regionCode){
+		return memberMapper.selectLibraryCode(regionCode);
+	}
+	
+	public String selectRegionCode(String rMagjor, String rMinor) {
+		return memberMapper.selectRegionCode(rMagjor, rMinor);
+	}
+	
+	public List<Member> allListMember(){
+		return memberMapper.allListMember();
+	}
 	
 	public int ModifyMember(Member member) {
 		return memberMapper.ModifyMember(member);
