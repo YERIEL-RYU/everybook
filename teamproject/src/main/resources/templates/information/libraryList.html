@@ -6,6 +6,8 @@
 		<link href="plugins/colorbox/colorbox.css" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" type="text/css" href="styles/blog_single.css">
 		<link rel="stylesheet" type="text/css" href="styles/blog_single_responsive.css">
+		<link rel="stylesheet" type="text/css" href="styles/courses.css">
+		<link rel="stylesheet" type="text/css" href="styles/courses_responsive.css">
 		<style>
 .search_container
 {
@@ -113,16 +115,16 @@
 					<div class="blog_content">
 						<div class="blog_title"><i class="fa fa-quote-left" aria-hidden="true"></i>도서관 목록</div>					
 					</div>
-					<div class="search_container">
+					<div class="search_container" style="margin-top: 10px;">
 						<form action="#" id="courses_search_form" class="search_form d-flex flex-row align-items-center justify-content-start">
 							<select class="search_select">
 								<option>검색 조건</option>
 							</select>
 							<input type="text" class="search_input">
-							<button action="submit" class="search_form_button ml-auto">#검색</button>
+							<button type="submit" class="search_form_button ml-auto">#검색</button>
 						</form>
 					</div>
-					<div class="table-responsive">
+					<div class="table-responsive" style="margin-top: 10px;">
 						<table class="table">
 							<thead>
 								<tr>
@@ -130,20 +132,18 @@
 									<th> 시 / 도</th>
 									<th> 시 / 군/ 구 </th>
 									<th> 도서관 설립주체 </th>
-									<th> 도서관 주소 </th>
 									<th> 도서관 전화번호 </th>
 									<th> 도서관 홈페이지 </th>
 								</tr>	
 							</thead>
 							<tbody>
-								<tr>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
+								<tr th:each="l : ${list}">
+									<td th:text="${l.libraryName}"></td>
+									<td th:text="${l.region.regionMajor}"></td>
+									<td th:text="${l.region.regionMinor}"></td>
+									<td th:text="${l.librarySetup}"></td>
+									<td th:text="${l.libraryTel}"></td>
+									<td th:text="${l.libraryPage}"></td>
 								</tr>
 							</tbody>
 							<tfoot>
@@ -152,15 +152,37 @@
 									<th> 시 / 도</th>
 									<th> 시 / 군/ 구 </th>
 									<th> 도서관 설립주체 </th>
-									<th> 도서관 주소 </th>
 									<th> 도서관 전화번호 </th>
 									<th> 도서관 홈페이지 </th>
 								</tr>	
 							</tfoot>
 						</table>							
 					</div>
-					
-				</div>	
+		<div class="courses">
+		<div class="container">
+					<div class="courses_container">
+					<div class="row pagination_row">
+						<div class="col">
+							<div class="pagination_container d-flex flex-row align-items-center justify-content-start">
+								<ul class="pagination_list">
+									<li th:if="${currentPage > 1}"><a th:href="@{/boardList(currentPage=${currentPage-1})}"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>
+									<li th:unless="${currentPage > 1}"><a><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>
+									<li th:each="num : ${#numbers.sequence(startPageNum,lastPageNum)}">
+										<a th:if="${currentPage == num}" th:text="${num}"></a>
+                						<a th:unless="${currentPage == num}" th:href="@{/libraryList(currentPage=${num})}" th:text="${num}"></a>
+									</li>
+									<li th:if="${currentPage < lastPage}"><a th:href="@{/boardList(currentPage=${currentPage+1})}"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+									<li th:unless="${currentPage < lastPage}"><a><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+								</ul>
+								<div class="courses_show_container ml-auto clearfix">			
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				</div>
+				</div>
+				</div>
 				<!-- Side menu -->
 				<div class="col-lg-4">
 					<div class="sidebar">
@@ -171,7 +193,7 @@
 							<div class="sidebar_categories">
 								<ul class="categories_list">
 									<li><a href="libraryList" class="clearfix">!>> 도서관 목록</a></li>
-									<li><a href="libraryTime" class="clearfix">!>> 도서관 이용 시간</a></li>
+									<li><a href="libraryTime" class="clearfix">>> 도서관 이용 시간</a></li>
 									<li><a href="pointStandard" class="clearfix">!>> 상벌점 기준</a></li>
 									<li><a href="#" class="clearfix">#>> 마이페이지</a></li>
 								</ul>
@@ -195,6 +217,7 @@
 		<script src="plugins/parallax-js-master/parallax.min.js"></script>
 		<script src="plugins/colorbox/jquery.colorbox-min.js"></script>
 		<script src="js/blog_single.js"></script>
+		<script src="js/course.js"></script>
 	</th:block>
 	
 </html>
