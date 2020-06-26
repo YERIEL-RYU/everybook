@@ -41,7 +41,7 @@
 										</div>
 										<div class="form-group">
 											<label for="exampleInputPassword1">비밀번호 재확인</label>
-											<input type="password" name="memberPwCk" class="form-control" id="memberPw" placeholder="비밀번호 재확인">
+											<input type="password" name="memberPwCk" class="form-control" id="memberPwCk" placeholder="비밀번호 재확인">
 										</div>
 										<div class="form-group">
 											<label for="exampleInputPassword1">이름</label>
@@ -60,13 +60,14 @@
 											<label for="exampleInputPassword1">주소</label>
 											<div class="row">
 												<div class="col-md-6">
-													<select class="form-control">
-							                          <option>option 1</option>
+													<select name = "regionMagjor" id="regionMagjor" title="주소(도)를 선택해주세요." class="form-control">
+														<option value="">도</option>
+														<option th:each=" r: ${regionMagjor}" th:value="${r.regionMajor}">[[${r.regionMajor}]]</option>
 							                        </select>
 												</div>
 												<div class="col-md-6">
-													<select class="form-control">
-							                          <option>option 1</option>
+													<select name = "regionMinor" id="regionMinor" class="form-control">
+							                        	<option value="">시</option>
 							                        </select>
 												</div>
 											</div>
@@ -129,6 +130,8 @@
 		
 	
 		<script type="text/javascript">
+		
+			/* 유효성검사 */
 			$(document).ready(function () {
 			  $.validator.setDefaults({
 			    submitHandler: function () {
@@ -153,6 +156,12 @@
 			        required: true
 			      },
 			      memberBirth: {
+			        required: true
+			      },
+			      regionMagjor: {
+			        required: true
+			      },
+			      regionMinor: {
 			        required: true
 			      },
 			      memberAddress: {
@@ -184,8 +193,14 @@
 			      memberBirth: {
 			        required: "생년월일을 입력해주세요.",
 			      },
+			      regionMagjor: {
+			        required: "주소(도)를 선택해주세요.",
+			      },
+			      regionMinor: {
+			        required: "주소(시)를 선택해주세요.",
+			      },
 			      memberAddress: {
-			        required: "주소를 입력해주세요.",
+			        required: "상세 주소를 입력해주세요.",
 			      },
 			      memberTel: {
 			        required: "휴대폰번호를 입력해주세요.",
@@ -208,7 +223,40 @@
 			  });
 			});
 			
+			
 			$(function () {
+				
+				var regionMagjor = $('#regionMagjor');
+	  			var regionMinor = $('#regionMinor');
+	  			var regionMagjorCk = $('#regionMagjorCk');
+	  			var regionMinorCk = $('#regionMinorCk');
+	  			
+				/* 지역소분류(시) 화면 출력 */
+				$('#regionMagjor').change(function(){
+					
+					var request = $.ajax({
+						  url: "/selectRegionMinor",
+						  method: "get",
+						  data: { regionMagjor : $('#regionMagjor').val() },
+						  dataType: "json"
+					});
+				 			 
+					request.done(function( data ) {
+						console.log(data);
+						var html = '<option value="">시</option>';
+						for(var i=0; i<data.length; i++){
+							html += '<option value="'+data[i].regionMinor+'">'+data[i].regionMinor+'</option>';
+						}
+						$('#regionMinor').html(html);
+					});
+					 
+					request.fail(function( jqXHR, textStatus ) {
+						alert( "Request failed: " + textStatus );
+					});
+				
+				});
+
+				
 				
 			    //Date range picker
 			    $('#reservationdate').datetimepicker({

@@ -70,8 +70,12 @@ public class MemberController {
 		return "member/officeMemberDetail";
 	}
 	
+	//회원등록화면(직원)
 	@GetMapping("/officeAddMember")
-	public String officeAddMember() {
+	public String officeAddMember(Model model) {
+		List<Region> regionMagjor = regionService.getRegionMajorList();
+		model.addAttribute("regionMagjor", regionMagjor);
+		
 		return "member/officeAddMember";
 	}
 	
