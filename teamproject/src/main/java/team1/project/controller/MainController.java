@@ -13,19 +13,12 @@ import team1.project.vo.Region;
 @Controller
 public class MainController {
 	
-	@Autowired
-	private RegionService regionService;
+	@Autowired	private RegionService regionService;
 	
 	@GetMapping("/libraryTime")
 	public String liberayTime() {
 		return "information/libraryTime";
 	}
-	
-
-	@GetMapping("/libraryList")
-	public String getLibraryList() {
-		return "information/libraryList";
-	}	
 
 	@GetMapping("/")
 	public String login() {
