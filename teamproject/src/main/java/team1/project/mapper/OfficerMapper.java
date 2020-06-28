@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import team1.project.vo.Library;
 import team1.project.vo.Officer;
 
 @Mapper
@@ -17,5 +18,5 @@ public interface OfficerMapper {
 	public List<Officer> getOfficerList();
 	
 	//직원등록
-	public int addOfficer(Officer officer); 
+	public List<Library> addOfficer(Officer officer); 
 }

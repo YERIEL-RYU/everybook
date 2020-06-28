@@ -9,13 +9,26 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import team1.project.service.LibraryService;
 import team1.project.service.OfficerService;
+import team1.project.vo.Library;
 import team1.project.vo.Officer;
 
 @Controller
 public class OfficerController {
 	@Autowired OfficerService officerService;
+	@Autowired LibraryService libraryService;
+	
+	@PostMapping(value="/libraryCodeSearch")
+	@ResponseBody
+	public String  getLibraryCodeSearch(@RequestParam("libraryNameSk") String libraryNameSk) {
+		System.out.println(libraryNameSk + " <-- libraryNameSk OfficerController.java");
+		/* libraryService.getLibraryCodeSearch(libraryNameSk); */
+		return "#";
+	}
 	
 	//나의정보조회
 	@GetMapping("/myOffice")
@@ -41,15 +54,17 @@ public class OfficerController {
 	
 	//직원등록처리
 	@PostMapping("/addOfficer")
-	public String addOfficer(Officer officer, Model model) {
+	public String addOfficer(Officer officer) {
 		System.out.println(officer);
-		
 		officerService.addOfficer(officer);
 		return "redirect:/addOfficer";
 	}
 	
 	@GetMapping("/addOfficer")
-	public String addOfficer() {
+	public String addOfficer(Model model) {
+		List<Library> libraryList = libraryService.getLibraryList();
+		System.out.println(libraryList + " <-- libraryList");
+		model.addAttribute("libraryList", libraryList);
 		return "office/addOfficer";
 	}
 }

@@ -24,7 +24,7 @@ public class ApplyController {
 	//신청도서 등록!
 	@PostMapping("/addBookApply")
 	public String addBookApply(Apply apply) {
-		
+		System.out.println(apply + " <-- apply");
 		 applyService.addBookApply(apply); 
 		
 		return "redirect:/myApply";

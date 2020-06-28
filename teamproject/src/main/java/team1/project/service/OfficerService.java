@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import team1.project.mapper.OfficerMapper;
+import team1.project.vo.Library;
 import team1.project.vo.Officer;
 
 @Service
@@ -29,9 +30,9 @@ public class OfficerService {
 		}
 	
 		//직원등록
-		public int addOfficer(Officer officer) {			
-			int result = officerMapper.addOfficer(officer);
-			return result;
+		public List<Library> addOfficer(Officer officer) {			
+			List<Library> libraryList = officerMapper.addOfficer(officer);
+			return libraryList;
 		}
 
 }

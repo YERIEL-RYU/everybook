@@ -85,6 +85,20 @@
 	</select>
 
 	<insert id="addOfficer" parameterType="team1.project.vo.Officer">
+	  
+	  <selectKey keyProperty="officerId" resultType="String" order="BEFORE">
+	  	<![CDATA[
+	  	SELECT 
+		   (case 
+		   when COUNT(*) = 0 then 'officer_01'
+		   when COUNT(*) < 10 then CONCAT('officer_0',(max(SUBSTRING(officer_id,9))+1))
+		   when COUNT(*) < 100 then CONCAT('officer_',(max(SUBSTRING(officer_id,9))+1))
+		   ELSE CONCAT('officer_',(max(SUBSTRING(officer_id,9))+1))
+		   END) AS officer_code
+		FROM
+				tb_officer
+		]]>
+	  </selectKey>
 	  	INSERT INTO tb_officer(
 			officer_id
 			,officer_pw
