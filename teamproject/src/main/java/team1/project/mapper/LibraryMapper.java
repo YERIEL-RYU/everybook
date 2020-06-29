@@ -10,7 +10,7 @@ import team1.project.vo.Library;
 @Mapper
 public interface LibraryMapper {
 	
-	public Library getLibraryCodeSearch(String libraryNameSk);
+	
 	
 	public List<Library> getLimitLibrarySearch(String sk, String sv, Map<String, Integer> map);
 	

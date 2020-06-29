@@ -6,7 +6,8 @@
   <mapper namespace="team1.project.mapper.BookMapper">
   	<resultMap type="Book" id="bookResultMap">
   	<result property="bookCode" column="book_code"/>
-  	<result property="library" column="library_name"/>
+  	<result property="libraryName" column="library_name"/>
+  	<result property="libraryCode" column="library_name"/>
   	<result property="bookLibraryCode" column="book_library_code"/>
   	<result property="bookName" column="book_name"/>
   	<result property="category" column="category_name"/>
@@ -22,31 +23,34 @@
   	<result property="officerId" column="officer_id"/>
   	</resultMap>
   
-  <!-- 도서코드로 도서정보 검색 -->
-  <select id="officeBookSerch" resultMap="bookResultMap">
+  <!-- 도서관책코드로 도서정보 검색 -->
+  <select id="officeBookSerch" parameterType="String" resultMap="bookResultMap" resultSets="Book">
   	SELECT
-	b.book_code
-	, b.book_isbn
-	, b.book_library_code
-	, b.book_name
-	, p.publisher_name
-	, w.writer_name
-	, b.book_price
-	, b.book_publish_date
-	, b.book_reg_date
-	, b.book_situation
-FROM
-	tb_book AS b 
-	INNER JOIN
-	tb_publisher AS p
-	INNER JOIN
-	tb_writer AS w
-	on
-	b.publisher_code = p.publisher_code
-	and
-	b.writer_code = w.writer_code
+		b.book_code
+		, b.library_code
+		, b.book_isbn
+		, b.book_library_code
+		, b.book_name
+		, p.publisher_name
+		, w.writer_name
+		, b.book_price
+		, b.book_publish_date
+		, b.book_reg_date
+		, b.book_situation
+	FROM
+		tb_book AS b 
+		INNER JOIN
+		tb_publisher AS p
+		INNER JOIN
+		tb_writer AS w
+		on
+		b.publisher_code = p.publisher_code
+		and
+		b.writer_code = w.writer_code
 	WHERE
-	b.book_code = ${bookCode}
+		b.book_library_code = #{bookLibraryCode}
+		and
+		b.library_code = #{libraryCode}
   
   </select>
   
