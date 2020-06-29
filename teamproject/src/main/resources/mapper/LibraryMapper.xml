@@ -18,6 +18,15 @@
 		</association>
 	</resultMap>
 	
+	<!-- 도서이름으로 도서코드 추출 -->
+	<select id="getLibraryCodeSearch" parameterType="String" resultMap="librarySelect" resultSets="Library">
+		SELECT
+			library_code
+		FROM
+			tb_library
+		WHERE
+			library_name like CONCAT('%',#{libraryNameSk},'%')
+	</select>
 	<!-- 리스트를 위한 전체 행 갯수 -->
 	<select id="getLibraryCount" resultType="int">
 		SELECT 

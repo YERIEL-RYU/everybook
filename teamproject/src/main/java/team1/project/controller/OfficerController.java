@@ -22,16 +22,15 @@ public class OfficerController {
 	@Autowired OfficerService officerService;
 	@Autowired LibraryService libraryService;
 	
-	/*
-	 * @PostMapping(value="/libraryCodeSearch")
-	 * 
-	 * @ResponseBody public Library
-	 * getLibraryCodeSearch(@RequestParam("libraryNameSk") String libraryNameSk) {
-	 * System.out.println("ㅡㅡㅡㅡㅡㅡㅡOfficerController.javaㅡㅡㅡㅡㅡㅡㅡ");
-	 * System.out.println(libraryNameSk +
-	 * " <-- libraryNameSk OfficerController.java"); Library library =
-	 * libraryService.getLibraryCodeSearch(libraryNameSk); return library; }
-	 */
+	@PostMapping(value="/libraryCodeSearch")
+	@ResponseBody
+	public Library getLibraryCodeSearch(@RequestParam("libraryNameSk") String libraryNameSk) {
+		System.out.println("ㅡㅡㅡㅡㅡㅡㅡOfficerController.javaㅡㅡㅡㅡㅡㅡㅡ");
+		System.out.println(libraryNameSk + " <-- libraryNameSk OfficerController.java");
+		Library library = libraryService.getLibraryCodeSearch(libraryNameSk);
+		return library;
+	}
+	
 	//나의정보조회
 	@GetMapping("/myOffice")
 	public String getMyOffice(Model model, HttpSession session) {
