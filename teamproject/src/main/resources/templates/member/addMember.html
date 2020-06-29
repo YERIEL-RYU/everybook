@@ -94,21 +94,21 @@
 											<div class="form_title">주소</div>
 											<div class="row">
 												<div class="col-md-6 input_col">
-													<select name = "regionMagjor" id="regionMagjor" class="courses_search_select courses_search_input" data-checked="N">
+													<select name = "memberAddress" id="regionMagjor" class="courses_search_select courses_search_input" data-checked="N">
 														<option>도</option>
 														<option th:each=" r: ${regionMagjor}" th:value="${r.regionMajor}">[[${r.regionMajor}]]</option>
 													</select>
 													<label id="regionMagjorCk" style="color: red; display: none;">지역(도)를 선택하세요</label>
 												</div>
 												<div class="col-md-6 input_col">
-													<select name = "regionMinor" id="regionMinor" class="courses_search_select courses_search_input" data-checked="N">
+													<select name = "memberAddress" id="regionMinor" class="courses_search_select courses_search_input" data-checked="N">
 														<option>시</option>
 													</select>
 													<label id="regionMinorCk" style="color: red; display: none;">지역(시)를 선택하세요</label>
 												</div>
 											</div>
 											<hr>
-											<input type="text" name = "regionDetail" id="regionDetail" class="comment_input" placeholder="상세주소" required="required">
+											<input type="text" name = "memberAddress" id="regionDetail" class="comment_input" placeholder="상세주소" required="required">
 											<input type="text" name = "memberAddress" id="memberAddress" style="display: none;">
 										</div>
 										<div class="input_from">

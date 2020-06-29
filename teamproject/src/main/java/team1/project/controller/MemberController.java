@@ -79,6 +79,7 @@ public class MemberController {
 		return "member/officeAddMember";
 	}
 	
+	//회원리스트(직원)
 	@GetMapping("/officeMemberList")
 	public String officeMemberList(Model model) {
 		List<Member> memberList = new ArrayList<Member>();

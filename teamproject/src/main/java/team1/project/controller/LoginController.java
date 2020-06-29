@@ -56,14 +56,18 @@ public class LoginController {
 				&& officer.getOfficerPw() != null && !"".equals(officer.getOfficerPw())) {
 			
 			Officer o = loginService.getOfficerSelect(officer.getOfficerId());
+			System.out.println(o);
 			
 			if(o !=null
 					&& officer.getOfficerPw().equals(o.getOfficerPw())) {
 				
 				session.setAttribute("SID", o.getOfficerId());
 				session.setAttribute("SLEVEL", o.getLevel());
+				session.setAttribute("SLIBRARY", o.getLibrary());
 				System.out.println("SID >>"+session.getAttribute("SID"));
 				System.out.println("SLEVEL >>"+session.getAttribute("SLEVEL"));
+				System.out.println("SLEVEL >>"+session.getAttribute("SLEVEL"));
+				System.out.println("SLIBRARY >>"+session.getAttribute("SLIBRARY"));
 				System.out.println("로그인완료");
 				
 				Login login = new Login();
