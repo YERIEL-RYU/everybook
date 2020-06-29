@@ -116,6 +116,39 @@
 									</div>
 								</div>                 
 							</form>
+							<div class="modal fade" id="modal-xl">
+								<div class="modal-dialog modal-xl">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h4 class="modal-title">도서 검색</h4>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">
+											<p id="searchResult"></p>
+											<table class="table table-bordered" style="text-align: center;">
+												<thead>
+													<tr>
+														<td>도서 제목</td>
+														<td>도서 코드</td>
+														<td>출판사</td>
+														<td>저자</td>
+														<td>도서상태</td>
+													</tr>	
+												</thead>
+												<tbody>
+												</tbody>
+											</table>
+										</div>
+										<div class="modal-footer justify-content-between">
+											<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+										</div>
+									<!-- /.modal-content -->
+									</div>
+								<!-- /.modal-dialog -->
+								</div>
+							</div>
 						<!-- /.card-body -->
 						</div>
 					<!-- /.card -->
@@ -295,11 +328,10 @@
 		});
 		$('#searchBook').on('click',function(){
 			var value = $('#searchBookLibraryCode').val();
-			var library = "library_01";
 			console.log(value);
-			console.log(library);
+			var library = "library_01";
 			var request = $.ajax({
-	  			  url: "/reseve/getSelectBook",
+	  			  url: "/reseve/bookSearch",
 	  			  method: "get",
 	  			  data: { bookName : value, libraryCode : library},
 	  			  dataType: "json"
@@ -307,38 +339,19 @@
 	  			 
 	  			request.done(function( data ) {
 	  				console.log(JSON.stringify(data) + " <- ajax");
-	  				$('#bookCode').val(data.bookCode);
-	  				$('#bookIsbn').val(data.bookIsbn);
-	  				$('#bookLibraryCode').val(data.bookLibraryCode);
-	  				$('#bookName').val(data.bookName);
-	  				$('#publisher').val(data.publisher);
-	  				$('#writer').val(data.writer);
-	  				$('#bookPrice').val(data.bookPrice);
-	  				$('#bookPublishDate').val(data.bookPublishDate);
-	  				if(data.bookSituation == '보유 중'){
-		  				$('#bookSituation').val(data.bookSituation);
-		  				$('#bookSituation').html(data.bookSituation);
-		  				$('#bookReservePossible').val('불가');
-		  				$('#bookReservePossible').html('불가');
-		  				$('#bookReserveCount').val('0');
-		  				$('#bookReserveCount').html('0');
-	  				}else{
-	  					if(data.reserveCount < 2){
-		  					$('#bookSituation').val(data.bookSituation);
-			  				$('#bookSituation').html(data.bookSituation);
-			  				$('#bookReservePossible').val('가능');
-			  				$('#bookReservePossible').html('가능');
-			  				$('#bookReserveCount').val(data.reserveCount);
-			  				$('#bookReserveCount').html(data.reserveCount);
-	  					}else{
-		  					$('#bookSituation').val(data.bookSituation);
-			  				$('#bookSituation').html(data.bookSituation);
-			  				$('#bookReservePossible').val('불가');
-			  				$('#bookReservePossible').html('불가');
-			  				$('#bookReserveCount').val(data.reserveCount);
-			  				$('#bookReserveCount').html(data.reserveCount);
-	  					}
+	  				var tbody = $('tbody'); 
+	  				var html = "<tr>"
+	  				for(var i=0; i<data.length;i++){
+	  					html += "<td><a th:href=/reserve/getSelectBook>"+data[i].bookName + "</a></td>"
+	  					html += "<td>"+data[i].bookLibraryCode+"</td>";
+	  					html += "<td>"+data[i].publisher+"</td>";
+	  					html += "<td>"+data[i].writer+"</td>";
+	  					html += "<td>"+data[i].bookSituation+"</td>";
+	  					html += "</tr>"
+	  					tbody.html(html);
 	  				}
+	  				$('#searchResult').html('검색 결과 '+data.length+'건');
+					$('#modal-xl').modal();
 	  			});
 	  			 
 	  			request.fail(function( jqXHR, textStatus ) {

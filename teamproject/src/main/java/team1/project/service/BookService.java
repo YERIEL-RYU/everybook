@@ -15,14 +15,8 @@ public class BookService {
 	@Autowired private BookMapper bookMapper;
 		
 	//도서코드로 도서정보 검색
-	public Book officeBookSerch(String bookName, String libraryCode) {
-		Book searchBook = bookMapper.officeBookSerch(bookName, libraryCode);
-		if(searchBook.getBookSituation().equals("보유 중")) {
-			return searchBook;
-		}else {
-			Book countBook = bookMapper.reserveBookCount(bookName, libraryCode);
-			return countBook;
-		}
+	public List<Book> officeBookSerchList(String bookName, String libraryCode){
+		return bookMapper.officeBookSerchList(bookName, libraryCode);
 	}
 	
 	//소장도서리스트
