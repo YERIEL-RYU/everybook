@@ -16,6 +16,7 @@ public class Member {
 	private int reserveCount;
 	private int reviewCount;
 	private int warningCount;
+	private String memberStauts;
 	private Date memberRegDate;
 	
 	public String getMemberId() {
@@ -96,6 +97,12 @@ public class Member {
 	public void setWarningCount(int warningCount) {
 		this.warningCount = warningCount;
 	}
+	public String getMemberStauts() {
+		return memberStauts;
+	}
+	public void setMemberStauts(String memberStauts) {
+		this.memberStauts = memberStauts;
+	}
 	public Date getMemberRegDate() {
 		return memberRegDate;
 	}
@@ -108,7 +115,8 @@ public class Member {
 				+ ", memberBirth=" + memberBirth + ", levelCode=" + levelCode + ", memberAddress=" + memberAddress
 				+ ", memberTel=" + memberTel + ", memberEmail=" + memberEmail + ", libraryCode=" + libraryCode
 				+ ", rentCount=" + rentCount + ", reserveCount=" + reserveCount + ", reviewCount=" + reviewCount
-				+ ", warningCount=" + warningCount + ", memberRegDate=" + memberRegDate + "]";
+				+ ", warningCount=" + warningCount + ", memberStauts=" + memberStauts + ", memberRegDate="
+				+ memberRegDate + "]";
 	}
 	
 	

@@ -99,9 +99,10 @@ public class MemberController {
 	//회원등록화면-입력된 아이디 중복 체크
 	@GetMapping(value="/selectCheckMemberId")
 	@ResponseBody
-	public int selectCheckMemberId(@RequestParam("memberId") String memberId) {
-		
-		return memberService.selectCheckMemberId(memberId);
+	public boolean selectCheckMemberId(@RequestParam("memberId") String memberId) {
+		boolean result =memberService.selectCheckMemberId(memberId);
+		System.out.println(result + "<---중복여부");
+		return result;
 	}
 	
 	/*회원등록화면-입력된 지역으로 지역도서관 화면출력 ajax*/

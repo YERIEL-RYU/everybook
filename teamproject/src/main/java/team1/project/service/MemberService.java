@@ -16,7 +16,7 @@ public class MemberService {
 
 	@Autowired private MemberMapper memberMapper;
 	
-	public int selectCheckMemberId(String memberId) {
+	public boolean selectCheckMemberId(String memberId) {
 		return memberMapper.selectCheckMemberId(memberId);
 	}
 	

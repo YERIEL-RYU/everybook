@@ -21,13 +21,17 @@
 		<result property="reserveCount" column="reserve_count"/>
 		<result property="reviewCount" column="review_count"/>
 		<result property="warningCount" column="warning_count"/>
+		<result property="memberStauts" column="member_stauts"/>
 		<result property="memberRegDate" column="member_reg_date"/>
 	</resultMap>
 	
 	<!-- 중복된 아이디 체크 -->
-	<select id="selectCheckMemberId" parameterType="String" resultType="int">
+	<select id="selectCheckMemberId" parameterType="String" resultType="boolean">
 		SELECT
-			COUNT(*)
+			CASE COUNT(*)
+			WHEN 1 THEN FALSE
+			ELSE TRUE
+			END 
 		FROM
 			tb_member
 		WHERE 
