@@ -21,7 +21,6 @@ public class LibraryService {
 	private final static Logger logger = LoggerFactory.getLogger(LibraryService.class);
 	@Autowired private LibraryMapper librarymapper;
 	
-	
 	public Map<String, Object> getLimitLibrarySearch(String sk, String sv){
 		final int ROW_PER_PAGE = 10;
 		int currentPage = 1;
