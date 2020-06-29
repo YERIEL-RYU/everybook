@@ -21,10 +21,9 @@ public class LibraryService {
 	private final static Logger logger = LoggerFactory.getLogger(LibraryController.class);
 	@Autowired private LibraryMapper librarymapper;
 	
-	public String getLibraryCodeSearch(String libraryNameSk) {
-		String sk = librarymapper.getLibraryCodeSearch(libraryNameSk);
-		System.out.println(sk + " <-- lCode LibraryService.java");
-		return sk;
+	public Library getLibraryCodeSearch(String libraryNameSk) {
+			System.out.println("ㅡㅡㅡㅡㅡㅡㅡgetLibraryCodeSearch().OfficerService.javaㅡㅡㅡㅡㅡㅡㅡ");
+		return librarymapper.getLibraryCodeSearch(libraryNameSk);
 	}
 	
 	public Map<String, Object> getLimitLibrarySearch(String sk, String sv){

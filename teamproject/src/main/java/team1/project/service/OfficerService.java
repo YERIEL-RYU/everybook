@@ -16,6 +16,13 @@ public class OfficerService {
 	
 	@Autowired private OfficerMapper officerMapper;
 		
+		//직원아이디 자동생성
+		public Officer getOfficerId() {
+			Officer officer = officerMapper.getOfficerId();
+			System.out.println(officer +" <-- OfficerService.java");
+			return officer;
+		}
+	
 		//나의 정보
 		public List<Officer> getMyOffice(String SID){
 			List<Officer> myList = officerMapper.getMyOffice(SID);

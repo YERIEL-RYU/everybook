@@ -24,10 +24,11 @@ public class OfficerController {
 	
 	@PostMapping(value="/libraryCodeSearch")
 	@ResponseBody
-	public String  getLibraryCodeSearch(@RequestParam("libraryNameSk") String libraryNameSk) {
+	public Library getLibraryCodeSearch(@RequestParam("libraryNameSk") String libraryNameSk) {
+		System.out.println("ㅡㅡㅡㅡㅡㅡㅡOfficerController.javaㅡㅡㅡㅡㅡㅡㅡ");
 		System.out.println(libraryNameSk + " <-- libraryNameSk OfficerController.java");
-		/* libraryService.getLibraryCodeSearch(libraryNameSk); */
-		return "#";
+		Library library = libraryService.getLibraryCodeSearch(libraryNameSk);
+		return library;
 	}
 	
 	//나의정보조회
@@ -63,8 +64,11 @@ public class OfficerController {
 	@GetMapping("/addOfficer")
 	public String addOfficer(Model model) {
 		List<Library> libraryList = libraryService.getLibraryList();
-		System.out.println(libraryList + " <-- libraryList");
+		System.out.println(libraryList + " <-- libraryList OfficerController.java");
 		model.addAttribute("libraryList", libraryList);
+		
+		Officer officer = officerService.getOfficerId();
+		System.out.println(officer + " <-- String officer OfficerController.java");
 		return "office/addOfficer";
 	}
 }
