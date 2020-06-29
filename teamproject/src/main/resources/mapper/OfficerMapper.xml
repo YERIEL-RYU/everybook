@@ -20,17 +20,20 @@
  		<result property="career" column="career_name"/>
  	</resultMap>	
 	
+	<!-- 나의정보 수정 -->
 	<update id="myOfficeModify" parameterType="Officer">
 		UPDATE tb_officer
-	SET
-		officer_pw=#{officerPw},
-		officer_name='#{officerName},
-		officer_birth=#{officerBirth},
-		officer_address=#{officerAddress},
-		officer_tel=#{officerTel},
-		officer_email=#{officerEmail}
-	WHERE
-	 officer_id=#{SID}
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="officerPw != null and officerPw !=''.toString()">officer_pw=#{officerPw},</if>
+			<if test="officerName != null and officerName !=''.toString()">officer_name='#{officerName},</if>
+			<if test="officerBirth != null and officerBirth !=''.toString()">officer_birth=#{officerBirth},</if>
+			<if test="officerAddress != null and officerAddress !=''.toString()">officer_address=#{officerAddress},</if>
+			<if test="officerTel != null and officerTel !=''.toString()">officer_tel=#{officerTel},</if>
+			<if test="officerEmail != null and officerEmail !=''.toString()">officer_email=#{officerEmail}</if>
+		</trim>
+		<where>
+	 		<if test="SID != null and SID !=''.toString()">officer_id=#{SID}</if>
+		</where>
 	</update>
 	
 	<!-- 직원 -> 나의정보 -->

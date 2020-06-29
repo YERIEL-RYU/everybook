@@ -4,7 +4,7 @@
 	  layout:decorator="@{layout/defaultAdmin}">
 
 <th:block layout:fragment="customTitle">
-	<title>나의 정보</title>
+	<title>나의 정보 수정화면</title>
 </th:block>
 
 <th:block layout:fragment="customCss">
@@ -14,10 +14,10 @@
 
 <th:block layout:fragment="customContents">
 	<!-- Content Wrapper. Contains page content -->
-	<div class="content-wrapper">
+	<div class="content-wrapper" th:with="O=${officerList}">
 		<!-- Content Header (Page header) -->
 		<div class="register-logo">
-	    	<b>나의 정보</b>
+	    	<b>나의 정보 수정하기</b>
 	  	</div>
 		<!-- /.content-header -->
 	 	<!-- Main content -->
@@ -39,54 +39,78 @@
 					<div class="card-body p-0">
 						<div class="table-responsive">
 							<table class="table m-0" style="text-align: center">
-								<tbody th:each ="O : ${getMyOffice}">
+								<tbody>
 									<tr>
-										<th>아이디</th>
-										<td th:text="${O.officerId}"></td>
+										<th><label style="color: red"><small>*</small></label>아이디</th>
+										<td>
+											<input type="text" name="officerId" th:value="${O.officerId}" readonly="readonly" style="text-align: center; background-color: snow;">
+										</td>
 									</tr>
 									<tr>
 										<th>패스워드</th>
-										<td th:text="${O.officerPw}"></td>
+										<td>
+											<input type="text" name="officerPw" th:value="${O.officerPw}" style="text-align: center;">
+										</td>
 									</tr>
 									<tr>
 										<th>이름</th>
-										<td th:text="${O.officerName}"></td>
+										<td>
+											<input type="text" name="officerName" th:value="${O.officerName}" style="text-align: center;">
+										</td>
 									</tr>
 									<tr>
 										<th>생년월일</th>
-										<td th:text="${O.officerBirth}"></td>
+										<td>
+											<input type="text" name="officerBirth" th:value="${O.officerBirth}" style="text-align: center;">
+										</td>
 									</tr>
 									<tr>
-										<th>레벨</th>
-										<td th:text="${O.level}"></td>
+										<th><label style="color: red"><small>*</small></label>레벨</th>
+										<td>
+											<input type="text" name="level" th:value="${O.level}" readonly="readonly" style="text-align: center; background-color: snow;">
+										</td>
 									</tr>
-									<tr>
-										<th>도서관</th>
-										<td th:text="${O.library}"></td>
+									 <tr>
+										<th><label style="color: red"><small>*</small></label>도서관</th>
+										<td>
+											<input type="text" name="library" th:value="${O.library}" readonly="readonly" style="text-align: center; background-color: snow;">
+										</td>
 									</tr>
 									<tr>
 										<th>주소</th>
-										<td th:text="${O.officerAddress}"></td>
+										<td>
+											<input type="text" name="officerAddress" th:value="${O.officerAddress}" style="text-align: center;">
+										</td>
 									</tr>
 									<tr>
 										<th>번호</th>
-										<td th:text="${O.officerTel}"></td>
+										<td>
+											<input type="text" name="officerTel" th:value="${O.officerTel}" style="text-align: center;">
+										</td>
 									</tr>
 									<tr>
 										<th>이메일</th>
-										<td th:text="${O.officerEmail}"></td>
+										<td>
+											<input type="text" name="officerId" th:value="${O.officerEmail}" style="text-align: center;">
+										</td>
 									</tr>
 									<tr>
-										<th>등록날짜</th>
-										<td th:text="${#dates.format(O.officerRegDate, 'YYYY-MM-dd')}"></td>
+										<th><label style="color: red"><small>*</small></label>등록날짜</th>
+										<td>
+											<input type="text" name="officerId" th:value="${#dates.format(O.officerRegDate, 'YYYY-MM-dd')}" readonly="readonly" style="text-align: center; background-color: snow;">
+										</td>
 									</tr>
 									<tr>
 										<th>보유 자격증</th>
-										<td th:text="${O.license}"></td>
+										<td>
+											<input type="text" name="officerId" th:value="${O.license}" style="text-align: center;">
+										</td>
 									</tr>
 									<tr>
 										<th>과거 경력사항</th>
-										<td th:text="${O.career}"></td>
+										<td>
+											<input type="text" name="officerId" th:value="${O.career}" style="text-align: center;">
+										</td>
 									</tr>
 								</tbody>
 							</table>
@@ -105,6 +129,8 @@
 							          <div class="modal-content bg-default">
 							            <div class="modal-header">
 							              <h4 class="modal-title">나의 정보</h4>
+							              
+							        		
 							              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							                <span aria-hidden="true">&times;</span></button>
 							            </div>
@@ -113,15 +139,16 @@
 							            </div>
 							            <div class="modal-footer justify-content-between">
 							              <button type="button" class="btn" data-dismiss="modal" style="background-color: Snow; border: outset;">Close</button>
-				          					<button type="submit" class="btn" id="libraryCodeInsert" style="background-color: Snow; border: outset;">OK</button>
+				          				  <button type="submit" class="btn" id="libraryCodeInsert" style="background-color: Snow; border: outset;">OK</button>
 							            </div>
 							          </div>
 							        </form>
 							          <!-- /.modal-content -->
 							        </div>
 							        <!-- /.modal-dialog -->
+								</div>           	
 				</div>
-            	<!-- /.card -->
+				<!-- /.card -->
 			</div>
 			<!-- /.col -->
 		</section>

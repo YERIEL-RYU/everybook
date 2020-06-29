@@ -22,12 +22,17 @@ public class OfficerController {
 	@Autowired OfficerService officerService;
 	@Autowired LibraryService libraryService;
 	
-	//나의정보 수정
-	@PostMapping("/myOfficeModify")
-	public String myOfficeModify(HttpSession session) {
+	//나의정보 수정화면
+	@GetMapping("/myOfficeModify")
+	public String myOfficeModify(Officer officer, Model model ) {
 		System.out.println("ㅡㅡㅡㅡㅡmyOfficeModify() OfficerController.javaㅡㅡㅡㅡㅡ");
-		String SID = (String) session.getAttribute("SID");
-		System.out.println(SID + " <-- SID");
+		System.out.println(officer.toString());		
+		  
+		  List<Officer> officerList = officerService.getMyOffice(officer.getOfficerId());
+		  System.out.println(officerList + "<-- officerList");
+		  model.addAttribute("officerList", officerList.get(0));
+		 
+		
 		return "office/myOfficeModify";
 	}
 	
@@ -50,7 +55,7 @@ public class OfficerController {
 		
 		List<Officer> list2 = officerService.getMyOffice(SID);
 		System.out.println(list2 + " <--list2");
-		model.addAttribute("getMyOffice", list2);
+		model.addAttribute("getMyOffice", list2.get(0));
 		
 		return "office/myOffice";		
 	}
@@ -72,6 +77,7 @@ public class OfficerController {
 		return "redirect:/addOfficer";
 	}
 	
+	//직원등록화면
 	@GetMapping("/addOfficer")
 	public String addOfficer(Model model) {
 		Officer officer = officerService.getOfficerId();
