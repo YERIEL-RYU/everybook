@@ -19,7 +19,21 @@
  		<result property="license" column="license_name"/>
  		<result property="career" column="career_name"/>
  	</resultMap>	
-
+	
+	<update id="myOfficeModify" parameterType="Officer">
+		UPDATE tb_officer
+	SET
+		officer_pw=#{officerPw},
+		officer_name='#{officerName},
+		officer_birth=#{officerBirth},
+		officer_address=#{officerAddress},
+		officer_tel=#{officerTel},
+		officer_email=#{officerEmail}
+	WHERE
+	 officer_id=#{SID}
+	</update>
+	
+	<!-- 직원 -> 나의정보 -->
 	<select id="getMyOffice" parameterType="String" resultMap="officerResultMap">
 		SELECT 
 			O.officer_id
@@ -60,6 +74,7 @@
 			O.officer_id = #{SID}
 	</select>
 
+	<!-- 직원리스트 조회 -->
 	<select id="getOfficerList" resultMap="officerResultMap">	
 		SELECT 
 			o.officer_id 
@@ -84,35 +99,24 @@
 		o.level_code = v.level_code
 	</select>
 	
-	<select id="getOfficerId" resultMap="officerResultMap" resultSets="Officer">
+	<!-- 직원등록 -> 아이디자동생성 -->
+	<select id="getOfficerId" resultMap="officerResultMap">
 		<![CDATA[
 	  	SELECT 
 		   (case 
 		   when COUNT(*) = 0 then 'officer_01'
-		   when COUNT(*) < 10 then CONCAT('officer_0',(max(SUBSTRING(officer_id,9))+1))
+		   when COUNT(*) < 9 then CONCAT('officer_0',(max(SUBSTRING(officer_id,9))+1))
 		   when COUNT(*) < 100 then CONCAT('officer_',(max(SUBSTRING(officer_id,9))+1))
 		   ELSE CONCAT('officer_',(max(SUBSTRING(officer_id,9))+1))
-		   END) AS officerId
+		   END) AS officer_id
 		FROM
 				tb_officer
 		]]>	
 	</select>
-
+	
+	<!-- 직원등록 -->
 	<insert id="addOfficer" parameterType="team1.project.vo.Officer">
 	  
-	  <selectKey keyProperty="officerId" resultType="String" order="BEFORE">
-	  	<![CDATA[
-	  	SELECT 
-		   (case 
-		   when COUNT(*) = 0 then 'officer_01'
-		   when COUNT(*) < 10 then CONCAT('officer_0',(max(SUBSTRING(officer_id,9))+1))
-		   when COUNT(*) < 100 then CONCAT('officer_',(max(SUBSTRING(officer_id,9))+1))
-		   ELSE CONCAT('officer_',(max(SUBSTRING(officer_id,9))+1))
-		   END) AS officer_code
-		FROM
-				tb_officer
-		]]>
-	  </selectKey>
 	  	INSERT INTO tb_officer(
 			officer_id
 			,officer_pw

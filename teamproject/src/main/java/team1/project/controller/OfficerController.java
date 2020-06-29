@@ -22,6 +22,16 @@ public class OfficerController {
 	@Autowired OfficerService officerService;
 	@Autowired LibraryService libraryService;
 	
+	//나의정보 수정
+	@PostMapping("/myOfficeModify")
+	public String myOfficeModify(HttpSession session) {
+		System.out.println("ㅡㅡㅡㅡㅡmyOfficeModify() OfficerController.javaㅡㅡㅡㅡㅡ");
+		String SID = (String) session.getAttribute("SID");
+		System.out.println(SID + " <-- SID");
+		return "office/myOfficeModify";
+	}
+	
+	//도서관이름으로 코드검색
 	@PostMapping(value="/libraryCodeSearch")
 	@ResponseBody
 	public Library getLibraryCodeSearch(@RequestParam("libraryNameSk") String libraryNameSk) {
@@ -34,6 +44,7 @@ public class OfficerController {
 	//나의정보조회
 	@GetMapping("/myOffice")
 	public String getMyOffice(Model model, HttpSession session) {
+		System.out.println("ㅡㅡㅡㅡㅡ<-- getMyOffice() OfficerController.javaㅡㅡㅡㅡㅡ");
 		String SID = (String) session.getAttribute("SID");
 		System.out.println(SID + " <-- SID");
 		
@@ -65,6 +76,7 @@ public class OfficerController {
 	public String addOfficer(Model model) {
 		Officer officer = officerService.getOfficerId();
 		System.out.println(officer + " <-- officer OfficerController.java");
+		model.addAttribute("officerId", officer);
 		return "office/addOfficer";
 	}
 }

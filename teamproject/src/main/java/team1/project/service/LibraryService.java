@@ -21,6 +21,7 @@ public class LibraryService {
 	private final static Logger logger = LoggerFactory.getLogger(LibraryController.class);
 	@Autowired private LibraryMapper librarymapper;
 	
+	//도서관이름으로 코드검색
 	public Library getLibraryCodeSearch(String libraryNameSk) {
 		return librarymapper.getLibraryCodeSearch(libraryNameSk);
 	}
