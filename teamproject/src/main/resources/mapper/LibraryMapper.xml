@@ -17,6 +17,7 @@
 			<result property="regionMinor" column="region_minor"/>
 		</association>
 	</resultMap>
+	
 	<!-- 리스트를 위한 전체 행 갯수 -->
 	<select id="getLibraryCount" resultType="int">
 		SELECT 

@@ -2,7 +2,8 @@ package team1.project.vo;
 
 public class Book {
 	private String bookCode;
-	private String library;
+	private String libraryName;
+	private String libraryCode;
 	private String bookLibraryCode;
 	private String bookName;
 	private String category;
@@ -21,12 +22,6 @@ public class Book {
 	}
 	public void setBookCode(String bookCode) {
 		this.bookCode = bookCode;
-	}
-	public String getLibrary() {
-		return library;
-	}
-	public void setLibrary(String library) {
-		this.library = library;
 	}
 	public String getBookLibraryCode() {
 		return bookLibraryCode;
@@ -106,13 +101,26 @@ public class Book {
 	public void setOfficerId(String officerId) {
 		this.officerId = officerId;
 	}
+	public String getLibraryName() {
+		return libraryName;
+	}
+	public void setLibraryName(String libraryName) {
+		this.libraryName = libraryName;
+	}
+	public String getLibraryCode() {
+		return libraryCode;
+	}
+	public void setLibraryCode(String libraryCode) {
+		this.libraryCode = libraryCode;
+	}
 	@Override
 	public String toString() {
-		return "Book [bookCode=" + bookCode + ", library=" + library + ", bookLibraryCode=" + bookLibraryCode
-				+ ", bookName=" + bookName + ", category=" + category + ", writer=" + writer + ", publisher="
-				+ publisher + ", bookPublishDate=" + bookPublishDate + ", bookPrice=" + bookPrice + ", bookIsbn="
-				+ bookIsbn + ", bookSituation=" + bookSituation + ", bookRegDate=" + bookRegDate + ", group=" + group
-				+ ", budget=" + budget + ", officerId=" + officerId + "]";
+		return "Book [bookCode=" + bookCode + ", libraryName=" + libraryName + ", libraryCode=" + libraryCode
+				+ ", bookLibraryCode=" + bookLibraryCode + ", bookName=" + bookName + ", category=" + category
+				+ ", writer=" + writer + ", publisher=" + publisher + ", bookPublishDate=" + bookPublishDate
+				+ ", bookPrice=" + bookPrice + ", bookIsbn=" + bookIsbn + ", bookSituation=" + bookSituation
+				+ ", bookRegDate=" + bookRegDate + ", group=" + group + ", budget=" + budget + ", officerId="
+				+ officerId + "]";
 	}
 			
 	

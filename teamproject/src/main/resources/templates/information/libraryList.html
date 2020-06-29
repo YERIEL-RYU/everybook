@@ -126,7 +126,7 @@
 								<option value="l.library_tel">전화번호</option>
 							</select>
 							<input type="text" class="search_input" name="sv">
-							<button type="submit" class="search_form_button ml-auto">검색</button>
+							<button type="button" class="search_form_button ml-auto checkedBtn" data-checked="N">검색</button>
 						</form>
 					</div>
 					<div class="table-responsive" style="margin-top: 10px;">
@@ -170,13 +170,13 @@
 						<div class="col">
 							<div class="pagination_container d-flex flex-row align-items-center justify-content-start">
 								<ul class="pagination_list">
-									<li th:if="${currentPage > 1}"><a th:href="@{/boardList(currentPage=${currentPage-1})}"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>
+									<li th:if="${currentPage > 1}"><a class="pageNum" th:data-href="@{/boardList(currentPage=${currentPage-1})}"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>
 									<li th:unless="${currentPage > 1}"><a><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>
 									<li th:each="num : ${#numbers.sequence(startPageNum,lastPageNum)}">
 										<a th:if="${currentPage == num}" th:text="${num}"></a>
-                						<a th:unless="${currentPage == num}" th:href="@{/libraryList(currentPage=${num})}" th:text="${num}"></a>
+                						<a class="pageNum" th:unless="${currentPage == num}" th:data-href="@{/libraryList(currentPage=${num})}" th:text="${num}"></a>
 									</li>
-									<li th:if="${currentPage < lastPage}"><a th:href="@{/boardList(currentPage=${currentPage+1})}"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+									<li th:if="${currentPage < lastPage}"><a class="pageNum" th:data-href="@{/boardList(currentPage=${currentPage+1})}"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
 									<li th:unless="${currentPage < lastPage}"><a><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
 								</ul>
 								<div class="courses_show_container ml-auto clearfix">			
@@ -223,6 +223,28 @@
 		<script src="plugins/colorbox/jquery.colorbox-min.js"></script>
 		<script src="js/blog_single.js"></script>
 		<script src="js/course.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				$('.checkedBtn').on('click',function(){
+					alert($(this).attr('data-checked'));
+					var checkedBtn = $(this).attr('data-checked');
+					$(this).attr('data-checked','Y');
+					console.log($(this).attr('data-checked'));
+				});
+				
+				$('.pageNum').click(function(){
+					console.log($(this).attr('data-href'));
+					console.log($(this).html());
+					var num = $(this).html()
+					if($('.checkedBtn').attr('data-checked') == 'N'){
+						location.href='/libraryList?currentPage='+num;
+					}else{
+						console.log('searching');
+					}
+					
+				});
+			});
+		</script>
 	</th:block>
 	
 </html>

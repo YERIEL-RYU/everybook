@@ -15,9 +15,9 @@ public class BookService {
 	@Autowired private BookMapper bookMapper;
 	
 	//도서코드로 도서정보 검색
-	public List<Book> officeBookSerch() {
-		List<Book> serchList = bookMapper.officeBookSerch();
-		return serchList;
+	public Book officeBookSerch(String bookLibraryCode, String libraryCode) {
+		Book searchList = bookMapper.officeBookSerch(bookLibraryCode, libraryCode);
+		return searchList;
 	}
 	
 	//소장도서리스트
