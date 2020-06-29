@@ -39,9 +39,9 @@
 								<!-- SEARCH FORM -->
 								<div class="col-sm-10">	                     	
 									<div class="input-group input-group-sm">
-										<input class="form-control" type="search" placeholder="Book Code" aria-label="Search">
+										<input class="form-control" type="search" placeholder="Book Code" aria-label="Search" id="searchBookLibraryCode">
 										<div class="input-group-append">
-											<button class="btn btn-navbar" type="submit">
+											<button class="btn btn-navbar" type="submit" id="searchBook">
 												<i class="fas fa-search"></i>
 											</button>
 										</div>
@@ -58,65 +58,65 @@
 								<div class="form-group row">
 									<label for="inputEmail3" class="col-sm-2 col-form-label">도서 코드</label>
 									<div class="col-sm-10">
-										<input type="text" class="form-control" placeholder="Book Code">
+										<input type="text" class="form-control" placeholder="Book Code" id="bookCode">
 									</div>
 								</div>
 								<div class="form-group row">
 									<label for="inputEmail3" class="col-sm-2 col-form-label">ISBN</label>
 									<div class="col-sm-10">
-										<input type="text" class="form-control" placeholder="ISBN">
+										<input type="text" class="form-control" placeholder="ISBN" id="bookIsbn">
 									</div>	
 								</div>
 								<div class="form-group row">
 									<label for="inputEmail3" class="col-sm-2 col-form-label">청구기호</label>
 									<div class="col-sm-10">
-										<input type="text" class="form-control" placeholder="Library Book Code">
+										<input type="text" class="form-control" placeholder="Library Book Code" id="bookLibraryCode">
 									</div>
 								</div>
 								<div class="form-group row">
 									<label for="inputPassword3" class="col-sm-2 col-form-label">도서이름</label>
 									<div class="col-sm-10">
-										<input type="text" class="form-control" placeholder="Book Name">
+										<input type="text" class="form-control" placeholder="Book Name" id="bookName">
 									</div>
 								</div>
 								<div class="form-group row">
 									<label for="inputPassword3" class="col-sm-2 col-form-label">출판사</label>
 									<div class="col-sm-10">
-										<input type="text" class="form-control" placeholder="Publisher Code">
+										<input type="text" class="form-control" placeholder="Publisher Code" id="publisher">
 									</div>
 								</div>
 								<div class="form-group row">
 									<label for="inputPassword3" class="col-sm-2 col-form-label">저자</label>
 									<div class="col-sm-4">
-										<input type="text" class="form-control" placeholder="Writer Name">
+										<input type="text" class="form-control" placeholder="Writer Name" id="writer">
 									</div>
 									<label for="inputPassword3" class="col-sm-2 col-form-label">가격</label>
 									<div class="col-sm-4">
-										<input type="text" class="form-control" placeholder="Book Price">
+										<input type="text" class="form-control" placeholder="Book Price" id="bookPrice">
 									</div>
 								</div>
 								<div class="form-group row">
 									<label for="inputPassword3" class="col-sm-2 col-form-label">출간날짜</label>
 									<div class="col-sm-4">
-										<input type="text" class="form-control" placeholder="Book Publish Date">
+										<input type="text" class="form-control" placeholder="Book Publish Date" id="bookPublishDate">
 									</div>
 									<label for="inputPassword3" class="col-sm-2 col-form-label">등록날짜</label>
 									<div class="col-sm-4">
-										<input type="text" class="form-control" placeholder="Book Reg Date">
+										<input type="text" class="form-control" placeholder="Book Reg Date" id="bookRegDate">
 									</div>
 								</div>
 								<div class="form-group row">
 									<label class="col-sm-2 col-form-label">도서상태</label>
 										<div class="col-sm-2">
-											<button type="button" class="fc-today-button btn btn-primary">대여중</button>
+											<button type="button" class="fc-today-button btn btn-primary" id="bookSituation"></button>
 										</div>
 									<label class="col-sm-2 col-form-label">예약상태</label>
 									<div class="col-sm-2">
-										<button type="button" class="fc-today-button btn btn-primary"> 가능</button>
+										<button type="button" class="fc-today-button btn btn-primary" id="bookReservePossible"></button>
 									</div>
 									<label class="col-sm-2 col-form-label">예약 권수</label>
 									<div class="col-sm-2">
-										<button type="button" class="fc-today-button btn btn-primary">3</button>
+										<button type="button" class="fc-today-button btn btn-primary" id="bookReserveCount"></button>
 									</div>
 								</div>                 
 							</form>
@@ -203,7 +203,7 @@
 									</div>
 									<label for="inputPassword3" class="col-sm-3 col-form-label">예약가능 여부</label>
 									<div class="col-sm-2">
-										<button type="button" class="fc-today-button btn btn-danger" id="reservePossible"></button>
+										<button type="button" class="fc-today-button btn btn-danger" id="memberReservePossible"></button>
 									</div>
 									<label for="inputPassword3" class="col-sm-3 col-form-label">예약가능권수</label> 
 									<div class="col-sm-1">
@@ -280,19 +280,45 @@
 	  				$('#rentCount').val(data.rentCount);
 	  				$('#rentCount').html(data.rentCount);
 	  				if(data.reserveCount == 5){
-		  				$('#reservePossible').val('예약불가');
-		  				$('#reservePossible').html('예약불가');
+		  				$('#memberReservePossible').val('예약불가');
+		  				$('#memberReservePossible').html('예약불가');
 	  					
 	  				}else{
-		  				$('#reservePossible').val('예약가능');
-		  				$('#reservePossible').html('가능');
+		  				$('#memberReservePossible').val('예약가능');
+		  				$('#memberReservePossible').html('가능');
 	  				}
 	  				$('#reserveCount').val(5-data.reserveCount);
 	  				$('#reserveCount').html(5-data.reserveCount);
 	  			});
 	  			 
 	  			request.fail(function( jqXHR, textStatus ) {
-	  			  alert( "Request failed: " + textStatus );
+	  			  alert( "요청에 실패하였습니다. :  " + textStatus );
+	  			});
+		});
+		$('#searchBook').on('click',function(){
+			var value = $('#searchBookLibraryCode').val();
+			var library = "library_01";
+			console.log(value);
+			console.log(library);
+			var request = $.ajax({
+	  			  url: "/reseve/getSelectBook",
+	  			  method: "get",
+	  			  data: { bookLibraryCode : value, libraryCode : library},
+	  			  dataType: "json"
+	  			});
+	  			 
+	  			request.done(function( data ) {
+	  				console.log(JSON.stringify(data) + " <- ajax");
+	  				$('#bookCode').val(data.bookCode);
+	  				$('#bookIsbn').val(data.bookIsbn);
+	  				$('#bookLibraryCode').val(data.bookLibraryCode);
+	  				$('#bookName').val(data.bookName);
+	  				$('#publisher').val(data.publisher);
+	  				$('#bookCode').val(data.bookCode);
+	  			});
+	  			 
+	  			request.fail(function( jqXHR, textStatus ) {
+	  			  alert( "요청에 실패하였습니다. :  " + textStatus );
 	  			});
 		});
 	});
