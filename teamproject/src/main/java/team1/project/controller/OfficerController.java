@@ -63,12 +63,8 @@ public class OfficerController {
 	
 	@GetMapping("/addOfficer")
 	public String addOfficer(Model model) {
-		List<Library> libraryList = libraryService.getLibraryList();
-		System.out.println(libraryList + " <-- libraryList OfficerController.java");
-		model.addAttribute("libraryList", libraryList);
-		
 		Officer officer = officerService.getOfficerId();
-		System.out.println(officer + " <-- String officer OfficerController.java");
+		System.out.println(officer + " <-- officer OfficerController.java");
 		return "office/addOfficer";
 	}
 }

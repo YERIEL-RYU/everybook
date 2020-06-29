@@ -21,5 +21,5 @@ public interface OfficerMapper {
 	public List<Officer> getOfficerList();
 	
 	//직원등록
-	public List<Library> addOfficer(Officer officer); 
+	public int addOfficer(Officer officer); 
 }

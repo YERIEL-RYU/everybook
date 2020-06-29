@@ -22,7 +22,6 @@ public class LibraryService {
 	@Autowired private LibraryMapper librarymapper;
 	
 	public Library getLibraryCodeSearch(String libraryNameSk) {
-			System.out.println("ㅡㅡㅡㅡㅡㅡㅡgetLibraryCodeSearch().OfficerService.javaㅡㅡㅡㅡㅡㅡㅡ");
 		return librarymapper.getLibraryCodeSearch(libraryNameSk);
 	}
 	

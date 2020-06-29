@@ -37,9 +37,9 @@ public class OfficerService {
 		}
 	
 		//직원등록
-		public List<Library> addOfficer(Officer officer) {			
-			List<Library> libraryList = officerMapper.addOfficer(officer);
-			return libraryList;
+		public int addOfficer(Officer officer) {			
+			int i = officerMapper.addOfficer(officer);
+			return i;
 		}
 
 }
