@@ -17,6 +17,7 @@ public class Book {
 	private String group;
 	private String budget;
 	private String officerId;
+	private int reserveCount;
 	public String getBookCode() {
 		return bookCode;
 	}
@@ -113,6 +114,12 @@ public class Book {
 	public void setLibraryCode(String libraryCode) {
 		this.libraryCode = libraryCode;
 	}
+	public int getReserveCount() {
+		return reserveCount;
+	}
+	public void setReserveCount(int reserveCount) {
+		this.reserveCount = reserveCount;
+	}
 	@Override
 	public String toString() {
 		return "Book [bookCode=" + bookCode + ", libraryName=" + libraryName + ", libraryCode=" + libraryCode
@@ -120,7 +127,7 @@ public class Book {
 				+ ", writer=" + writer + ", publisher=" + publisher + ", bookPublishDate=" + bookPublishDate
 				+ ", bookPrice=" + bookPrice + ", bookIsbn=" + bookIsbn + ", bookSituation=" + bookSituation
 				+ ", bookRegDate=" + bookRegDate + ", group=" + group + ", budget=" + budget + ", officerId="
-				+ officerId + "]";
+				+ officerId + ", reserveCount=" + reserveCount + "]";
 	}
 			
 	

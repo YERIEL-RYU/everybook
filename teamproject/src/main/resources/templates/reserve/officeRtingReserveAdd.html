@@ -34,12 +34,12 @@
 							<!-- Book Search Form -->
 							<div class="row">
 								<div class="col-sm-2">			                
-									<a>도서 코드</a>																							               																																				
+									<a>도서 제목</a>																							               																																				
 								</div>	
 								<!-- SEARCH FORM -->
 								<div class="col-sm-10">	                     	
 									<div class="input-group input-group-sm">
-										<input class="form-control" type="search" placeholder="Book Code" aria-label="Search" id="searchBookLibraryCode">
+										<input class="form-control" type="search" placeholder="Book Name" aria-label="Search" id="searchBookLibraryCode">
 										<div class="input-group-append">
 											<button class="btn btn-navbar" type="submit" id="searchBook">
 												<i class="fas fa-search"></i>
@@ -97,12 +97,8 @@
 								</div>
 								<div class="form-group row">
 									<label for="inputPassword3" class="col-sm-2 col-form-label">출간날짜</label>
-									<div class="col-sm-4">
+									<div class="col-sm-10">
 										<input type="text" class="form-control" placeholder="Book Publish Date" id="bookPublishDate">
-									</div>
-									<label for="inputPassword3" class="col-sm-2 col-form-label">등록날짜</label>
-									<div class="col-sm-4">
-										<input type="text" class="form-control" placeholder="Book Reg Date" id="bookRegDate">
 									</div>
 								</div>
 								<div class="form-group row">
@@ -273,13 +269,15 @@
 	  				$('#memberId').val(data.memberId);
 	  				$('#memberName').val(data.memberName);
 	  				$('#memberBirth').val(data.memberBirth);
-	  				$('#levelCode').val(data.levelCode);
+	  				if(data.levelCode == '6'){
+		  				$('#levelCode').val('일반회원');
+	  				}
 	  				$('#memberAddress').val(data.memberAddress);
 	  				$('#memberTel').val(data.memberTel);
 	  				$('#memberEmail').val(data.memberTel);
 	  				$('#rentCount').val(data.rentCount);
 	  				$('#rentCount').html(data.rentCount);
-	  				if(data.reserveCount == 5){
+	  				if(data.reserveCount == 3){
 		  				$('#memberReservePossible').val('예약불가');
 		  				$('#memberReservePossible').html('예약불가');
 	  					
@@ -287,8 +285,8 @@
 		  				$('#memberReservePossible').val('예약가능');
 		  				$('#memberReservePossible').html('가능');
 	  				}
-	  				$('#reserveCount').val(5-data.reserveCount);
-	  				$('#reserveCount').html(5-data.reserveCount);
+	  				$('#reserveCount').val(3-data.reserveCount);
+	  				$('#reserveCount').html(3-data.reserveCount);
 	  			});
 	  			 
 	  			request.fail(function( jqXHR, textStatus ) {
@@ -303,7 +301,7 @@
 			var request = $.ajax({
 	  			  url: "/reseve/getSelectBook",
 	  			  method: "get",
-	  			  data: { bookLibraryCode : value, libraryCode : library},
+	  			  data: { bookName : value, libraryCode : library},
 	  			  dataType: "json"
 	  			});
 	  			 
@@ -314,7 +312,33 @@
 	  				$('#bookLibraryCode').val(data.bookLibraryCode);
 	  				$('#bookName').val(data.bookName);
 	  				$('#publisher').val(data.publisher);
-	  				$('#bookCode').val(data.bookCode);
+	  				$('#writer').val(data.writer);
+	  				$('#bookPrice').val(data.bookPrice);
+	  				$('#bookPublishDate').val(data.bookPublishDate);
+	  				if(data.bookSituation == '보유 중'){
+		  				$('#bookSituation').val(data.bookSituation);
+		  				$('#bookSituation').html(data.bookSituation);
+		  				$('#bookReservePossible').val('불가');
+		  				$('#bookReservePossible').html('불가');
+		  				$('#bookReserveCount').val('0');
+		  				$('#bookReserveCount').html('0');
+	  				}else{
+	  					if(data.reserveCount < 2){
+		  					$('#bookSituation').val(data.bookSituation);
+			  				$('#bookSituation').html(data.bookSituation);
+			  				$('#bookReservePossible').val('가능');
+			  				$('#bookReservePossible').html('가능');
+			  				$('#bookReserveCount').val(data.reserveCount);
+			  				$('#bookReserveCount').html(data.reserveCount);
+	  					}else{
+		  					$('#bookSituation').val(data.bookSituation);
+			  				$('#bookSituation').html(data.bookSituation);
+			  				$('#bookReservePossible').val('불가');
+			  				$('#bookReservePossible').html('불가');
+			  				$('#bookReserveCount').val(data.reserveCount);
+			  				$('#bookReserveCount').html(data.reserveCount);
+	  					}
+	  				}
 	  			});
 	  			 
 	  			request.fail(function( jqXHR, textStatus ) {

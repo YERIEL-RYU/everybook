@@ -24,13 +24,11 @@ public class ReserveController {
 	
 	@GetMapping("/reseve/getSelectBook")
 	@ResponseBody
-	public Book officeBookSerch(String bookLibraryCode, String libraryCode) {
-		Book book = bookService.officeBookSerch(bookLibraryCode, libraryCode);
-		if(book.getBookSituation() == "보유 중") {
+	public Book officeBookSerch(String bookName, String libraryCode) {
+		Book book = bookService.officeBookSerch(bookName, libraryCode);
+		logger.info("도서 상태 : {}",book.toString());
+		
 		return book;
-		}else {
-			return null;
-		}
 	}
 	
 	@GetMapping("/reseve/getSelectMember")
