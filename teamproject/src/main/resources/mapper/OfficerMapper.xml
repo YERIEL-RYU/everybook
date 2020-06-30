@@ -30,14 +30,14 @@
 		UPDATE tb_officer
 		<trim prefix="SET" suffixOverrides=",">
 			<if test="officerPw != null and officerPw !=''.toString()">officer_pw=#{officerPw},</if>
-			<if test="officerName != null and officerName !=''.toString()">officer_name='#{officerName},</if>
+			<if test="officerName != null and officerName !=''.toString()">officer_name=#{officerName},</if>
 			<if test="officerBirth != null and officerBirth !=''.toString()">officer_birth=#{officerBirth},</if>
 			<if test="officerAddress != null and officerAddress !=''.toString()">officer_address=#{officerAddress},</if>
 			<if test="officerTel != null and officerTel !=''.toString()">officer_tel=#{officerTel},</if>
 			<if test="officerEmail != null and officerEmail !=''.toString()">officer_email=#{officerEmail}</if>
 		</trim>
 		<where>
-	 		<if test="SID != null and SID !=''.toString()">officer_id=#{SID}</if>
+	 		<if test="officerId != null and officerId !=''.toString()">officer_id=#{officerId}</if>
 		</where>
 	</update>
 	

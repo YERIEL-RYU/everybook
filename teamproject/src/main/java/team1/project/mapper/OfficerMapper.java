@@ -11,7 +11,7 @@ import team1.project.vo.Officer;
 public interface OfficerMapper {
 	
 	//나의정보 수정
-	public int myOfficeModify();
+	public int myOfficeModify(Officer officer);
 	
 	//직원등록 - 직원아이디 자동생성
 	public Officer getOfficerId();

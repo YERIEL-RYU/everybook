@@ -17,8 +17,8 @@ public class OfficerService {
 	@Autowired private OfficerMapper officerMapper;
 	
 		//나의정보 수정
-		public int myOfficeModify() {
-			int i = officerMapper.myOfficeModify();
+		public int myOfficeModify(Officer officer) {
+			int i = officerMapper.myOfficeModify(officer);
 			return i;
 		}
 	

@@ -36,8 +36,10 @@
 						</div>
 					</div>
 					<!-- /.card-header -->
+				<form action="/myOfficeModify" method="post">
 					<div class="card-body p-0">
 						<div class="table-responsive">
+						
 							<table class="table m-0" style="text-align: center">
 								<tbody>
 									<tr>
@@ -91,13 +93,13 @@
 									<tr>
 										<th>이메일</th>
 										<td>
-											<input type="text" name="officerId" th:value="${O.officerEmail}" style="text-align: center;">
+											<input type="text" name="officerEmail" th:value="${O.officerEmail}" style="text-align: center;">
 										</td>
 									</tr>
 									<tr>
 										<th><label style="color: red"><small>#</small></label>등록날짜</th>
 										<td>
-											<input type="text" name="officerId" th:value="${#dates.format(O.officerRegDate, 'YYYY-MM-dd')}" readonly="readonly" style="text-align: center; background-color: snow;">
+											<input type="text" th:value="${#dates.format(O.officerRegDate, 'YYYY-MM-dd')}" readonly="readonly" style="text-align: center; background-color: snow;">
 										</td>
 									</tr>
 									<tr>
@@ -112,7 +114,7 @@
 									<tr>
 										<th><label style="color: red"><small>#</small></label>과거 경력사항</th>
 										<td>
-											<input type="text" name="officerId" th:value="${O.career}" style="text-align: center; background-color: snow">
+											<input type="text" name="career" th:value="${O.career}" style="text-align: center; background-color: snow">
 										</td>
 									</tr>
 								</tbody>
@@ -122,41 +124,17 @@
 					</div>
 					<!-- /.card-body -->
 					<div class="card-footer clearfix">
-					  <a href="#" class="btn btn-sm btn-info float-right" data-toggle="modal" data-target="#modal-update">#수정하기</a>
+					  <button type="submit" class="btn btn-sm btn-info float-right" >#수정하기</button>
 					</div>
 					<!-- /.card-footer -->
-					 <!-- modal -->
-				                <div class="modal fade" id="modal-update">
-							        <div class="modal-dialog">
-							        <form action="/myOfficeModify" method="post">
-							          <div class="modal-content bg-default">
-							            <div class="modal-header">
-							              <h4 class="modal-title">나의 정보</h4>
-							              
-							        		
-							              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							                <span aria-hidden="true">&times;</span></button>
-							            </div>
-							            <div class="modal-body">
-							              <p>수정 하시겠습니까?</p>
-							            </div>
-							            <div class="modal-footer justify-content-between">
-							              <button type="button" class="btn" data-dismiss="modal" style="background-color: Snow; border: outset;">Close</button>
-				          				  <button type="submit" class="btn" id="libraryCodeInsert" style="background-color: Snow; border: outset;">OK</button>
-							            </div>
-							          </div>
-							        </form>
-							          <!-- /.modal-content -->
-							        </div>
-							        <!-- /.modal-dialog -->
-								</div>           	
-				</div>
-				<!-- /.card -->
+				</form>
 			</div>
+				<!-- /.card -->
+		</div>
 			<!-- /.col -->
-		</section>
+	</section>
 		<!-- /.content -->
-	</div>
+</div>
 </th:block>
 
 </html>
