@@ -18,8 +18,13 @@ import team1.project.vo.Library;
 @Transactional
 public class LibraryService {
 	
-	private final static Logger logger = LoggerFactory.getLogger(LibraryService.class);
+	private final static Logger logger = LoggerFactory.getLogger(LibraryController.class);
 	@Autowired private LibraryMapper librarymapper;
+	
+	//도서관이름으로 코드검색
+	public Library getLibraryCodeSearch(String libraryNameSk) {
+		return librarymapper.getLibraryCodeSearch(libraryNameSk);
+	}
 	
 	public Map<String, Object> getLimitLibrarySearch(String sk, String sv){
 		final int ROW_PER_PAGE = 10;

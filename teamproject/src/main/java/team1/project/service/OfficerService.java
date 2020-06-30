@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import team1.project.mapper.OfficerMapper;
-import team1.project.vo.Library;
+import team1.project.vo.License;
 import team1.project.vo.Officer;
 
 @Service
@@ -15,12 +15,24 @@ import team1.project.vo.Officer;
 public class OfficerService {
 	
 	@Autowired private OfficerMapper officerMapper;
-		
+	
+		//나의정보 수정
+		public int myOfficeModify(Officer officer) {
+			int i = officerMapper.myOfficeModify(officer);
+			return i;
+		}
+	
 		//직원아이디 자동생성
 		public Officer getOfficerId() {
 			Officer officer = officerMapper.getOfficerId();
 			System.out.println(officer +" <-- OfficerService.java");
 			return officer;
+		}
+		
+		//나의정보 - 자격증 조회
+		public List<License> getOfficerLicense(String SID){
+			List<License> licenseList = officerMapper.getOfficerLicense(SID);
+			return licenseList;
 		}
 	
 		//나의 정보
