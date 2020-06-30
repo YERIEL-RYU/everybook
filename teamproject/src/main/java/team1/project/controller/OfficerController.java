@@ -51,8 +51,7 @@ public class OfficerController {
 		logger.info("==== 자격증조회 getOfficerLicense() ====");
 		logger.info("licenseList --> " + licenseList);
 		model.addAttribute("licenseList", licenseList);
-		 
-		
+		 		
 		return "office/myOfficeModify";
 	}
 	
