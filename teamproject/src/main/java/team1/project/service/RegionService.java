@@ -15,6 +15,10 @@ public class RegionService {
 	
 	@Autowired private RegionMapper regionMapper;
 	
+	public String selectRegionCode(String rMagjor, String rMinor) {
+		return regionMapper.selectRegionCode(rMagjor, rMinor);
+	}
+	
 	public List<Region> getRegionMinorList(String regionMajor) {
 		return regionMapper.getRegionMinorList(regionMajor);
 	}

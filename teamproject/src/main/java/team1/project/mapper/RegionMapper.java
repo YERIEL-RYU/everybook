@@ -9,6 +9,9 @@ import team1.project.vo.Region;
 @Mapper
 public interface RegionMapper {
 	
+	//지역코드 출력
+	public String selectRegionCode(String rMagjor, String rMinor);
+	
 	public List<Region> getRegionMinorList(String regionMajor);
 	
 	public List<Region> getSearchRegion(String sk, String sv);

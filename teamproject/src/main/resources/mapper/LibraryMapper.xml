@@ -17,7 +17,18 @@
 			<result property="regionMinor" column="region_minor"/>
 		</association>
 	</resultMap>
-	
+
+	<!-- 지역코드로 해당 지역 도서관 출력 -->
+	<select id="selectLibraryCode" parameterType="String" resultMap="librarySelect">
+		SELECT
+			library_code
+			,library_name 
+		FROM
+			tb_library
+		WHERE
+			region_code = #{regionCode}
+	</select>
+
 	<!-- 도서이름으로 도서코드 추출 -->
 	<select id="getLibraryCodeSearch" parameterType="String" resultMap="librarySelect" resultSets="Library">
 		SELECT
@@ -27,6 +38,7 @@
 		WHERE
 			library_name like CONCAT('%',#{libraryNameSk},'%')
 	</select>
+
 	<!-- 리스트를 위한 전체 행 갯수 -->
 	<select id="getLibraryCount" resultType="int">
 		SELECT 

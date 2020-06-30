@@ -12,6 +12,18 @@
 		</association>
 	</resultMap>
 	
+	<!-- 등록화면에서 입력한 지역값으로 지역코드 출력 -->
+	<select id="selectRegionCode" parameterType="String" resultType="String">
+		SELECT
+			region_code
+		FROM
+			tb_region
+		WHERE 
+			region_major = #{rMagjor}
+		AND
+			region_minor = #{rMinor}
+	</select>
+	
 	<select id="getSearchRegion"  parameterType="String" resultMap="regionSelect">
 		SELECT
 			*

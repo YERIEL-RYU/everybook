@@ -1,23 +1,20 @@
 package team1.project.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import team1.project.vo.Library;
 import team1.project.vo.Member;
 
 @Mapper
 public interface MemberMapper {
 
+	//주소 3개로 나눠서 출력
+	public Map<String, Object> getMemberAddress(String memberId);
+	
 	//중복된 아이디 체크
-	public int selectCheckMemberId(String memberId);
-	
-	//지역 도서관 출력
-	public List<Library> selectLibraryCode(String regionCode);
-	
-	//지역코드 출력
-	public String selectRegionCode(String rMagjor, String rMinor);
+	public boolean selectCheckMemberId(String memberId);
 	
 	//전체회원리스트
 	public List<Member> allListMember();
@@ -26,7 +23,7 @@ public interface MemberMapper {
 	public int ModifyMember(Member member);
 	
 	//회원상세보기
-	public Member DetailMember(Member member);
+	public Member DetailMember(String memberId, String libraryCode);
 	
 	//한명회원조회
 	public Member selectgetMember(String memberId);

@@ -26,6 +26,10 @@ public class LibraryService {
 		return librarymapper.getLibraryCodeSearch(libraryNameSk);
 	}
 	
+	public List<Library> selectLibraryCode(String regionCode){
+		return librarymapper.selectLibraryCode(regionCode);
+	}
+	
 	public Map<String, Object> getLimitLibrarySearch(String sk, String sv){
 		final int ROW_PER_PAGE = 10;
 		int currentPage = 1;
