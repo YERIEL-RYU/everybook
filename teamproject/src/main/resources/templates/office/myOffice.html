@@ -82,7 +82,10 @@
 									</tr>
 									<tr>
 										<th>보유 자격증</th>
-										<td th:text="${O.license}"></td>
+										<td><select>
+										<option>보유자격증</option>
+										<option th:each="L : ${license}">[[${L.licenseName}]]</option>
+										</select></td>
 									</tr>
 									<tr>
 										<th>과거 경력사항</th>

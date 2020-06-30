@@ -27,7 +27,7 @@
 	            <!-- TABLE: 공지사항 -->
 				<div class="card">
 					<div class="card-header border-transparent">
-						<h3 class="card-title">개인 정보</h3>
+						<h3 class="card-title">개인 정보<label style="color: red; margin-left: 15px;"><small>#수정 불가</small></label></h3>
 					
 						<div class="card-tools">
 							<button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -41,7 +41,7 @@
 							<table class="table m-0" style="text-align: center">
 								<tbody>
 									<tr>
-										<th><label style="color: red"><small>*</small></label>아이디</th>
+										<th><label style="color: red"><small>＃</small></label>아이디</th>
 										<td>
 											<input type="text" name="officerId" th:value="${O.officerId}" readonly="readonly" style="text-align: center; background-color: snow;">
 										</td>
@@ -65,13 +65,13 @@
 										</td>
 									</tr>
 									<tr>
-										<th><label style="color: red"><small>*</small></label>레벨</th>
+										<th><label style="color: red"><small>#</small></label>레벨</th>
 										<td>
 											<input type="text" name="level" th:value="${O.level}" readonly="readonly" style="text-align: center; background-color: snow;">
 										</td>
 									</tr>
 									 <tr>
-										<th><label style="color: red"><small>*</small></label>도서관</th>
+										<th><label style="color: red"><small>#</small></label>도서관</th>
 										<td>
 											<input type="text" name="library" th:value="${O.library}" readonly="readonly" style="text-align: center; background-color: snow;">
 										</td>
@@ -95,21 +95,24 @@
 										</td>
 									</tr>
 									<tr>
-										<th><label style="color: red"><small>*</small></label>등록날짜</th>
+										<th><label style="color: red"><small>#</small></label>등록날짜</th>
 										<td>
 											<input type="text" name="officerId" th:value="${#dates.format(O.officerRegDate, 'YYYY-MM-dd')}" readonly="readonly" style="text-align: center; background-color: snow;">
 										</td>
 									</tr>
 									<tr>
-										<th>보유 자격증</th>
+										<th><label style="color: red"><small>#</small></label>보유 자격증</th>
 										<td>
-											<input type="text" name="officerId" th:value="${O.license}" style="text-align: center;">
+											<select style="background-color: snow; width: 32%; height: 30px;">
+												<option>보유자격증</option>
+												<option th:each="L : ${licenseList}">[[${L.licenseName}]]</option>
+											</select>
 										</td>
 									</tr>
 									<tr>
-										<th>과거 경력사항</th>
+										<th><label style="color: red"><small>#</small></label>과거 경력사항</th>
 										<td>
-											<input type="text" name="officerId" th:value="${O.career}" style="text-align: center;">
+											<input type="text" name="officerId" th:value="${O.career}" style="text-align: center; background-color: snow">
 										</td>
 									</tr>
 								</tbody>

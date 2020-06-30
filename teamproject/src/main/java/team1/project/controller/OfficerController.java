@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import team1.project.service.LibraryService;
 import team1.project.service.OfficerService;
 import team1.project.vo.Library;
+import team1.project.vo.License;
 import team1.project.vo.Officer;
 
 @Controller
@@ -26,11 +27,15 @@ public class OfficerController {
 	@GetMapping("/myOfficeModify")
 	public String myOfficeModify(Officer officer, Model model ) {
 		System.out.println("ㅡㅡㅡㅡㅡmyOfficeModify() OfficerController.javaㅡㅡㅡㅡㅡ");
-		System.out.println(officer.toString());		
-		  
-		  List<Officer> officerList = officerService.getMyOffice(officer.getOfficerId());
-		  System.out.println(officerList + "<-- officerList");
-		  model.addAttribute("officerList", officerList.get(0));
+		System.out.println(officer.toString());				  
+		
+		List<Officer> officerList = officerService.getMyOffice(officer.getOfficerId());
+		System.out.println(officerList + "<-- officerList");
+		model.addAttribute("officerList", officerList.get(0));
+		
+		List<License> licenseList = officerService.getOfficerLicense(officer.getOfficerId());
+		System.out.println(licenseList + " <-- licenseList");
+		model.addAttribute("licenseList", licenseList);
 		 
 		
 		return "office/myOfficeModify";
@@ -57,6 +62,11 @@ public class OfficerController {
 		System.out.println(list2 + " <--list2");
 		model.addAttribute("getMyOffice", list2.get(0));
 		
+		
+		  List<License> license = officerService.getOfficerLicense(SID);
+		  System.out.println(license + " <-- license"); 
+		  model.addAttribute("license", license);
+		 
 		return "office/myOffice";		
 	}
 	

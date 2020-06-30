@@ -19,6 +19,11 @@
  		<result property="license" column="license_name"/>
  		<result property="career" column="career_name"/>
  	</resultMap>	
+ 	
+ 	<resultMap type="License" id="LicenseResultMap">
+ 		<result property="licenseCode" column="license_code"/>
+ 		<result property="licenseName" column="license_name"/>
+ 	</resultMap>
 	
 	<!-- 나의정보 수정 -->
 	<update id="myOfficeModify" parameterType="Officer">
@@ -36,6 +41,24 @@
 		</where>
 	</update>
 	
+	<!-- 직원 - 나의정보 자격증조회  -->
+	<select id="getOfficerLicense" parameterType="String" resultMap="LicenseResultMap">
+		SELECT
+			c.license_name
+		FROM
+			tb_officer AS o
+			INNER JOIN
+			tb_officer_license AS l
+			INNER JOIN
+			tb_license AS c
+			ON
+			o.officer_id = l.officer_id
+			AND
+			l.license_code = c.license_code
+			WHERE
+			o.officer_id = #{SID}
+	</select>
+	
 	<!-- 직원 -> 나의정보 -->
 	<select id="getMyOffice" parameterType="String" resultMap="officerResultMap">
 		SELECT 
@@ -49,32 +72,24 @@
 			,O.officer_tel
 			,O.officer_email
 			,O.officer_reg_date 
-			,S.license_name
 			,C.career_name
+
 		FROM 
 			tb_officer AS O
-			INNER JOIN
-			tb_officer_license AS L
 			INNER JOIN 
 			tb_career AS C
-			INNER JOIN
-			tb_license AS S
 			INNER JOIN
 			tb_level AS V
 			INNER JOIN
 			tb_library AS B
-			on
-			O.officer_id=L.officer_id
-			AND 
-			L.officer_id=C.officer_id
-			AND
-			L.license_code = S.license_code
+			ON
+			O.officer_id=C.officer_id
 			AND
 			O.level_code = V.level_code
 			AND
 			B.library_code = O.library_code
 			WHERE
-			O.officer_id = #{SID}
+			O.officer_id = #{SID}	
 	</select>
 
 	<!-- 직원리스트 조회 -->
