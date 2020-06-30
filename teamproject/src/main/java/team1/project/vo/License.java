@@ -44,5 +44,12 @@ public class License {
 	public void setOfficer(Officer officer) {
 		this.officer = officer;
 	}
+	@Override
+	public String toString() {
+		return "License [licenseCode=" + licenseCode + ", licenseName=" + licenseName + ", licenseIssue=" + licenseIssue
+				+ ", licenseOperationDate=" + licenseOperationDate + ", licenseRegDate=" + licenseRegDate + ", officer="
+				+ officer + "]";
+	}
+	
 	
 }
