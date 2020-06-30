@@ -23,7 +23,6 @@
 		<result property="warningCount" column="warning_count"/>
 		<result property="memberRegDate" column="member_reg_date"/>
 	</resultMap>
-	
 	<!-- 중복된 아이디 체크 -->
 	<select id="selectCheckMemberId" parameterType="String" resultType="int">
 		SELECT
