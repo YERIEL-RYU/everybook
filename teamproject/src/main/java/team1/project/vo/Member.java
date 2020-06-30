@@ -18,6 +18,7 @@ public class Member {
 	private int warningCount;
 	private String memberStauts;
 	private Date memberRegDate;
+	private String officerId;
 	
 	public String getMemberId() {
 		return memberId;
@@ -109,6 +110,12 @@ public class Member {
 	public void setMemberRegDate(Date memberRegDate) {
 		this.memberRegDate = memberRegDate;
 	}
+	public String getOfficerId() {
+		return officerId;
+	}
+	public void setOfficerId(String officerId) {
+		this.officerId = officerId;
+	}
 	@Override
 	public String toString() {
 		return "Member [memberId=" + memberId + ", memberPw=" + memberPw + ", memberName=" + memberName
@@ -116,8 +123,9 @@ public class Member {
 				+ ", memberTel=" + memberTel + ", memberEmail=" + memberEmail + ", libraryCode=" + libraryCode
 				+ ", rentCount=" + rentCount + ", reserveCount=" + reserveCount + ", reviewCount=" + reviewCount
 				+ ", warningCount=" + warningCount + ", memberStauts=" + memberStauts + ", memberRegDate="
-				+ memberRegDate + "]";
+				+ memberRegDate + ", officerId=" + officerId + "]";
 	}
+	
 	
 	
 	

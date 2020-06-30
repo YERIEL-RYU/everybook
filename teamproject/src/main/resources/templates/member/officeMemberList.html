@@ -45,23 +45,23 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
+											<tr th:each=" m : ${memberList}">
 												<td>
 													<label>
-														<a href="officeMemberDetail">member_001</a>
+														<a href="officeMemberDetail">[[${m.memberId}]]</a>
 													</label>
 												</td>
-												<td>홍01</td>
-												<td>level3</td>
-												<td> 4</td>
-												<td>X</td>
-												<td>X</td>
-												<td>X</td>
+												<td th:text="${m.memberName}"></td>
+												<td th:text="${m.levelCode}"></td>
+												<td th:text="${m.rentCount}"></td>
+												<td th:text="${m.reserveCount}"></td>
+												<td th:text="${m.reviewCount}"></td>
+												<td th:text="${m.warningCount}"></td>
 												<td class="project-state">
-													<span class="badge badge-success">대여가능</span>
+													<span class="badge badge-success">[[${m.memberStauts}]]</span>
 												</td>
 												<td>
-													<a class="btn btn-info btn-sm" href="officeModifyMember">
+													<a class="btn btn-info btn-sm" th:href="@{officeModifyMember(send_id=${m.memberId})}">
 														<i class="fas fa-pencil-alt"></i>
 														수정
 													</a>
@@ -72,34 +72,6 @@
 												    	삭제
 												    </a>
 												</td>
-											</tr>
-											<tr>
-											<td>
-												<label>
-													<a href="#">member_002</a>
-												</label>
-											</td>
-											<td>홍02</td>
-											<td>level4</td>
-											<td> 3</td>
-											<td>X</td>
-											<td>X</td>
-											<td>X</td>
-											<td class="project-state">
-												<span class="badge badge-danger">연체중</span>
-											</td>
-											<td>
-												<a class="btn btn-info btn-sm" href="officeModifyMember">
-											        <i class="fas fa-pencil-alt"></i>
-													수정
-												 </a>
-											 </td>
-											 <td>
-											 	<a class="btn btn-danger btn-sm" href="#">
-											    	<i class="fas fa-trash"></i>
-											     	삭제
-											 	</a>
-											 </td>
 											</tr>
 										</tbody>
 									</table>

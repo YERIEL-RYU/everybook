@@ -21,6 +21,7 @@ public class LoginController {
 	
 	@Autowired private LoginService loginService;
 	
+	//회원로그인내역(직원)
 	@GetMapping("/officeMemberLogin")
 	public String officeMemberLogin(Model model) {
 		List<Login> loginList = new ArrayList<Login>();
@@ -31,6 +32,7 @@ public class LoginController {
 		return "member/officeMemberLogin";
 	}
 	
+	//로그아웃 처리
 	@GetMapping("/logout")
 	public String logout(HttpSession session,Login login) {
 		String loginCode = (String) session.getAttribute("SCODE");
@@ -42,9 +44,10 @@ public class LoginController {
 		}
 		session.invalidate();
 		
-		return "redirect:/index";
+		return "redirect:/";
 	}
 	
+	//직원 로그인처리
 	@PostMapping("/loginOfficer")
 	public String loginOfficer(Officer officer
 								,HttpSession session) {
@@ -66,7 +69,6 @@ public class LoginController {
 				session.setAttribute("SLIBRARY", o.getLibrary());
 				System.out.println("SID >>"+session.getAttribute("SID"));
 				System.out.println("SLEVEL >>"+session.getAttribute("SLEVEL"));
-				System.out.println("SLEVEL >>"+session.getAttribute("SLEVEL"));
 				System.out.println("SLIBRARY >>"+session.getAttribute("SLIBRARY"));
 				System.out.println("로그인완료");
 				
@@ -82,6 +84,7 @@ public class LoginController {
 		return "redirect:/";
 	}
 	
+	//회원로그인 처리
 	@PostMapping("/loginMember")
 	public String loginMember(Member member
 								,HttpSession session) {

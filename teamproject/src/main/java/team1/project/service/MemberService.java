@@ -1,6 +1,7 @@
 package team1.project.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,16 +17,12 @@ public class MemberService {
 
 	@Autowired private MemberMapper memberMapper;
 	
+	public Map<String, Object> getMemberAddress(String memberId) {
+		return memberMapper.getMemberAddress(memberId);
+	}
+	
 	public boolean selectCheckMemberId(String memberId) {
 		return memberMapper.selectCheckMemberId(memberId);
-	}
-	
-	public List<Library> selectLibraryCode(String regionCode){
-		return memberMapper.selectLibraryCode(regionCode);
-	}
-	
-	public String selectRegionCode(String rMagjor, String rMinor) {
-		return memberMapper.selectRegionCode(rMagjor, rMinor);
 	}
 	
 	public List<Member> allListMember(){
@@ -36,8 +33,8 @@ public class MemberService {
 		return memberMapper.ModifyMember(member);
 	}
 	
-	public Member DetailMember(Member member) {
-		return memberMapper.DetailMember(member);
+	public Member DetailMember(String memberId, String libraryCode) {
+		return memberMapper.DetailMember(memberId,libraryCode);
 	};
 	
 	public Member selectgetMember(String memberId) {

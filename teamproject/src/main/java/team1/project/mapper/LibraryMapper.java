@@ -10,7 +10,8 @@ import team1.project.vo.Library;
 @Mapper
 public interface LibraryMapper {
 	
-	
+	//지역 도서관 출력
+	public List<Library> selectLibraryCode(String regionCode);
 	
 	public List<Library> getLimitLibrarySearch(String sk, String sv, Map<String, Integer> map);
 	
