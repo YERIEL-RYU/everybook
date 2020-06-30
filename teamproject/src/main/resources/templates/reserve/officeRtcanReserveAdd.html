@@ -119,20 +119,20 @@
 			                  </tr>
 		                  </thead>
 		                  <tbody>
-			                  <tr>
+			                  <tr th:each="l : ${rtcanReserveList}">
 			                  	<td><input type="checkbox"></td>
-			                    <td>rtcan_001</td>
-			                    <td>member001</td>
-			                    <td>book_001</td>
-			                    <td></td>
-			                    <td>해빙</td>
-			                    <td>2020.06.10</td>
-			                    <td>대기</td>
+			                    <td th:text="${l.rtcanCode}"></td>
+			                    <td th:text="${l.memberId}"></td>
+			                    <td th:text="${l.book.bookCode}"></td>
+			                    <td th:text="${l.book.bookLibraryCode}"></td>
+			                    <td th:text="${l.book.bookName}"></td>
+			                    <td th:text="${l.rtcanDate}"></td>
+			                    <td th:text="${l.rtcanSituation}"></td>
 			                  </tr>
 		                  </tbody>
 		                  <tfoot>
 			                  <tr>
-			                  	<th><input type="checkbox"></th>
+			                  	<th></th>
 			                    <th>예약 코드</th>
 			                    <th>예약 회원 아이디</th>
 			                    <th>예약 도서 코드</th>

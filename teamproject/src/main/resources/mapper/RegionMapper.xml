@@ -62,9 +62,9 @@
 			SELECT 
    				(case 
    				when COUNT(*) = 0 then 'region_001'
- 				when COUNT(*) < 10 then CONCAT('region_00',(MAX(SUBSTR(region_code,8))+1))
-				when COUNT(*) < 100 then CONCAT('region_0',(MAX(SUBSTR(region_code,8))+1))
-   				when COUNT(*) < 1000 then CONCAT('region_',(MAX(SUBSTR(region_code,8))+1))
+ 				when COUNT(*) < 11 then CONCAT('region_00',(MAX(SUBSTR(region_code,8))+1))
+				when COUNT(*) < 101 then CONCAT('region_0',(MAX(SUBSTR(region_code,8))+1))
+   				when COUNT(*) < 1001 then CONCAT('region_',(MAX(SUBSTR(region_code,8))+1))
    				ELSE CONCAT('region_',(MAX(SUBSTR(region_code,8))+1))
    				END) AS region_code
 				FROM

@@ -52,9 +52,9 @@
 			AND
 			b.book_code = r.book_code
 		WHERE
-			b.book_library_code = 'bk_library01_0002'
+			b.book_library_code = #{bookLibraryCode}
 			and
-			b.library_code = 'library_01'
+			b.library_code = #{libraryCode}
 		GROUP BY b.book_code
 	</select>
 
@@ -83,7 +83,7 @@
 		and
 		b.writer_code = w.writer_code
 	WHERE
-		b.book_library_code like CONCAT('%',#{bookLibraryCode},'%')
+		b.book_library_code = #{bookLibraryCode}
 		and
 		b.library_code = #{libraryCode}
   </select>
