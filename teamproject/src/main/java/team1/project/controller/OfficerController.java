@@ -60,7 +60,7 @@ public class OfficerController {
 	@ResponseBody
 	public Library getLibraryCodeSearch(@RequestParam("libraryNameSk") String libraryNameSk) {
 		logger.info("==== 도서관 코드검색 ====");
-		logger.info(libraryNameSk + " <-- libraryNameSk OfficerController.java");
+		logger.info("libraryNameSk --> " + libraryNameSk);
 		Library library = libraryService.getLibraryCodeSearch(libraryNameSk);
 		return library;
 	}
