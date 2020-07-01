@@ -26,6 +26,16 @@
 		<result property="memberRegDate" column="member_reg_date"/>
 		<result property="officerId" column="officer_id"/>
 	</resultMap>
+	
+	<!-- 회원삭제 -->
+	<delete id="deleteMember" parameterType="String">
+		DELETE 
+		FROM 
+			tb_member 
+		WHERE
+			member_id=#{memberId}
+	</delete>
+	
 	<!-- 도서관 지역에 따른 회원 검색 -->
 	<select id="searchRegionMember" parameterType="String" resultMap="memberSelect">
 	   SELECT

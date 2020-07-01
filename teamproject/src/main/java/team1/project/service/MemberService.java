@@ -17,6 +17,10 @@ public class MemberService {
 
 	@Autowired private MemberMapper memberMapper;
 	
+	public int deleteMember(String memberId) {
+		return memberMapper.deleteMember(memberId);
+	};
+	
 	public Map<String, Object> getMemberAddress(String memberId) {
 		return memberMapper.getMemberAddress(memberId);
 	}

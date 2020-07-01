@@ -10,6 +10,9 @@ import team1.project.vo.Member;
 @Mapper
 public interface MemberMapper {
 
+	//회원삭제
+	public int deleteMember(String memberId);
+	
 	//주소 3개로 나눠서 출력
 	public Map<String, Object> getMemberAddress(String memberId);
 	

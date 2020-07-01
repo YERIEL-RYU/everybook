@@ -13,6 +13,7 @@
 		<!-- DataTables -->
 		<link rel="stylesheet" href="/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
 		<link rel="stylesheet" href="/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	</th:block>
 	
 	<th:block layout:fragment="customContents">
@@ -48,7 +49,7 @@
 											<tr th:each=" m : ${memberList}">
 												<td>
 													<label>
-														<a href="officeMemberDetail">[[${m.memberId}]]</a>
+														<a href="officeMemberDetail" th:value="${m.memberId}" id="memberId" name="memberId">[[${m.memberId}]]</a>
 													</label>
 												</td>
 												<td th:text="${m.memberName}"></td>
@@ -67,10 +68,10 @@
 													</a>
 												</td>
 												<td>
-												   	<a class="btn btn-danger btn-sm" href="#">
-												        <i class="fas fa-trash"></i>
-												    	삭제
-												    </a>
+													<button type="button" class="btn btn-danger btn-sm" id="deleteMember">
+														<i class="fas fa-trash"></i>
+														삭제
+													</button>
 												</td>
 											</tr>
 										</tbody>
@@ -108,6 +109,7 @@
 		<script src="/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 		<script src="/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 		<script src="/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+		
 		<!-- page script -->
 		<script>
 		  $(function () {
@@ -115,16 +117,56 @@
 		      "responsive": true,
 		      "autoWidth": false,
 		    });
-		    $('#example2').DataTable({
-		      "paging": true,
-		      "lengthChange": false,
-		      "searching": false,
-		      "ordering": true,
-		      "info": true,
-		      "autoWidth": false,
-		      "responsive": true,
+		    
+		    $('#deleteMember').click(function(){
+		    	swal ({
+		    		title : "삭제하시겠습니까?"
+		    		,icon : "error"
+		    		,buttons : ["취소","삭제"]
+		    		,closeOnClickOutside : false
+		    	}), function (isConfirm) {
+		            if (!isConfirm) return;
+		            $.ajax({
+		                url: "/deleteMember",
+		                type: "POST",
+		                data: {
+		                    id: 5
+		                },
+		                dataType: "html",
+		                success: function () {
+		                    swal("Done!", "It was succesfully deleted!", "success");
+		                },
+		                error: function (xhr, ajaxOptions, thrownError) {
+		                    swal("Error deleting!", "Please try again", "error");
+		                }
+		            });
+		        });
+		    	
+		    	
+		    	/* function(){
+		    		
+		    		$.ajax({
+		                url: "/deleteMember",
+		                type: "get",
+		                data: { memberId : $('#memberId').val()},
+		                dataType: "json",
+		                success: function (data) {
+		                    if(data == 1){
+		                	swal("Done!", "It was succesfully deleted!", "success");
+		                    }
+		                    swal("삭제실패!");
+		                },
+		                error: function (xhr, ajaxOptions, thrownError) {
+		                    swal("Error deleting!", "Please try again", "error");
+		                }
+		            });
+		    		
+		    	}); */
+		    	
 		    });
-		  });
+		    
+		    
+		  })
 		</script>
 	</th:block>
 </html>	
