@@ -15,6 +15,21 @@ public class RtcanReserveService {
 	
 	@Autowired private ReserveMapper reserveMapper;
 	
+	//직원 온라인 예약 미승인 건수
+	public int getReserveCount() {
+		return reserveMapper.getReserveCount();
+	}
+	
+	//직원 온라인 예약 리스트 화면 리스트 호출
+	public List<RtcanReserve> getReserveList(String libraryCode){
+		return reserveMapper.getReserveList(libraryCode);
+	}
+	
+	//직원 온라인 예약 등록화면에서  대기중인 리스트 승인 업데이트
+	public int modifyReserve(RtcanReserve rtcanReserve) {
+		return reserveMapper.modifyReserve(rtcanReserve);
+	}
+	
 	//직원화면에서 회원이 등록한 대기중인 온라인 예약 리스트 호출
 	public List<RtcanReserve> addReserve(String libraryCode){
 		return reserveMapper.addReserve(libraryCode);

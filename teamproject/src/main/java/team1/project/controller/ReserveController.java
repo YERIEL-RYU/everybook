@@ -73,17 +73,33 @@ public class ReserveController {
 	
 	//직원 화면 : 등록된 온라인 예약 리스트
 	@GetMapping("/officeRtcanReserveList")
-	public String rtcanReserveList() {
+	public String rtcanReserveList(Model model, HttpSession session) {
+		logger.info("처리된 온라인 예약 리스트");
+		String libraryCode = (String) session. getAttribute("SLIBRARY");
+		logger.info("session 값 : {}",libraryCode);
+		List<RtcanReserve> rtcanReserveList = rtcanReserveService.getReserveList(libraryCode);
+		model.addAttribute("rtcanReserveList", rtcanReserveList);
 		return "reserve/officeRtcanReserveList";
 	}
 	
-	//직원 화면 : 회원이 등록한 책 예약 확인 후 직원이 승인하기 위한 페이지 출력
+	//직원 온라인 예약 등록 화면에서 예약 승인 하기
+	@PostMapping("/officeRtcanReserveModify")
+	public String officeRtcanReserveModify(RtcanReserve rtcanReserve) {
+		logger.info("온라인 예약 승인하기 : {}",rtcanReserve.toString());
+		int i = rtcanReserveService.modifyReserve(rtcanReserve);
+		logger.info("실행결과 : {}",i);
+		return "reserve/officeRtcanReserveList";
+	}
+	
+	//직원 온라인 예약 등록화면 : 회원이 등록한 책 예약 확인 후 직원이 승인하기 위한 페이지 출력
 	@GetMapping("/officeRtcanReserveAdd")
 	public String officeRtcanReserveAdd(Model model, HttpSession session) {
 		String libraryCode = (String) session. getAttribute("SLIBRARY");
 		logger.info("session 값 : {}",libraryCode);
 		List<RtcanReserve> rtcanReserveList = rtcanReserveService.addReserve(libraryCode);
+		int num = rtcanReserveService.getReserveCount();
 		model.addAttribute("rtcanReserveList", rtcanReserveList);
+		model.addAttribute("num", num);
 		return "reserve/officeRtcanReserveAdd";
 	}
 	

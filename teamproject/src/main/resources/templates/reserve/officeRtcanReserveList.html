@@ -9,6 +9,8 @@
 
 <th:block layout:fragment="customCss">
 <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
 </th:block>
 
 <th:block layout:fragment="customContents">
@@ -169,10 +171,10 @@
 					<!--end card-header -->
 					
 					<div class="card-body">
-						<table class="table table-bordered table-hover" style="text-align: center;">
+						<table id="list-table" class="table table-bordered table-hover" style="text-align: center;">
 		                  <thead>
 			                  <tr>
-			                  	<th><input type="checkbox"></th>
+			                  	<th><input type="checkbox" name="checkAll"></th>
 			                    <th>예약 코드</th>
 			                    <th>예약 회원 아이디</th>
 			                    <th>예약 도서 코드</th>
@@ -185,22 +187,22 @@
 			                  </tr>
 		                  </thead>
 		                  <tbody>
-			                  <tr>
-			                  	<td><input type="checkbox"></td>
-			                    <td>rting_001</td>
-			                    <td>member001</td>
-			                    <td>book_001</td>
-			                    <td></td>
-			                    <td>해빙</td>
-			                    <td>2020.06.10</td>
-			                    <td>승인</td>
-			                    <td>2020.06.10</td>
-			                    <td>id001</td>
+			                  <tr th:each="l : ${rtcanReserveList}">
+			                  	<td><input type="checkbox" name="checkRow" th:value="${l.rtcanCode}"></td>
+			                    <td th:text="${l.rtcanCode}"></td>
+			                    <td th:text="${l.memberId}"></td>
+			                    <td th:text="${l.book.bookCode}"></td>
+			                    <td th:text="${l.book.bookLibraryCode}"></td>
+			                    <td th:text="${l.book.bookName}"></td>
+			                    <td th:text="${l.rtcanDate}"></td>
+			                    <td th:text="${l.rtcanSituation}"></td>
+			                    <td th:text="${l.rtcanRegDate}"></td>
+			                    <td th:text="${l.officerId}"></td>
 			                  </tr>
 		                  </tbody>
 		                  <tfoot>
 			                  <tr>
-			                  	<th><input type="checkbox"></th>
+			                  	<th></th>
 			                    <th>예약 코드</th>
 			                    <th>예약 회원 아이디</th>
 			                    <th>예약 도서 코드</th>
@@ -215,27 +217,29 @@
 		                </table>
 					</div>
 					<!-- /.card-body -->
-					<div class="card-footer clearfix">
-						<ul class="pagination pagination-sm m-0 float-right">
-							<li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-							<li class="page-item"><a class="page-link" href="#">1</a></li>
-							<li class="page-item"><a class="page-link" href="#">2</a></li>
-							<li class="page-item"><a class="page-link" href="#">3</a></li>
-							<li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-						</ul>
-					</div>
 				</div>
 			</div>
 		</section>
 		<!-- /.content -->
 	</div>
 	<!-- /.content-wrapper -->
-	
-	<!-- Control Sidebar -->
-	<aside class="control-sidebar control-sidebar-dark">
-	  <!-- Control sidebar content goes here -->
-	</aside>
-	<!-- /.control-sidebar -->
 </th:block>
-
+<th:block layout:fragment="customFooterScript">
+<script src="/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script>
+	$(function(){
+		$("#list-table").DataTable({
+	    	"paging": true,
+	        "lengthChange": false,
+	        "searching": false,
+	        "ordering": true,
+	        "info": true,
+	        "autoWidth": false,
+	        "responsive": true,
+	    });
+	})
+</script>
 </html>

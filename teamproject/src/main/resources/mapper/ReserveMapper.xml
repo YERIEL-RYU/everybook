@@ -17,6 +17,46 @@
 		<result property="bookSituation" column="book_situation"/>
 	</association>
 </resultMap>
+<!-- 미승인 된 온라인 예약 갯수 -->
+<select id="getReserveCount" resultType="int">
+	SELECT
+		COUNT(*)
+	FROM
+		tb_rtcan_reserve
+	WHERE
+		rtcan_situation = '대기'	
+</select>
+<!-- 직원이 처리된 온라인 예약 리스트 보기 -->
+<select id="getReserveList" parameterType="String" resultMap="rtcanReserveSelect">
+	SELECT 
+		rt.rtcan_reserve_code,
+		rt.member_id,
+		rt.book_code,
+		b.book_library_code,
+		b.book_name,
+		rt.rtcan_situation,
+		rt.reserve_date,
+		rt.reserve_reg_date,
+		rt.officer_id
+	FROM 
+		tb_rtcan_reserve AS rt
+		join
+		tb_book AS b
+		on
+		rt.book_code = b.book_code
+	WHERE
+		rt.library_code = #{libraryCode}
+</select>
+<!-- 직원이 온라인 예약 승인 업데이트 -->
+<update id="modifyReserve" parameterType="RtcanReserve">
+	UPDATE tb_rtcan_reserve
+	SET
+		rtcan_situation= #{rtcanSituation},
+		reserve_reg_date= NOW(),
+		officer_id= #{officerId}
+	WHERE 
+		rtcan_reserve_code = #{rtcanCode}
+</update>
 <!-- 직원이 대기 중인 온라인 예약 리스트 호출 -->
 <select id="addReserve" parameterType="String" resultMap="rtcanReserveSelect">
 	SELECT 
