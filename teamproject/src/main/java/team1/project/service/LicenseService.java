@@ -16,6 +16,11 @@ public class LicenseService {
 	private final static Logger logger = LoggerFactory.getLogger(LibraryController.class);
 	@Autowired private LicenseMapper licenseMapper;
 	
+	//자격증 신규등록
+	public int addNewLicense(OfficerLicense officerLicense) {
+		return licenseMapper.addNewLicense(officerLicense);
+	}
+	
 	//자격증 이름으로 코드검색
 	public OfficerLicense getLicenseCodeSearch(String licenseNameSK) {
 		logger.info("getLicenseCodeSearch() LicenseService.java");

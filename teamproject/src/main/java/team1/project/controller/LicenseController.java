@@ -21,6 +21,25 @@ public class LicenseController {
 
 	@Autowired private LicenseService licenseService; 
 	
+	//자격증 신규등록처리
+	@PostMapping("/addOfficerNewLicense")
+	public String addOfficerNewLicense(OfficerLicense officerLicense) {
+		logger.info("==== 자격증 신규 등록처리 ===="); 
+		logger.info("officerLicense --> " + officerLicense.toString());
+		int i = licenseService.addNewLicense(officerLicense);
+		return "admin/indexAdmin";
+	}
+	
+	//자격증 신규등록화면
+	@GetMapping("/addOfficerNewLicense")
+	public String addOfficerNewLicense(Model model, HttpSession session) {
+		logger.info("==== 자격증 신규 등록화면 ====");
+		String SID = (String) session.getAttribute("SID");
+		logger.info("SID --> " + SID);
+		model.addAttribute("SID", SID);
+		return "license/addOfficerNewLicense";
+	}
+	
 	//자격증이름으로 코드검색
 	@PostMapping(value="/licenseSearch")
 	@ResponseBody

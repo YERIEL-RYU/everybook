@@ -3,26 +3,34 @@ package team1.project.vo;
 public class OfficerLicense {
 	private String officerLicenseCode;
 	private String officerId;
-	private String license;
+	private String licenseCode;
+	private String licenseName;
 	private String officerLicenseDate;
 	private String officerLicenseRegDate;
+	
 	public String getOfficerLicenseCode() {
 		return officerLicenseCode;
 	}
 	public void setOfficerLicenseCode(String officerLicenseCode) {
 		this.officerLicenseCode = officerLicenseCode;
 	}
-	public String getofficerId() {
+	public String getOfficerId() {
 		return officerId;
 	}
-	public void setofficerId(String officerId) {
+	public void setOfficerId(String officerId) {
 		this.officerId = officerId;
 	}
-	public String getLicense() {
-		return license;
+	public String getLicenseCode() {
+		return licenseCode;
 	}
-	public void setLicense(String license) {
-		this.license = license;
+	public void setLicenseCode(String licenseCode) {
+		this.licenseCode = licenseCode;
+	}
+	public String getLicenseName() {
+		return licenseName;
+	}
+	public void setLicenseName(String licenseName) {
+		this.licenseName = licenseName;
 	}
 	public String getOfficerLicenseDate() {
 		return officerLicenseDate;
@@ -38,9 +46,9 @@ public class OfficerLicense {
 	}
 	@Override
 	public String toString() {
-		return "OfficerLicense [officerLicenseCode=" + officerLicenseCode + ", officerId=" + officerId + ", license="
-				+ license + ", officerLicenseDate=" + officerLicenseDate + ", officerLicenseRegDate="
-				+ officerLicenseRegDate + "]";
+		return "OfficerLicense [officerLicenseCode=" + officerLicenseCode + ", officerId=" + officerId
+				+ ", licenseCode=" + licenseCode + ", licenseName=" + licenseName + ", officerLicenseDate="
+				+ officerLicenseDate + ", officerLicenseRegDate=" + officerLicenseRegDate + "]";
 	}
 	
 	
