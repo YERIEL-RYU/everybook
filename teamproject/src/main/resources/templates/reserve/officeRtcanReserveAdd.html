@@ -65,7 +65,7 @@
 							</div>
 							<div class="col-sm-3">
 								<div class="btn-group">
-									<button type="button" class="btn btn-outline-secondary btn-flat"  data-toggle="modal" data-target=".bs-ok-modal-lg">#승인</button>
+									<button type="button" class="btn btn-outline-secondary btn-flat">#승인</button>
 								</div>							
 							</div>
 						</div>	
@@ -85,7 +85,7 @@
 												<option>거절</option>
 											</select>
 						          		</div>
-						          		<div hidden>
+						          		<div hidden="hidden">
 						          			<select>
 						          				<option>거절 이유</option>
 						          				<option>해당 도서 없음</option>
@@ -105,7 +105,7 @@
 					<!--end card-header -->
 					
 					<div class="card-body">
-						<table class="table table-bordered table-hover" style="text-align: center;">
+						<table id="reserve-table" class="table table-bordered table-hover" style="text-align: center;">
 		                  <thead>
 			                  <tr>
 			                  	<th><input type="checkbox"></th>
@@ -120,7 +120,7 @@
 		                  </thead>
 		                  <tbody>
 			                  <tr th:each="l : ${rtcanReserveList}">
-			                  	<td><input type="checkbox"></td>
+			                  	<td><input type="checkbox" name="checkRow" th:value="${l.rtcanCode}" ></td>
 			                    <td th:text="${l.rtcanCode}"></td>
 			                    <td th:text="${l.memberId}"></td>
 			                    <td th:text="${l.book.bookCode}"></td>
@@ -145,15 +145,6 @@
 		                </table>
 					</div>
 					<!-- /.card-body -->
-					<div class="card-footer clearfix">
-						<ul class="pagination pagination-sm m-0 float-right">
-							<li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-							<li class="page-item"><a class="page-link" href="#">1</a></li>
-							<li class="page-item"><a class="page-link" href="#">2</a></li>
-							<li class="page-item"><a class="page-link" href="#">3</a></li>
-							<li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-						</ul>
-					</div>
 				</div>
 			</div>
 		</section>
@@ -161,11 +152,45 @@
 	</div>
 	<!-- /.content-wrapper -->
 	
-	<!-- Control Sidebar -->
-	<aside class="control-sidebar control-sidebar-dark">
-	  <!-- Control sidebar content goes here -->
-	</aside>
-	<!-- /.control-sidebar -->
 </th:block>
-
+<th:block layout:fragment="customFooterScript">
+<script src="plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	//반응형 테이블
+    $("#reserve-table").DataTable({
+    	"paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+    });
+  //전체 선택 & 해제
+	var allCheck = $('[name=checkAll]');
+	var checkRow = $('[name=checkRow]');
+	allCheck.click(function(){
+		if(allCheck.is(":checked")) {
+			checkRow.prop("checked",true);
+			console.log("체크하기");
+		}else{			
+			console.log("해제하기");
+			checkRow.prop("checked",false); 
+		}
+	});
+	//하나 취소되면 전체 선택 해제
+	checkRow.click(function(){
+		if($('[name=checkRow]:checked').length == 10){
+			allCheck.prop("checked",true);
+		}else{
+			allCheck.prop("checked",false);
+		}
+	});
+})
+</script>
+</th:block>
 </html>
