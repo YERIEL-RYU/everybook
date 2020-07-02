@@ -97,7 +97,6 @@
 										<th> 도서명 </th>
 										<th> 대여 일시 </th>
 										<th> 반납 기한 </th>
-										<th> 도서 상태 </th>
 										<th> 도서평 </th>
 									</tr>	
 								</thead>
@@ -107,7 +106,6 @@
 										<td>[[${r.book.bookName}]]</td>
 										<td th:text="${r.rentDate}"></td>									
 										<td th:text="${r.rentReturnDate}"></td>
-										<td>[[${r.book.bookSituation}]] </td>
 										<td><button class="btn btn-info btn-sm" type="button"  data-toggle="modal" data-target=".bs-example-modal-sm">!도서평 작성(김)</button></td>
 									</tr>	
 							</table>							

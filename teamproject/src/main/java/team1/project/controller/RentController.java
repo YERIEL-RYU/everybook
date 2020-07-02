@@ -23,6 +23,7 @@ public class RentController {
 	private final static Logger logger = LoggerFactory.getLogger(OfficerController.class);
 	@Autowired private RentService rentService;
 	
+	//대여관리 - 대여리스트 삭제처리
 	@PostMapping("/officeRentDelete")
 		public String officeRentDelete(Rent rent) {
 		int i = rentService.officeRentDelete(rent);
@@ -30,6 +31,7 @@ public class RentController {
 		return "redirect:/officeBookRent";
 	}
 	
+	//대여관리 -대여리스트 삭제(선택한 로우의 대여코드 받아오기)
 	@GetMapping(value="/selectRent")
 	@ResponseBody
 	public Rent getRent(@RequestParam("rentCode") String rentCode) {
@@ -37,20 +39,18 @@ public class RentController {
 		logger.info("========= getRent RentController.java =======");
 		Rent rent = rentService.getRent(rentCode);
 		logger.info(rent.toString());
+
 		return rent;
 	}
 	
 	@GetMapping("/myRent")
 		public String myRentHistoryList(Model model, HttpSession session) {
-
-		String SID = (String) session.getAttribute("SID"); //session 아이디값 받아오기.
+		String SID = (String) session.getAttribute("SID");
 		logger.info("SID --> " +SID);
 
-		
 		List<Rent> list = rentService.myRentHistoryList(SID);
 		logger.info("list --> " +list);
 		model.addAttribute("rentHistory", list);
-
 			
 		return "rent/myRent";
 	}
@@ -62,6 +62,7 @@ public class RentController {
 		logger.info("sk : " + sk + " sv : " + sv);
 		List<Rent> officeRentList = rentService.OfficeRentListSerch(sk, sv);
 		model.addAttribute("officeRentList", officeRentList);
+		
 		return "rent/officeBookRent";
 	}
 	

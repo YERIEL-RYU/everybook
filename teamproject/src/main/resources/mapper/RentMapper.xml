@@ -135,7 +135,6 @@
 			, b.book_name
 			, r.rent_date
 			, r.rent_return_date
-			, b.book_situation
 		FROM
 			tb_rent AS r
 			INNER JOIN

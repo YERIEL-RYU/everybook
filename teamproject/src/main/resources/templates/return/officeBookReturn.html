@@ -8,8 +8,10 @@
 </th:block>
               
 <th:block layout:fragment="customCss">
-  <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+<link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+<!-- overlayScrollbars -->
+<link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
 </th:block>
  
 <th:block layout:fragment="customContents">
@@ -22,7 +24,6 @@
 	  		</div>
 		</div>
 		<!-- /.content-header -->
-
 	 	<!-- Main content -->
 		<section class="content" style="background-color: white">	
 			<div class="card-header"></div>
@@ -205,85 +206,93 @@
 		</div>
 		<!-- /.row -->
 			
+			<!-- modal-Return_button -->
 			<div class="row">
 				<div class="col-md-12" style="text-align: center; margin-bottom: 10px">				
-					<button type="button" class="fc-today-button btn btn-info" data-toggle="modal" data-target="#modal-primary">#반납하기</button>			
+					<button type="button" class="fc-today-button btn btn-info" data-toggle="modal" data-target="#modal-Return">#반납하기</button>			
 				</div>
 			</div>
-			<div class="modal fade" id="modal-primary">
-		        <div class="modal-dialog">
-		          <div class="modal-content bg-default">
-		            <div class="modal-header">
-		              <h4 class="modal-title">반납관리</h4>
-		              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-		                <span aria-hidden="true">&times;</span></button>
-		            </div>
-		            <div class="modal-body">
-		              <p>반납 하시겠습니까?</p>
-		            </div>
-		            <div class="modal-footer justify-content-between">
-		              <button type="button" class="btn" data-dismiss="modal">Close</button>
-		              <button type="button" class="btn">#반납하기</button>
-		            </div>
-		          </div>
-		          <!-- /.modal-content -->
-		        </div>
-		        <!-- /.modal-dialog -->
-      		</div>
-      <!-- /.modal -->
+			<!-- modal-Return_button -->
+			
       <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">반납 도서 리스트</font></font></h3>
-
-                <div class="card-tools">
-                  <div class="input-group input-group-sm" style="width: 150px;">
-                    <input type="text" name="table_search" class="form-control float-right" placeholder="#도서이름">
-
-                    <div class="input-group-append">
-                      <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body table-responsive p-0" style="height: 300px;">
-                <table class="table table-head-fixed text-nowrap" style="text-align: center">
-                  <thead>
-                    <tr>
-                      <th>반납코드</th>
-                      <th>반납회원</th>
-                      <th>반납날짜</th>
-                      <th>도서이름</th>
-                      <th>청구기호</th>
-                      <th>저자</th>
-                      <th>카테고리</th>
-                      <th>도서출판사</th>
-                      <th>상태</th>
-                      <th>미반납처리</th>
-                  	  <th>삭제</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr th:each="R : ${officeReturnList}">
-                      <td th:text="${R.returnCode}"></td>
-                      <td th:text="${R.member}"></td>
-                      <td th:text="${R.returnDate}"></td>
-                      <td th:text="${R.book.bookName}"></td>
-                      <td th:text="${R.book.bookLibraryCode}"></td>
-                      <td th:text="${R.writer}"></td>
-                      <td th:text="${R.category}"></td>
-                      <td th:text="${R.publisher}"></td>
-                      <td th:text="${R.book.bookSituation}"></td>
-                      <td>
-                      	<a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-update" style="color: white">미반납처리</a>
-                      </td>
-                      <td class="">
-                      	<a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-delete" style="color: white">삭제</a>
-			          </td>
-                    </tr>
-                 </tbody>
-               </table>
+               <form role="form" action="officeReturnListSearch" method="get">
+							<div class="row">
+								<div class="col-sm-3">
+									<div class="form-group">
+				                        <select class="form-control custom-select" name="sk">
+				                          <option value= "t.return_code">반납 코드</option>
+				                           <option value= "t.member_id">회원 아이디</option>
+				                          <option value= "t.return_reg_date">반납 날짜(YYYYMMdd)</option>
+				                          <option value= "b.book_name">도서 이름</option>
+				                          <option value= "b.book_library_code">청구기호</option>
+				                          <option value= "w.writer_name">저자</option>
+				                          <option value= "c.category_name">카테고리</option>
+				                          <option value= "p.publisher_name">도서 출판사</option> 
+				                        </select>
+				                    </div>
+								</div>
+								<div class="col-sm-9">
+									<div class="row">
+										<div class="col-sm-10">
+											<input class="form-control" type="text" name="sv" placeholder="반납 도서 이력 검색하기">
+										</div>
+										<div class="col-sm-2">
+											<div class="input-group-append">
+			                          			 <button class="btn btn-navbar" type="submit">
+			                           			  <i class="fas fa-search"></i>
+			                          			  </button>
+			                          		</div>
+		                          		</div>
+	                          		</div>
+								</div>
+		                    </div>							
+						</form>
+		              </div>
+		           <!-- /.card-header -->
+		           
+		           <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">	 
+	                	<div class="row">
+	                		<div class="col-sm-12">
+				                <table id="example2" class="table table-bordered table-hover dataTable dtr-inline" role="grid" aria-describedby="example2_info">
+				                  <thead>
+				                    <tr>
+				                      <th>반납코드</th>
+				                      <th>반납회원</th>
+				                      <th>반납날짜</th>
+				                      <th>도서이름</th>
+				                      <th>청구기호</th>
+				                      <th>저자</th>
+				                      <th>카테고리</th>
+				                      <th>도서출판사</th>
+				                      <th>미반납처리</th>
+				                  	  <th>삭제</th>
+				                    </tr>
+				                  </thead>
+				                  <tbody>
+				                    <tr th:each="R : ${officeReturnList}">
+				                      <td th:text="${R.returnCode}"></td>
+				                      <td th:text="${R.member}"></td>
+				                      <td th:text="${R.returnDate}"></td>
+				                      <td th:text="${R.book.bookName}"></td>
+				                      <td th:text="${R.book.bookLibraryCode}"></td>
+				                      <td th:text="${R.writer}"></td>
+				                      <td th:text="${R.category}"></td>
+				                      <td th:text="${R.publisher}"></td>
+				                      <td>
+				                      	<a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-update" style="color: white">미반납처리</a>
+				                      </td>
+				                      <td class="">
+				                      	<a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-delete" style="color: white">삭제</a>
+							          </td>
+				                    </tr>
+				                 </tbody>
+				               </table>
+	                		</div>                		
+	                	</div>
+	               	</div>
+             
 	                <!-- modal --> 
 	                <div class="modal fade" id="modal-update">
 				        <div class="modal-dialog">
@@ -327,8 +336,28 @@
 				        <!-- /.modal-dialog -->
 		      		</div>
 		      <!-- /.modal -->
-              </div>
-              <!-- /.card-body -->
+		      
+		      	<div class="modal fade" id="modal-primary">
+		        <div class="modal-dialog">
+		          <div class="modal-content bg-default">
+		            <div class="modal-header">
+		              <h4 class="modal-title">반납관리</h4>
+		              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		                <span aria-hidden="true">&times;</span></button>
+		            </div>
+		            <div class="modal-body">
+		              <p>반납 하시겠습니까?</p>
+		            </div>
+		            <div class="modal-footer justify-content-between">
+		              <button type="button" class="btn" data-dismiss="modal">Close</button>
+		              <button type="button" class="btn">#반납하기</button>
+		            </div>
+		          </div>
+		          <!-- /.modal-content -->
+		        </div>
+		        <!-- /.modal-dialog -->
+      		</div>
+      <!-- /.modal -->
             </div>
             <!-- /.card -->
           </div>
@@ -336,5 +365,54 @@
 	<!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+</th:block>
+<th:block layout:fragment="customFooterScript">
+<!-- jQuery -->
+<script src="../../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- DataTables -->
+<script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script>
+	$(function(){
+		//데이터테이블
+		$("#example1").DataTable({
+	      "responsive": true,
+	      "autoWidth": false,
+	    });
+	    $('#example2').DataTable({
+	      "paging": true,
+	      "lengthChange": false,
+	      "searching": false,
+	      "ordering": true,
+	      "info": true,
+	      "autoWidth": false,
+	      "responsive": true,
+	    });
+		//삭제 버튼 클릭시 모달
+		/* $('.RentDeleteBtn').click(function(){
+			console.log("삭제클릭");
+			var value = $(this).val();
+			console.log(value);
+			var request = $.ajax({
+			  url: "/selectRent",
+  			  method: "get",
+  			  data: { rentCode : value },
+  			  dataType: "json"
+			});
+			request.done(function( data ) {
+	 			console.log(JSON.stringify(data) + " <- ajax");
+				$('#deleteRentCode').val(data.rentCode);
+				$('#deleteModal').modal();
+  			});
+			request.fail(function( jqXHR, textStatus ) {
+  			  alert( "Request failed: " + textStatus );
+  			});
+		}) */
+	});
+</script>
 </th:block>
 </html>
