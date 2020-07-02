@@ -127,6 +127,32 @@
 			r.rent_date
 	</select>
 
+	<!-- 나의 대여 이력 - 검색 -->
+	<select id="myRentHistorySearch" parameterType="String" resultMap="rentResultMap">
+		SELECT
+			r.rent_code
+			, l.library_name
+			, b.book_name
+			, r.rent_date
+			, r.rent_return_date
+		FROM
+			tb_rent AS r
+			INNER JOIN
+			tb_book AS b
+			INNER JOIN 
+			tb_library AS l
+		ON  
+			r.book_code = b.book_code			
+		AND
+			b.library_code = l.library_code
+		AND
+			member_id = #{SID}
+		<if test="sv != null and sv neq ''.toString()">
+		WHERE
+			${sk} like CONCAT ('%',#{sv},'%')
+		</if>	
+	</select>
+
 	<!-- 나의 대여 이력 -->
 	<select id="myRentHistoryList" resultMap="rentResultMap" parameterType="String">
 		SELECT

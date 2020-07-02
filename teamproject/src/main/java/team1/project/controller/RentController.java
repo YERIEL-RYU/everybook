@@ -43,17 +43,34 @@ public class RentController {
 		return rent;
 	}
 	
+	//나의 대여 이력 - 검색
+	@GetMapping("/myRentHistorySearch")
+	public String myRentHistorySearch(Model model,
+						HttpSession session,
+						@RequestParam(name = "sk") String sk,
+						@RequestParam(name = "sv") String sv) {
+		
+		String SID = (String) session.getAttribute("SID");
+		logger.info("SID --> " +SID);
+		
+		List<Rent> rentHistory = rentService.myRentHistorySearch(sk, sv, SID);
+		model.addAttribute("rentHistory", rentHistory);
+		return "rent/myRent";
+	}
+	
+	//나의 대여 이력
 	@GetMapping("/myRent")
 		public String myRentHistoryList(Model model, HttpSession session) {
 		String SID = (String) session.getAttribute("SID");
 		logger.info("SID --> " +SID);
 
-		List<Rent> list = rentService.myRentHistoryList(SID);
-		logger.info("list --> " +list);
-		model.addAttribute("rentHistory", list);
+		List<Rent> rentHistory = rentService.myRentHistoryList(SID);
+		logger.info("rentHistory --> " +rentHistory);
+		model.addAttribute("rentHistory", rentHistory);
 			
 		return "rent/myRent";
 	}
+	
 	//대여관리 - 대여리스트 검색
 	@GetMapping("/OfficeRentListSerch")
 	public String OfficeRentListSerch(Model model,
