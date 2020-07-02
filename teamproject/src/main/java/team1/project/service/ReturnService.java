@@ -14,10 +14,14 @@ import team1.project.vo.Return;
 public class ReturnService {
 	@Autowired private ReturnMapper returnMapper;
 	
-	//반납관리 현재보유도서리스트
+	//반납관리 - 반납도서리스트 검색
+	public List<Return> officeReturnListSearch(String sk, String sv){
+		return returnMapper.officeReturnListSearch(sk, sv);
+	}
+	
+	//반납관리 - 반납도서리스트 조회
 	public List<Return> officeReturnList(){
-		List<Return> list = returnMapper.officeReturnList();
-		return list;
+		return returnMapper.officeReturnList();
 	}
 	
 }
