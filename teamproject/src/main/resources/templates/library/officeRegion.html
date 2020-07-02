@@ -273,7 +273,7 @@
 	    	if($('[name=checkRow]:checked').length == 1){
 	    		var value = $('[name=checkRow]:checked').val();
 	    		console.log(value);
-	    		var errormsg ="지역 호출에 실패하였습니다."
+	    		var errormsg ="지역 정보를 불러올수 없습니다."
 	  			var fn = function( data ) {
 	  				console.log(JSON.stringify(data) + " <- ajax");
 					$('#modifyRegionCode').val(data.regionCode);

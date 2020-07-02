@@ -9,6 +9,7 @@ public class RtcanReserve {
 	private String rtcanSituation;
 	private String rtcanRegDate;
 	private String officerId;
+	private String officerPw;
 	private String noReason;
 	public String getRtcanCode() {
 		return rtcanCode;
@@ -64,12 +65,20 @@ public class RtcanReserve {
 	public void setNoReason(String noReason) {
 		this.noReason = noReason;
 	}
+	public String getOfficerPw() {
+		return officerPw;
+	}
+	public void setOfficerPw(String officerPw) {
+		this.officerPw = officerPw;
+	}
 	@Override
 	public String toString() {
 		return "RtcanReserve [rtcanCode=" + rtcanCode + ", libraryCode=" + libraryCode + ", memberId=" + memberId
 				+ ", book=" + book + ", rtcanDate=" + rtcanDate + ", rtcanSituation=" + rtcanSituation
-				+ ", rtcanRegDate=" + rtcanRegDate + ", officerId=" + officerId + ", noReason=" + noReason + "]";
+				+ ", rtcanRegDate=" + rtcanRegDate + ", officerId=" + officerId + ", officerPw=" + officerPw
+				+ ", noReason=" + noReason + "]";
 	}
+	
 	
 
 }

@@ -8,9 +8,13 @@ import team1.project.vo.RtcanReserve;
 
 @Mapper
 public interface ReserveMapper {
+	public List<RtcanReserve>getSearchRtcanReserve(String sk, String sv);
+	public int deleteRtcanReserve(RtcanReserve rtcanReserve);
+	public RtcanReserve getSelectRtcanReserve(String rtcanCode);
 	public int getReserveCount();
-	public List<RtcanReserve> getReserveList(String libraryCode);
-	public int modifyReserve(RtcanReserve rtcanReserve);
-	public List<RtcanReserve> addReserve(String libraryCode);
+	public List<RtcanReserve> getRtcanReserveList(String libraryCode);
+	public int modifyRtcanReserve(RtcanReserve rtcanReserve);
+	public List<RtcanReserve> addRtcanReserveList(String libraryCode);
 	public int addRtcanReserve(RtcanReserve rtcanReserve);
+	
 }

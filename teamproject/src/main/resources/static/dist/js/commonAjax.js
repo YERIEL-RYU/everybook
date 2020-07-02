@@ -3,15 +3,15 @@
  * ------------------
  * make 유영주
  */
-var commonAjax = function(url, data, fn, methodyType, errormsg){
+var commonAjax = function(url, data, fn, methodType, errormsg){
 	console.log(url);
 	console.log(data);
 	console.log(fn);
-	console.log(methodyType);
+	console.log(methodType);
 	console.log(errormsg);
 	var request = $.ajax({
 		  url: url,
-		  method: methodyType,
+		  method: methodType,
 		  data: data,
 		  dataType: "json"
 		});
