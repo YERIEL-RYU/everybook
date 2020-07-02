@@ -15,6 +15,9 @@ public interface RentMapper {
 	//대여관리 - 대여리스트 삭제
 	public int officeRentDelete(Rent rent);
 	
+	//대여관리 - 대여리스트 검색
+	public List<Rent> OfficeRentListSerch(String sk, String sv);
+	
 	//대여관리 - 대여리스트
 	public List<Rent> officeRentList();
 	
