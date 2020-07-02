@@ -1,8 +1,7 @@
 /**
  * checkbox가 있는 테이블에서 전체 선택 및 해제 
  * ------------------
- * You should not use this file in production.
- * This file is for demo purposes only.
+ * make 유영주
  */
 (function ($) {
 	//전체 선택 & 해제

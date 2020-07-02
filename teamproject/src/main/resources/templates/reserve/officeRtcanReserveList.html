@@ -68,9 +68,9 @@
 							</div>
 							<div class="col-sm-5">
 								<div class="btn-group">
-									<a class="btn btn-outline-info btn-flat" href="officeRtcanReserveAdd">#예약 등록</a>
-									<button type="button" class="btn btn-outline-secondary btn-flat"  data-toggle="modal" data-target=".bs-modify-modal-lg">#예약 내역 수정</button>
-									<button type="button" class="btn btn-outline-danger btn-flat"  data-toggle="modal" data-target=".bs-delete-sm">#예약 내역 삭제</button>
+									<a class="btn btn-outline-info btn-flat" href="officeRtcanReserveAdd">예약 등록</a>
+									<button type="button" class="btn btn-outline-secondary btn-flat" id="modifyModalBtn">#예약 내역 수정</button>
+									<button type="button" class="btn btn-outline-danger btn-flat" id="deleteModalBtn">#예약 내역 삭제</button>
 								</div>							
 							</div>
 						</div>	
@@ -230,17 +230,32 @@
 <script src="/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <script src="/dist/js/checkbox.js"></script>
+<script src="/dist/js/commonAjax.js"></script>
 <script>
-	$(function(){
-		$("#list-table").DataTable({
-	    	"paging": true,
-	        "lengthChange": false,
-	        "searching": false,
-	        "ordering": true,
-	        "info": true,
-	        "autoWidth": false,
-	        "responsive": true,
-	    });
-	})
+$(function(){
+	//반응형 테이블
+	$("#list-table").DataTable({
+    	"paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+    });
+	//수정 모달 버튼 클릭시
+	$('#modifyModalBtn').click(function(){
+    	if($('[name=checkRow]:checked').length == 1){
+    		var value = $('[name=checkRow]:checked').val();
+    		console.log(value);
+    		
+    	}else if($('[name=checkRow]:checked').length == 0) {
+    		alert('수정할 지역코드를 선택하세요');
+    	}else{
+    		alert('수정할 지역코드를 하나만 선택하세요');
+    	}
+    });
+
+});
 </script>
 </html>
