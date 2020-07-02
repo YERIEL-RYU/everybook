@@ -86,6 +86,20 @@ public class OfficerController {
 		return "office/myOffice";		
 	}
 	
+	//직원리스트검색
+	@GetMapping("/getSerchOfficer")
+	public String getSerchOfficer(Model model, 
+								@RequestParam(name = "sk") String sk,
+								@RequestParam(name = "sv") String sv) {
+		  logger.info("==== 직원리스트검색 getOfficerLicense() ====");
+		  logger.info("sk = " + sk + " sv = " + sv);
+		  List<Officer> officerList = officerService.getSerchOfficer(sk, sv);
+		  logger.info("officerList --> "+officerList);
+		  model.addAttribute("officerList", officerList);
+
+		return "office/officerList";
+	}
+	
 	//직원리스트조회
 	@GetMapping("/officerList")
 	public String getOfficerList(Model model) {

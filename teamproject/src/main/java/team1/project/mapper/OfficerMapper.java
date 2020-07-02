@@ -22,6 +22,8 @@ public interface OfficerMapper {
 	//나의직원정보
 	public List<Officer> getMyOffice(String SID);
 	 
+	//직원리스트 검색
+	public List<Officer> getSerchOfficer(String sk, String sv);
 	
 	//직원리스트
 	public List<Officer> getOfficerList();

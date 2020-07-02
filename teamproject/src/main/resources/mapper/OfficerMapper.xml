@@ -91,6 +91,35 @@
 			WHERE
 			O.officer_id = #{SID}	
 	</select>
+	
+	<!-- 직원리스트 검색 -->
+	<select id="getSerchOfficer" parameterType="String" resultMap="officerResultMap">
+			SELECT 
+				o.officer_id 
+				,o.officer_pw 
+				,o.officer_name 
+				,o.officer_birth 
+				,v.level_name 
+				,l.library_name
+				,o.officer_address
+				,o.officer_tel
+				,o.officer_email
+				,o.officer_reg_date
+			FROM 
+				tb_officer AS o
+				INNER JOIN
+				tb_library AS l
+				INNER JOIN
+				tb_level AS v
+			ON
+			o.library_code = l.library_code
+			AND
+			o.level_code = v.level_code
+		<if test="sv != null and sv neq ''.toString()">
+			WHERE
+				${sk} like CONCAT('%',#{sv},'%')
+		</if>
+	</select>
 
 	<!-- 직원리스트 조회 -->
 	<select id="getOfficerList" resultMap="officerResultMap">	
