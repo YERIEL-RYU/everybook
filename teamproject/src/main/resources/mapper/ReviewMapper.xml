@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="team1.project.mapper.ReviewMapper">
+
+	<resultMap type="Review" id="reviewSelect">
+		<result property="reviewCode" column="review_code"/>
+		<result property="bookCode" column="book_code"/>
+		<result property="memberId" column="member_id"/>
+		<result property="reviewContent" column="review_content"/>
+		<result property="reviewRegDate" column="review_reg_date"/>
+	</resultMap>
+
+	<select id="">
+		SELECT
+			b.book_name
+			,b.book_ISBN
+		FROM
+			tb_book AS b
+			inner join
+			tb_rent AS r
+		WHERE
+			b.book_code = r.book_code
+		AND
+			r.rent_code = 'rent_003'
+	</select>
+
+</mapper>

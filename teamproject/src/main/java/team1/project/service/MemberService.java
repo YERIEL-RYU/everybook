@@ -37,8 +37,8 @@ public class MemberService {
 		return memberMapper.ModifyMember(member);
 	}
 	
-	public Member DetailMember(String memberId, String libraryCode) {
-		return memberMapper.DetailMember(memberId,libraryCode);
+	public Member DetailMember(String memberId) {
+		return memberMapper.DetailMember(memberId);
 	};
 	
 	public Member selectgetMember(String memberId) {

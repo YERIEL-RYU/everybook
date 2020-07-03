@@ -26,7 +26,7 @@ public interface MemberMapper {
 	public int ModifyMember(Member member);
 	
 	//회원상세보기
-	public Member DetailMember(String memberId, String libraryCode);
+	public Member DetailMember(String memberId);
 	
 	//한명회원조회
 	public Member selectgetMember(String memberId);

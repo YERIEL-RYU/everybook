@@ -1,12 +1,12 @@
 package team1.project.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,17 +25,30 @@ import team1.project.vo.Region;
 @Controller
 public class MemberController {
 
+	
 	@Autowired private MemberService memberService;
 	@Autowired private RegionService regionService;
 	@Autowired private LibraryService libraryService;
+	
+	//회원삭제 - ajax
+	@GetMapping(value="/deleteMember")
+	@ResponseBody
+	public int deleteMember(@RequestParam("memberId") String memberId) {
+		System.out.println("삭제할 아이디 >>> "+memberId);
+		return memberService.deleteMember(memberId);
+	}
 	
 	//회원 수정화면(직원)
 	@GetMapping("/officeModifyMember")
 	public String officeModifyMember(@RequestParam("send_id")String sendId, Model model) {
 		System.out.println("href 받은 아이디 >>> "+sendId);
 		
+		//주소를 3개로 나눠서 출력
+		Map<String, Object> address = memberService.getMemberAddress(sendId);
 		
-		model.addAttribute("sendId", sendId);
+		model.addAttribute("member", memberService.selectgetMember(sendId));
+		model.addAttribute("address", address);
+		model.addAttribute("regionMagjor", regionService.getRegionMajorList());
 		return "member/officeModifyMember";
 	}
 	
@@ -52,42 +65,45 @@ public class MemberController {
 	@GetMapping("/modifyMember")
 	public String modifyMember(HttpSession session,Model model) {
 		String name = (String) session.getAttribute("SID");
-		String library = (String) session.getAttribute("SLIBRARY");
-		Member member = memberService.DetailMember(name,library);
-		System.out.println("상세보기화면 >>"+ member);
 		
 		//주소를 3개로 나눠서 출력
 		Map<String, Object> address = memberService.getMemberAddress(name);
 		
 	
-		model.addAttribute("member", member);
+		model.addAttribute("member", memberService.DetailMember(name));
 		model.addAttribute("address", address);
 		model.addAttribute("regionMagjor", regionService.getRegionMajorList());
 		return "member/modifyMember";
 	}
 	
-	//회원 마이페이지(상세보기)
+	//회원 상세보기(회원) - 마이페이지
 	@GetMapping("/memberDetail")
 	public String memberDetail(HttpSession session,Model model) {
 		String name = (String) session.getAttribute("SID");
-		String library = (String) session.getAttribute("SLIBRARY");
-		Member member = memberService.DetailMember(name,library);
+		Member member = memberService.DetailMember(name);
 		System.out.println("상세보기화면 >>"+ member);
 		
 		model.addAttribute("member", member);
 		return "member/memberDetail";
 	}
 	
+	//회원 상세보기(직원)
 	@GetMapping("/officeMemberDetail")
-	public String officeMemberDetail() {
+	public String officeMemberDetail(@RequestParam("send_id") String sendId,Model model) {
+		
+		model.addAttribute("member", memberService.selectgetMember(sendId));
+		model.addAttribute("memberLevelCode", memberService.DetailMember(sendId));
 		return "member/officeMemberDetail";
 	}
 	
 	//회원등록화면(직원)
 	@GetMapping("/officeAddMember")
 	public String officeAddMember(HttpSession session, Model model) {
+		String loginCode = (String) session.getAttribute("SCODE");
 		if(session.getAttribute("SID") != null && !"".equals(session.getAttribute("SID"))
-				&& session.getAttribute("SLIBRARY") != null && !"".equals(session.getAttribute("SLIBRARY"))) {
+				&& session.getAttribute("SLIBRARY") != null && !"".equals(session.getAttribute("SLIBRARY"))
+				&& session.getAttribute("SCODE") != null && !"".equals(session.getAttribute("SCODE"))
+				&& "officer_login".equals(loginCode.substring(0, 13))) {
 			
 			List<Region> regionMagjor = regionService.getRegionMajorList();
 			model.addAttribute("regionMagjor", regionMagjor);

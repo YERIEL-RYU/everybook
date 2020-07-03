@@ -133,13 +133,21 @@
 			member_id = #{memberId}
 	</update>
 	
-	<!-- 회원상세보기 -->
+	<!-- 회원상세보기(마이페이지) -->
 	<select id="DetailMember" parameterType="String" resultMap="memberSelect">
 		SELECT 
 			member_id
 			,member_pw
 			,member_name
 			,member_birth
+			,( 
+				select
+					level_name
+				from
+					tb_level AS l
+				where
+					l.level_code = m.level_code
+			)as level_code
 			,member_address
 			,member_tel
 			,member_email
@@ -147,12 +155,12 @@
 				SELECT
 					library_name
 				FROM 
-					tb_library
+					tb_library as l
 				WHERE 
-					library_code = #{libraryCode}
+					l.library_code = m.library_code
 			)as library_code
 		FROM
-			tb_member
+			tb_member as m
 		WHERE
 			member_id = #{memberId}
 	</select>
