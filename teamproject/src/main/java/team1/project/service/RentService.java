@@ -15,8 +15,8 @@ public class RentService {
 	@Autowired private RentMapper rentMapper;
 	
 	//코드 검색
-	public Rent getRent(String rentCode) {
-		return rentMapper.getRent(rentCode);
+	public Rent getRentCode(String rentCode) {
+		return rentMapper.getRentCode(rentCode);
 	}
 	
 	//대여관리 대여리스트 -삭제

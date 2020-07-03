@@ -19,9 +19,19 @@
  		<result property="applySituation" column="apply_situation"/>	
  	</resultMap>
  	
- 	<select id="officeApplyList" resultMap="applyResultMap" parameterType="String">
+ 	<!-- 신청관리 - 신청도서리스트 - 삭제 -->
+ 	<delete id="deleteOfficeApply" parameterType="String">
+ 		DELETE FROM 
+ 		tb_book_apply 
+ 		WHERE 
+ 		apply_code=#{applyCode}
+ 	</delete>
+ 	
+ 	<!-- 신청관리 - 신청도서리스트 -->
+ 	<select id="officeApplyList" parameterType="String" resultMap="applyResultMap">
  		SELECT
-			book_name
+ 			apply_code
+			,book_name
 			,book_ISBN
 			,member_id
 			,apply_price
@@ -31,6 +41,25 @@
 			tb_book_apply
  	</select>
  	
+ 	<!-- 나의신청도서 삭제 - 코드검색 -->
+ 	<select id="getApplyCode" parameterType="String" resultMap="applyResultMap">
+ 		SELECT
+			apply_code
+		FROM
+			tb_book_apply
+		WHERE
+			apply_code = #{applyCode}
+ 	</select>
+ 	
+ 	<!-- 나의신청도서 삭제 -->
+ 	<delete id="deleteBookApply" parameterType="String">
+ 		DELETE FROM 
+ 		tb_book_apply 
+ 		WHERE 
+ 		apply_code=#{applyCode}
+ 	</delete>
+ 	
+ 	<!-- 나의 신청도서 리스트 -->
  	<select id="myApplyList" resultMap="applyResultMap" parameterType="String">
  	SELECT
 		a.apply_code
@@ -52,6 +81,7 @@
 		member_id = #{SID}
  	</select>
  		
+ 	<!-- 희망도서 신청 -->
 	<insert id="addBookApply" parameterType="team1.project.vo.Apply">
 		<selectKey keyProperty="applyCode" resultType="String" order="BEFORE">
 		<![CDATA[

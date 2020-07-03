@@ -34,10 +34,10 @@ public class RentController {
 	//대여관리 -대여리스트 삭제(선택한 로우의 대여코드 받아오기)
 	@GetMapping(value="/selectRent")
 	@ResponseBody
-	public Rent getRent(@RequestParam("rentCode") String rentCode) {
-		logger.info(rentCode + " <-- getRent RentController.java");
-		logger.info("========= getRent RentController.java =======");
-		Rent rent = rentService.getRent(rentCode);
+	public Rent getRentCode(@RequestParam("rentCode") String rentCode) {
+		logger.info(rentCode + " <-- getRentCode RentController.java");
+		logger.info("========= getRentCode RentController.java =======");
+		Rent rent = rentService.getRentCode(rentCode);
 		logger.info(rent.toString());
 
 		return rent;

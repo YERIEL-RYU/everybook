@@ -6,7 +6,6 @@
 <mapper namespace="team1.project.mapper.RentMapper">
 	
 	<resultMap type="Rent" id="rentResultMap">
-	
 	<result property="rentCode" column="rent_code"/>
 	<result property="bookCode" column="book_code"/>
 	<result property="rentDate" column="rent_date"/>
@@ -31,16 +30,6 @@
 			<result property="bookLibraryCode" column="book_library_code"/>
 		</association>
 	</resultMap>
-			
-	<select id="getRent" parameterType="String" resultMap="rentResultMap">
-		SELECT
-			rent_code
-			, member_id
-		FROM
-			tb_rent
-		WHERE
-			rent_code = #{rentCode}
-	</select>
 	
 	<!-- 대여관리 - 대여리스트 검색 -->
 	<select id="OfficeRentListSerch" parameterType="String" resultMap="rentResultMap">
@@ -80,6 +69,16 @@
 		</if>
 		ORDER BY
 			r.rent_date			
+	</select>
+	
+	<!-- 대여관리 - 삭제 - 코드검색 -->
+	<select id="getRentCode" parameterType="String" resultMap="rentResultMap">
+		SELECT
+			rent_code
+		FROM
+			tb_rent
+		WHERE
+			rent_code = #{rentCode}
 	</select>
 	
 	<!-- 대여관리 - 대여도서리스트 삭제 -->
