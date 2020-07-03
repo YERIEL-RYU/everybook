@@ -28,7 +28,36 @@
 			<div class="col-12">
 	            <div class="card">
 	              <div class="card-header">
-	                <h3 class="card-title">신청 도서 리스트</h3>
+	              <form role="form" action="/OfficeRentListSerch" method="get">
+							<div class="row">
+								<div class="col-sm-3">
+									<div class="form-group">
+				                        <select class="form-control custom-select" name="sk">
+				                          <option value= "rent_code">신청 코드</option>
+				                          <option value= "r.member_id">도서 이름</option>
+				                          <option value= "r.rent_date">ISBN</option>
+				                          <option value= "b.book_name">신청회원 아이디</option>
+				                          <option value= "b.book_library_code">신청 날짜</option>
+				                          <option value= "w.writer_name">진행사항</option>
+				                        </select>
+				                    </div>
+								</div>
+								<div class="col-sm-9">
+									<div class="row">
+										<div class="col-sm-10">
+											<input class="form-control" type="text" name="sv" placeholder="신청 도서 검색하기">
+										</div>
+										<div class="col-sm-2">
+											<div class="input-group-append">
+			                          			 <button class="btn btn-navbar" type="submit">
+			                           			  <i class="fas fa-search"></i>
+			                          			  </button>
+			                          		</div>
+		                          		</div>
+	                          		</div>
+								</div>
+		                    </div>							
+						</form>
 	              </div>
 	              <!-- /.card-header -->
 	              <div class="card-body">
@@ -38,6 +67,7 @@
 				                <table id="example2" class="table table-bordered table-hover dataTable dtr-inline" role="grid" aria-describedby="example2_info" style="text-align: center">
 				                  <thead>
 					                  <tr role="row">
+						                  <th>신청코드</th>
 						                  <th>도서이름</th>
 						                  <th>ISBN</th>
 						                  <th>신청회원아이디</th>
@@ -45,11 +75,12 @@
 						                  <th>신청날짜</th>
 						                  <th>진행사항</th>
 						                  <th>#수정</th>
-						                  <th>#삭제</th>
+						                  <th>삭제(서)</th>
 						              </tr>					            	            
 				                  </thead>
 				                  <tbody>
 					                  <tr th:each="A : ${officeApplyList}">
+				                    	  <td th:text="${A.applyCode}"></td>
 				                    	  <td th:text="${A.bookName}"></td>
 					                      <td th:text="${A.bookIsbn}"></td>
 					                      <td th:text="${A.memberId}"></td>
@@ -61,8 +92,8 @@
 								            <i class="fas fa-pencil-alt"></i>수정</a>
 					                      </td>
 					                      <td class="">
-					                      	<a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-delete" style="color: white">
-								            <i class="fas fa-trash"></i>삭제</a>
+					                      	<button class="btn btn-danger btn-sm applyBookListDelete" style="color: white" th:value="${A.applyCode}">
+								            <i class="fas fa-trash"></i>삭제</button>
 								          </td>
 					                  </tr>
 				                  </tbody>
@@ -70,6 +101,7 @@
 				                <!-- modal -->
 				                <div class="modal fade" id="modal-delete">
 							        <div class="modal-dialog">
+							        <form action="/deleteOfficeBookApply" method="get">
 							          <div class="modal-content bg-default">
 							            <div class="modal-header">
 							              <h4 class="modal-title">신청도서관리</h4>
@@ -77,14 +109,17 @@
 							                <span aria-hidden="true">&times;</span></button>
 							            </div>
 							            <div class="modal-body">
+							            <label>신청 코드</label>
+			            				<input type="text" id="getApplyCode" readonly="readonly" style="margin-left: 7px; text-align: center; background-color: Snow; width: 95px; border: ridge;">
 							              <p>삭제 하시겠습니까?</p>
 							            </div>
 							            <div class="modal-footer justify-content-between">
-							              <button type="button" class="btn" data-dismiss="modal">Close</button>
-							              <button type="button" class="btn">#삭제하기</button>
+							              <button type="button" class="btn" data-dismiss="modal" style="background-color: Snow; border: outset;">Close</button>
+							              <button type="submit" class="btn applyCode" name="applyCode" style="background-color: Snow; border: outset;">삭제하기(서)</button>
 							            </div>
 							          </div>
 							          <!-- /.modal-content -->
+							        </form>
 							        </div>
 							        <!-- /.modal-dialog -->
 					      		</div>
@@ -153,6 +188,15 @@
       "autoWidth": false,
       "responsive": true,
     });
+    $('.applyBookListDelete').click(function(){
+    	console.log("삭제하기 클릭");
+    	var val = $(this).val();
+    	console.log("선택한 코드 값 : " + val);
+    	
+    	$('#modal-delete').modal();
+    	$('.applyCode').val(val); //OK버튼
+    	$('#getApplyCode').val(val); //모달 input
+    })
   });
 </script>
 </th:block>

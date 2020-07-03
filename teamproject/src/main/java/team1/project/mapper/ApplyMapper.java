@@ -9,7 +9,10 @@ import team1.project.vo.Apply;
 @Mapper
 public interface ApplyMapper {
 	
-	//신청관리-신청도서리스트
+	//신청관리 - 신청도서리스트 삭제
+	public int deleteOfficeApply(String applyCode);
+	
+	//신청관리 - 신청도서리스트
 	public List<Apply> officeApplyList();
 	
 	//코드검색

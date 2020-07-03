@@ -19,10 +19,19 @@
  		<result property="applySituation" column="apply_situation"/>	
  	</resultMap>
  	
+ 	<!-- 신청관리 - 신청도서리스트 - 삭제 -->
+ 	<delete id="deleteOfficeApply" parameterType="String">
+ 		DELETE FROM 
+ 		tb_book_apply 
+ 		WHERE 
+ 		apply_code=#{applyCode}
+ 	</delete>
+ 	
  	<!-- 신청관리 - 신청도서리스트 -->
  	<select id="officeApplyList" parameterType="String" resultMap="applyResultMap">
  		SELECT
-			book_name
+ 			apply_code
+			,book_name
 			,book_ISBN
 			,member_id
 			,apply_price

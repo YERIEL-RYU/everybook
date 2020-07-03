@@ -60,7 +60,7 @@
 				<!-- Courses Main Content -->
 				<div class="col-lg-8" style="margin-top: 30px">	
 				<div class="card-header" style="background-color: AliceBlue;">
-					<label style="color: black; margin-top: 5px">[[${session.SID}]] 님 현재 대여한 도서입니다.</label>
+					<label style="color: black; margin-top: 5px">[[${session.SID}]] 님 현재 대여중인 도서입니다.</label>
 				</div>								
 					<div class="courses_container">
 						<div class="table-responsive">
@@ -73,7 +73,7 @@
 										<th> 대여 일시 </th>
 										<th> 반납 기한 </th>
 										<th> 도서 상태 </th>
-										<th> 연장하기 </th>
+										<th> #연장하기(서) </th>
 									</tr>	
 								</thead>
 									<tr th:each="r : ${myRentList}">				
@@ -104,15 +104,15 @@
 													<div class="accordion_container">
 														<div class="accordion d-flex flex-row align-items-center"><div>나의 서재</div></div>
 														<div class="accordion_panel">
-															<p><a href="addExtend">!대여 도서 / 연장 신청(서)</a></p>
-															<p><a href="myRent">!나의 대여 이력(서) / 도서평 작성(김)</a></p>
+															<p><a href="addExtend">대여 도서 / !연장 신청(서)</a></p>
+															<p><a href="myRent">나의 대여 이력(서) / !도서평 작성(김)</a></p>
 															<p><a href="myReserve">!도서 예약 내역(유)</a></p>
-															<p><a href="myApply">!나의 신청 도서(서)</a></p>
+															<p><a href="myApply">나의 신청 도서(서)</a></p>
 															<p><a href="reviewList">!나의 도서평 내역(김)</a></p>
 														</div>
 													</div>
 													<div class="accordion_container">
-														<div class="accordion d-flex flex-row align-items-center active"><div><a href="addBookApply">!희망 도서 신청(서)</a></div></div>
+														<div class="accordion d-flex flex-row align-items-center active"><div><a href="addBookApply">희망 도서 신청(서)</a></div></div>
 													</div>
 													<div class="accordion_container">
 														<div class="accordion d-flex flex-row align-items-center"><div><a href="myPoint">!나의 점수 내역(유)</a></div></div>

@@ -75,7 +75,7 @@
 									<th> 도서명 </th>
 									<th> ISBN </th>
 									<th> 신청 일시 </th>
-									<th> #신청 취소 </th>
+									<th> 신청 취소 (서)</th>
 								</tr>	
 							</thead>
 								<tr th:each="A : ${myApplyList}">		
@@ -107,16 +107,16 @@
 													<div class="accordion_container">
 														<div class="accordion d-flex flex-row align-items-center"><div>나의 서재</div></div>
 														<div class="accordion_panel">
-															<p><a href="addExtend">!대여 도서 / 연장 신청(서)</a></p>
-															<p><a href="myRent">!나의 대여 이력(서) / 도서평 작성(김)</a></p>
+															<p><a href="addExtend">대여 도서 / !연장 신청(서)</a></p>
+															<p><a href="myRent">나의 대여 이력(서) / !도서평 작성(김)</a></p>
 															<p><a href="myReserve">!도서 예약 내역(유)</a></p>
-															<p><a href="myApply">!나의 신청 도서(서)</a></p>
+															<p><a href="myApply">나의 신청 도서(서)</a></p>
 															<p><a href="reviewList">!나의 도서평 내역(김)</a></p>
 														</div>
 													</div>
 			
 													<div class="accordion_container">
-														<div class="accordion d-flex flex-row align-items-center active"><div><a href="addBookApply">!희망 도서 신청(서)</a></div></div>
+														<div class="accordion d-flex flex-row align-items-center active"><div><a href="addBookApply">희망 도서 신청(서)</a></div></div>
 													</div>
 			
 													<div class="accordion_container">
@@ -219,9 +219,8 @@
 						request.fail(function( jqXHR, textStatus ) {
 			  			  alert( "Request failed: " + textStatus );
 			  			}); 
-			    })  
-			
-			})
+				    })  
+				})
 		</script>
 	</th:block>
 </html>

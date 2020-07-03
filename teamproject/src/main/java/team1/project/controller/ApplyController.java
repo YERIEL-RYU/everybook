@@ -1,8 +1,5 @@
 package team1.project.controller;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -43,7 +40,7 @@ public class ApplyController {
 		return "redirect:/myApply"; 
 	}
 	
-	//신청도서 신청취소 - (선택한 로우의 신청코드 받아오기)
+	//나의신청도서 신청취소 - (선택한 로우의 신청코드 받아오기)
 		@GetMapping(value="/selectApply")
 		@ResponseBody
 		public Apply getApplyCode(@RequestParam(name = "applyCode") String applyCode) {
@@ -70,6 +67,15 @@ public class ApplyController {
 	@GetMapping("/addBookApply")
 	public String addBookApply() {
 		return "apply/addBookApply";
+	}
+	
+	//신청도서관리 - 신청도서리스트 - 삭제
+	@GetMapping("/deleteOfficeBookApply")
+	public String deleteOfficeApply(@RequestParam(name = "applyCode", required = false) String applyCode, Apply apply) {
+		logger.info("applyCode --> "+ applyCode);
+		applyService.deleteOfficeApply(applyCode);
+		
+		return "redirect:/officeBookApply";
 	}
 	
 	//신청도서관리 - 신청도서리스트
