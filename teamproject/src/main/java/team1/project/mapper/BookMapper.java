@@ -8,6 +8,9 @@ import team1.project.vo.Book;
 
 @Mapper
 public interface BookMapper {
+	//같은 이름의 책 몇 권 있는지 조회
+	public int sameNameCount(String libraryCode, String bookName, String writer);
+	
 	//대여중인 도서 예약 권수
 	public Book reserveBookCount(String bookLibraryCode, String libraryCode);
 	

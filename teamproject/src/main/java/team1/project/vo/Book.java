@@ -20,6 +20,7 @@ public class Book {
 	private int reserveCount;
 	private String bookImageURL;
 	private String bookDescription;
+	private String seriesNo;
 	public String getBookCode() {
 		return bookCode;
 	}
@@ -133,6 +134,12 @@ public class Book {
 	}
 	public void setBookDescription(String bookDescription) {
 		this.bookDescription = bookDescription;
+	}
+	public String getSeriesNo() {
+		return seriesNo;
+	}
+	public void setSeriesNo(String seriesNo) {
+		this.seriesNo = seriesNo;
 	}
 	@Override
 	public String toString() {

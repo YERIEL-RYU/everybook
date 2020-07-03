@@ -78,6 +78,12 @@
 		    <artifactId>log4jdbc-log4j2-jdbc4.1</artifactId>
 		    <version>1.16</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.jsoup/jsoup 외부 api 적용 시키기 위한 라이브러리 : 20200703 유영주 -->
+		<dependency>
+		    <groupId>org.jsoup</groupId>
+		    <artifactId>jsoup</artifactId>
+		    <version>1.12.1</version>
+		</dependency>
 	</dependencies>
 
 	<build>
