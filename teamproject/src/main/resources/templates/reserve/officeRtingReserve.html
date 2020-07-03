@@ -9,6 +9,8 @@
 
 <th:block layout:fragment="customCss">
 <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
 </th:block>
 
 <th:block layout:fragment="customContents">
@@ -159,7 +161,7 @@
 					<!--end card-header -->
 					
 					<div class="card-body">
-						<table class="table table-bordered table-hover" style="text-align: center;">
+						<table id="list-table" class="table table-bordered table-hover" style="text-align: center;">
 		                  <thead>
 			                  <tr>
 			                  	<th><input type="checkbox"></th>
@@ -202,27 +204,29 @@
 		                </table>
 					</div>
 					<!-- /.card-body -->
-					<div class="card-footer clearfix">
-						<ul class="pagination pagination-sm m-0 float-right">
-							<li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-							<li class="page-item"><a class="page-link" href="#">1</a></li>
-							<li class="page-item"><a class="page-link" href="#">2</a></li>
-							<li class="page-item"><a class="page-link" href="#">3</a></li>
-							<li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-						</ul>
-					</div>
 				</div>
 			</div>
 		</section>
 		<!-- /.content -->
 	</div>
-	<!-- /.content-wrapper -->
-	
-	<!-- Control Sidebar -->
-	<aside class="control-sidebar control-sidebar-dark">
-	  <!-- Control sidebar content goes here -->
-	</aside>
-	<!-- /.control-sidebar -->
 </th:block>
-
+<th:block layout:fragment="customFooterScript">
+<script src="plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="/dist/js/checkbox.js"></script>
+<script>
+	$(function () {
+		//반응형 테이블
+	    $("#list-table").DataTable({
+	    	"paging": true,
+	        "lengthChange": false,
+	        "searching": false,
+	        "ordering": true,
+	        "info": true,
+	        "autoWidth": false,
+	        "responsive": true,
+	    });
+</script>
 </html>

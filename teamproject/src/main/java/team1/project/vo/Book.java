@@ -18,6 +18,8 @@ public class Book {
 	private String budget;
 	private String officerId;
 	private int reserveCount;
+	private String bookImageURL;
+	private String bookDescription;
 	public String getBookCode() {
 		return bookCode;
 	}
@@ -120,6 +122,18 @@ public class Book {
 	public void setReserveCount(int reserveCount) {
 		this.reserveCount = reserveCount;
 	}
+	public String getBookImageURL() {
+		return bookImageURL;
+	}
+	public void setBookImageURL(String bookImageURL) {
+		this.bookImageURL = bookImageURL;
+	}
+	public String getBookDescription() {
+		return bookDescription;
+	}
+	public void setBookDescription(String bookDescription) {
+		this.bookDescription = bookDescription;
+	}
 	@Override
 	public String toString() {
 		return "Book [bookCode=" + bookCode + ", libraryName=" + libraryName + ", libraryCode=" + libraryCode
@@ -127,7 +141,8 @@ public class Book {
 				+ ", writer=" + writer + ", publisher=" + publisher + ", bookPublishDate=" + bookPublishDate
 				+ ", bookPrice=" + bookPrice + ", bookIsbn=" + bookIsbn + ", bookSituation=" + bookSituation
 				+ ", bookRegDate=" + bookRegDate + ", group=" + group + ", budget=" + budget + ", officerId="
-				+ officerId + ", reserveCount=" + reserveCount + "]";
+				+ officerId + ", reserveCount=" + reserveCount + ", bookImageURL=" + bookImageURL + ", bookDescription="
+				+ bookDescription + "]";
 	}
 			
 	

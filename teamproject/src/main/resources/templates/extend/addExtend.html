@@ -11,6 +11,9 @@
 		<link rel="stylesheet" type="text/css" href="styles/course.css">
 		<link rel="stylesheet" type="text/css" href="styles/courses_responsive.css">
 		<link rel="stylesheet" type="text/css" href="styles/course_responsive.css">
+ 		<link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+		<link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+		<link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css"> 	
   	</th:block>
 	<th:block layout:fragment="customTitle">
 		<title> 나의 대여 내역/연장신청  </title>
@@ -51,36 +54,18 @@
 	</div>
 	
 		<!-- Courses -->
-
 	<div class="courses">
 		<div class="container">
 			<div class="row">
-
 				<!-- Courses Main Content -->
-				<div class="col-lg-8">					
+				<div class="col-lg-8" style="margin-top: 30px">	
+				<div class="card-header" style="background-color: snow; height: 20%">
+					<label style="color: black; margin-top: 5px">[[${session.SID}]] 님 현재 대여한 도서입니다.</label>
+				</div>								
 					<div class="courses_container">
-						<div class="text-right" style="margin: 10px 10px;">
-						</div>
-						<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-							<div class="modal-dialog modal-sm">
-								<div class="modal-content">
-									<div class="modal-header">
-								        <h4 class="modal-title">대여도서 연장하기</h4>
-								        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-								     </div>
-								     <div class="modal-body">
-								        <p>해당 도서의 대여기간을 연장하시겠습니까?</p>
-								     </div>
-								     <div class="modal-footer">
-								        <button type="button"class="btn btn-default" data-dismiss="modal">닫기</button>
-								        <button type="button" class="btn btn-primary">#연장신청</button>
-								     </div>
-								</div>
-							</div>
-						</div>
 						<div class="table-responsive">
-							<table class="table" style="color: black">
-								<thead>
+							<table id="example2" class="table table-bordered table-hover dataTable dtr-inline" role="grid" aria-describedby="example2_info" style="color: black">
+			                  <thead>
 									<tr>
 										<th> 대여코드 </th>
 										<th> 도서관명 </th>
@@ -98,31 +83,9 @@
 										<td th:text="${r.rentRegDate}"></td>
 										<td th:text="${r.rentReturnDate}"></td>
 										<td>[[${r.book.bookSituation}]] </td>
-										<td><button class="btn btn-info btn-sm" type="button"  data-toggle="modal" data-target=".bs-example-modal-sm">#연장 신청</button></td>
+										<td><button class="btn btn-info btn-sm" type="button"  data-toggle="modal" data-target=".addBookExtend">#연장 신청</button></td>
 									</tr>	
-							</table>							
-						</div>
-						<div class="row pagination_row">
-							<div class="col">
-								<div class="pagination_container d-flex flex-row align-items-center justify-content-start">
-									<ul class="pagination_list">
-										<li class="active"><a href="#">1</a></li>
-										<li><a href="#">2</a></li>
-										<li><a href="#">3</a></li>
-										<li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-									</ul>
-									<div class="courses_show_container ml-auto clearfix">
-										<div class="courses_show_content">
-											<span>목록수: </span>
-											<select id="courses_show_select" class="courses_show_select">
-												<option>10</option>
-												<option>30</option>
-												<option>50</option>
-											</select>
-										</div>
-									</div>
-								</div>
-							</div>
+			                </table>   							
 						</div>
 					</div>
 				</div>	
@@ -137,9 +100,7 @@
 										<div class="tab_panel_faq">
 											<!-- Accordions -->
 											<div class="accordions">
-												
 												<div class="elements_accordions">
-			
 													<div class="accordion_container">
 														<div class="accordion d-flex flex-row align-items-center"><div>나의 서재</div></div>
 														<div class="accordion_panel">
@@ -150,11 +111,9 @@
 															<p><a href="reviewList">!나의 도서평 내역(김)</a></p>
 														</div>
 													</div>
-			
 													<div class="accordion_container">
 														<div class="accordion d-flex flex-row align-items-center active"><div><a href="addBookApply">!희망 도서 신청(서)</a></div></div>
 													</div>
-			
 													<div class="accordion_container">
 														<div class="accordion d-flex flex-row align-items-center"><div><a href="myPoint">!나의 점수 내역(유)</a></div></div>
 													</div>			
@@ -166,7 +125,27 @@
 							</div>					
 						</div>
 					</div>
-				</div>				
+				</div>	
+				<form action="" method="get">
+					<div class="modal fade addBookExtend">
+						<div class="modal-dialog modal-sm">
+							<div class="modal-content">
+								<div class="modal-header">
+							        <h4 class="modal-title">대여도서 연장하기</h4>
+							        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							        <span aria-hidden="true">&times;</span></button>
+							     </div>
+							     <div class="modal-body">
+							        <p style="color: black">도서의 대여기간을 연장하시겠습니까?</p>
+							     </div>
+							     <div class="modal-footer">
+							        <button type="button"class="btn" data-dismiss="modal" style="background-color: Snow; border: outset;">Close</button>
+							        <button type="submit" class="btn" style="background-color: Snow; border: outset;">OK</button>
+							     </div>
+							</div>
+						</div>
+					</div>
+				</form>			
 			</div>
 		</div>		
 	</div>		
@@ -182,6 +161,34 @@
 		<script src="plugins/colorbox/jquery.colorbox-min.js"></script>
 		<script src="js/courses.js"></script>
 		<script src="js/course.js"></script>
+		<!-- jQuery -->
+		<script src="../../plugins/jquery/jquery.min.js"></script>
+		<!-- Bootstrap 4 -->
+		<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<!-- DataTables -->
+		<script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
+		<script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+		<script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+		<script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+		<script>
+			$(function(){
+				//데이터테이블
+				$("#example1").DataTable({
+			      "responsive": true,
+			      "autoWidth": false,
+			    });
+			    $('#example2').DataTable({
+			      "paging": true,
+			      "lengthChange": false,
+			      "searching": false,
+			      "ordering": true,
+			      "info": true,
+			      "autoWidth": false,
+			      "responsive": true,
+			    });
+			
+			})
+		</script>
 	</th:block>
 	
 </html>
