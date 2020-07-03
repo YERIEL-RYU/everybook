@@ -59,6 +59,7 @@
 						 			<div class="form-group">
 										<label>도서명</label>
 										<input type="text" class="form-control" name="bookName" placeholder="책 제목">
+										<input type="text" class="form-control" id="seriesNo" hidden="hidden">
 									</div>
 									<div class="form-group">
 										<label>저자</label>
@@ -83,7 +84,7 @@
 							 		<div class="form-group">
 										<label>청구기호 코드 생성</label>
 										<div class="input-group mb-3">
-											<input type="text" class="form-control" placeholder="청구 기호 코드">
+											<input type="text" class="form-control" name="bookLibraryCode" placeholder="청구 기호 코드">
 											<span class="input-group-append">
 												<button type="button" class="btn btn-info" id="blcBtn">청구기호 코드 생성하기</button>
 											</span>
@@ -129,6 +130,7 @@
 	 				$('[name=bookPublishDate]').val(data.bookPublishDate);
 	 				$('[name=bookDescription]').val(data.bookDescription);
 	 				$('[name=bookImageURL]').attr('src',data.bookImageURL);
+	 				$('#seriesNo').val(data.seriesNo);
 	 			}
 		   		commonAjax("/searchIsbn", 
 		   				{ isbn : isbn },
@@ -141,11 +143,38 @@
 		});
 		$('#blcBtn').click(function(){
 			var bookName = $('[name=bookName]').val();
+			var category = $('[name=category]').val();
+			var serise = $('#seriesNo').val();
+			var fir = bookName.substring(0,1);
+			console.log(fir);
 			console.log(bookName);
 			if(bookName == null || bookName == ''){
 				alert('도서의 정보가 없습니다.');
 			}else{
-				alert('도서 청구 코드를 생성합니다');
+				var writer = $('[name=writer]').val();
+				var errormsg = '도서 청구 코드를 생성 할 수 없습니다.';
+				var fn = function( data ){
+					console.log(data + " ajax");
+					if(serise == null || serise ==''){
+						if(data.reserveCount == null || data.reserveCount == ''){
+							$('[name=bookLibraryCode]').val(category + data.bookLibraryCode+fir);
+						}else{
+							$('[name=bookLibraryCode]').val(category + data.bookLibraryCode+fir+"V."+ data.reserveCount);
+						}
+					}else{
+						if(data.reserveCount == null || data.reserveCount == ''){
+							$('[name=bookLibraryCode]').val(category + data.bookLibraryCode+fir+"C."+serise);
+						}else{
+							$('[name=bookLibraryCode]').val(category + data.bookLibraryCode+fir+"C."+serise+"V."+ data.reserveCount);
+						}
+					}
+					
+				}
+				commonAjax("/addBookLibraryCode", 
+		   				{ writer : writer,  bookName : bookName},
+		   				fn,
+		   				'get',
+		   				errormsg);
 			}
 		});
 	});
