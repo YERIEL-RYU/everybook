@@ -31,6 +31,8 @@ public class BookController {
 		//저자 있으면 code 가져오고 없으면 저자 코드 추가
 		//출판사 조회
 		//출판사 있으면 code 가져오고 없으면 출판사 코드 추가
+		//카테고리 조회
+		//카테코리 있으면 code 가져오고 없으면 카테고리 코드 추가
 		//책 추가
 		return null;
 	}
