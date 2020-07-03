@@ -12,14 +12,15 @@ public interface ApplyMapper {
 	//신청관리-신청도서리스트
 	public List<Apply> officeApplyList();
 	
-	//희망신청도서 리스트
-	public List<Apply> myApplyList(String SID);
+	//코드검색
+	public Apply getApplyCode(String applyCode);
 	
-	/*
-	 * //희망도서신청 코드자동증가 
-	 * public int addApplyCodeMax();
-	 */
+	//나의 신청도서 취소하기
+	public int deleteBookApply(Apply apply);
 	
-	//희망도서신청 등록처리
+	//나의 희망도서신청 리스트
+	public List<Apply> myApplyList(String SID);	
+	
+	//희망도서 신청 
 	public int addBookApply(Apply apply);
 }
