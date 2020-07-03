@@ -24,6 +24,17 @@ public class BookController {
 	
 	@Autowired private BookService bookService;
 	
+	@GetMapping("/addBook")
+	public String addBook(Book book){
+		logger.info("book",book);
+		//저자 조회
+		//저자 있으면 code 가져오고 없으면 저자 코드 추가
+		//출판사 조회
+		//출판사 있으면 code 가져오고 없으면 출판사 코드 추가
+		//책 추가
+		return null;
+	}
+	
 	@GetMapping("/addBookLibraryCode")
 	@ResponseBody
 	public Book addBookLibraryCode(@RequestParam("writer") String writer, @RequestParam("bookName") String bookName, HttpSession session) {
