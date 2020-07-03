@@ -40,35 +40,41 @@
 											</span>
 										</div>
 									</div>
-									<div class="form-group">
-										<label>도서명</label>
-										<input type="text" class="form-control" placeholder="책 제목">
+									<div class="form-group" align="center">
+										<a class="thumbnail">
+											<img src="dist/img/no_image.gif" alt="bookCover" width="147px;" name="bookImageURL">
+										</a>
 									</div>
+								
 									<div class="form-group">
 										<label>출판사</label>
-										<input type="text" class="form-control" placeholder="출판사명">
+										<input type="text" class="form-control" name="publisher" placeholder="출판사명">
 									</div>
 									<div class="form-group">
 										<label>총페이지</label>
-										<input type="text" class="form-control" placeholder="총 페이지 수">
+										<input type="text" class="form-control" placeholder="정보 없음">
 									</div>
 						 		</div>
 						 		<div  class="col-md-6">
+						 			<div class="form-group">
+										<label>도서명</label>
+										<input type="text" class="form-control" name="bookName" placeholder="책 제목">
+									</div>
 									<div class="form-group">
 										<label>저자</label>
-										<input type="text" class="form-control" placeholder="저자">
+										<input type="text" class="form-control" name="writer" placeholder="저자">
 									</div>
 									<div class="form-group">
 										<label>KDC</label>
-										<input type="text" class="form-control" placeholder="KDC">
+										<input type="text" class="form-control" name="category" placeholder="KDC">
 									</div>
 									<div class="form-group">
 										<label>발행년도</label>
-										<input type="text" class="form-control" placeholder="발행년도">
+										<input type="text" class="form-control" name="bookPublishDate" placeholder="발행년도">
 									</div>
 									<div class="form-group">
 										<label>도서 가격</label>
-										<input type="text" class="form-control" placeholder="도서가격">
+										<input type="text" class="form-control" name="bookPrice" placeholder="도서가격">
 									</div>
 						 		</div>
 						 	</div>
@@ -85,7 +91,7 @@
 									</div>
 									<div class="form-group">
 										<label>상세 내용</label>
-										<textarea class="form-control" rows="3" placeholder="도서 상세 내용"></textarea>
+										<textarea class="form-control" name="bookDescription" rows="3" placeholder="도서 상세 내용"></textarea>
 									</div>
 						 		</div>
 						 	</div>
@@ -115,6 +121,14 @@
 				var errormsg ="해당 isbn으로 도서 정보를 불러올수 없습니다."
 	 			var fn = function( data ) {
 	 				console.log(JSON.stringify(data) + " <- ajax");
+	 				$('[name=bookName]').val(data.bookName);
+	 				//$('[name=category]').val(data.category);
+	 				$('[name=writer]').val(data.writer);
+	 				$('[name=publisher]').val(data.publisher);
+	 				$('[name=bookPrice]').val(data.bookPrice);
+	 				$('[name=bookPublishDate]').val(data.bookPublishDate);
+	 				$('[name=bookDescription]').val(data.bookDescription);
+	 				$('[name=bookImageURL]').attr('src',data.bookImageURL);
 	 			}
 		   		commonAjax("/searchIsbn", 
 		   				{ isbn : isbn },
