@@ -11,7 +11,7 @@
 		<result property="bookLibraryCode" column="book_library_code"/>
 		<result property="bookName" column="book_name"/>
 		<result property="category" column="category_name"/>
-		<result property="writer" column="writer_name"/>
+		<result property="writer" column="writer_code"/>
 		<result property="publisher" column="publisher_name"/>
 		<result property="bookPublishDate" column="book_publish_date"/>
 		<result property="bookPrice" column="book_price"/>
@@ -22,6 +22,23 @@
 		<result property="budget" column="budget_code"/>
 		<result property="officerId" column="officer_id"/>
 	</resultMap>
+	<!-- 도서제목과 저자로 같은 책 몇 권 있는지 조회하기 -->
+	<select id="sameNameCount" parameterType="String" resultType="int">
+	SELECT
+		COUNT(*)
+	FROM
+		tb_book AS b
+		join
+		tb_writer AS w
+		on
+		b.writer_code = w.writer_code
+	WHERE
+		b.library_code = #{libraryCode}	
+		and
+		b.book_name = #{bookName}
+		and
+		w.writer_name = #{writer}
+	</select>
 	<!-- 대여중인 도서 예약 권수 조회 --> 
 	<select id="reserveBookCount" parameterType="String" resultMap="bookResultMap">
 		SELECT
