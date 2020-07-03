@@ -24,25 +24,27 @@ public class BookService {
 	//isbn으로 도서 정보 가져오기 api - 영주
 	public Book searchIsbn(String isbn) {
 		logger.info("BookService - isbn : {}",isbn);
+		//중앙 도서관api 이용 url
 		String seojiUrl = "http://seoji.nl.go.kr/landingPage/SearchApi.do?"
 					+ "cert_key=028d34c6eb6f18a4cade4731aa6dc4651d41706a33d3ffe5babd55542c96a9f0&"	
 					+ "result_style=xml&page_no=1&page_size=10&isbn="+isbn;
+		//도서관 정보나루 api 이용 url
 		String naruUrl = "http://data4library.kr/api/srchDtlList?"
 				+ "authKey=d30acf5969608e57f856c36ddd03e661e138d851efb484a2ddffc33ce70627d4&isbn13="
 				+ isbn;
-		
 		Book book = new Book();
 		try {
 			//도서관 정보나루 api
 			Document naru = Jsoup.connect(naruUrl).data("isbn",isbn).get();
 			Document seoji = Jsoup.connect(seojiUrl).data("isbn",isbn).get();
 			String bookName = seoji.select("TITLE").text();
-			String bookPrice = seoji.select("REAL_PRICE").text();
+			String bookPrice = seoji.select("PRE_PRICE").text();
+			String category = seoji.select("KDC").text();
 			String writer = naru.select("authors").text();
 			String publisher = naru.select("publisher").text();
 			String bookDescription = naru.select("description").text();
 			String bookImageURL = naru.select("bookImageURL").text();
-			String category = naru.select("class_no").text();
+			String bookPublishDate = naru.select("publication_date").text();
 			book.setBookName(bookName);
 			book.setWriter(writer);
 			book.setBookDescription(bookDescription);
@@ -50,12 +52,10 @@ public class BookService {
 			book.setPublisher(publisher);
 			book.setBookPrice(bookPrice);
 			book.setCategory(category);
+			book.setBookPublishDate(bookPublishDate);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		
-		
 		return book;
 	}
 	
