@@ -32,6 +32,7 @@ public class ReviewController {
 		return "review/reviewList";
 	}
 	
+	//도서평등록화면(회원)
 	@GetMapping("/addReview")
 	public String addReview() {
 		return "review/addReview";

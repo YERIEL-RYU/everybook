@@ -21,61 +21,101 @@
 		<result property="reserveCount" column="reserve_count"/>
 		<result property="reviewCount" column="review_count"/>
 		<result property="warningCount" column="warning_count"/>
+		<result property="memberStauts" column="member_stauts"/>
 		<result property="memberRegDate" column="member_reg_date"/>
+		<result property="memberRegDate" column="member_reg_date"/>
+		<result property="officerId" column="officer_id"/>
 	</resultMap>
 	
+	<!-- 회원삭제 -->
+	<delete id="deleteMember" parameterType="String">
+		DELETE 
+		FROM 
+			tb_member 
+		WHERE
+			member_id=#{memberId}
+	</delete>
+	
+	<!-- 도서관 지역에 따른 회원 검색 -->
+	<select id="searchRegionMember" parameterType="String" resultMap="memberSelect">
+	   SELECT
+	      m.*
+	   FROM
+	      tb_member AS m
+	      JOIN 
+	      tb_library AS l
+	      join
+	      tb_region AS r
+	      on
+	      m.library_code = l.library_code
+	      and
+	      l.region_code = r.region_code
+	   WHERE   
+	      m.member_id = #{memberId}
+	      and
+	      r.region_minor =   (SELECT
+	                     r.region_minor
+	                  FROM
+	                     tb_library AS l
+	                     join
+	                     tb_region AS r
+	                     ON
+	                     l.region_code = r.region_code
+	                  WHERE
+	                     l.library_code = #{libraryCode})
+	</select>
+	
+	<!-- 주소 3개로 나눠서 출력 -->
+	<select id="getMemberAddress" parameterType="String" resultType="Map">
+		SELECT 
+			SUBSTRING_INDEX(member_address,' ',1) AS regionMagjor
+			,SUBSTRING_INDEX(SUBSTRING_INDEX(member_address,' ',2),' ',-1) AS regionMinor
+			,SUBSTRING_INDEX(member_address,' ',-1) AS regionDetail
+		FROM 
+			tb_member
+		WHERE 
+			member_id = #{memberId}	
+	</select>
+	
 	<!-- 중복된 아이디 체크 -->
-	<select id="selectCheckMemberId" parameterType="String" resultType="int">
+	<select id="selectCheckMemberId" parameterType="String" resultType="boolean">
 		SELECT
-			COUNT(*)
+			CASE COUNT(*)
+			WHEN 1 THEN FALSE
+			ELSE TRUE
+			END 
 		FROM
 			tb_member
 		WHERE 
 			member_id = #{memberId}
 	</select>
 	
-	<!-- 지역코드로 해당 지역 도서관 출력 -->
-	<select id="selectLibraryCode" parameterType="String" resultMap="librarySelect">
-		SELECT
-			library_code
-			,library_name 
-		FROM
-			tb_library
-		WHERE
-			region_code = #{regionCode}
-	</select>
-	
-	<!-- 등록화면에서 입력한 지역값으로 지역코드 출력 -->
-	<select id="selectRegionCode" parameterType="String" resultType="String">
-		SELECT
-			region_code
-		FROM
-			tb_region
-		WHERE 
-			region_major = #{rMagjor}
-		AND
-			region_minor = #{rMinor}
-	</select>
-	
 	<!-- 전체회원리스트 -->
-	<select id="allListMember" parameterType="Member" resultMap="memberSelect">
+	<select id="allListMember" resultMap="memberSelect">
 		SELECT 
 			member_id
+			, member_pw
 			, member_name
-			,(
+			, member_birth
+			,( 
 				select
 					level_name
 				from
-					tb_level
+					tb_level AS l
 				where
-					level_code = #{levelCode}
-			) as level_code
+					l.level_code = m.level_code
+			)as level_code
+			, member_address
+			, member_tel
+			, member_email
+			, library_code
 			, rent_count
 			, reserve_count
 			, review_count
 			, warning_count
+			, member_stauts
 		FROM 
-			tb_member
+			tb_member AS m 
 	</select>
 	
 	<!-- 회원수정-->
@@ -93,13 +133,21 @@
 			member_id = #{memberId}
 	</update>
 	
-	<!-- 회원상세보기 -->
-	<select id="DetailMember" parameterType="Member" resultMap="memberSelect">
+	<!-- 회원상세보기(마이페이지) -->
+	<select id="DetailMember" parameterType="String" resultMap="memberSelect">
 		SELECT 
 			member_id
 			,member_pw
 			,member_name
 			,member_birth
+			,( 
+				select
+					level_name
+				from
+					tb_level AS l
+				where
+					l.level_code = m.level_code
+			)as level_code
 			,member_address
 			,member_tel
 			,member_email
@@ -107,12 +155,12 @@
 				SELECT
 					library_name
 				FROM 
-					tb_library
+					tb_library as l
 				WHERE 
-					library_code = #{libraryCode}
+					l.library_code = m.library_code
 			)as library_code
 		FROM
-			tb_member
+			tb_member as m
 		WHERE
 			member_id = #{memberId}
 	</select>
@@ -156,7 +204,8 @@
 			, reserve_count
 			, review_count
 			, warning_count
-			, member_reg_date)
+			, member_reg_date
+			, officer_id)
 		VALUES
 			(#{memberId}
 			, #{memberPw}
@@ -171,7 +220,8 @@
 			, 0
 			, 0
 			, 0
-			, now())
+			, now()
+			, NULLIF(#{officerId},'%00'))
 	</insert>
 
 

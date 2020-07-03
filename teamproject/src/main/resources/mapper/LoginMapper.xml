@@ -111,6 +111,7 @@
 			officer_id
 			,officer_pw
 			,level_code
+			,library_code
 		FROM
 			tb_officer
 		WHERE

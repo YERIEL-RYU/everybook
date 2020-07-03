@@ -6,7 +6,6 @@
 <mapper namespace="team1.project.mapper.RentMapper">
 	
 	<resultMap type="Rent" id="rentResultMap">
-	
 	<result property="rentCode" column="rent_code"/>
 	<result property="bookCode" column="book_code"/>
 	<result property="rentDate" column="rent_date"/>
@@ -32,16 +31,57 @@
 		</association>
 	</resultMap>
 	
-	<select id="getRent" parameterType="String" resultMap="rentResultMap">
+	<!-- 대여관리 - 대여리스트 검색 -->
+	<select id="OfficeRentListSerch" parameterType="String" resultMap="rentResultMap">
+		SELECT
+			r.rent_code
+			, r.member_id
+			, b.book_name
+			, b.book_library_code
+			, w.writer_name
+			, c.category_name
+			, p.publisher_name
+			, b.book_situation
+			, r.rent_date
+		FROM
+			tb_rent AS r
+			INNER JOIN
+			tb_book AS b
+			INNER JOIN 
+			tb_writer AS w
+			INNER JOIN
+			tb_category AS c
+			INNER JOIN
+			tb_publisher AS p
+		ON  
+			r.book_code = b.book_code		
+		AND
+			b.writer_code = w.writer_code	
+		AND
+			b.category_code = c.category_code
+		AND
+			b.publisher_code = p.publisher_code
+		AND
+			b.book_situation = '대여 중'
+		<if test="sv != null and sv neq ''.toString()">
+		WHERE
+			${sk} like CONCAT ('%',#{sv},'%')
+		</if>
+		ORDER BY
+			r.rent_date			
+	</select>
+	
+	<!-- 대여관리 - 삭제 - 코드검색 -->
+	<select id="getRentCode" parameterType="String" resultMap="rentResultMap">
 		SELECT
 			rent_code
-			, member_id
 		FROM
 			tb_rent
 		WHERE
 			rent_code = #{rentCode}
 	</select>
 	
+	<!-- 대여관리 - 대여도서리스트 삭제 -->
 	<delete id="officeRentDelete" parameterType="String">
 		DELETE FROM 
 		tb_rent 
@@ -49,6 +89,8 @@
 		rent_code=#{rentCode}
 	</delete>
 	
+	
+	<!-- 대여관리 - 현재 '대여 중'인 도서리스트 -->
 	<select id="officeRentList" resultMap="rentResultMap" parameterType="String">
 		SELECT
 			r.rent_code
@@ -84,6 +126,33 @@
 			r.rent_date
 	</select>
 
+	<!-- 나의 대여 이력 - 검색 -->
+	<select id="myRentHistorySearch" parameterType="String" resultMap="rentResultMap">
+		SELECT
+			r.rent_code
+			, l.library_name
+			, b.book_name
+			, r.rent_date
+			, r.rent_return_date
+		FROM
+			tb_rent AS r
+			INNER JOIN
+			tb_book AS b
+			INNER JOIN 
+			tb_library AS l
+		ON  
+			r.book_code = b.book_code			
+		AND
+			b.library_code = l.library_code
+		AND
+			member_id = #{SID}
+		<if test="sv != null and sv neq ''.toString()">
+		WHERE
+			${sk} like CONCAT ('%',#{sv},'%')
+		</if>	
+	</select>
+
+	<!-- 나의 대여 이력 -->
 	<select id="myRentHistoryList" resultMap="rentResultMap" parameterType="String">
 		SELECT
 			r.rent_code
@@ -91,7 +160,6 @@
 			, b.book_name
 			, r.rent_date
 			, r.rent_return_date
-			, b.book_situation
 		FROM
 			tb_rent AS r
 			INNER JOIN

@@ -19,9 +19,19 @@
  		<result property="applySituation" column="apply_situation"/>	
  	</resultMap>
  	
- 	<select id="officeApplyList" resultMap="applyResultMap" parameterType="String">
+ 	<!-- 신청관리 - 신청도서리스트 - 삭제 -->
+ 	<delete id="deleteOfficeApply" parameterType="String">
+ 		DELETE FROM 
+ 		tb_book_apply 
+ 		WHERE 
+ 		apply_code=#{applyCode}
+ 	</delete>
+ 	
+ 	<!-- 신청관리 - 신청도서리스트 -->
+ 	<select id="officeApplyList" parameterType="String" resultMap="applyResultMap">
  		SELECT
-			book_name
+ 			apply_code
+			,book_name
 			,book_ISBN
 			,member_id
 			,apply_price
@@ -31,6 +41,25 @@
 			tb_book_apply
  	</select>
  	
+ 	<!-- 나의신청도서 삭제 - 코드검색 -->
+ 	<select id="getApplyCode" parameterType="String" resultMap="applyResultMap">
+ 		SELECT
+			apply_code
+		FROM
+			tb_book_apply
+		WHERE
+			apply_code = #{applyCode}
+ 	</select>
+ 	
+ 	<!-- 나의신청도서 삭제 -->
+ 	<delete id="deleteBookApply" parameterType="String">
+ 		DELETE FROM 
+ 		tb_book_apply 
+ 		WHERE 
+ 		apply_code=#{applyCode}
+ 	</delete>
+ 	
+ 	<!-- 나의 신청도서 리스트 -->
  	<select id="myApplyList" resultMap="applyResultMap" parameterType="String">
  	SELECT
 		a.apply_code
@@ -51,22 +80,17 @@
 	AND
 		member_id = #{SID}
  	</select>
- 	
- 	<!-- <select id="addApplyCodeMax" resultType="int">
- 		SELECT 
- 			MAX(CAST(SUBSTRING(g_code,7) AS DECIMAL)) as maxcol 
-		FROM tb_goods
- 	</select>  자동증가 일단 보류..-->
- 	
+ 		
+ 	<!-- 희망도서 신청 -->
 	<insert id="addBookApply" parameterType="team1.project.vo.Apply">
 		<selectKey keyProperty="applyCode" resultType="String" order="BEFORE">
 		<![CDATA[
 			SELECT 
 			   (case 
 			   when COUNT(*) = 0 then 'apply_0001'
-			   when COUNT(*) < 10 then CONCAT('apply_000',(max(SUBSTRING(apply_code,7))+1))
-			   when COUNT(*) < 100 then CONCAT('apply_00',(max(SUBSTRING(apply_code,7))+1))
-			   when COUNT(*) < 1000 then CONCAT('apply_0',(max(SUBSTRING(apply_code,7))+1))
+			   when COUNT(*) < 9 then CONCAT('apply_000',(max(SUBSTRING(apply_code,7))+1))
+			   when COUNT(*) < 99 then CONCAT('apply_00',(max(SUBSTRING(apply_code,7))+1))
+			   when COUNT(*) < 999 then CONCAT('apply_0',(max(SUBSTRING(apply_code,7))+1))
 			   ELSE CONCAT('apply_',(max(SUBSTRING(apply_code,7))+1))
 			   END) AS apply_code
 			FROM

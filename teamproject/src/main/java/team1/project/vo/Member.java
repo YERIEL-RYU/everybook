@@ -16,7 +16,9 @@ public class Member {
 	private int reserveCount;
 	private int reviewCount;
 	private int warningCount;
+	private String memberStauts;
 	private Date memberRegDate;
+	private String officerId;
 	
 	public String getMemberId() {
 		return memberId;
@@ -96,11 +98,23 @@ public class Member {
 	public void setWarningCount(int warningCount) {
 		this.warningCount = warningCount;
 	}
+	public String getMemberStauts() {
+		return memberStauts;
+	}
+	public void setMemberStauts(String memberStauts) {
+		this.memberStauts = memberStauts;
+	}
 	public Date getMemberRegDate() {
 		return memberRegDate;
 	}
 	public void setMemberRegDate(Date memberRegDate) {
 		this.memberRegDate = memberRegDate;
+	}
+	public String getOfficerId() {
+		return officerId;
+	}
+	public void setOfficerId(String officerId) {
+		this.officerId = officerId;
 	}
 	@Override
 	public String toString() {
@@ -108,8 +122,10 @@ public class Member {
 				+ ", memberBirth=" + memberBirth + ", levelCode=" + levelCode + ", memberAddress=" + memberAddress
 				+ ", memberTel=" + memberTel + ", memberEmail=" + memberEmail + ", libraryCode=" + libraryCode
 				+ ", rentCount=" + rentCount + ", reserveCount=" + reserveCount + ", reviewCount=" + reviewCount
-				+ ", warningCount=" + warningCount + ", memberRegDate=" + memberRegDate + "]";
+				+ ", warningCount=" + warningCount + ", memberStauts=" + memberStauts + ", memberRegDate="
+				+ memberRegDate + ", officerId=" + officerId + "]";
 	}
+	
 	
 	
 	

@@ -12,6 +12,18 @@
 		</association>
 	</resultMap>
 	
+	<!-- 등록화면에서 입력한 지역값으로 지역코드 출력 -->
+	<select id="selectRegionCode" parameterType="String" resultType="String">
+		SELECT
+			region_code
+		FROM
+			tb_region
+		WHERE 
+			region_major = #{rMagjor}
+		AND
+			region_minor = #{rMinor}
+	</select>
+	
 	<select id="getSearchRegion"  parameterType="String" resultMap="regionSelect">
 		SELECT
 			*
@@ -62,9 +74,9 @@
 			SELECT 
    				(case 
    				when COUNT(*) = 0 then 'region_001'
- 				when COUNT(*) < 10 then CONCAT('region_00',(MAX(SUBSTR(region_code,8))+1))
-				when COUNT(*) < 100 then CONCAT('region_0',(MAX(SUBSTR(region_code,8))+1))
-   				when COUNT(*) < 1000 then CONCAT('region_',(MAX(SUBSTR(region_code,8))+1))
+ 				when COUNT(*) < 11 then CONCAT('region_00',(MAX(SUBSTR(region_code,8))+1))
+				when COUNT(*) < 101 then CONCAT('region_0',(MAX(SUBSTR(region_code,8))+1))
+   				when COUNT(*) < 1001 then CONCAT('region_',(MAX(SUBSTR(region_code,8))+1))
    				ELSE CONCAT('region_',(MAX(SUBSTR(region_code,8))+1))
    				END) AS region_code
 				FROM

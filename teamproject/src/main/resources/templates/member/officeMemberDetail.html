@@ -26,20 +26,24 @@
          				<div class="col-md-3">
 							<div class="card card-primary card-outline">
 								<div class="card-body box-profile">
-									<h3 class="profile-username text-center">홍01</h3>
-							  		<p class="text-muted text-center">Level 3</p>
+									<h3 class="profile-username text-center" th:text="${member.memberId}"></h3>
+							  		<p class="text-muted text-center" th:text="${memberLevelCode.levelCode}"></p>
 									<ul class="list-group list-group-unbordered mb-3">
 										<li class="list-group-item">
-										  <b>현재 대여권수</b> <a class="float-right">1,322</a>
+										  <b>현재 대여권수</b>
+										  <a class="float-right" th:text="${member.rentCount}"></a>
 										</li>
 										<li class="list-group-item">
-										  <b>현재 예약권수</b> <a class="float-right">543</a>
+										  <b>현재 예약권수</b>
+										  <a class="float-right" th:text="${member.reserveCount}"></a>
 										</li>
 										<li class="list-group-item">
-										  <b>현재 작성한 도서평 수</b> <a class="float-right">13,287</a>
+										  <b>현재 작성한 도서평 수</b>
+										  <a class="float-right" th:text="${member.reviewCount}"></a>
 										</li>
 										<li class="list-group-item">
-										  <b>현재 신고된 도서평 수</b> <a class="float-right">13,287</a>
+										  <b>현재 신고된 도서평 수</b>
+										  <a class="float-right" th:text="${member.warningCount}"></a>
 										</li>
 									</ul>
 									<a href="officeModifyMember" class="btn btn-primary btn-block"><b>회원 정보 수정</b></a>
@@ -56,19 +60,19 @@
 							  	<!-- /.card-header -->
 								<div class="card-body">
 								  <strong><ion-icon name="calendar"></ion-icon> 생년월일</strong>
-								  <p class="text-muted">2020-01-01</p>
+								  <p class="text-muted" th:text="${member.memberBirth}"></p>
 								  <hr>
 								  <strong><ion-icon name="map"></ion-icon> 주소</strong>
-								  <p class="text-muted">Malibu, California</p>
+								  <p class="text-muted" th:text="${member.memberAddress}"></p>
 								  <hr>
 								  <strong><ion-icon name="call"></ion-icon> 번호</strong>
-								  <p class="text-muted">010-0000-0000</p>
+								  <p class="text-muted" th:text="${member.memberTel}"></p>
 								  <hr>
 								  <strong><ion-icon name="mail"></ion-icon> 이메일</strong>
-								  <p class="text-muted">test@email.com</p>
+								  <p class="text-muted" th:text="${member.memberEmail}"></p>
 								  <hr>
 								  <strong><i class="fas fa-map-marker-alt mr-1"></i> 가입한 도서관</strong>
-								  <p class="text-muted">전주시립도서관</p>
+								  <p class="text-muted" th:text="${member.libraryCode}"></p>
 								</div>
 								<!-- /.card-body -->
 							</div>
@@ -206,8 +210,6 @@
 			<script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
 			<!-- ChartJS -->
 			<script src="plugins/chart.js/Chart.min.js"></script>
-			<!-- PAGE SCRIPTS -->
-			<script src="dist/js/pages/dashboard2.js"></script>
 	</th:block>
 	
 	

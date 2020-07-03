@@ -250,12 +250,12 @@
 </th:block>
 
 <th:block layout:fragment="customFooterScript">
-<!-- <script src="dist/js/pages/dashboard2.js"></script> -->
 <script src="plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-
+<script src="/dist/js/checkbox.js"></script>
+<script src="/dist/js/commonAjax.js"></script>
 <script>
 	$(function () {
 		//반응형 테이블
@@ -273,26 +273,19 @@
 	    	if($('[name=checkRow]:checked').length == 1){
 	    		var value = $('[name=checkRow]:checked').val();
 	    		console.log(value);
-	    		var request = $.ajax({
-	  			  url: "/selectRegion",
-	  			  method: "get",
-	  			  data: { regionCode : value },
-	  			  dataType: "json"
-	  			});
-	  			 
-	  			request.done(function( data ) {
+	    		var errormsg ="지역 정보를 불러올수 없습니다."
+	  			var fn = function( data ) {
 	  				console.log(JSON.stringify(data) + " <- ajax");
 					$('#modifyRegionCode').val(data.regionCode);
 					$('#modifyRegionMinor').val(data.regionMinor);
 			    	$('#modifyModal').modal();
-			    	
-	  			});
+	  			}
+	    		commonAjax("/selectRegion", 
+	    				{ regionCode : value },
+	    				fn,
+	    				'get',
+	    				errormsg);
 	  			 
-	  			request.fail(function( jqXHR, textStatus ) {
-	  			  alert( "Request failed: " + textStatus );
-	  			});
-	  			
-		    	
 	    	}else if($('[name=checkRow]:checked').length == 0) {
 	    		alert('수정할 지역코드를 선택하세요');
 	    	}else{
@@ -349,26 +342,7 @@
 		$('#mBtn').click(function(){
 			$('#modifyForm').submit();
 		});
-		//전체 선택 & 해제
-		var allCheck = $('[name=checkAll]');
-		var checkRow = $('[name=checkRow]');
-		allCheck.click(function(){
-			if(allCheck.is(":checked")) {
-				checkRow.prop("checked",true);
-				console.log("체크하기");
-			}else{			
-				console.log("해제하기");
-				checkRow.prop("checked",false); 
-			}
-		});
-		//하나 취소되면 전체 선택 해제
-		checkRow.click(function(){
-			if($('[name=checkRow]:checked').length == 10){
-				allCheck.prop("checked",true);
-			}else{
-				allCheck.prop("checked",false);
-			}
-		});
+
 	});
 </script>
 </th:block>

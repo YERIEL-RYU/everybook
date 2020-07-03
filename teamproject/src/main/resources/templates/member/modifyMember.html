@@ -98,21 +98,22 @@
 											<div class="form_title">주소</div>
 											<div class="row">
 												<div class="col-md-6 input_col">
-													<select name = "memberAddress" id="regionMagjor" class="courses_search_select courses_search_input" data-checked="N">
-														<option th:value="${m.memberAddress}">[[${m.memberAddress}]]</option>
+													<select name = "regionMagjor" id="regionMagjor" class="courses_search_select courses_search_input" data-checked="N">
+														<option th:value="${address.regionMagjor}">[[${address.regionMagjor}]]</option>
 														<option th:each=" r: ${regionMagjor}" th:value="${r.regionMajor}">[[${r.regionMajor}]]</option>
 													</select>
 													<label id="regionMagjorCk" style="color: red; display: none;">지역(도)를 선택하세요</label>
 												</div>
 												<div class="col-md-6 input_col">
-													<select name = "memberAddress" id="regionMinor" class="courses_search_select courses_search_input" data-checked="N">
-														<option>시</option>
+													<select name = "regionMinor" id="regionMinor" class="courses_search_select courses_search_input" data-checked="N">
+														<option th:value="${address.regionMinor}">[[${address.regionMinor}]]</option>
 													</select>
 													<label id="regionMinorCk" style="color: red; display: none;">지역(시)를 선택하세요</label>
 												</div>
 											</div>
 											<hr>
-											<input type="text" name = "memberAddress" class="comment_input" required="required" placeholder="상세주소">
+											<input type="text" name = "regionDetail" id="regionDetail" class="comment_input" th:value="${address.regionDetail}" required="required">
+											<input type="text" name = "memberAddress" id="memberAddress" style="display: none;">
 										</div>
 										<div class="input_from">
 											<div class="form_title">휴대폰번호</div>
@@ -213,6 +214,13 @@
 				
 				$('.comment_button').click(function(){
 		  			
+					//주소 합쳐서 하나의 input박스에 넣기
+		  			var address1 = $('#regionMagjor').val();
+					var address2 = $('#regionMinor').val();
+					var address3 = $('#regionDetail').val();
+					var resultAddr = address1 +" "+ address2 +" "+ address3;
+				  	$('#memberAddress').val(resultAddr);
+					
 		  			/* 비밀번호 체크 유효성검사 */
 		  			if('inline-block' == memberPwCk.css('display')){
 		  				memberPw.focus();

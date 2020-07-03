@@ -11,10 +11,15 @@
 		<link rel="stylesheet" type="text/css" href="styles/course.css">
 		<link rel="stylesheet" type="text/css" href="styles/courses_responsive.css">
 		<link rel="stylesheet" type="text/css" href="styles/course_responsive.css">
+  		<link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+		<link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+		<link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">	
   	</th:block>
+  	
 	<th:block layout:fragment="customTitle">
 		<title> 나의 대여 내역  </title>
 	</th:block>
+	
 	<!-- header 부분에 메뉴 활성화 -->
 	<th:block layout:fragment="customHeader">
 		<nav class="main_nav_contaner ml-auto">
@@ -51,88 +56,63 @@
 	</div>
 	
 		<!-- Courses -->
-
 	<div class="courses">
 		<div class="container">
 			<div class="row">
-
 				<!-- Courses Main Content -->
-				<div class="col-lg-8">
-					<div class="courses_search_container">
-						<form action="#" id="courses_search_form" class="courses_search_form d-flex flex-row align-items-center justify-content-start">
-							<input type="date" class="courses_search_input">
-							<label style="margin-right: 10px;">~ </label>
-							<input type="date" class="courses_search_input">
-							<button type="submit" class="courses_search_button ml-auto">#검색(서)</button>
-						</form>
-					</div>
+				<div class="col-lg-8" style="color: black">
 					<div class="courses_container">
-						<div class="text-right" style="margin: 10px 10px;">
-						</div>
-						<form action="addReview">
-						<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-							<div class="modal-dialog modal-sm">
-								<div class="modal-content">
-									<div class="modal-header">
-								        <h4 class="modal-title">도서평 작성하기</h4>
-								        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-								     </div>
-								     <div class="modal-body">
-								        <p>해당 도서의 도서평을 작성하시겠습니까?</p>
-								     </div>
-								     <div class="modal-footer">
-								        <button type="button"class="btn btn-default" data-dismiss="modal">닫기</button>
-								        <button type="submit" class="btn btn-primary">작성하기</button>
-								     </div>
+					<div class="card-header" style="background-color: AliceBlue;">
+               			<form role="form" action="myRentHistorySearch" method="get">
+							<label style="color: black; margin-left: 5px; margin-top: 5px">[[${session.SID}]] 님의 대여이력</label>
+							<div class="row">
+								<div class="col-sm-3">
+									<div class="form-group">
+				                        <select class="form-control custom-select" name="sk" style="color: black">
+				                          <option value= "r.rent_code">대여 코드</option>
+				                          <option value= "l.library_name">도서관</option>
+				                          <option value= "b.book_name">도서 이름</option>
+				                          <option value= "r.rent_date">대여 일시(YYYYMMdd)</option>
+				                          <option value= "r.rent_return_date">반납기한</option>
+				                       </select>
+				                    </div>
 								</div>
-							</div>
-						</div>
-						</form>
-						<div class="table-responsive">
-							<table class="table" style="text-align: center; color: black ">
-								<thead>
-									<tr>
-										<th> 대여 코드 </th>										
-										<th> 도서관 </th>
-										<th> 도서명 </th>
-										<th> 대여 일시 </th>
-										<th> 반납 기한 </th>
-										<th> 도서 상태 </th>
-										<th> 도서평 </th>
-									</tr>	
-								</thead>
-									<tr th:each="r : ${rentHistory}">
-										<td th:text="${r.rentCode}"></td>									
-										<td>[[${r.library.libraryName}]]</td>
-										<td>[[${r.book.bookName}]]</td>
-										<td th:text="${r.rentDate}"></td>									
-										<td th:text="${r.rentReturnDate}"></td>
-										<td>[[${r.book.bookSituation}]] </td>
-										<td><button class="btn btn-info btn-sm" type="button"  data-toggle="modal" data-target=".bs-example-modal-sm">!도서평 작성(김)</button></td>
-									</tr>	
-							</table>							
-						</div>
-						<div class="row pagination_row">
-							<div class="col">
-								<div class="pagination_container d-flex flex-row align-items-center justify-content-start">
-									<ul class="pagination_list">
-										<li class="active"><a href="#">1</a></li>
-										<li><a href="#">2</a></li>
-										<li><a href="#">3</a></li>
-										<li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-									</ul>
-									<div class="courses_show_container ml-auto clearfix">
-										<div class="courses_show_content">
-											<span>목록수: </span>
-											<select id="courses_show_select" class="courses_show_select">
-												<option>10</option>
-												<option>30</option>
-												<option>50</option>
-											</select>
+								<div class="col-sm-9">
+									<div class="row">
+										<div class="col-sm-9">
+											<input class="form-control" type="text" name="sv" placeholder="나의 대여이력 검색하기">
 										</div>
-									</div>
+										<div class="col-sm-3">
+											<div class="input-group-append">
+			                          			 <button class="btn btn-navbar" type="submit">Search(서)</button>
+			                          		</div>
+		                          		</div>
+	                          		</div>
 								</div>
-							</div>
+		                    </div>							
+						</form>
+		              </div>
+						<div class="table-responsive">
+							<table id="example2" class="table table-bordered table-hover dataTable dtr-inline" role="grid" aria-describedby="example2_info" style="color: black">
+			                  <thead>
+								<tr>
+									<th> 대여 코드 </th>		
+									<th> 도서관 </th>
+									<th> 도서 이름 </th>
+									<th> 대여 일시 </th>
+									<th> 반납 기한 </th>
+									<th> 도서평 </th>
+								</tr>	
+							  </thead>
+								<tr th:each="r : ${rentHistory}">
+									<td th:text="${r.rentCode}"></td>				
+									<td>[[${r.library.libraryName}]]</td>
+									<td>[[${r.book.bookName}]]</td>
+									<td th:text="${r.rentDate}"></td>									
+									<td th:text="${r.rentReturnDate}"></td>
+									<td><button class="btn btn-info btn-sm" type="button"  data-toggle="modal" data-target=".addReview">!도서평 작성(김)</button></td>
+								</tr>	
+			                </table>   							
 						</div>
 					</div>
 				</div>	
@@ -147,24 +127,20 @@
 										<div class="tab_panel_faq">
 											<!-- Accordions -->
 											<div class="accordions">
-												
 												<div class="elements_accordions">
-			
 													<div class="accordion_container">
 														<div class="accordion d-flex flex-row align-items-center"><div>나의 서재</div></div>
 														<div class="accordion_panel">
-															<p><a href="addExtend">!대여 도서 / 연장 신청(서)</a></p>
-															<p><a href="myRent">!나의 대여 이력(서) / 도서평 작성(김)</a></p>
+															<p><a href="addExtend">대여 도서 / !연장 신청(서)</a></p>
+															<p><a href="myRent">나의 대여 이력(서) / !도서평 작성(김)</a></p>
 															<p><a href="myReserve">!도서 예약 내역(유)</a></p>
-															<p><a href="myApply">!나의 신청 도서(서)</a></p>
+															<p><a href="myApply">나의 신청 도서(서)</a></p>
 															<p><a href="reviewList">!나의 도서평 내역(김)</a></p>
 														</div>
 													</div>
-			
 													<div class="accordion_container">
-														<div class="accordion d-flex flex-row align-items-center active"><div><a href="addBookApply">!희망 도서 신청(서)</a></div></div>
+														<div class="accordion d-flex flex-row align-items-center active"><div><a href="addBookApply">희망 도서 신청(서)</a></div></div>
 													</div>
-			
 													<div class="accordion_container">
 														<div class="accordion d-flex flex-row align-items-center"><div><a href="myPoint">!나의 점수 내역(유)</a></div></div>
 													</div>			
@@ -176,7 +152,27 @@
 							</div>					
 						</div>
 					</div>
-				</div>				
+				</div>	
+				<form action="addReview" method="get">
+					<div class="modal fade addReview">
+						<div class="modal-dialog modal-sm">
+							<div class="modal-content">
+								<div class="modal-header">
+							        <h4 class="modal-title">도서평 작성하기</h4>
+							        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							        <span aria-hidden="true">&times;</span></button>
+							     </div>
+							     <div class="modal-body">
+							        <p style="color: black">해당 도서의 도서평을 작성하시겠습니까?</p>
+							     </div>
+							     <div class="modal-footer">
+							        <button type="button"class="btn" data-dismiss="modal" style="background-color: Snow; border: outset;">Close</button>
+							        <button type="submit" class="btn" style="background-color: Snow; border: outset;">OK</button>
+							     </div>
+							</div>
+						</div>
+					</div>
+				</form>			
 			</div>
 		</div>		
 	</div>		
@@ -192,6 +188,33 @@
 		<script src="plugins/colorbox/jquery.colorbox-min.js"></script>
 		<script src="js/courses.js"></script>
 		<script src="js/course.js"></script>
-	</th:block>
-	
+		<!-- jQuery -->
+		<script src="../../plugins/jquery/jquery.min.js"></script>
+		<!-- Bootstrap 4 -->
+		<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<!-- DataTables -->
+		<script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
+		<script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+		<script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+		<script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+		<script>
+			$(function(){
+				//데이터테이블
+				$("#example1").DataTable({
+			      "responsive": true,
+			      "autoWidth": false,
+			    });
+			    $('#example2').DataTable({
+			      "paging": true,
+			      "lengthChange": false,
+			      "searching": false,
+			      "ordering": true,
+			      "info": true,
+			      "autoWidth": false,
+			      "responsive": true,
+			    });
+			
+			})
+		</script>
+</th:block>	
 </html>

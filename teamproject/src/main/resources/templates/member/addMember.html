@@ -70,7 +70,7 @@
 										<div class="input_from">
 											<div class="form_title">아이디</div>
 											<input type="text" name = "memberId" id="memberId" class="comment_input" required="required">
-											<label id="memberIdCk" style="color: red; display: none;">아이디를 5자 이상 입력하세요.</label>
+											<label id="memberIdCk" style="color: red; display: none;"></label>
 										</div>
 										<div class="input_from">
 											<div class="form_title">비밀번호</div>
@@ -94,21 +94,22 @@
 											<div class="form_title">주소</div>
 											<div class="row">
 												<div class="col-md-6 input_col">
-													<select name = "memberAddress" id="regionMagjor" class="courses_search_select courses_search_input" data-checked="N">
+													<select name = "regionMagjor" id="regionMagjor" class="courses_search_select courses_search_input" data-checked="N">
 														<option>도</option>
 														<option th:each=" r: ${regionMagjor}" th:value="${r.regionMajor}">[[${r.regionMajor}]]</option>
 													</select>
 													<label id="regionMagjorCk" style="color: red; display: none;">지역(도)를 선택하세요</label>
 												</div>
 												<div class="col-md-6 input_col">
-													<select name = "memberAddress" id="regionMinor" class="courses_search_select courses_search_input" data-checked="N">
+													<select name = "regionMinor" id="regionMinor" class="courses_search_select courses_search_input" data-checked="N">
 														<option>시</option>
 													</select>
 													<label id="regionMinorCk" style="color: red; display: none;">지역(시)를 선택하세요</label>
 												</div>
 											</div>
 											<hr>
-											<input type="text" name = "memberAddress" class="comment_input" placeholder="상세주소" required="required">
+											<input type="text" name = "regionDetail" id="regionDetail" class="comment_input" placeholder="상세주소" required="required">
+											<input type="text" name = "memberAddress" id="memberAddress" style="display: none;">
 										</div>
 										<div class="input_from">
 											<div class="form_title">휴대폰번호</div>
@@ -124,6 +125,9 @@
 												<option>주변 도서관</option>
 											</select>
 											<label id="libraryNameCk" style="color: red; display: none;">도서관을 선택하세요</label>
+										</div>
+										<div class="input_from" style ="display: none;">
+											<input type="text" name = "officerId" id="officerId" value="%00">
 										</div>
 										<div style="float: right;">
 											<button type="submit" class="comment_button">회원가입</button>
@@ -166,14 +170,11 @@
 	  			var regionMagjorCk = $('#regionMagjorCk');
 	  			var regionMinorCk = $('#regionMinorCk');
 	  			var libraryNameCk = $('#libraryNameCk');
-		  			
+		  		
+	  			
 	  			memberId.keyup(function(){
 	  				
 					/* 아이디 글자수 제한 */
-	  				if(memberId.val().length < 5){
-	  					memberIdCk.show();
-					}
-					
 					/* 아이디 중복체크 */
 					var request = $.ajax({
 						  url: "/selectCheckMemberId",
@@ -184,10 +185,17 @@
 	 			 
 					request.done(function( data ) {
 						console.log(data);
-						if(data == 1){
+						if(memberId.val().length < 5){
+							memberIdCk.show();
+		  					memberIdCk.text("아이디를 5자 이상 입력하세요.");
+						}
+						if(data == false){
 							memberIdCk.text("중복된 아이디가 존재합니다.");
 						}
-						if(memberId.val().length >= 5 && data == 0){
+						if(memberId.val().length >= 5 && data == true){
+							memberIdCk.hide();
+						}
+						if(memberId.val().length == 0){
 							memberIdCk.hide();
 						}
 					});
@@ -228,6 +236,13 @@
   			
 	  			
 		  		$('.comment_button').click(function(){
+		  			
+		  			//주소 합쳐서 하나의 input박스에 넣기
+		  			var address1 = $('#regionMagjor').val();
+					var address2 = $('#regionMinor').val();
+					var address3 = $('#regionDetail').val();
+					var resultAddr = address1 +" "+ address2 +" "+ address3;
+				  	$('#memberAddress').val(resultAddr);
 		  			
 		  			/* 아이디, 비밀번호 체크 유효성검사 */
 		  			if('inline-block' == memberIdCk.css('display')){

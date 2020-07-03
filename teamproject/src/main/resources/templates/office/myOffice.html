@@ -14,10 +14,10 @@
 
 <th:block layout:fragment="customContents">
 	<!-- Content Wrapper. Contains page content -->
-	<div class="content-wrapper">
+	<div class="content-wrapper"  th:with="O=${getMyOffice}">
 		<!-- Content Header (Page header) -->
 		<div class="register-logo">
-	    	<b>나의 정보</b>
+	    	<b>마이 페이지</b>
 	  	</div>
 		<!-- /.content-header -->
 	 	<!-- Main content -->
@@ -39,7 +39,7 @@
 					<div class="card-body p-0">
 						<div class="table-responsive">
 							<table class="table m-0" style="text-align: center">
-								<tbody th:each ="O : ${getMyOffice}">
+								<tbody>
 									<tr>
 										<th>아이디</th>
 										<td th:text="${O.officerId}"></td>
@@ -82,7 +82,10 @@
 									</tr>
 									<tr>
 										<th>보유 자격증</th>
-										<td th:text="${O.license}"></td>
+										<td><select>
+										<option>보유자격증</option>
+										<option th:each="L : ${license}">[[${L.licenseName}]]</option>
+										</select></td>
 									</tr>
 									<tr>
 										<th>과거 경력사항</th>
@@ -101,6 +104,8 @@
 					 <!-- modal -->
 				                <div class="modal fade" id="modal-update">
 							        <div class="modal-dialog">
+							        <form action="/myOfficeModify" method="get">
+							          <input type="hidden" name="officerId" th:value="${O.officerId}"/>
 							          <div class="modal-content bg-default">
 							            <div class="modal-header">
 							              <h4 class="modal-title">나의 정보</h4>
@@ -111,13 +116,15 @@
 							              <p>수정 하시겠습니까?</p>
 							            </div>
 							            <div class="modal-footer justify-content-between">
-							              <button type="button" class="btn" data-dismiss="modal">Close</button>
-							              <button type="button" class="btn">#수정하기</button>
+							              <button type="button" class="btn" data-dismiss="modal" style="background-color: Snow; border: outset;">Close</button>
+				          				  <button type="submit" class="btn" id="libraryCodeInsert" style="background-color: Snow; border: outset;">OK</button>
 							            </div>
 							          </div>
+							        </form>
 							          <!-- /.modal-content -->
 							        </div>
 							        <!-- /.modal-dialog -->
+								</div>
 				</div>
             	<!-- /.card -->
 			</div>
