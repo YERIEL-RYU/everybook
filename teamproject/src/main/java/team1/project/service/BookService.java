@@ -28,6 +28,10 @@ public class BookService {
 	
 	@Autowired private BookMapper bookMapper;
 	
+	public Book getBookName(String rentCode) {
+		return bookMapper.getBookName(rentCode);
+	}
+	
 	public int sameNameCount(String libraryCode, String bookName, String writer) {
 		return bookMapper.sameNameCount(libraryCode, bookName, writer);
 	}

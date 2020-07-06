@@ -22,6 +22,26 @@
 		<result property="budget" column="budget_code"/>
 		<result property="officerId" column="officer_id"/>
 	</resultMap>
+	
+	<resultMap type="Rent" id="rentResultMap">
+		<result property="rentCode" column="rent_code"/>
+	</resultMap>	
+	
+	<!-- 대여코드로 북 이름과 ISBN 출력 -->
+	<select id="getBookName" parameterType="String" resultMap="bookResultMap">
+		SELECT
+			 b.book_name
+			,b.book_ISBN
+		FROM
+			tb_book AS b
+			INNER join
+			tb_rent AS r
+			on
+			b.book_code = r.book_code
+		WHERE
+			r.rent_code = #{rentCode}
+	</select>
+	
 	<!-- 도서제목과 저자로 같은 책 몇 권 있는지 조회하기 -->
 	<select id="sameNameCount" parameterType="String" resultType="int">
 	SELECT
