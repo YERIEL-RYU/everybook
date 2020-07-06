@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import team1.project.service.BookService;
+import team1.project.service.WriterService;
 import team1.project.vo.Book;
 import team1.project.vo.Unicode;
 
@@ -23,6 +24,7 @@ public class BookController {
 	private final static Logger logger = LoggerFactory.getLogger(ReserveController.class);
 	
 	@Autowired private BookService bookService;
+	@Autowired private WriterService writerService;
 	
 	@GetMapping("/addBook")
 	public String addBook(Book book){
@@ -37,6 +39,15 @@ public class BookController {
 		return null;
 	}
 	
+	/**
+	 * 도서관 별 챙 청구 코드 생성
+	 * @param writer
+	 * @param bookName
+	 * @param session
+	 * @return
+	 * isbn api호출로 가져온 책 정보 중에 저자와 책 이름과 현재 로그인된 id의 도서관 정보로 등록된 책이 있는지 검색후
+	 * 코드를 생성하여 book vo에 setting
+	 */
 	@GetMapping("/addBookLibraryCode")
 	@ResponseBody
 	public Book addBookLibraryCode(@RequestParam("writer") String writer, @RequestParam("bookName") String bookName, HttpSession session) {
