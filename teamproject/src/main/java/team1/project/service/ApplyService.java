@@ -20,6 +20,11 @@ public class ApplyService {
 		return applyMapper.deleteOfficeApply(applyCode);
 	}
 	
+	//신청관리 - 신청도서리스트 - 검색
+	public List<Apply> officeApplySearch(String sk, String sv){
+		return applyMapper.officeApplySearch(sk, sv);
+	}
+	
 	//신청관리 - 신청도서리스트
 	public List<Apply> officeApplyList(){
 		return applyMapper.officeApplyList();

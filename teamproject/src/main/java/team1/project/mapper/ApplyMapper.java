@@ -12,6 +12,9 @@ public interface ApplyMapper {
 	//신청관리 - 신청도서리스트 삭제
 	public int deleteOfficeApply(String applyCode);
 	
+	//신청관리 - 신청도서리스트 검색
+	public List<Apply> officeApplySearch(String sk, String sv);
+	
 	//신청관리 - 신청도서리스트
 	public List<Apply> officeApplyList();
 	

@@ -78,12 +78,24 @@ public class ApplyController {
 		return "redirect:/officeBookApply";
 	}
 	
+	//신청도서관리 - 신청도서리스트 - 검색
+	@GetMapping("/officeApplySearch")
+	public String officeApplySearch(Model model,
+							@RequestParam(name = "sk") String sk,
+							@RequestParam(name = "sv") String sv) {
+		logger.info(" sk --> " + sk);
+		logger.info(" sv --> " + sv);
+		List<Apply> officeApplyList = applyService.officeApplySearch(sk, sv);
+		model.addAttribute("officeApplyList", officeApplyList);
+		return "apply/officeBookApply";
+	}
+	
 	//신청도서관리 - 신청도서리스트
 	@GetMapping("/officeBookApply")
 	public String officeApplyList(Model model) {
-		List<Apply> list2 = applyService.officeApplyList();
-		logger.info("list2 --> " + list2);
-		model.addAttribute("officeApplyList", list2);
+		List<Apply> officeApplyList = applyService.officeApplyList();
+		logger.info("officeApplyList --> " + officeApplyList);
+		model.addAttribute("officeApplyList", officeApplyList);
 		return "apply/officeBookApply";
 	}
 }

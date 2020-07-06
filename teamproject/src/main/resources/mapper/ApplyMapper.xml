@@ -27,6 +27,24 @@
  		apply_code=#{applyCode}
  	</delete>
  	
+ 	<!-- 신청관리 - 신청도서리스트 - 검색 -->
+ 	<select id="officeApplySearch" parameterType="String" resultMap="applyResultMap">
+ 		SELECT
+ 			apply_code
+			,book_name
+			,book_ISBN
+			,member_id
+			,apply_price
+			,apply_reg_date
+			,apply_situation
+		FROM
+			tb_book_apply
+ 		<if test="sv != null and sv neq ''.toString()">
+			WHERE
+				${sk} like CONCAT('%',#{sv},'%')
+		</if>
+ 	</select>
+ 	
  	<!-- 신청관리 - 신청도서리스트 -->
  	<select id="officeApplyList" parameterType="String" resultMap="applyResultMap">
  		SELECT
