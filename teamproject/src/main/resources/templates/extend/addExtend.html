@@ -70,10 +70,10 @@
 										<th> 대여코드 </th>
 										<th> 도서관명 </th>
 										<th> 도서명 </th>
-										<th> 대여 일시 </th>
-										<th> 반납 기한 </th>
-										<th> 도서 상태 </th>
-										<th> #연장하기(서) </th>
+										<th> 대여일시 </th>
+										<th> 반납기한 </th>
+										<th> 도서상태 </th>
+										<th> #연장하기(서)</th>
 									</tr>	
 								</thead>
 									<tr th:each="r : ${myRentList}">				
@@ -83,7 +83,7 @@
 										<td th:text="${r.rentRegDate}"></td>
 										<td th:text="${r.rentReturnDate}"></td>
 										<td>[[${r.book.bookSituation}]] </td>
-										<td><button class="btn btn-info btn-sm" type="button"  data-toggle="modal" data-target=".addBookExtend">#연장 신청</button></td>
+										<td><button type="button" class="btn btn-info btn-sm addBookExtendBtn" th:value="${r.rentRegDate}">#연장 신청</button></td>
 									</tr>	
 			                </table>   							
 						</div>
@@ -126,7 +126,7 @@
 						</div>
 					</div>
 				</div>	
-				<form action="" method="get">
+				<form action="/addBookExtend" method="post">
 					<div class="modal fade addBookExtend">
 						<div class="modal-dialog modal-sm">
 							<div class="modal-content">
@@ -136,6 +136,8 @@
 							        <span aria-hidden="true">&times;</span></button>
 							     </div>
 							     <div class="modal-body">
+							     <label style="color: black">현재 반납날짜</label>
+							     	<input type="text" id="getReturnDate" name="getReturnDate" readonly="readonly" style="margin-left: 7px; text-align: center; background-color: Snow; width: 120px; border: ridge;">
 							        <p style="color: black">도서의 대여기간을 연장하시겠습니까?</p>
 							     </div>
 							     <div class="modal-footer">
@@ -186,6 +188,14 @@
 			      "autoWidth": false,
 			      "responsive": true,
 			    });
+			    //연장신청 클릭 시 모달
+			    $('.addBookExtendBtn').click(function(){
+			    	console.log("연장신청 클릭");
+			    	var returnDate = $(this).val();
+			    	console.log("반납날짜 : " + returnDate);
+			    	$('#getReturnDate').val(returnDate);
+			    	$('.addBookExtend').modal();
+			    })
 			
 			})
 		</script>
