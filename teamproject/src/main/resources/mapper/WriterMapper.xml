@@ -25,10 +25,10 @@
 		</selectKey>
 		INSERT INTO tb_writer
 			(writer_code, writer_name, writer_reg_date, officer_id)
-			VALUES (#{writerCode}, #{wrterName}, NOW(), #{officer})
+			VALUES (#{writerCode}, #{writerName}, NOW(), #{officer})
 	</insert>
 	<!--책등록에 사용 : 작가 이름으로 작가 코드 조회 (유영주) -->
-	<select id="selectWriteCode" parameterType="String">
+	<select id="selectWriteCode" parameterType="String" resultType="String">
 		SELECT
 			w.writer_code
 		FROM

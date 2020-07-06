@@ -23,7 +23,7 @@
 			VALUES (#{publisherCode}, #{publisherName}, #{publisherPage}, NOW(), #{officer})
 	</insert>
 	<!-- 책등록에 사용 : 출판사 이름으로 출판사 코드 조회 (유영주) -->
-	<select id="selectPublisherCode" parameterType="String">
+	<select id="selectPublisherCode" parameterType="String" resultType="String">
 		SELECT publisher_code
 		FROM tb_publisher
 		WHERE publisher_name = #{publisherName}

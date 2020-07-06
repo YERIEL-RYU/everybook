@@ -6,7 +6,8 @@ public class Book {
 	private String libraryCode;
 	private String bookLibraryCode;
 	private String bookName;
-	private String category;
+	private String categoryNumber;
+	private String categoryCode;
 	private String writerName;
 	private String writerCode;
 	private String publisherName;
@@ -41,11 +42,17 @@ public class Book {
 	public void setBookName(String bookName) {
 		this.bookName = bookName;
 	}
-	public String getCategory() {
-		return category;
+	public String getCategoryNumber() {
+		return categoryNumber;
 	}
-	public void setCategory(String category) {
-		this.category = category;
+	public void setCategoryNumber(String categoryNumber) {
+		this.categoryNumber = categoryNumber;
+	}
+	public String getCategoryCode() {
+		return categoryCode;
+	}
+	public void setCategoryCode(String categoryCode) {
+		this.categoryCode = categoryCode;
 	}
 	public String getWriterName() {
 		return writerName;
@@ -158,13 +165,13 @@ public class Book {
 	@Override
 	public String toString() {
 		return "Book [bookCode=" + bookCode + ", libraryName=" + libraryName + ", libraryCode=" + libraryCode
-				+ ", bookLibraryCode=" + bookLibraryCode + ", bookName=" + bookName + ", category=" + category
-				+ ", writerName=" + writerName + ", writerCode=" + writerCode + ", publisherName=" + publisherName
-				+ ", publisherCode=" + publisherCode + ", bookPublishDate=" + bookPublishDate + ", bookPrice="
-				+ bookPrice + ", bookIsbn=" + bookIsbn + ", bookSituation=" + bookSituation + ", bookRegDate="
-				+ bookRegDate + ", group=" + group + ", budget=" + budget + ", officerId=" + officerId
-				+ ", reserveCount=" + reserveCount + ", bookImageURL=" + bookImageURL + ", bookDescription="
-				+ bookDescription + ", seriesNo=" + seriesNo + "]";
+				+ ", bookLibraryCode=" + bookLibraryCode + ", bookName=" + bookName + ", categoryNumber="
+				+ categoryNumber + ", categoryCode=" + categoryCode + ", writerName=" + writerName + ", writerCode="
+				+ writerCode + ", publisherName=" + publisherName + ", publisherCode=" + publisherCode
+				+ ", bookPublishDate=" + bookPublishDate + ", bookPrice=" + bookPrice + ", bookIsbn=" + bookIsbn
+				+ ", bookSituation=" + bookSituation + ", bookRegDate=" + bookRegDate + ", group=" + group + ", budget="
+				+ budget + ", officerId=" + officerId + ", reserveCount=" + reserveCount + ", bookImageURL="
+				+ bookImageURL + ", bookDescription=" + bookDescription + ", seriesNo=" + seriesNo + "]";
 	}
 			
 	

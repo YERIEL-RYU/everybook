@@ -19,9 +19,28 @@
 		<result property="bookSituation" column="book_situation"/>
 		<result property="bookRegDate" column="book_reg_date"/>
 		<result property="group" column="book_reg_date"/>
-		<result property="budget" column="budget_code"/>
+		<result property="bookDescription" column="book_description"/>
 		<result property="officerId" column="officer_id"/>
 	</resultMap>
+	<insert id="addBook">
+	<selectKey order="BEFORE" keyProperty="bookCode" resultType="String">
+	<![CDATA[
+	SELECT 
+		(case 
+		when COUNT(*) = 0 then 'bk_0001'
+		when COUNT(*) < 10 then CONCAT('bk_000',(MAX(SUBSTR(book_code,4))+1))
+		when COUNT(*) < 100 then CONCAT('bk_00',(MAX(SUBSTR(book_code,4))+1))
+		when COUNT(*) < 1000 then CONCAT('bk_0',(MAX(SUBSTR(book_code,4))+1))
+		ELSE CONCAT('bk_',(MAX(SUBSTR(book_code,4))+1))
+		END) AS book_code
+	FROM
+		tb_book
+	]]>	
+	</selectKey>
+	INSERT INTO tb_book
+		(book_code, library_code, book_library_code, book_image, book_name, category_code, writer_code, publisher_code, book_publish_date, book_price, book_ISBN, book_situation, book_description, book_reg_date, officer_id)
+		VALUES (#{bookCode}, #{libraryCode}, #{bookLibraryCode}, #{bookImageURL}, #{bookName}, #{categoryCode}, #{writerCode}, #{publisherCode}, #{bookPublishDate}, 0, #{bookIsbn}, '보유 중', #{bookDescription}, NOW(), #{officerId})
+	</insert>
 	<!-- 도서제목과 저자로 같은 책 몇 권 있는지 조회하기 -->
 	<select id="sameNameCount" parameterType="String" resultType="int">
 	SELECT
