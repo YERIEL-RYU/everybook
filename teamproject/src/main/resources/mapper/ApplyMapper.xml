@@ -27,6 +27,36 @@
  			apply_code=#{applyCode}
  	</delete>
  	
+ 	<!-- 신청관리 - 신청도서리스트 - 수정처리 -->
+ 	<update id="ModifyOfficeBookApply">
+ 		UPDATE tb_book_apply
+	SET
+		member_id=#{memberId},
+		apply_price=#{applyPrice},
+		apply_situation=#{applySituation},
+		book_name=#{bookName},
+		book_ISBN=#{bookIsbn},
+		apply_reg_date=#{applyRegDate}
+	WHERE 
+		apply_code=#{applyCode}
+ 	</update>
+ 	
+ 	<!-- 신청관리 - 신청도서리스트 - 수정화면 조회 -->
+ 	<select id="ModifyOfficeApply" parameterType="String" resultMap="applyResultMap">
+		SELECT
+ 			apply_code
+			,book_name
+			,book_ISBN
+			,member_id
+			,apply_price
+			,apply_reg_date
+			,apply_situation
+		FROM
+			tb_book_apply
+		WHERE
+			apply_code = #{applyCode} 	
+ 	</select>
+ 	
  	<!-- 신청관리 - 신청도서리스트 - 검색 -->
  	<select id="officeApplySearch" parameterType="String" resultMap="applyResultMap">
  		SELECT

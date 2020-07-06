@@ -69,9 +69,32 @@ public class ApplyController {
 		return "apply/addBookApply";
 	}
 	
+	//신청도서관리 - 신청도서리스트 - 수정처리
+	@PostMapping("/ModifyOfficeApply")
+	public String ModifyOfficeApply(Apply apply) {
+		logger.info("==== 신청도서 수정 처리 ====");
+		logger.info("ModifyOfficeApply() apply -->" + apply.toString());
+		int i = applyService.ModifyOfficeBookApply(apply);
+		logger.info("실행결과 : " + i);
+		
+		return "redirect:/officeBookApply";
+	}
+	
+	//신청도서관리 - 신청도서리스트 - 수정화면
+	@GetMapping("/ModifyOfficeApply")
+	public String ModifyOfficeApply(Model model,
+								Apply apply,
+								@RequestParam(name = "applyCodeModify", required = false) String applyCode ) {
+		logger.info("applyCode --> "+ applyCode);
+		apply = applyService.ModifyOfficeApply(applyCode);
+		logger.info("apply --> " + apply);
+		model.addAttribute("selectApply", apply);
+		return "apply/officeBookApplyModify";
+	}
+	
 	//신청도서관리 - 신청도서리스트 - 삭제
 	@GetMapping("/deleteOfficeBookApply")
-	public String deleteOfficeApply(@RequestParam(name = "applyCode", required = false) String applyCode, Apply apply) {
+	public String deleteOfficeApply(@RequestParam(name = "applyCode", required = false) String applyCode) {
 		logger.info("applyCode --> "+ applyCode);
 		applyService.deleteOfficeApply(applyCode);
 		
