@@ -35,7 +35,7 @@ public class BookController {
 		//책 추가
 		int i =bookService.addBook(book);
 		logger.info("책등록 실행경과 : {}",i);
-		return "book/officeBooklist";
+		return "book/officeAddbook";
 	}
 	
 	@GetMapping("/addBookLibraryCode")

@@ -11,6 +11,7 @@ public class Library {
 	private String libraryOpen;
 	private String libraryTel;
 	private String libraryPage;
+	private String libCode;
 	private Date libraryRegDate;
 	private String officerId;
 	private String officerPw;
@@ -74,14 +75,18 @@ public class Library {
 	public void setOfficerPw(String officerPw) {
 		this.officerPw = officerPw;
 	}
+	public String getLibCode() {
+		return libCode;
+	}
+	public void setLibCode(String libCode) {
+		this.libCode = libCode;
+	}
 	@Override
 	public String toString() {
 		return "Library [libraryCode=" + libraryCode + ", region=" + region + ", libraryName=" + libraryName
 				+ ", librarySetup=" + librarySetup + ", libraryOpen=" + libraryOpen + ", libraryTel=" + libraryTel
-				+ ", libraryPage=" + libraryPage + ", libraryRegDate=" + libraryRegDate + ", officerId=" + officerId
-				+ ", officerPw=" + officerPw + "]";
+				+ ", libraryPage=" + libraryPage + ", libCode=" + libCode + ", libraryRegDate=" + libraryRegDate
+				+ ", officerId=" + officerId + ", officerPw=" + officerPw + "]";
 	}
-	
-
 	
 }

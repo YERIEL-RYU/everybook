@@ -36,7 +36,12 @@ public class BookService {
 	@Autowired private PublisherMapper publisherMapper;
 	@Autowired private CategoryMapper categoryMapper;
 	
-	
+	/**
+	 * 책 추가
+	 * @param book
+	 * @return bookMapper.addBook(book)
+	 * isbn에서 이름으로 받아온 각각의 정보를 검색 후 code로 전환하여 insert 실행
+	 */
 	public int addBook(Book book) {
 		String writerName = book.getWriterName();
 		String publisherName = book.getPublisherName();
@@ -187,15 +192,17 @@ public class BookService {
 			String publisher = naru.select("publisher").text();
 			String bookDescription = naru.select("description").text();
 			String bookImageURL = naru.select("bookImageURL").text();
+			String bookprice = naru.select("PRE_PRICE").text();
 			book.setBookName(bookName);
 			book.setWriterName(writer);
 			book.setBookDescription(bookDescription);
 			book.setBookImageURL(bookImageURL);
 			book.setPublisherName(publisher);
-			book.setBookPrice(bookPrice);
+			book.setBookPrice(bookprice);
 			book.setCategoryNumber(category);
 			book.setBookPublishDate(bookPublishDate);
 			book.setSeriesNo(seriesNo);
+			book.setBookPrice(bookPrice);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -245,6 +245,19 @@
 <script src="plugins/colorbox/jquery.colorbox-min.js"></script>
 <script src="js/course.js"></script>
 <script src="js/courses.js"></script>
+<script type="text/javascript">
+$(function(){
+	 $("#recommendList-table").DataTable({
+	    	"paging": true,
+	        "lengthChange": false,
+	        "searching": false,
+	        "ordering": true,
+	        "info": true,
+	        "autoWidth": false,
+	        "responsive": true,
+	    });
+});
+</script>
 </th:block>
 </body>
 </html>

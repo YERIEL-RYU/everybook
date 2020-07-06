@@ -17,7 +17,6 @@
 			<result property="regionMinor" column="region_minor"/>
 		</association>
 	</resultMap>
-
 	<!-- 지역코드로 해당 지역 도서관 출력 -->
 	<select id="selectLibraryCode" parameterType="String" resultMap="librarySelect">
 		SELECT
