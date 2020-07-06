@@ -6,5 +6,6 @@ import team1.project.vo.Writer;
 
 @Mapper
 public interface WriterMapper {
-	public Writer selectWriteCode(Writer writer);
+	public String selectWriteCode(String writer);
+	public int addWriter(Writer writer);
 }

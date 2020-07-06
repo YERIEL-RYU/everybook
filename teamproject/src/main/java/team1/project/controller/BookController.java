@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import team1.project.service.BookService;
-import team1.project.service.WriterService;
 import team1.project.vo.Book;
 import team1.project.vo.Unicode;
 
@@ -24,17 +23,14 @@ public class BookController {
 	private final static Logger logger = LoggerFactory.getLogger(ReserveController.class);
 	
 	@Autowired private BookService bookService;
-	@Autowired private WriterService writerService;
+
 	
 	@GetMapping("/addBook")
-	public String addBook(Book book){
+	public String addBook(Book book, HttpSession session){
 		logger.info("book",book);
-		//저자 조회
-		//저자 있으면 code 가져오고 없으면 저자 코드 추가
-		//출판사 조회
-		//출판사 있으면 code 가져오고 없으면 출판사 코드 추가
-		//카테고리 조회
-		//카테코리 있으면 code 가져오고 없으면 카테고리 코드 추가
+		String officerId = (String) session.getAttribute("SID");
+		book.setOfficerId(officerId);
+		
 		//책 추가
 		return null;
 	}

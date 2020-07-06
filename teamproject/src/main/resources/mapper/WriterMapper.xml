@@ -7,8 +7,28 @@
 		<result property="writerRegDate" column="writer_reg_date"/>
 		<result property="officer" column="officer_id"/>
 	</resultMap>
+	<!-- 작가 코드 생성 -->
+	<insert id="addWriter" parameterType="Writer">
+		<selectKey order="BEFORE" keyProperty="writerCode" resultType="String">
+		<![CDATA[
+			SELECT 
+   				(case 
+   				when COUNT(*) = 0 then 'writer_001'
+ 				when COUNT(*) < 10 then CONCAT('writer_00',(MAX(SUBSTR(writer_code,8))+1))
+				when COUNT(*) < 100 then CONCAT('writer_0',(MAX(SUBSTR(writer_code,8))+1))
+   				when COUNT(*) < 1000 then CONCAT('writer_',(MAX(SUBSTR(writer_code,8))+1))
+   				ELSE CONCAT('writer_',(MAX(SUBSTR(writer_code,8))+1))
+   				END) AS writer_code
+			FROM
+				tb_writer
+		]]>	
+		</selectKey>
+		INSERT INTO tb_writer
+			(writer_code, writer_name, writer_reg_date, officer_id)
+			VALUES (#{writerCode}, #{wrterName}, NOW(), #{officer})
+	</insert>
 	<!--책등록에 사용 : 작가 이름으로 작가 코드 조회 (유영주) -->
-	<select id="selectWriteCode" parameterType="Book">
+	<select id="selectWriteCode" parameterType="String">
 		SELECT
 			w.writer_code
 		FROM

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="team1.project.mapper.PublisherMapper">
+
+	<!-- 출판사 코드 등록 -->
+	<insert id="addPublisher" parameterType="Publisher">
+		<selectKey order="BEFORE" keyProperty="publisherCode" resultType="String">
+		<![CDATA[
+			SELECT 
+   				(case 
+   				when COUNT(*) = 0 then 'publisher_001'
+ 				when COUNT(*) < 10 then CONCAT('publisher_00',(MAX(SUBSTR(publisher_code,11))+1))
+				when COUNT(*) < 100 then CONCAT('publisher_0',(MAX(SUBSTR(publisher_code,11))+1))
+   				when COUNT(*) < 1000 then CONCAT('publisher_',(MAX(SUBSTR(publisher_code,11))+1))
+   				ELSE CONCAT('publisher_',(MAX(SUBSTR(publisher_code,11))+1))
+   				END) AS publisher_code
+			FROM
+				tb_publisher
+		]]>	
+		</selectKey>
+		INSERT INTO tb_publisher
+			(publisher_code, publisher_name, publisher_page, publisher_reg_date, officer_id)
+			VALUES (#{publisherCode}, #{publisherName}, #{publisherPage}, NOW(), #{officer})
+	</insert>
+	<!-- 책등록에 사용 : 출판사 이름으로 출판사 코드 조회 (유영주) -->
+	<select id="selectPublisherCode" parameterType="String">
+		SELECT publisher_code
+		FROM tb_publisher
+		WHERE publisher_name = #{publisherName}
+	</select>
+</mapper>

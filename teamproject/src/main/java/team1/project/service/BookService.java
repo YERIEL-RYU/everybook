@@ -16,8 +16,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import team1.project.controller.ReserveController;
 import team1.project.mapper.BookMapper;
+import team1.project.mapper.PublisherMapper;
+import team1.project.mapper.WriterMapper;
 import team1.project.vo.Book;
+import team1.project.vo.Publisher;
 import team1.project.vo.Unicode;
+import team1.project.vo.Writer;
 
 @Service
 @Transactional
@@ -27,7 +31,52 @@ public class BookService {
 	private List<Map<String, Character>> charList;
 	
 	@Autowired private BookMapper bookMapper;
+	@Autowired private WriterMapper writerMapper;
+	@Autowired private PublisherMapper publisherMapper;
 	
+	
+	public int addBook(Book book) {
+		String writerName = book.getWriterName();
+		String publisherName = book.getPublisherName();
+		String officerId = book.getOfficerId();
+		//저자 조회
+		String writerCode = writerMapper.selectWriteCode(writerName);
+		//저자 있으면 code 가져오고 없으면 저자 코드 추가
+		if(writerCode != null || !"".equals(writerCode)) {
+			book.setWriterCode(writerCode);
+		}else {
+			Writer writer = new Writer();
+			writer.setOfficer(officerId);
+			writer.setWriterName(writerName);
+			int i = writerMapper.addWriter(writer);
+			logger.info("저자 등록 결과 : {}", i);
+			book.setWriterCode(writerCode);
+		}
+		//출판사 조회
+		String publisherCode = publisherMapper.selectPublisherCode(publisherName);
+		//출판사 있으면 code 가져오고 없으면 출판사 코드 추가
+		if(publisherCode !=null || !"".equals(publisherCode)) {
+			book.setPublisherCode(publisherCode);
+		}else {
+			Publisher publisher = new Publisher();
+			publisher.setPublisherName(publisherName);
+			publisher.setOfficer(officerId);
+			int i = publisherMapper.addPublisher(publisher);
+			logger.info("출판사 등록 결과 : {}", i);
+			book.setPublisherCode(publisherCode);
+		}
+		//카테고리 조회
+		//카테코리 있으면 code 가져오고 없으면 카테고리 코드 추가
+		return 0;
+	}
+
+	/**
+	 * 책 이를을 같은 책을 보유하고 있는지 조회
+	 * @param libraryCode
+	 * @param bookName
+	 * @param writer
+	 * @return
+	 */
 	public int sameNameCount(String libraryCode, String bookName, String writer) {
 		return bookMapper.sameNameCount(libraryCode, bookName, writer);
 	}
@@ -125,10 +174,10 @@ public class BookService {
 			String bookImageURL = naru.select("bookImageURL").text();
 			String bookPublishDate = naru.select("publication_date").text();
 			book.setBookName(bookName);
-			book.setWriter(writer);
+			book.setWriterName(writer);
 			book.setBookDescription(bookDescription);
 			book.setBookImageURL(bookImageURL);
-			book.setPublisher(publisher);
+			book.setPublisherName(publisher);
 			book.setBookPrice(bookPrice);
 			book.setCategory(category);
 			book.setBookPublishDate(bookPublishDate);
