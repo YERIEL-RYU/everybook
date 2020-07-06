@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="team1.project.mapper.WriterMapper">
+	<resultMap type="Writer" id="writerResultMap">
+		<result property="writerCode" column="writer_code"/>
+		<result property="writerName" column="writer_name"/>
+		<result property="writerRegDate" column="writer_reg_date"/>
+		<result property="officer" column="officer_id"/>
+	</resultMap>
+	<!--책등록에 사용 : 작가 이름으로 작가 코드 조회 (유영주) -->
+	<select id="selectWriteCode" parameterType="Book">
+		SELECT
+			w.writer_code
+		FROM
+			tb_writer AS w
+		WHERE
+			w.writer_name = #{writerName}
+	</select>
+</mapper>

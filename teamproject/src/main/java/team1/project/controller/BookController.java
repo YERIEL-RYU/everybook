@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import team1.project.service.BookService;
+import team1.project.service.WriterService;
 import team1.project.vo.Book;
 import team1.project.vo.Unicode;
 
@@ -23,6 +24,7 @@ public class BookController {
 	private final static Logger logger = LoggerFactory.getLogger(ReserveController.class);
 	
 	@Autowired private BookService bookService;
+	@Autowired private WriterService writerService;
 	
 	@GetMapping("/addBook")
 	public String addBook(Book book){
