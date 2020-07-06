@@ -8,7 +8,10 @@ import team1.project.vo.Overdue;
 
 @Mapper
 public interface OverdueMapper {
-
+	
+	//연체도서리스트 삭제
+	public int deleteOfficeOverdue(String overdueCode);
+	
 	//연체도서리스트
 	public List<Overdue> officeOverdueList();
 }

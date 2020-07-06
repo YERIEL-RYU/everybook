@@ -22,9 +22,9 @@
  	<!-- 신청관리 - 신청도서리스트 - 삭제 -->
  	<delete id="deleteOfficeApply" parameterType="String">
  		DELETE FROM 
- 		tb_book_apply 
+ 			tb_book_apply 
  		WHERE 
- 		apply_code=#{applyCode}
+ 			apply_code=#{applyCode}
  	</delete>
  	
  	<!-- 신청관리 - 신청도서리스트 - 검색 -->

@@ -14,6 +14,12 @@ import team1.project.vo.Overdue;
 public class OverdueService {
 	@Autowired private OverdueMapper overdueMapper;
 	
+	//연체도서리스트 - 삭제
+	public int deleteOfficeOverdue(String overdueCode) {
+		return overdueMapper.deleteOfficeOverdue(overdueCode);
+	}
+	
+	//연체도서리스트
 	public List<Overdue> officeOverdueList(){
 		List<Overdue> list = overdueMapper.officeOverdueList();
 		return list;

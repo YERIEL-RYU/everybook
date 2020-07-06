@@ -23,6 +23,14 @@
   		
   	</resultMap>
   
+  	<!-- 연체도서리스트 - 삭제 -->
+  	<delete id="deleteOfficeOverdue" parameterType="String">
+  		DELETE FROM 
+			tb_overdue 
+		WHERE 
+			overdue_code=#{overdueCode}
+  	</delete>
+  	<!-- 연체도서리스트 -->
   	<select id="officeOverdueList" resultMap="overdueResultMap">
   		SELECT
 			o.overdue_code
