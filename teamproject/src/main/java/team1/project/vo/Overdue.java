@@ -6,7 +6,7 @@ public class Overdue {
 
 	private String overdueCode;
 	private String library;
-	private String rent;
+	private Rent rent;
 	private String member;
 	private Book book;
 	private String overdueStartDate;
@@ -25,10 +25,10 @@ public class Overdue {
 	public void setLibrary(String library) {
 		this.library = library;
 	}
-	public String getRent() {
+	public Rent getRent() {
 		return rent;
 	}
-	public void setRent(String rent) {
+	public void setRent(Rent rent) {
 		this.rent = rent;
 	}
 	public String getMember() {
@@ -73,6 +73,7 @@ public class Overdue {
 				+ ", book=" + book + ", overdueStartDate=" + overdueStartDate + ", overdueDate=" + overdueDate
 				+ ", overdueRegDate=" + overdueRegDate + ", officer=" + officer + "]";
 	}
+	
 	
 	
 }

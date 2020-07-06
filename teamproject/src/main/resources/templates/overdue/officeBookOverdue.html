@@ -42,8 +42,8 @@
 					                      <th>도서이름</th>
 					                      <th>청구기호</th>
 					                      <th>연체회원아이디</th>
+					                      <th>반납예정일</th>
 					                      <th>연체일</th>
-					                      <th>상태</th>
 					                      <th>수정</th>
 					                  	  <th>삭제</th>
 					                    </tr>
@@ -54,15 +54,15 @@
 					                      <td th:text="${O.book.bookName}"></td>
 					                      <td th:text="${O.book.bookLibraryCode}"></td>
 					                      <td th:text="${O.member}"></td>
+					                      <td th:text="${O.rent.rentReturnDate}"></td>
 					                      <td th:text="${O.overdueDate}" style="color: red"></td>
-					                      <td th:text="${O.book.bookSituation}"></td>
 					                     <td>
-					                      	<a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-update" style="color: white">
-								            <i class="fas fa-pencil-alt"></i>수정</a>
+					                      	<button class="btn btn-info btn-sm overdueBookListUpdate" style="color: white" th:value="${O.overdueCode}">
+								            <i class="fas fa-pencil-alt"></i>수정(서)</button>
 					                      </td>
 					                      <td class="">
 					                      	<button class="btn btn-danger btn-sm overdueBookListDelete" style="color: white" th:value="${O.overdueCode}">
-								            <i class="fas fa-trash"></i>삭제</button>
+								            <i class="fas fa-trash"></i>삭제(서)</button>
 								          </td>
 					                  </tr>
 				                  </tbody>
@@ -79,12 +79,12 @@
 							            </div>
 							            <div class="modal-body">
 							            <label>연체 코드</label>
-			            				<input type="text" id="getOverdueCode" readonly="readonly" style="margin-left: 7px; text-align: center; background-color: Snow; width: 120px; border: ridge;">
+			            				<input type="text" id="getOverdueCodeDelete" readonly="readonly" style="margin-left: 7px; text-align: center; background-color: Snow; width: 120px; border: ridge;">
 							              <p style="text-align: center; margin-top: 10px">정말 삭제 하시겠습니까?</p>
 							            </div>
 							            <div class="modal-footer justify-content-between">
 							              <button type="button" class="btn" data-dismiss="modal" style="background-color: Snow; border: outset;">Close</button>
-							              <button type="submit" class="btn overdueCode" name="overdueCode" style="background-color: Snow; border: outset;">#삭제하기</button>
+							              <button type="submit" class="btn overdueCodeDelete" name="overdueCodeDelete" style="background-color: Snow; border: outset;">OK</button>
 							            </div>
 							          </div>
 							          <!-- /.modal-content -->
@@ -95,6 +95,7 @@
 				                
 				                <div class="modal fade" id="modal-update">
 							        <div class="modal-dialog">
+							        <form action="officeBookOverdueModify" method="get">
 							          <div class="modal-content bg-default">
 							            <div class="modal-header">
 							              <h4 class="modal-title">연체도서관리</h4>
@@ -102,14 +103,17 @@
 							                <span aria-hidden="true">&times;</span></button>
 							            </div>
 							            <div class="modal-body">
-							              <p>수정 하시겠습니까?</p>
+							            <label>연체 코드</label>
+			            				<input type="text" id="getOverdueCodeModify" readonly="readonly" style="margin-left: 7px; text-align: center; background-color: Snow; width: 120px; border: ridge;">
+							              <p>수정 화면으로 이동합니다.</p>
 							            </div>
 							            <div class="modal-footer justify-content-between">
-							              <button type="button" class="btn" data-dismiss="modal">Close</button>
-							              <button type="button" class="btn">#수정하기</button>
+							              <button type="button" class="btn" data-dismiss="modal" style="background-color: Snow; border: outset;">Close</button>
+							              <button type="submit" class="btn overdueCodeModify" name="overdueCodeModify" style="background-color: Snow; border: outset;">OK</button>
 							            </div>
 							          </div>
 							          <!-- /.modal-content -->
+							        </form>
 							        </div>
 							        <!-- /.modal-dialog -->
 					      		</div>
@@ -159,14 +163,26 @@
       "responsive": true,
     });
     
+    //삭제버튼 클릭시 모달
     $('.overdueBookListDelete').click(function(){
     	console.log("삭제하기 클릭");
     	var val = $(this).val();
     	console.log("선택한 코드 값 : " + val);
     	
     	$('#modal-delete').modal();
-    	$('.overdueCode').val(val); //OK버튼
-    	$('#getOverdueCode').val(val); //모달 input 
+    	$('.overdueCodeDelete').val(val); //OK버튼
+    	$('#getOverdueCodeDelete').val(val); //모달 input 
+    });
+    
+    //수정버튼 클릭시 모달
+    $('.overdueBookListUpdate').click(function(){
+    	console.log("수정하기 클릭");
+    	var val = $(this).val();
+    	console.log("선택한 코드 값 : " + val);
+    	
+    	$('#modal-update').modal();
+    	$('.overdueCodeModify').val(val); //OK버튼
+    	$('#getOverdueCodeModify').val(val); //모달 input 
     });
   });
 </script>

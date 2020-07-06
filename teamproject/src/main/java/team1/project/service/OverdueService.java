@@ -14,9 +14,20 @@ import team1.project.vo.Overdue;
 public class OverdueService {
 	@Autowired private OverdueMapper overdueMapper;
 	
+	//연체도서리스트 - 수정처리
+	public int officeOverdueModify(String overdueCode, String rentReturnDate) {
+		return overdueMapper.officeOverdueModify(overdueCode, rentReturnDate);
+	}
+	
+	//연체도서리스트 - 수정 - 선택한 정보
+	public Overdue getOverdueModify(String overdueCodeModify) {
+		Overdue overdue = overdueMapper.getOverdueModify(overdueCodeModify);
+		return overdue;
+	}
+	
 	//연체도서리스트 - 삭제
-	public int deleteOfficeOverdue(String overdueCode) {
-		return overdueMapper.deleteOfficeOverdue(overdueCode);
+	public int deleteOfficeOverdue(String overdueCodeDelete) {
+		return overdueMapper.deleteOfficeOverdue(overdueCodeDelete);
 	}
 	
 	//연체도서리스트
