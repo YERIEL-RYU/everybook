@@ -105,7 +105,7 @@
 								</tr>	
 							  </thead>
 								<tr th:each="r : ${rentHistory}">
-									<td th:text="${r.rentCode}"></td>				
+									<td th:text="${r.rentCode}" th:data-renturl="'addReview?send_code='+${r.rentCode}" ></td>				
 									<td>[[${r.library.libraryName}]]</td>
 									<td>[[${r.book.bookName}]]</td>
 									<td th:text="${r.rentDate}"></td>									
@@ -153,26 +153,24 @@
 						</div>
 					</div>
 				</div>	
-				<form action="addReview" method="get">
-					<div class="modal fade addReview">
-						<div class="modal-dialog modal-sm">
-							<div class="modal-content">
-								<div class="modal-header">
-							        <h4 class="modal-title">도서평 작성하기</h4>
-							        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							        <span aria-hidden="true">&times;</span></button>
-							     </div>
-							     <div class="modal-body">
-							        <p style="color: black">해당 도서의 도서평을 작성하시겠습니까?</p>
-							     </div>
-							     <div class="modal-footer">
-							        <button type="button"class="btn" data-dismiss="modal" style="background-color: Snow; border: outset;">Close</button>
-							        <button type="submit" class="btn" style="background-color: Snow; border: outset;">OK</button>
-							     </div>
-							</div>
+				<div class="modal fade addReview">
+					<div class="modal-dialog modal-sm">
+						<div class="modal-content">
+							<div class="modal-header">
+						        <h4 class="modal-title">도서평 작성하기</h4>
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						        <span aria-hidden="true">&times;</span></button>
+						     </div>
+						     <div class="modal-body">
+						        <p style="color: black">해당 도서의 도서평을 작성하시겠습니까?</p>
+						     </div>
+						     <div class="modal-footer">
+						        <button type="button"class="btn" data-dismiss="modal" style="background-color: Snow; border: outset;">Close</button>
+						        <button type="button" class="btn" id="reviewBtn" style="background-color: Snow; border: outset;">OK</button>
+						     </div>
 						</div>
 					</div>
-				</form>			
+				</div>
 			</div>
 		</div>		
 	</div>		
@@ -214,6 +212,12 @@
 			      "responsive": true,
 			    });
 			
+			    
+			    $('#reviewBtn').click(function(){
+			    	var rendCode = $('td').data('renturl');
+			    	console.log(rendCode);
+			    	location.href = rendCode;
+			    });
 			})
 		</script>
 </th:block>	

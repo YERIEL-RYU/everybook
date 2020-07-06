@@ -9,6 +9,7 @@ import team1.project.vo.Rent;
 @Mapper
 public interface RentMapper {
 
+	
 	//코드검색
 	public Rent getRentCode(String rentCode);
 	

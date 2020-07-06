@@ -36,6 +36,7 @@ public class BookService {
 	@Autowired private PublisherMapper publisherMapper;
 	@Autowired private CategoryMapper categoryMapper;
 	
+
 	/**
 	 * 책 추가
 	 * @param book
@@ -93,6 +94,12 @@ public class BookService {
 	 * @param writer
 	 * @return
 	 */
+
+	public Book getBookName(String rentCode) {
+		return bookMapper.getBookName(rentCode);
+	}
+	
+
 	public int sameNameCount(String libraryCode, String bookName, String writer) {
 		return bookMapper.sameNameCount(libraryCode, bookName, writer);
 	}

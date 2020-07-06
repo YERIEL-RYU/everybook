@@ -22,6 +22,7 @@
 		<result property="bookDescription" column="book_description"/>
 		<result property="officerId" column="officer_id"/>
 	</resultMap>
+	
 	<insert id="addBook">
 	<selectKey order="BEFORE" keyProperty="bookCode" resultType="String">
 	<![CDATA[
@@ -41,6 +42,28 @@
 		(book_code, library_code, book_library_code, book_image, book_name, category_code, writer_code, publisher_code, book_publish_date, book_price, book_ISBN, book_situation, book_description, book_reg_date, officer_id)
 		VALUES (#{bookCode}, #{libraryCode}, #{bookLibraryCode}, #{bookImageURL}, #{bookName}, #{categoryCode}, #{writerCode}, #{publisherCode}, #{bookPublishDate}, #{bookPrice}, #{bookIsbn}, '보유 중', #{bookDescription}, NOW(), #{officerId})
 	</insert>
+
+	
+	<resultMap type="Rent" id="rentResultMap">
+		<result property="rentCode" column="rent_code"/>
+	</resultMap>	
+	
+	<!-- 대여코드로 북 이름과 ISBN 출력 -->
+	<select id="getBookName" parameterType="String" resultMap="bookResultMap">
+		SELECT
+			 b.book_name
+			,b.book_ISBN
+		FROM
+			tb_book AS b
+			INNER join
+			tb_rent AS r
+			on
+			b.book_code = r.book_code
+		WHERE
+			r.rent_code = #{rentCode}
+	</select>
+	
+
 	<!-- 도서제목과 저자로 같은 책 몇 권 있는지 조회하기 -->
 	<select id="sameNameCount" parameterType="String" resultType="int">
 	SELECT

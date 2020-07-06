@@ -39,6 +39,7 @@
 		<result property="memberRegDate" column="member_reg_date"/>
 	</resultMap>
 	
+	<!-- 회원 로그인내역(직원) - 직원과 같은 도서관 소속인 회원만 -->
 	<select id="allLoginMember" resultMap="memberLogin">
 		SELECT 
 			member_id
@@ -48,6 +49,7 @@
 			tb_member_login
 	</select>
 	
+	<!-- 직원 로그아웃시 로그인내역 DB에 업데이트 -->
 	<update id="updateLoginOfficer" parameterType="Login">
 		UPDATE 
 			tb_officer_login
@@ -57,6 +59,7 @@
 			login_code = #{loginCode}
 	</update>
 	
+	<!-- 회원 로그아웃시 로그인내역 DB에 업데이트 -->
 	<update id="updateLoginMember" parameterType="Login">
 		UPDATE 
 			tb_member_login
@@ -66,6 +69,7 @@
 			login_code = #{loginCode}
 	</update>
 	
+	<!-- 직원 로그인시 로그인내역 DB에 등록 -->
 	<insert id="addLoginOfficer" parameterType="Login">
 		<selectKey order="BEFORE" keyProperty="loginCode" resultType="String">
 			SELECT
@@ -86,6 +90,7 @@
 			, NOW())
 	</insert>
 	
+	<!-- 회원 로그인시 로그인내역 DB에 등록 -->
 	<insert id="addLoginMember" parameterType="Login">
 		<selectKey order="BEFORE" keyProperty="loginCode" resultType="String">
 			SELECT
@@ -106,6 +111,7 @@
 				, NOW())
 	</insert>
 	
+	<!-- 직원 아이디로 직원 정보 출력 -->
  	<select id="getOfficerSelect" parameterType="String" resultMap="officerResultMap">
 		SELECT 
 			officer_id
@@ -118,6 +124,7 @@
 			officer_id = #{officerId}
 	</select>
 	
+	<!-- 회원 아이디로 회원 정보 출력 -->
 	<select id="getMemberSelect" parameterType="String" resultMap="memberSelect">
 		SELECT 
 			member_id 

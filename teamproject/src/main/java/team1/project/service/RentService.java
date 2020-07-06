@@ -7,12 +7,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import team1.project.mapper.RentMapper;
+import team1.project.vo.Book;
 import team1.project.vo.Rent;
 
 @Service
 @Transactional
 public class RentService {
 	@Autowired private RentMapper rentMapper;
+	
 	
 	//코드 검색
 	public Rent getRentCode(String rentCode) {

@@ -10,18 +10,6 @@
 		<result property="reviewRegDate" column="review_reg_date"/>
 	</resultMap>
 
-	<select id="">
-		SELECT
-			b.book_name
-			,b.book_ISBN
-		FROM
-			tb_book AS b
-			inner join
-			tb_rent AS r
-		WHERE
-			b.book_code = r.book_code
-		AND
-			r.rent_code = 'rent_003'
-	</select>
+	
 
 </mapper>
