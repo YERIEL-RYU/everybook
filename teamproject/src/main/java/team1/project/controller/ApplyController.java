@@ -69,21 +69,56 @@ public class ApplyController {
 		return "apply/addBookApply";
 	}
 	
+	//신청도서관리 - 신청도서리스트 - 수정처리
+	@PostMapping("/ModifyOfficeApply")
+	public String ModifyOfficeApply(Apply apply) {
+		logger.info("==== 신청도서 수정 처리 ====");
+		logger.info("ModifyOfficeApply() apply -->" + apply.toString());
+		int i = applyService.ModifyOfficeBookApply(apply);
+		logger.info("실행결과 : " + i);
+		
+		return "redirect:/officeBookApply";
+	}
+	
+	//신청도서관리 - 신청도서리스트 - 수정화면
+	@GetMapping("/ModifyOfficeApply")
+	public String ModifyOfficeApply(Model model,
+								Apply apply,
+								@RequestParam(name = "applyCodeModify", required = false) String applyCode ) {
+		logger.info("applyCode --> "+ applyCode);
+		apply = applyService.ModifyOfficeApply(applyCode);
+		logger.info("apply --> " + apply);
+		model.addAttribute("selectApply", apply);
+		return "apply/officeBookApplyModify";
+	}
+	
 	//신청도서관리 - 신청도서리스트 - 삭제
 	@GetMapping("/deleteOfficeBookApply")
-	public String deleteOfficeApply(@RequestParam(name = "applyCode", required = false) String applyCode, Apply apply) {
+	public String deleteOfficeApply(@RequestParam(name = "applyCode", required = false) String applyCode) {
 		logger.info("applyCode --> "+ applyCode);
 		applyService.deleteOfficeApply(applyCode);
 		
 		return "redirect:/officeBookApply";
 	}
 	
+	//신청도서관리 - 신청도서리스트 - 검색
+	@GetMapping("/officeApplySearch")
+	public String officeApplySearch(Model model,
+							@RequestParam(name = "sk") String sk,
+							@RequestParam(name = "sv") String sv) {
+		logger.info(" sk --> " + sk);
+		logger.info(" sv --> " + sv);
+		List<Apply> officeApplyList = applyService.officeApplySearch(sk, sv);
+		model.addAttribute("officeApplyList", officeApplyList);
+		return "apply/officeBookApply";
+	}
+	
 	//신청도서관리 - 신청도서리스트
 	@GetMapping("/officeBookApply")
 	public String officeApplyList(Model model) {
-		List<Apply> list2 = applyService.officeApplyList();
-		logger.info("list2 --> " + list2);
-		model.addAttribute("officeApplyList", list2);
+		List<Apply> officeApplyList = applyService.officeApplyList();
+		logger.info("officeApplyList --> " + officeApplyList);
+		model.addAttribute("officeApplyList", officeApplyList);
 		return "apply/officeBookApply";
 	}
 }

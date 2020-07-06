@@ -28,17 +28,17 @@
 			<div class="col-12">
 	            <div class="card">
 	              <div class="card-header">
-	              <form role="form" action="/OfficeRentListSerch" method="get">
+	              <form role="form" action="/officeApplySearch" method="get">
 							<div class="row">
 								<div class="col-sm-3">
 									<div class="form-group">
 				                        <select class="form-control custom-select" name="sk">
-				                          <option value= "rent_code">신청 코드</option>
-				                          <option value= "r.member_id">도서 이름</option>
-				                          <option value= "r.rent_date">ISBN</option>
-				                          <option value= "b.book_name">신청회원 아이디</option>
-				                          <option value= "b.book_library_code">신청 날짜</option>
-				                          <option value= "w.writer_name">진행사항</option>
+				                          <option value= "apply_code">신청 코드</option>
+				                          <option value= "book_name">도서 이름</option>
+				                          <option value= "book_ISBN">ISBN</option>
+				                          <option value= "member_id">신청회원 아이디</option>
+				                          <option value= "apply_reg_date">신청 날짜</option>
+				                          <option value= "apply_situation">진행사항</option>
 				                        </select>
 				                    </div>
 								</div>
@@ -64,7 +64,7 @@
 	                <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">	 
 	                	<div class="row">
 	                		<div class="col-sm-12">
-				                <table id="example2" class="table table-bordered table-hover dataTable dtr-inline" role="grid" aria-describedby="example2_info" style="text-align: center">
+				                <table id="example2" class="table table-bordered table-hover dataTable dtr-inline" style="text-align: center">
 				                  <thead>
 					                  <tr role="row">
 						                  <th>신청코드</th>
@@ -85,11 +85,11 @@
 					                      <td th:text="${A.bookIsbn}"></td>
 					                      <td th:text="${A.memberId}"></td>
 					                      <td th:text="${A.applyPrice}"></td>
-					                      <td th:text="${#dates.format(A.applyRegDate, 'YYYY-MM-dd')}"></td>
+					                      <td th:text="${A.applyRegDate}"></td>
 					                      <td th:text="${A.applySituation}"></td>
 					                      <td>
-					                      	<a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-update" style="color: white">
-								            <i class="fas fa-pencil-alt"></i>수정</a>
+					                      	<button class="btn btn-info btn-sm applyBookListModify" style="color: white" th:value="${A.applyCode}">
+								            <i class="fas fa-pencil-alt"></i>수정</button>
 					                      </td>
 					                      <td class="">
 					                      	<button class="btn btn-danger btn-sm applyBookListDelete" style="color: white" th:value="${A.applyCode}">
@@ -101,7 +101,7 @@
 				                <!-- modal -->
 				                <div class="modal fade" id="modal-delete">
 							        <div class="modal-dialog">
-							        <form action="/deleteOfficeBookApply" method="get">
+							        <form action="deleteOfficeBookApply" method="get">
 							          <div class="modal-content bg-default">
 							            <div class="modal-header">
 							              <h4 class="modal-title">신청도서관리</h4>
@@ -111,7 +111,7 @@
 							            <div class="modal-body">
 							            <label>신청 코드</label>
 			            				<input type="text" id="getApplyCode" readonly="readonly" style="margin-left: 7px; text-align: center; background-color: Snow; width: 95px; border: ridge;">
-							              <p>삭제 하시겠습니까?</p>
+							              <p  style="text-align: center; margin-top: 10px">정말 삭제 하시겠습니까?</p>
 							            </div>
 							            <div class="modal-footer justify-content-between">
 							              <button type="button" class="btn" data-dismiss="modal" style="background-color: Snow; border: outset;">Close</button>
@@ -126,6 +126,7 @@
 				                
 				                <div class="modal fade" id="modal-update">
 							        <div class="modal-dialog">
+							        <form action="/ModifyOfficeApply" method="get">
 							          <div class="modal-content bg-default">
 							            <div class="modal-header">
 							              <h4 class="modal-title">신청도서관리</h4>
@@ -133,14 +134,17 @@
 							                <span aria-hidden="true">&times;</span></button>
 							            </div>
 							            <div class="modal-body">
-							              <p>수정 하시겠습니까?</p>
+							            <label>신청 코드</label>
+			            				<input type="text" id="getApplyModify" readonly="readonly" style="margin-left: 7px; text-align: center; background-color: Snow; width: 120px; border: ridge;">
+							              <p>수정 화면으로 이동합니다.</p>
 							            </div>
 							            <div class="modal-footer justify-content-between">
 							              <button type="button" class="btn" data-dismiss="modal">Close</button>
-							              <button type="button" class="btn">#수정하기</button>
+							              <button type="submit" class="btn applyCodeModify" name="applyCodeModify">#수정하기</button>
 							            </div>
 							          </div>
 							          <!-- /.modal-content -->
+							          </form>
 							        </div>
 							        <!-- /.modal-dialog -->
 					      		</div>
@@ -188,6 +192,7 @@
       "autoWidth": false,
       "responsive": true,
     });
+    //삭제버튼 클릭시 모달
     $('.applyBookListDelete').click(function(){
     	console.log("삭제하기 클릭");
     	var val = $(this).val();
@@ -197,6 +202,16 @@
     	$('.applyCode').val(val); //OK버튼
     	$('#getApplyCode').val(val); //모달 input
     })
+  	//수정버튼 클릭시 모달
+    $('.applyBookListModify').click(function(){
+    	console.log("수정하기 클릭");
+    	var val = $(this).val();
+    	console.log("선택한 코드 값 : " + val);
+    	
+    	$('#modal-update').modal();
+    	$('.applyCodeModify').val(val); //OK버튼
+    	$('#getApplyModify').val(val); //모달 input
+    });
   });
 </script>
 </th:block>

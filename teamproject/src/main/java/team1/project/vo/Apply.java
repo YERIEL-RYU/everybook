@@ -14,7 +14,7 @@ public class Apply {
 	private String applyPublishDate;
 	private String applyPublisher;
 	private String applyWriter;
-	private Date applyRegDate;
+	private String applyRegDate;
 	public String getApplyCode() {
 		return applyCode;
 	}
@@ -75,10 +75,10 @@ public class Apply {
 	public void setApplyWriter(String applyWriter) {
 		this.applyWriter = applyWriter;
 	}
-	public Date getApplyRegDate() {
+	public String getApplyRegDate() {
 		return applyRegDate;
 	}
-	public void setApplyRegDate(Date applyRegDate) {
+	public void setApplyRegDate(String applyRegDate) {
 		this.applyRegDate = applyRegDate;
 	}
 	@Override
