@@ -6,14 +6,13 @@
 <mapper namespace="team1.project.mapper.RentMapper">
 	
 	<resultMap type="Rent" id="rentResultMap">
-	<result property="rentCode" column="rent_code"/>
-	<result property="bookCode" column="book_code"/>
-	<result property="rentDate" column="rent_date"/>
-	<result property="rentRegDate" column="rent_reg_date"/>
-	<result property="rentReturnDate" column="rent_return_date"/>
-	<result property="writer" column="writer_name"/>
-	<result property="category" column="category_name"/>
-	<result property="publisher" column="publisher_name"/>
+		<result property="rentCode" column="rent_code"/>
+		<result property="rentDate" column="rent_date"/>
+		<result property="rentRegDate" column="rent_reg_date"/>
+		<result property="rentReturnDate" column="rent_return_date"/>
+		<result property="writer" column="writer_name"/>
+		<result property="category" column="category_name"/>
+		<result property="publisher" column="publisher_name"/>
 		
 		<association property="library" javaType="Library">
 			<result property="libraryName" column="library_name"/>
@@ -25,6 +24,7 @@
 			<result property="officerId" column="officer_id"/>
 		</association>	
 		<association property="book" javaType="Book">
+			<result property="bookCode" column="book_code"/>
 			<result property="bookName" column="book_name"/>
 			<result property="bookSituation" column="book_situation"/>
 			<result property="bookLibraryCode" column="book_library_code"/>

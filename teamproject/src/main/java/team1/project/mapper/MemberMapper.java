@@ -10,6 +10,11 @@ import team1.project.vo.Member;
 @Mapper
 public interface MemberMapper {
 
+	/**
+	 * 회원리스트(직원) - 직원과 같은 도서관 소속인 회원만
+	 * */
+	public List<Member> officeListMember(String libraryCode);
+	
 	//회원삭제
 	public int deleteMember(String memberId);
 	

@@ -17,6 +17,10 @@ public class MemberService {
 
 	@Autowired private MemberMapper memberMapper;
 	
+	public List<Member> officeListMember(String libraryCode){
+		return memberMapper.officeListMember(libraryCode);
+	}
+	
 	public int deleteMember(String memberId) {
 		return memberMapper.deleteMember(memberId);
 	};
