@@ -1,5 +1,7 @@
 package team1.project.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -25,8 +27,8 @@ public class RecommendController {
 	@GetMapping("/recommendList")
 	public String getRecommendList(HttpSession session, Model model) {
 		String memberId = (String) session.getAttribute("SID");
-		String data = recommendservice.recommendList(memberId);
-		model.addAttribute("data", data);
+		List<String> bookIsbn = recommendservice.recommendList(memberId);
+		
 		return "recommend/recommendList";
 	}
 	

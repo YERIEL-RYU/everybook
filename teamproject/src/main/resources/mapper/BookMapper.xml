@@ -22,7 +22,16 @@
 		<result property="bookDescription" column="book_description"/>
 		<result property="officerId" column="officer_id"/>
 	</resultMap>
-	
+	<select id="isbnSelectBook" parameterType="String" resultMap="bookResultMap">
+	SELECT
+	*
+	FROM
+		tb_book
+	WHERE 
+		book_ISBN = #{bookIsbn}
+		AND
+		library_code = #{libraryCode}
+	</select>
 	<insert id="addBook">
 	<selectKey order="BEFORE" keyProperty="bookCode" resultType="String">
 	<![CDATA[
