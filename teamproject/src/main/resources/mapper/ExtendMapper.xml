@@ -27,6 +27,17 @@
 		</association>
 	</resultMap>
 	
+	<!-- 연장신청 -->
+	<update id="myRentExtend" parameterType="String">
+		UPDATE tb_rent
+	SET
+		rent_return_date=DATE_ADD(rent_return_date, INTERVAL 7 DAY)
+	WHERE 
+		rent_code=#{rentCode}
+	
+	</update>
+	
+	<!-- 현재 대여중인 도서리스트 -->
 	<select id="myRentList" resultMap="rentResultMap" parameterType="String">
 		SELECT
 			r.rent_code
