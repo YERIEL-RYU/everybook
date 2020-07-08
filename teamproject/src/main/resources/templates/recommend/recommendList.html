@@ -153,9 +153,9 @@
 						<!-- 카드 -->
 						<div class="col-sm-12 course_col">
 							<div class="course">
-								<div class="row">
+								<div class="row" th:each="d : ${data}">
 									<div class="col-sm-2">
-										<div class="course_image"><img src="images/book_1.png" alt=""></div>
+										<div class="course_image"><img th:src="${d.bookImageURL}" alt="bookCover"></div>
 									</div>
 									<div class="col-sm-10">
 										<div class="course_body">
@@ -246,17 +246,7 @@
 <script src="js/course.js"></script>
 <script src="js/courses.js"></script>
 <script type="text/javascript">
-$(function(){
-	 $("#recommendList-table").DataTable({
-	    	"paging": true,
-	        "lengthChange": false,
-	        "searching": false,
-	        "ordering": true,
-	        "info": true,
-	        "autoWidth": false,
-	        "responsive": true,
-	    });
-});
+
 </script>
 </th:block>
 </body>

@@ -15,7 +15,6 @@ import team1.project.vo.Rent;
 public class RentService {
 	@Autowired private RentMapper rentMapper;
 	
-	
 	//코드 검색
 	public Rent getRentCode(String rentCode) {
 		return rentMapper.getRentCode(rentCode);
