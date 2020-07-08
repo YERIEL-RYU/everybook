@@ -10,27 +10,48 @@
 		<result property="libraryCode" column="library_code"/>
 		<result property="bookLibraryCode" column="book_library_code"/>
 		<result property="bookName" column="book_name"/>
-		<result property="category" column="category_name"/>
-		<result property="writerName" column="writer_code"/>
+		<result property="categoryNumber" column="category_number"/>
+		<result property="categoryCode" column="category_code"/>
+		<result property="writerName" column="writer_name"/>
 		<result property="publisherName" column="publisher_name"/>
 		<result property="bookPublishDate" column="book_publish_date"/>
 		<result property="bookPrice" column="book_price"/>
 		<result property="bookIsbn" column="book_ISBN"/>
 		<result property="bookSituation" column="book_situation"/>
 		<result property="bookRegDate" column="book_reg_date"/>
+		<result property="bookImageURL" column="book_image"/>
 		<result property="group" column="book_reg_date"/>
 		<result property="bookDescription" column="book_description"/>
 		<result property="officerId" column="officer_id"/>
 	</resultMap>
 	<select id="isbnSelectBook" parameterType="String" resultMap="bookResultMap">
 	SELECT
-	*
+		b.book_library_code,
+		b.book_image,
+		b.book_name,
+		b.book_ISBN,
+		b.book_description,
+		c.category_number,
+		w.writer_name,
+		p.publisher_name
 	FROM
-		tb_book
+		tb_book AS b
+		inner join
+		tb_category AS c
+		INNER join
+		tb_writer AS w
+		INNER join
+		tb_publisher AS p
+		on
+		b.category_code = c.category_code
+		and
+		b.writer_code = w.writer_code
+		and
+		b.publisher_code = p.publisher_code
 	WHERE 
-		book_ISBN = #{bookIsbn}
+		b.book_ISBN = #{bookIsbn}
 		AND
-		library_code = #{libraryCode}
+		b.library_code = #{libraryCode}
 	</select>
 	<insert id="addBook">
 	<selectKey order="BEFORE" keyProperty="bookCode" resultType="String">
