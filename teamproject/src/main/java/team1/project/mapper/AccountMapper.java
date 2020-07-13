@@ -9,6 +9,10 @@ import team1.project.vo.Account;
 @Mapper
 public interface AccountMapper {
 	
+	public int addAccount(Account account);
+	
+	public Account selectAccount(String accountCode);
+	
 	public List<Account> getAccountList();
 
 }
