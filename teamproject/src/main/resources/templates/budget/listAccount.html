@@ -91,19 +91,19 @@
 					                  </tr>
 				                  </thead>
 				                  <tbody>
-					                  <tr>
-					                  	<td><input type="checkbox"></td>
-										<td>account_</td>
-										<td>도서구입비</td>
-										<td>비용</td>
-										<td>도서를 구입하는 비용</td>
-										<td>2020-06-04</td>
-										<td>id_001</td>
+					                  <tr th:each="a : ${accountList}">
+					                  	<td><input type="checkbox" th:value="${a.accountCode}"></td>
+										<td>[[${a.accountCode}]]</td>
+										<td>[[${a.accountName}]]</td>
+										<td>[[${a.accountKind}]]</td>
+										<td>[[${a.accountDescription}]]</td>
+										<td>[[${a.accountRegDate}]]</td>
+										<td>[[${a.officerId}]]</td>
 					                  </tr>
 				                  </tbody>
 				                  <tfoot>
 					                  <tr>
-					                  	<th><input type="checkbox"></th>
+					                  	<th></th>
 					                   	<th>계정과목 코드</th>
 					                    <th>계정과목 이름</th>
 					                    <th>계정과목 분류</th>

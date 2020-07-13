@@ -1,38 +1,56 @@
 package team1.project.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import team1.project.service.AccountService;
+import team1.project.vo.Account;
 
 @Controller
 public class BudgetController {
 	
-		@GetMapping("/modifyBudget")
-		public String modifyBudget() {
-			return "budget/modifyBudget";
-		}
+	private final static Logger logger = LoggerFactory.getLogger(ReserveController.class);
+	@Autowired private AccountService accountService;
 	
-		@GetMapping("/modifyAccount")
-		public String modifyAccount() {
-			return "budget/modifyAccount";
-		}
-	
-		@GetMapping("/listBudget")
-		public String listBudget() {
-			return "budget/listBudget";
-		}
+	@GetMapping("/modifyBudget")
+	public String modifyBudget() {
+		return "budget/modifyBudget";
+	}
 
-		@GetMapping("/listAccount")
-		public String listAccount() {
-			return "budget/listAccount";
-		}
-		
-		@GetMapping("/addBudget")
-		public String addBudget() {
-			return "budget/addBudget";
-		}
-		
-	/*
-	 * @GetMapping("/addAccount") public String addAccount() { return
-	 * "budget/addAccount"; }
-	 */
+	@GetMapping("/modifyAccount")
+	public String modifyAccount() {
+		return "budget/modifyAccount";
+	}
+
+	@GetMapping("/listBudget")
+	public String listBudget() {
+		return "budget/listBudget";
+	}
+
+	@GetMapping("/listAccount")
+	public String listAccount(Model model) {
+		List<Account> accountList = accountService.getAccountList();
+		model.addAttribute("accountList", accountList);
+		return "budget/listAccount";
+	}
+	
+	@GetMapping("/addBudget")
+	public String addBudget() {
+		return "budget/addBudget";
+	}
+	
+
+	@GetMapping("/addAccount")
+	public String addAccount() {
+		return  "budget/addAccount"; 
+	}
+ 
 }
