@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import team1.project.service.BookService;
 import team1.project.vo.Book;
+import team1.project.vo.Review;
 
 @Controller
 public class ReviewController {
@@ -38,6 +39,14 @@ public class ReviewController {
 	@GetMapping("/reviewList")
 	public String reviewList(){
 		return "review/reviewList";
+	}
+	
+	//도서평등록처리(회원)
+	@PostMapping("/addReview")
+	public String addReview(Review review) {
+		System.out.println("도서평등록화면에서 가져온 값 >>> "+review.toString());
+		
+		return null;
 	}
 	
 	//도서평등록화면(회원)

@@ -10,6 +10,17 @@
 		<result property="reviewRegDate" column="review_reg_date"/>
 	</resultMap>
 
-	
+	<insert id="">
+		<selectKey order="BEFORE" keyProperty="loginCode" resultType="String">
+			SELECT
+				(case COUNT(*)
+				when 0 then 'officer_login_1'
+				ELSE CONCAT('officer_login_',max(cast(SUBSTRING(login_code,15) AS DECIMAL))+1)
+				END) AS loginCode
+			FROM
+				tb_officer_login
+			
+		</selectKey>
+	</insert>
 
 </mapper>

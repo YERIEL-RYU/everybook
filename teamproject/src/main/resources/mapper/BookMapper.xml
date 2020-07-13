@@ -62,6 +62,8 @@
 		SELECT
 			 b.book_name
 			,b.book_ISBN
+			,r.rent_code
+			,r.book_code
 		FROM
 			tb_book AS b
 			INNER join
