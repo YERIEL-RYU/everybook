@@ -18,6 +18,13 @@
 		<result property="bookSituation" column="book_situation"/>
 	</association>
 </resultMap>
+<select id="getRtcanReserveTime" resultMap="rtcanReserveSelect">
+	SELECT 
+		member_id 
+		,reserve_reg_date
+		,rtcan_situation
+	FROM tb_rtcan_reserve
+</select>
 <!-- 조건에 따른 예약 검색 -->
 <select id="getSearchRtcanReserve"  parameterType="String" resultMap="rtcanReserveSelect">
 	SELECT
