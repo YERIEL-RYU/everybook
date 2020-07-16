@@ -131,9 +131,9 @@
 		                      <!-- SEARCH FORM -->
 		                     	<div class="col-sm-10">		                     	
 		                        <div class="input-group input-group-sm">
-		                          <input class="form-control" type="search" placeholder="#Member Id" aria-label="Search">
+		                          <input class="form-control" type="search" placeholder="#Member Id" aria-label="Search" id="searchMemberId">
 		                          <div class="input-group-append">
-		                            <button class="btn btn-navbar" type="submit">
+		                            <button class="btn btn-navbar" type="submit" id="searchMember">
 		                              <i class="fas fa-search"></i>
 		                            </button>
 		                          </div>
@@ -148,43 +148,43 @@
 	                  <div class="form-group row">
 	                    <label for="inputEmail3" class="col-sm-2 col-form-label">회원 아이디</label>
 		                    <div class="col-sm-10">
-		                      <input type="text" class="form-control" placeholder="Member Id">
+		                      <input type="text" class="form-control" placeholder="Member Id" name="memberId">
 		                    </div>
 	                  </div>
 	                  <div class="form-group row">
 	                    <label for="inputEmail3" class="col-sm-2 col-form-label">회원 이름</label>
 		                    <div class="col-sm-10">
-		                      <input type="text" class="form-control" placeholder="Member Name">
+		                      <input type="text" class="form-control" placeholder="Member Name" name="memberName">
 		                    </div>
 		              </div>
 	                  <div class="form-group row">
 	                    <label for="inputEmail3" class="col-sm-2 col-form-label">생년 월일</label>
 		                    <div class="col-sm-10">
-		                      <input type="Date" class="form-control" placeholder="Member Name">
+		                      <input type="Date" class="form-control" placeholder="Member Birth" name="memberBirth">
 		                    </div>
 	                  </div>
 	                  <div class="form-group row">
 	                    <label for="inputPassword3" class="col-sm-2 col-form-label">회원 레벨</label>
 		                    <div class="col-sm-10">
-		                      <input type="text" class="form-control" placeholder="Member Level">
+		                      <input type="text" class="form-control" placeholder="Member Level" name="levelCode">
 		                    </div>
 	                  </div>
 	                  <div class="form-group row">
 	                    <label for="inputPassword3" class="col-sm-2 col-form-label">주소</label>
 		                    <div class="col-sm-10">
-		                      <input type="email" class="form-control" placeholder="Member Address">
+		                      <input type="email" class="form-control" placeholder="Member Address" name="memberAddress">
 		                    </div>
 	                  </div>
 	                  <div class="form-group row">
 	                    <label for="inputPassword3" class="col-sm-2 col-form-label">전화번호</label>
 		                    <div class="col-sm-10">
-		                      <input type="email" class="form-control" placeholder="Member Tel">
+		                      <input type="email" class="form-control" placeholder="Member Tel" name="memberTel">
 		                    </div>
 	                  </div>
 	                  <div class="form-group row">
 	                    <label for="inputPassword3" class="col-sm-2 col-form-label">이메일</label>
 		                    <div class="col-sm-10">
-		                      <input type="email" class="form-control" placeholder="Member Email">
+		                      <input type="email" class="form-control" placeholder="Member Email" name="memberEmail">
 		                    </div>
 	                  </div>
 	                  <div class="form-group row">
@@ -417,6 +417,32 @@
   			  alert( "Request failed: " + textStatus );
   			});
 		})
+		
+		//회원 아이디로 검색시 회원 정보 검색하여 화면에 출력
+		$('#searchMember').on('click',function(){
+			var value = $('#searchMemberId').val();
+			console.log(value);
+			if(value == '' || value == null || value == undefined || value == 0 || value == NaN){
+				alert('회원 id를 입력하세요');				
+			}else {
+				var request = $.ajax({
+		  			  url: "/rent/getSelectMember",
+		  			  method: "get",
+		  			  data: { memberId : value },
+		  			  dataType: "json"
+		  			});
+				request.done(function( data ) {
+	  				console.log(JSON.stringify(data) + " <- ajax");
+	  				$('[name=memberId]').val(data.memberId);
+	  				$('[name=memberName]').val(data.memberName);
+	  				$('[name=memberBirth]').val(data.memberBirth);
+
+			});
+				request.fail(function( jqXHR, textStatus ) {
+		  			  alert( "회원 정볼를 찾을 수 없습니다.  :  " + textStatus );
+		  			});
+		};
+	});
 	})
 </script>
 </th:block>
