@@ -1,6 +1,10 @@
 package team1.project.scheduler;
 
 import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -18,11 +22,16 @@ public class CommonScheduler {
 	private final static Logger logger = LoggerFactory.getLogger(CommonScheduler.class);
 	@Autowired RtcanReserveService rtcanReserveService;
 
-	@Scheduled(cron = "0 3 * * * ?")
+	@Scheduled(cron = "0/30 * * * * ?")
 	public void reservate() throws ParseException {
 		logger.info("예약 조회 및 처리 : {}");
-		List<RtcanReserve> reserveTime = rtcanReserveService.getRtcanReserveTime();
-
-		
+		List<RtcanReserve> rtcanReserveTime = rtcanReserveService.getRtcanReserveTime();
+		LocalDateTime currentTime = LocalDateTime.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssZ");
+		for(int i =0; i <rtcanReserveTime.size(); i++) {
+			LocalDateTime reserveDate = LocalDateTime.parse(rtcanReserveTime.get(i).getRtcanRegDate(),formatter);
+			
+			
+		}
 	}
 }
