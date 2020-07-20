@@ -137,9 +137,9 @@
 			SELECT 
    				(case 
    				when COUNT(*) = 0 then 'library_001'
- 				when COUNT(*) < 11 then CONCAT('library_00',(MAX(CONVert(SUBSTR(library_code,9), SIGNED INTEGER))+1))
-				when COUNT(*) < 101 then CONCAT('library_0',(MAX(CONVert(SUBSTR(library_code,9), SIGNED INTEGER))+1))
-   				when COUNT(*) < 1001 then CONCAT('library_',(MAX(CONVert(SUBSTR(library_code,9), SIGNED INTEGER))+1))
+ 				when COUNT(*) < 9 then CONCAT('library_00',(MAX(CONVert(SUBSTR(library_code,9), SIGNED INTEGER))+1))
+				when COUNT(*) < 99 then CONCAT('library_0',(MAX(CONVert(SUBSTR(library_code,9), SIGNED INTEGER))+1))
+   				when COUNT(*) < 999 then CONCAT('library_',(MAX(CONVert(SUBSTR(library_code,9), SIGNED INTEGER))+1))
    				ELSE CONCAT('library_',(max(CONVert(SUBSTR(library_code,9), SIGNED INTEGER))+1))
    				END) AS library_code
 			FROM

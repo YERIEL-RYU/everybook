@@ -15,6 +15,11 @@ public class RtcanReserveService {
 	
 	@Autowired private ReserveMapper reserveMapper;
 	
+	//예약 시간 조회 리스트
+	public List<RtcanReserve> getRtcanReserveTime(){
+		return reserveMapper.getRtcanReserveTime();
+	}
+	
 	//조건에 따른 검색 리스트
 	public List<RtcanReserve>getSearchRtcanReserve(String sk, String sv){
 		return reserveMapper.getSearchRtcanReserve(sk, sv);
