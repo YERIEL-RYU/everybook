@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import team1.project.mapper.RentMapper;
+import team1.project.vo.Book;
 import team1.project.vo.Rent;
 
 @Service

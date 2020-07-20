@@ -6,14 +6,13 @@
 <mapper namespace="team1.project.mapper.RentMapper">
 	
 	<resultMap type="Rent" id="rentResultMap">
-	<result property="rentCode" column="rent_code"/>
-	<result property="bookCode" column="book_code"/>
-	<result property="rentDate" column="rent_date"/>
-	<result property="rentRegDate" column="rent_reg_date"/>
-	<result property="rentReturnDate" column="rent_return_date"/>
-	<result property="writer" column="writer_name"/>
-	<result property="category" column="category_name"/>
-	<result property="publisher" column="publisher_name"/>
+		<result property="rentCode" column="rent_code"/>
+		<result property="rentDate" column="rent_date"/>
+		<result property="rentRegDate" column="rent_reg_date"/>
+		<result property="rentReturnDate" column="rent_return_date"/>
+		<result property="writer" column="writer_name"/>
+		<result property="category" column="category_name"/>
+		<result property="publisher" column="publisher_name"/>
 		
 		<association property="library" javaType="Library">
 			<result property="libraryName" column="library_name"/>
@@ -25,12 +24,29 @@
 			<result property="officerId" column="officer_id"/>
 		</association>	
 		<association property="book" javaType="Book">
+			<result property="bookCode" column="book_code"/>
 			<result property="bookName" column="book_name"/>
 			<result property="bookSituation" column="book_situation"/>
 			<result property="bookLibraryCode" column="book_library_code"/>
+			<result property="bookIsbn" column="book_ISBN"/>
 		</association>
 	</resultMap>
-	
+	<!-- 추천 도서 : 최근 5건의 대여 도서의 isbn select -->
+	  <select id="selectIsbn" parameterType="String" resultType="String">
+	  	SELECT
+			b.book_ISBN
+		FROM
+			tb_rent AS r
+			join
+			tb_book AS b
+			on
+			r.book_code = b.book_code
+		WHERE
+			r.member_id = #{member}
+		ORDER BY 
+			r.rent_date desc
+		LIMIT 5	
+	  </select>
 	<!-- 대여관리 - 대여리스트 검색 -->
 	<select id="OfficeRentListSerch" parameterType="String" resultMap="rentResultMap">
 		SELECT

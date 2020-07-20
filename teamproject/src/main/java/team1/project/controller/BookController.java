@@ -25,18 +25,19 @@ public class BookController {
 	
 	@Autowired private BookService bookService;
 	@Autowired private WriterService writerService;
+
 	
 	@GetMapping("/addBook")
-	public String addBook(Book book){
-		logger.info("book",book);
-		//저자 조회
-		//저자 있으면 code 가져오고 없으면 저자 코드 추가
-		//출판사 조회
-		//출판사 있으면 code 가져오고 없으면 출판사 코드 추가
-		//카테고리 조회
-		//카테코리 있으면 code 가져오고 없으면 카테고리 코드 추가
+	public String addBook(Book book, HttpSession session){
+		logger.info("책등록 시작book",book);
+		String officerId = (String) session.getAttribute("SID");
+		String libraryCode = (String) session.getAttribute("SLIBRARY");
+		book.setOfficerId(officerId);
+		book.setLibraryCode(libraryCode);
 		//책 추가
-		return null;
+		int i =bookService.addBook(book);
+		logger.info("책등록 실행경과 : {}",i);
+		return "book/officeAddbook";
 	}
 	
 	/**
@@ -54,7 +55,8 @@ public class BookController {
 		List<Map<String, Character>> nameList = bookService.getCharList(writer);
 		String secWrite = Unicode.codeNum(nameList);
 		String reWriter = nameList.get(0).get("char").toString() + secWrite;
-		String libraryCode = (String) session.getAttribute("SLIRARY");
+		String libraryCode = (String) session.getAttribute("SLIBRARY");
+		logger.info("libraryCode : {}",libraryCode);
 		int num = bookService.sameNameCount(libraryCode, bookName, writer);
 		Book book = new Book();
 		book.setBookLibraryCode(reWriter);

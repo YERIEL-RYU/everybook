@@ -14,9 +14,13 @@ import team1.project.vo.Rent;
 public class ExtendService {
 	@Autowired private ExtendMapper extendMapper;
 	
+	//연장신청
+	public int myRentExtend(String rentCode) {
+		return extendMapper.myRentExtend(rentCode);
+	}
+	
 	//나의 현재 대여중 도서 조회
 	public List<Rent> mtRengList(String SID){
-		List<Rent> list = extendMapper.myRentList(SID);
-		return list;
+		return extendMapper.myRentList(SID);
 	}
 }

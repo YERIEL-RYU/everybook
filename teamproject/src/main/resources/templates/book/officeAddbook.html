@@ -42,13 +42,14 @@
 									</div>
 									<div class="form-group" align="center">
 										<a class="thumbnail">
-											<img src="dist/img/no_image.gif" alt="bookCover" width="147px;" height="155px;" name="bookImageURL">
+											<img src="dist/img/no_image.gif" alt="bookCover" width="147px;" height="155px;" id="bookImageURL">
+											<input type="text" name="bookImageURL" hidden="hidden">
 										</a>
 									</div>
 								
 									<div class="form-group">
 										<label>출판사</label>
-										<input type="text" class="form-control" name="publisher" placeholder="출판사명">
+										<input type="text" class="form-control" name="publisherName" placeholder="출판사명">
 									</div>
 									<div class="form-group">
 										<label>총페이지</label>
@@ -63,11 +64,11 @@
 									</div>
 									<div class="form-group">
 										<label>저자</label>
-										<input type="text" class="form-control" name="writer" placeholder="저자">
+										<input type="text" class="form-control" name="writerName" placeholder="저자">
 									</div>
 									<div class="form-group">
 										<label>KDC</label>
-										<input type="text" class="form-control" name="category" placeholder="KDC">
+										<input type="text" class="form-control" name="categoryNumber" placeholder="KDC">
 									</div>
 									<div class="form-group">
 										<label>발행년도</label>
@@ -123,13 +124,15 @@
 	 			var fn = function( data ) {
 	 				console.log(JSON.stringify(data) + " <- ajax");
 	 				$('[name=bookName]').val(data.bookName);
-	 				$('[name=category]').val(data.category);
-	 				$('[name=writer]').val(data.writer);
-	 				$('[name=publisher]').val(data.publisher);
+	 				$('[name=categoryNumber]').val(data.categoryNumber);
+	 				$('[name=writerName]').val(data.writerName);
+	 				$('[name=publisherName]').val(data.publisherName);
 	 				$('[name=bookPrice]').val(data.bookPrice);
 	 				$('[name=bookPublishDate]').val(data.bookPublishDate);
 	 				$('[name=bookDescription]').val(data.bookDescription);
-	 				$('[name=bookImageURL]').attr('src',data.bookImageURL);
+	 				$('#bookImageURL').attr('src',data.bookImageURL);
+	 				$('[name=bookImageURL]').val(data.bookImageURL);
+	 				$('[name=bookPrice]').val(data.bookPrice);
 	 				$('#seriesNo').val(data.seriesNo);
 	 			}
 		   		commonAjax("/searchIsbn", 
@@ -143,7 +146,7 @@
 		});
 		$('#blcBtn').click(function(){
 			var bookName = $('[name=bookName]').val();
-			var category = $('[name=category]').val();
+			var category = $('[name=categoryNumber]').val();
 			var serise = $('#seriesNo').val();
 			var fir = bookName.substring(0,1);
 			console.log(fir);
@@ -151,7 +154,7 @@
 			if(bookName == null || bookName == ''){
 				alert('도서의 정보가 없습니다.');
 			}else{
-				var writer = $('[name=writer]').val();
+				var writer = $('[name=writerName]').val();
 				var errormsg = '도서 청구 코드를 생성 할 수 없습니다.';
 				var fn = function( data ){
 					console.log(data + " ajax");

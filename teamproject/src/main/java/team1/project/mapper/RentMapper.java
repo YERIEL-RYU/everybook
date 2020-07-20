@@ -4,11 +4,14 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import team1.project.vo.Book;
 import team1.project.vo.Rent;
 
 @Mapper
 public interface RentMapper {
-
+	//회원이 대여한 최근 5건 도서의 isbn 조회
+	public List<String> selectIsbn(String memberId);
+	
 	//코드검색
 	public Rent getRentCode(String rentCode);
 	

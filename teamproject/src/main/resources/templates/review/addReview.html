@@ -59,7 +59,6 @@
 	<div class="courses">
 		<div class="container">
 			<div class="row">
-
 				<!-- Courses Main Content -->
 				<div class="col-lg-8">
 					<div class="courses_container">
@@ -68,17 +67,18 @@
 								<div class="course">
 									<div class="course_body">
 										<div class="course_form">
-											<form action="addReview">
+											<form action="addReview" method="post" th:each=" b : ${bookName}">
 												<div class="form_title">
 													도서 명
-													<h3 class="course_title"><a href="bookDetail">더 해빙=The Having : 부와 행운을 끌어당기는 힘</a></h3>
+													<h3 class="course_title" ><a href="bookDetail">[[${b.bookName}]]</a></h3>
+													<input type="hidden" name="bookCode" th:value="${b.bookCode}"/>
 												</div>
 												<div class="input_from" style="margin-top: 30px;">
 													<div class="form_title">도서평 내용</div>
-													<input type="text" class="comment_input" required="required">
+													<textarea class="comment_input comment_textarea" name="reviewContent" required="required"></textarea>
 												</div>
-												<div style="margin-left: 525px;">
-													<button type="submit" class="comment_button trans_200">도서평 등록</button>
+												<div>
+													<button type="submit" class="comment_button trans_200 col-md-3 offset-9">도서평 등록</button>
 												</div>
 											</form>
 										</div>

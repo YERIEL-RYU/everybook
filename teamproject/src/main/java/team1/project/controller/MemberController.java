@@ -115,10 +115,18 @@ public class MemberController {
 	
 	//회원리스트(직원)
 	@GetMapping("/officeMemberList")
-	public String officeMemberList(Model model) {
-		
-		model.addAttribute("memberList", memberService.allListMember());
-		return "member/officeMemberList";
+	public String officeMemberList(HttpSession session ,Model model) {
+		String loginCode = (String) session.getAttribute("SCODE");
+		String libraryCode = (String) session.getAttribute("SLIBRARY");
+		if(session.getAttribute("SID") != null && !"".equals(session.getAttribute("SID"))
+				&& session.getAttribute("SLIBRARY") != null && !"".equals(session.getAttribute("SLIBRARY"))
+				&& session.getAttribute("SCODE") != null && !"".equals(session.getAttribute("SCODE"))
+				&& "officer_login".equals(loginCode.substring(0, 13))) {
+			
+			model.addAttribute("memberList", memberService.officeListMember(libraryCode));
+			return "member/officeMemberList";
+		}
+		return "login";
 	}
 	
 	/*회원등록처리*/

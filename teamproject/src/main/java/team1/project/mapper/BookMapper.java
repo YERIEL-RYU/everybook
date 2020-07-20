@@ -8,6 +8,16 @@ import team1.project.vo.Book;
 
 @Mapper
 public interface BookMapper {
+	
+	//isbn과 도서관 코드로 책 검색
+	public List<Book> isbnSelectBook(String bookIsbn, String libraryCode);
+
+	//책등록
+	public int addBook(Book book);
+
+	//대여코드로 북 이름과 ISBN 출력
+	public Book getBookName(String rentCode);
+
 	//같은 이름의 책 몇 권 있는지 조회
 	public int sameNameCount(String libraryCode, String bookName, String writer);
 	

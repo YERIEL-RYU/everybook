@@ -9,19 +9,44 @@
 		<result property="reviewContent" column="review_content"/>
 		<result property="reviewRegDate" column="review_reg_date"/>
 	</resultMap>
-
-	<select id="">
-		SELECT
-			b.book_name
-			,b.book_ISBN
-		FROM
-			tb_book AS b
-			inner join
-			tb_rent AS r
-		WHERE
-			b.book_code = r.book_code
-		AND
-			r.rent_code = 'rent_003'
+	
+	<!-- 도서평내역(회원) -->
+	<select id="selectReview" parameterType="String" resultMap="reviewSelect">
+		SELECT 
+			review_code
+			, book_code
+			, member_id
+			, review_content
+			, review_reg_date
+		FROM 
+			tb_review
+		WHERE 
+			member_id = #{memberId}
 	</select>
+	
+	<!-- 도서평 등록 -->
+	<insert id="addReview" parameterType="Review">
+		<selectKey order="BEFORE" keyProperty="reviewCode" resultType="String">
+			SELECT
+				(case COUNT(*)
+				when 0 then 'review_1'
+				ELSE CONCAT('review_',max(cast(SUBSTRING(review_code,8) AS DECIMAL))+1)
+				END) AS review_code
+			FROM
+				tb_review
+		</selectKey>
+			INSERT INTO tb_review
+				(review_code
+				, book_code
+				, member_id
+				, review_content
+				, review_reg_date)
+			VALUES 
+				(#{reviewCode}
+				, #{bookCode}
+				, #{memberId}
+				, #{reviewContent}
+				, NOW())
+	</insert>
 
 </mapper>

@@ -12,7 +12,11 @@ import team1.project.vo.Writer;
 public class WriterService {
 	@Autowired private WriterMapper writerMapper;
 	
-	public Writer selectWriterCode(Writer writer) {
+	public int addWriter(Writer writer) {
+		return writerMapper.addWriter(writer);
+	}
+	
+	public String selectWriterCode(String writer) {
 		return writerMapper.selectWriteCode(writer);
 	}
 }

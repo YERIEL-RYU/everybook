@@ -30,7 +30,7 @@
 					</li>
 				</ul>
 			</th:block>
-			<th:block th:if="${session.SLEVEL} == '' or ${session.SLEVEL} == null">
+			<th:block th:unless="${session.SLEVEL} == '1' or ${session.SLEVEL} == '2' or ${session.SLEVEL} == '3'">
 				<ul class="navbar-nav" >
 					<li class="nav-item d-none d-sm-inline-block">
 						<a href="/" class="nav-link text-info">Login(김)</a>

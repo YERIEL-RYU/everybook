@@ -8,6 +8,7 @@ import team1.project.vo.RtcanReserve;
 
 @Mapper
 public interface ReserveMapper {
+	public List<RtcanReserve> getRtcanReserveTime();
 	public List<RtcanReserve>getSearchRtcanReserve(String sk, String sv);
 	public int deleteRtcanReserve(RtcanReserve rtcanReserve);
 	public RtcanReserve getSelectRtcanReserve(String rtcanCode);

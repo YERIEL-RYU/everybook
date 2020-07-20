@@ -16,8 +16,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import team1.project.controller.ReserveController;
 import team1.project.mapper.BookMapper;
+import team1.project.mapper.CategoryMapper;
+import team1.project.mapper.PublisherMapper;
+import team1.project.mapper.WriterMapper;
 import team1.project.vo.Book;
+import team1.project.vo.Publisher;
 import team1.project.vo.Unicode;
+import team1.project.vo.Writer;
 
 @Service
 @Transactional
@@ -27,7 +32,78 @@ public class BookService {
 	private List<Map<String, Character>> charList;
 	
 	@Autowired private BookMapper bookMapper;
+	@Autowired private WriterMapper writerMapper;
+	@Autowired private PublisherMapper publisherMapper;
+	@Autowired private CategoryMapper categoryMapper;
 	
+	public List<Book> isbnSelectBook(String bookIsbn, String libraryCode){
+		return bookMapper.isbnSelectBook(bookIsbn, libraryCode);
+		
+	}
+	
+	/**
+	 * 책 추가
+	 * @param book
+	 * @return bookMapper.addBook(book)
+	 * isbn에서 이름으로 받아온 각각의 정보를 검색 후 code로 전환하여 insert 실행
+	 */
+	public int addBook(Book book) {
+		String writerName = book.getWriterName();
+		String publisherName = book.getPublisherName();
+		String categoryNumber = book.getCategoryNumber();		
+		String officerId = book.getOfficerId();
+		//저자 조회
+		String writerCode = writerMapper.selectWriteCode(writerName);
+		logger.info("writerCode : {}" , writerCode);
+		//저자 있으면 code 가져오고 없으면 저자 코드 추가
+		if(writerCode != null && !"".equals(writerCode)) {
+			book.setWriterCode(writerCode);
+		}else {
+			Writer writer = new Writer();
+			writer.setOfficer(officerId);
+			writer.setWriterName(writerName);
+			logger.info("writer : {}", writer);
+			int i = writerMapper.addWriter(writer);
+			logger.info("저자 등록 결과 : {}", i);
+			writerCode = writerMapper.selectWriteCode(writerName);
+			book.setWriterCode(writerCode);
+		}
+		//출판사 조회
+		String publisherCode = publisherMapper.selectPublisherCode(publisherName);
+		//출판사 있으면 code 가져오고 없으면 출판사 코드 추가
+		if(publisherCode !=null && !"".equals(publisherCode)) {
+			book.setPublisherCode(publisherCode);
+		}else {
+			Publisher publisher = new Publisher();
+			publisher.setPublisherName(publisherName);
+			publisher.setOfficer(officerId);
+			int i = publisherMapper.addPublisher(publisher);
+			logger.info("출판사 등록 결과 : {}", i);
+			publisherCode = publisherMapper.selectPublisherCode(publisherName);
+			book.setPublisherCode(publisherCode);
+			
+		}
+		//카테고리 조회
+		String categoryCode = categoryMapper.selectCategoryCode(categoryNumber.substring(0, 2));
+		book.setCategoryCode(categoryCode);
+		logger.info("최종 book : {}",book.toString());
+	
+		return bookMapper.addBook(book);
+	}
+
+	/**
+	 * 책 이를을 같은 책을 보유하고 있는지 조회
+	 * @param libraryCode
+	 * @param bookName
+	 * @param writer
+	 * @return
+	 */
+
+	public Book getBookName(String rentCode) {
+		return bookMapper.getBookName(rentCode);
+	}
+	
+
 	public int sameNameCount(String libraryCode, String bookName, String writer) {
 		return bookMapper.sameNameCount(libraryCode, bookName, writer);
 	}
@@ -118,21 +194,26 @@ public class BookService {
 			String bookName = seoji.select("TITLE").text();
 			String bookPrice = seoji.select("PRE_PRICE").text();
 			String seriesNo = seoji.select("SERIES_NO").text();
+			String bookPublishDate = seoji.select("INPUT_DATE").text();
 			String category = seoji.select("KDC").text();
+			if("".equals(category)) {
+				category = naru.select("class_no").text();
+			}
 			String writer = naru.select("authors").text();
 			String publisher = naru.select("publisher").text();
 			String bookDescription = naru.select("description").text();
 			String bookImageURL = naru.select("bookImageURL").text();
-			String bookPublishDate = naru.select("publication_date").text();
+			String bookprice = naru.select("PRE_PRICE").text();
 			book.setBookName(bookName);
-			book.setWriter(writer);
+			book.setWriterName(writer);
 			book.setBookDescription(bookDescription);
 			book.setBookImageURL(bookImageURL);
-			book.setPublisher(publisher);
-			book.setBookPrice(bookPrice);
-			book.setCategory(category);
+			book.setPublisherName(publisher);
+			book.setBookPrice(bookprice);
+			book.setCategoryNumber(category);
 			book.setBookPublishDate(bookPublishDate);
 			book.setSeriesNo(seriesNo);
+			book.setBookPrice(bookPrice);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
