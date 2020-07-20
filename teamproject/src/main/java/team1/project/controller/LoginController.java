@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import team1.project.service.LoginService;
 import team1.project.vo.Login;
@@ -48,7 +49,8 @@ public class LoginController {
 	}
 	
 	//직원 로그인처리
-	@PostMapping("/loginOfficer")
+	//@PostMapping("/loginOfficer")
+	@RequestMapping("/loginOfficer")
 	public String loginOfficer(Officer officer
 								,HttpSession session) {
 		
@@ -84,8 +86,10 @@ public class LoginController {
 		return "redirect:/";
 	}
 	
+	
 	//회원로그인 처리
-	@PostMapping("/loginMember")
+	//@PostMapping("/loginMember")
+	@RequestMapping("/loginMember")
 	public String loginMember(Member member
 								,HttpSession session) {
 		System.out.println(member.getMemberId());

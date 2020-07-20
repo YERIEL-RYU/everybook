@@ -15,6 +15,16 @@ public class ReviewService {
 
 	@Autowired private ReviewMapper reviewMapper;
 	
+	//도서평 삭제(회원)
+	public int deleteReview(String reviewCode) {
+		return reviewMapper.deleteReview(reviewCode);
+	};
+	
+	//도서평 수정(회원)
+	public int updateReview(String reviewCode,String reviewContent){
+		return reviewMapper.updateReview(reviewCode, reviewContent);
+	};
+	
 	//도서평 내역(회원)
 	public List<Review> selectReview(String memberId){
 		return reviewMapper.selectReview(memberId);

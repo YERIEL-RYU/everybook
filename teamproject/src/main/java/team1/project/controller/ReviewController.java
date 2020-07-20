@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import team1.project.service.BookService;
 import team1.project.service.ReviewService;
@@ -22,10 +23,6 @@ public class ReviewController {
 	@Autowired private BookService bookService;
 	@Autowired private ReviewService reviewService;
 	
-	@GetMapping("/modifyReview")
-	public String modifyReview() {
-		return "review/modifyReview";
-	}
 	@GetMapping("/officeWarningList")
 	public String officeWarningList() {
 		return "review/officeWarningList";
@@ -41,17 +38,36 @@ public class ReviewController {
 		return "review/officeReviewList";
 	}
 	
-	//도서평내역(회원)
+	//도서평 삭제처리(회원)
+	@GetMapping(value="/deleteReview")
+	@ResponseBody
+	public int deleteReview(@RequestParam("reviewCode") String reviewCode) {
+		
+		return reviewService.deleteReview(reviewCode);
+	}
+	
+	//도서평 수정처리(회원)
+	@PostMapping("/modifyReview")
+	public String modifyReview(Review review) {
+		String reviewCode = review.getReviewCode();
+		String reviewContent = review.getReviewContent();
+		
+		reviewService.updateReview(reviewCode, reviewContent);
+		
+		return "redirect:/reviewList";
+	}
+	
+	//도서평 내역(회원)
 	@GetMapping("/reviewList")
-	public String reviewList(HttpSession session){
-		String memberId =  (String)session.getAttribute("SID");
+	public String reviewList(HttpSession session,Model model){
+		String memberId = (String)session.getAttribute("SID");
 		
 		List<Review> review = reviewService.selectReview(memberId);
-		
+		model.addAttribute("reviewList", review);
 		return "review/reviewList";
 	}
 	
-	//도서평등록처리(회원)
+	//도서평 등록처리(회원)
 	@PostMapping("/addReview")
 	public String addReview(Review review,HttpSession session) {
 		System.out.println("도서평등록화면에서 가져온 값 >>> "+review.toString());
@@ -62,7 +78,7 @@ public class ReviewController {
 		return "redirect:/myRent";
 	}
 	
-	//도서평등록화면(회원)
+	//도서평 등록화면(회원)
 	@GetMapping("/addReview")
 	public String addReview(@RequestParam("send_code")String rentCode,Model model) {
 		Book bookName = bookService.getBookName(rentCode);

@@ -39,7 +39,7 @@
 					<p class="login-box-msg">
 					<strong>회원</strong>
 					님 환영합니다.</p>
-					<form action="loginMember" method="post">
+					<form action="/loginMember" method="post">
 						<div class="input-group mb-3">
 							<input type="text" class="form-control" name="memberId" value="member_001" placeholder="아이디">
 							<div class="input-group-append">
@@ -63,7 +63,7 @@
 					<p class="login-box-msg">
 					<strong>직원</strong>
 					님 환영합니다.</p>
-					<form action="loginOfficer" method="post">
+					<form action="/loginOfficer" method="post">
 						<div class="input-group mb-3">
 							<input type="text" class="form-control" name ="officerId" value="officer_01" placeholder="아이디">
 							<div class="input-group-append">
@@ -99,12 +99,12 @@
 		</div>
 		<div class="row">
 			<div class="col-6">
-				<a href="/index" class="btn btn-block btn-primary">
+				<a href="/loginMember?memberId=member_001&memberPw=pw001" class="btn btn-block btn-primary">
 					<i></i> 회원 화면 바로가기
 				</a>
 			</div>
 			<div class="col-6">
-				<a href="/office" class="btn btn-block btn-danger">
+				<a href="/loginOfficer?officerId=officer_01&officerPw=pw001" class="btn btn-block btn-danger">
 					<i></i> 직원 화면 바로가기
 				</a>
 			</div>
