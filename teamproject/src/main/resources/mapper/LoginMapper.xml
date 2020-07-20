@@ -81,13 +81,13 @@
 				tb_officer_login
 		</selectKey>
 			INSERT INTO tb_officer_login
-			(login_code
-			, officer_id
-			, login_date)
+				(login_code
+				, officer_id
+				, login_date)
 			VALUES 
-			(#{loginCode}
-			, #{officerId}
-			, NOW())
+				(#{loginCode}
+				, #{officerId}
+				, NOW())
 	</insert>
 	
 	<!-- 회원 로그인시 로그인내역 DB에 등록 -->
