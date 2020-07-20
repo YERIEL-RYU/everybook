@@ -24,6 +24,33 @@
 		<result property="bookDescription" column="book_description"/>
 		<result property="officerId" column="officer_id"/>
 	</resultMap>
+	
+	<select id="bookLibraryCodeSelectBook" parameterType="String" resultMap="bookResultMap">
+	SELECT 
+		b.book_code
+		, b.book_library_code
+		, b.book_name
+		, w.writer_name
+		, p.publisher_name
+		, b.book_publish_date
+		, b.book_price
+		, b.book_ISBN
+		, b.book_situation
+		, b.book_reg_date
+	FROM 
+		tb_book AS b
+		INNER JOIN
+		tb_writer AS w
+		INNER JOIN
+		tb_publisher AS p
+	WHERE
+		b.book_library_code = #{bookLibraryCode}
+	AND
+		b.writer_code = w.writer_code 
+	AND
+		b.publisher_code = p.publisher_code;
+	</select>
+	
 	<select id="isbnSelectBook" parameterType="String" resultMap="bookResultMap">
 	SELECT
 		b.book_library_code,
@@ -53,6 +80,7 @@
 		AND
 		b.library_code = #{libraryCode}
 	</select>
+		
 	<insert id="addBook">
 	<selectKey order="BEFORE" keyProperty="bookCode" resultType="String">
 	<![CDATA[
@@ -73,10 +101,6 @@
 		VALUES (#{bookCode}, #{libraryCode}, #{bookLibraryCode}, #{bookImageURL}, #{bookName}, #{categoryCode}, #{writerCode}, #{publisherCode}, #{bookPublishDate}, #{bookPrice}, #{bookIsbn}, '보유 중', #{bookDescription}, NOW(), #{officerId})
 	</insert>
 
-	
-	<resultMap type="Rent" id="rentResultMap">
-		<result property="rentCode" column="rent_code"/>
-	</resultMap>	
 	
 	<!-- 대여코드로 북 이름과 ISBN 출력 -->
 	<select id="getBookName" parameterType="String" resultMap="bookResultMap">

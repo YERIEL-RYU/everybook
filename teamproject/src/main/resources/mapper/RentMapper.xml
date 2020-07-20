@@ -31,6 +31,35 @@
 			<result property="bookIsbn" column="book_ISBN"/>
 		</association>
 	</resultMap>
+	
+	<!-- 대여관리 - 대여처리 -->
+	<insert id="addBookRent">
+	<selectKey>
+	<![CDATA[
+
+	]]>	
+	</selectKey>
+	INSERT INTO tb_rent(
+		rent_code
+		, library_code
+		, member_id
+		, book_code
+		, rent_date
+		, rent_return_date
+		, rent_reg_date
+		, officer_id
+	)VALUES(
+		''
+		, ''
+		, ''
+		, ''
+		, ''
+		, NOW()
+		, NOW()
+		, ''
+	)
+	</insert>
+	
 	<!-- 추천 도서 : 최근 5건의 대여 도서의 isbn select -->
 	  <select id="selectIsbn" parameterType="String" resultType="String">
 	  	SELECT

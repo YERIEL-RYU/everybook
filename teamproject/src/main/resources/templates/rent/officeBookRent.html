@@ -33,12 +33,12 @@
 		               <div class="card-header">
 			                <div class="row">
 			                	<div class="col-sm-2">			                
-									<a>도서 코드</a>																							               																																				
+									<a>청구 기호</a>																							               																																				
 			                	</div>	
 		                      <!-- SEARCH FORM -->
 		                     	<div class="col-sm-10">	                     	
 			                        <div class="input-group input-group-sm">
-			                          <input class="form-control" type="search" placeholder="#Book Code" aria-label="Search">
+			                          <input class="form-control" type="search" placeholder="#Book Library Code" aria-label="Search" id="searchBookLibraryCode">
 			                          <div class="input-group-append">
 			                            <button class="btn btn-navbar" type="submit" id="searchBook">
 			                              <i class="fas fa-search"></i>
@@ -52,6 +52,12 @@
               <!-- form start -->
               <form class="form-horizontal">
                 <div class="card-body">
+	              <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">청구기호</label>
+	                    <div class="col-sm-10">
+	                      <input type="text" class="form-control" placeholder="Library Book Code" name="bookLibraryCode">
+	                    </div>
+                  </div>
                   <div class="form-group row">
                   	<label for="inputEmail3" class="col-sm-2 col-form-label">도서 코드</label>
 	                	<div class="col-sm-10">
@@ -64,12 +70,6 @@
 	                      <input type="text" class="form-control" placeholder="ISBN" name="bookIsbn">
 	                    </div>
                   </div>
-	              <div class="form-group row">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">청구기호</label>
-	                    <div class="col-sm-10">
-	                      <input type="text" class="form-control" placeholder="Library Book Code" name="bookLibraryCode">
-	                    </div>
-                  </div>
                   <div class="form-group row">
                     <label for="inputPassword3" class="col-sm-2 col-form-label">도서이름</label>
 	                    <div class="col-sm-10">
@@ -79,13 +79,13 @@
                   <div class="form-group row">
                     <label for="inputPassword3" class="col-sm-2 col-form-label">출판사</label>
 	                    <div class="col-sm-10">
-	                      <input type="text" class="form-control" placeholder="Publisher Code" name="publisher">
+	                      <input type="text" class="form-control" placeholder="Publisher Code" name="publisherName">
 	                    </div>
                   </div>
                   <div class="form-group row">
                     <label for="inputPassword3" class="col-sm-2 col-form-label">저자</label>
 	                    <div class="col-sm-4">
-	                      <input type="text" class="form-control" placeholder="Writer Name" name="writer">
+	                      <input type="text" class="form-control" placeholder="Writer Name" name="writerName">
 	                    </div>
                     <label for="inputPassword3" class="col-sm-2 col-form-label">가격</label>
 	                    <div class="col-sm-4">
@@ -109,7 +109,7 @@
                   	</div>
                   	<label for="inputPassword3" class="col-sm-2 col-form-label">대여여부</label>
                   	<div class="col-sm-4">
-                  		<button type="button" class="fc-today-button btn btn-primary" name="rentCanSituation">대여가능</button>
+                  		<button type="button" class="fc-today-button btn btn-primary" name="rentCanSituation"></button>
                   	</div>
                   </div>                 
                 </div>
@@ -208,7 +208,9 @@
 			<!-- modalRent_button -->
 			<div class="row">
 				<div class="col-md-12" style="text-align: center; margin-bottom: 10px">				
-					<button type="button" class="fc-today-button btn btn-info" data-toggle="modal" data-target="#modalRent">#대여하기</button>			
+					<button type="button" class="fc-today-button btn btn-info" data-toggle="modal" data-target="#modalRent" disabled="disabled" id="rentBtn">대여하기</button>			
+				<div class="btnText" style="color: red">
+				</div>
 				</div>
 			</div>
 			<!-- /modalRent_button -->      
@@ -344,6 +346,7 @@
           <!-- modal -->
 			<div class="modal fade" id="modalRent">
 		        <div class="modal-dialog">
+		        <form action="/addBookRent" method="post">
 		          <div class="modal-content bg-default">
 		            <div class="modal-header">
 		              	<h4 class="modal-title">대여관리</h4>
@@ -359,6 +362,7 @@
 		            </div>
 		          </div>
 		          <!-- /.modal-content -->
+		          </form>
 		        </div>
 		        <!-- /.modal-dialog -->
       		</div>
@@ -440,8 +444,7 @@
 	  				$('[name=memberAddress]').val(data.memberAddress);
 	  				$('[name=memberTel]').val(data.memberTel);
 	  				$('[name=memberEmail]').val(data.memberEmail);
-	  				$('[name=rentCount]').val(data.rentCount);
-	  				$('[name=rentCount]').html(data.rentCount);
+	  				$('[name=rentCount]').html(data.rentCount+"권");
 	  				
 	  				//레벨이 일반회원일때(5,6,7) 대여가능횟수는 5권
 	  				if(data.levelCode == '5' || data.levelCode == '6' || data.levelCode == '7'){
@@ -450,8 +453,7 @@
 	  					var rentCan = rentCanCount-data.rentCount; //남은 대여가능 횟수
 	  					console.log("rentCan = " + rentCan);
 	  					$('[name=levelCode]').val('일반회원');
-	  					$('[name=rentCan]').val(rentCan);
-	  					$('[name=rentCan]').html(rentCan);
+	  					$('[name=rentCan]').html(rentCan+"권");
 	  				//레벨이 우수회원일때(4) 대여가능횟수는 7권
 	  				}else if(data.levelCode == '4'){
 	  					var rentCanCount = 7; //대여가능횟수
@@ -459,8 +461,7 @@
 	  					var rentCan = rentCanCount-data.rentCount; //남은 대여가능 횟수
 	  					console.log("rentCan = " + rentCan);
 	  					$('[name=levelCode]').val('우수회원');
-	  					$('[name=rentCan]').val(rentCan);
-	  					$('[name=rentCan]').html(rentCan);
+	  					$('[name=rentCan]').html(rentCan+"권");
 	  				//레벨이 제재회원일때(8) 대여가능횟수는 3권
 	  				}else if(data.levelCode == '8'){
 	  					var rentCanCount = 3; //대여가능횟수
@@ -469,25 +470,78 @@
 	  					var rentCan = rentCanCount-data.rentCount; //남은 대여가능 횟수
 	  					console.log("rentCan = " + rentCan); 
 	  					$('[name=levelCode]').val('제재회원');
-	  					$('[name=rentCan]').val(rentCan);
-	  					$('[name=rentCan]').html(rentCan);
+	  					$('[name=rentCan]').html(rentCan+"권");
 	  				}else{
 	  					var rentCanCount = 0; //대여가능횟수
 	  					console.log("data.rentCount = " + data.rentCount); //현재 대여권수
 	  					var rentCan = rentCanCount-data.rentCount; //남은 대여가능 횟수
 	  					console.log("rentCan = " + rentCan);
 	  					$('[name=levelCode]').val('휴먼회원');
-	  					$('[name=rentCan]').val(rentCan);
-	  					$('[name=rentCan]').html(rentCan);
+	  					$('[name=rentCan]').html(rentCan+"권");
+	  					console.log($('[name=rentCan]').html());
+	  				}
+	  				//대여가능 권수가 0권이 아니거나 도서상태가 대여 가능이면 대여하기 버튼 활성화
+	  				if($('[name=rentCan]').html() != "0권" && $('[name=rentCanSituation]').html() == '대여가능' && $('[name=rentCan]').html() != ''){
+	  					$('#rentBtn').removeAttr("disabled");
+	  					$('.btnText').text("");
+	  				}else if($('[name=rentCan]').html() == "0권"){
+	  					$('#rentBtn').attr("disabled","disabled");
+	  					$('.btnText').text("회원의 대여 가능 횟수가 제한됩니다.");
 	  				}
 			});
 				request.fail(function( jqXHR, textStatus ) {
 		  			  alert( "회원 정볼를 찾을 수 없습니다.  :  " + textStatus );
 		  			});
 			};
-			//도서로 검색시 도서정보 검색하여 화면에 출력
-			
 		});
+			//도서로 검색시 도서정보 검색하여 화면에 출력
+			$('#searchBook').on('click',function(){
+				var value = $('#searchBookLibraryCode').val();
+				console.log(value);
+				if(value == '' || value == null || value == undefined || value == 0 || value == NaN){
+					alert('청구기호를 입력하세요');				
+				}else {
+					var request = $.ajax({
+			  			  url: "/rent/getSelectBook",
+			  			  method: "get",
+			  			  data: { bookLibraryCode : value },
+			  			  dataType: "json"
+			  			});
+					request.done(function( data ) {
+		  				console.log(JSON.stringify(data) + " <- ajax");
+		  				$('[name=bookLibraryCode]').val(data.bookLibraryCode);
+		  				$('[name=bookCode]').val(data.bookCode);
+		  				$('[name=bookIsbn]').val(data.bookIsbn);
+		  				$('[name=bookName]').val(data.bookName);
+		  				$('[name=publisherName]').val(data.publisherName);
+		  				$('[name=writerName]').val(data.writerName);
+		  				$('[name=bookPrice]').val(data.bookPrice);
+		  				$('[name=bookPublishDate]').val(data.bookPublishDate);
+		  				$('[name=bookRegDate]').val(data.bookRegDate);
+		  				$('[name=bookSituation]').html(data.bookSituation);
+		  				
+		  				if(data.bookSituation == '예약 중'|| data.bookSituation == '대여 중'){
+		  					$('[name=rentCanSituation]').html('대여불가');
+		  				}else{
+		  					$('[name=rentCanSituation]').html('대여가능');
+		  				}
+		  				//대여가능 권수가 0이 아니거나 도서상태가 대여 가능이면 대여하기 버튼 활성화
+		  				if($('[name=rentCanSituation]').html() == '대여가능' && $('[name=rentCan]').html() != "0권" && $('[name=rentCan]').html() != ''){
+		  					$('#rentBtn').removeAttr("disabled");
+		  					$('.btnText').text("");
+		  				}else if($('[name=rentCanSituation]').html() == '대여불가'){
+		  					$('#rentBtn').attr("disabled","disabled");
+		  					$('.btnText').text("해당 도서는 "+data.bookSituation+" 상태로 대여할 수 없습니다.");
+		  				}else if($('[name=rentCanSituation]').html() == '대여가능'){
+		  					$('.btnText').text("");
+		  				}
+		  				});
+					request.fail(function( jqXHR, textStatus ) {
+			  			  alert( "도서 정보를 찾을 수 없습니다.  :  " + textStatus );
+			  			});
+				}
+			});
+			
 	})
 </script>
 </th:block>

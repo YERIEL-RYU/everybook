@@ -9,6 +9,9 @@ import team1.project.vo.Book;
 @Mapper
 public interface BookMapper {
 	
+	//청구기호로 도서 검색
+	public Book bookLibraryCodeSelectBook(String bookLibraryCode);
+	
 	//isbn과 도서관 코드로 책 검색
 	public List<Book> isbnSelectBook(String bookIsbn, String libraryCode);
 

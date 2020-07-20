@@ -14,16 +14,29 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import team1.project.service.BookService;
 import team1.project.service.MemberService;
 import team1.project.service.RentService;
+import team1.project.vo.Book;
 import team1.project.vo.Member;
 import team1.project.vo.Rent;
 
 @Controller
 public class RentController {
-	private final static Logger logger = LoggerFactory.getLogger(OfficerController.class);
+	private final static Logger logger = LoggerFactory.getLogger(RentController.class);
 	@Autowired private RentService rentService;
 	@Autowired private MemberService memberService;
+	@Autowired private BookService bookService;
+	
+	//청구기호로 검색시 도서 정보 검색하여 화면에 출력
+	@GetMapping("/rent/getSelectBook")
+	@ResponseBody
+	public Book getSelectBook(String bookLibraryCode) {
+		logger.info("getSelectBook RentController.java");
+		Book book = bookService.bookLibraryCodeSelectBook(bookLibraryCode);
+		logger.info("book : "+ book);
+		return book;
+	}
 	
 	//회원 아이디로 검색시 회원 정보 검색하여 화면에 출력
 	@GetMapping("/rent/getSelectMember")
