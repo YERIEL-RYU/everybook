@@ -1,6 +1,7 @@
 package team1.project.scheduler;
 
 import java.text.ParseException;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
@@ -30,8 +31,7 @@ public class CommonScheduler {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssZ");
 		for(int i =0; i <rtcanReserveTime.size(); i++) {
 			LocalDateTime reserveDate = LocalDateTime.parse(rtcanReserveTime.get(i).getRtcanRegDate(),formatter);
-			
-			
+					
 		}
 	}
 }
