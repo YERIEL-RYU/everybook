@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import team1.project.service.MemberService;
 import team1.project.service.RentService;
 import team1.project.vo.Member;
 import team1.project.vo.Rent;
@@ -22,6 +23,16 @@ import team1.project.vo.Rent;
 public class RentController {
 	private final static Logger logger = LoggerFactory.getLogger(OfficerController.class);
 	@Autowired private RentService rentService;
+	@Autowired private MemberService memberService;
+	
+	//회원 아이디로 검색시 회원 정보 검색하여 화면에 출력
+	@GetMapping("/rent/getSelectMember")
+	@ResponseBody
+	public Member getSelectMember(String memberId) {
+		Member member = memberService.selectgetMember(memberId);
+		logger.info("member -> " + member);
+		return member;
+	}
 	
 	//대여관리 - 대여리스트 삭제처리
 	@PostMapping("/officeRentDelete")

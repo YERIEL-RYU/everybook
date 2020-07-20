@@ -40,7 +40,7 @@
 			                        <div class="input-group input-group-sm">
 			                          <input class="form-control" type="search" placeholder="#Book Code" aria-label="Search">
 			                          <div class="input-group-append">
-			                            <button class="btn btn-navbar" type="submit">
+			                            <button class="btn btn-navbar" type="submit" id="searchBook">
 			                              <i class="fas fa-search"></i>
 			                            </button>
 			                          </div>
@@ -55,61 +55,61 @@
                   <div class="form-group row">
                   	<label for="inputEmail3" class="col-sm-2 col-form-label">도서 코드</label>
 	                	<div class="col-sm-10">
-	                      <input type="text" class="form-control" placeholder="Book Code">
+	                      <input type="text" class="form-control" placeholder="Book Code" name="bookCode">
 	                    </div>
 	                  </div>
 	              <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">ISBN</label>
 	                    <div class="col-sm-10">
-	                      <input type="text" class="form-control" placeholder="ISBN">
+	                      <input type="text" class="form-control" placeholder="ISBN" name="bookIsbn">
 	                    </div>
                   </div>
 	              <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">청구기호</label>
 	                    <div class="col-sm-10">
-	                      <input type="text" class="form-control" placeholder="Library Book Code">
+	                      <input type="text" class="form-control" placeholder="Library Book Code" name="bookLibraryCode">
 	                    </div>
                   </div>
                   <div class="form-group row">
                     <label for="inputPassword3" class="col-sm-2 col-form-label">도서이름</label>
 	                    <div class="col-sm-10">
-	                      <input type="text" class="form-control" placeholder="Book Name">
+	                      <input type="text" class="form-control" placeholder="Book Name" name="bookName">
 	                    </div>
                   </div>
                   <div class="form-group row">
                     <label for="inputPassword3" class="col-sm-2 col-form-label">출판사</label>
 	                    <div class="col-sm-10">
-	                      <input type="text" class="form-control" placeholder="Publisher Code">
+	                      <input type="text" class="form-control" placeholder="Publisher Code" name="publisher">
 	                    </div>
                   </div>
                   <div class="form-group row">
                     <label for="inputPassword3" class="col-sm-2 col-form-label">저자</label>
 	                    <div class="col-sm-4">
-	                      <input type="text" class="form-control" placeholder="Writer Name">
+	                      <input type="text" class="form-control" placeholder="Writer Name" name="writer">
 	                    </div>
                     <label for="inputPassword3" class="col-sm-2 col-form-label">가격</label>
 	                    <div class="col-sm-4">
-	                      <input type="text" class="form-control" placeholder="Book Price">
+	                      <input type="text" class="form-control" placeholder="Book Price" name="bookPrice">
 	                    </div>
                   </div>
                   <div class="form-group row">
                     <label for="inputPassword3" class="col-sm-2 col-form-label">출간날짜</label>
 	                    <div class="col-sm-4">
-	                      <input type="text" class="form-control" placeholder="Book Publish Date">
+	                      <input type="text" class="form-control" placeholder="Book Publish Date" name="bookPublishDate">
 	                    </div>
                     <label for="inputPassword3" class="col-sm-2 col-form-label">등록날짜</label>
 	                    <div class="col-sm-4">
-	                      <input type="text" class="form-control" placeholder="Book Reg Date">
+	                      <input type="text" class="form-control" placeholder="Book Reg Date" name="bookRegDate">
 	                    </div>
                   </div>
                   <div class="form-group row">
                   	<label for="inputPassword3" class="col-sm-2 col-form-label">도서상태</label>
                   	<div class="col-sm-4">
-                  		<button type="button" class="fc-today-button btn btn-primary">보유중</button>
+                  		<button type="button" class="fc-today-button btn btn-primary" name="bookSituation"></button>
                   	</div>
                   	<label for="inputPassword3" class="col-sm-2 col-form-label">대여여부</label>
                   	<div class="col-sm-4">
-                  		<button type="button" class="fc-today-button btn btn-primary">대여가능</button>
+                  		<button type="button" class="fc-today-button btn btn-primary" name="rentCanSituation">대여가능</button>
                   	</div>
                   </div>                 
                 </div>
@@ -131,9 +131,9 @@
 		                      <!-- SEARCH FORM -->
 		                     	<div class="col-sm-10">		                     	
 		                        <div class="input-group input-group-sm">
-		                          <input class="form-control" type="search" placeholder="#Member Id" aria-label="Search">
+		                          <input class="form-control" type="search" placeholder="#Member Id" aria-label="Search" id="searchMemberId">
 		                          <div class="input-group-append">
-		                            <button class="btn btn-navbar" type="submit">
+		                            <button class="btn btn-navbar" type="submit" id="searchMember">
 		                              <i class="fas fa-search"></i>
 		                            </button>
 		                          </div>
@@ -148,52 +148,52 @@
 	                  <div class="form-group row">
 	                    <label for="inputEmail3" class="col-sm-2 col-form-label">회원 아이디</label>
 		                    <div class="col-sm-10">
-		                      <input type="text" class="form-control" placeholder="Member Id">
+		                      <input type="text" class="form-control" placeholder="Member Id" name="memberId">
 		                    </div>
 	                  </div>
 	                  <div class="form-group row">
 	                    <label for="inputEmail3" class="col-sm-2 col-form-label">회원 이름</label>
 		                    <div class="col-sm-10">
-		                      <input type="text" class="form-control" placeholder="Member Name">
+		                      <input type="text" class="form-control" placeholder="Member Name" name="memberName">
 		                    </div>
 		              </div>
 	                  <div class="form-group row">
 	                    <label for="inputEmail3" class="col-sm-2 col-form-label">생년 월일</label>
 		                    <div class="col-sm-10">
-		                      <input type="Date" class="form-control" placeholder="Member Name">
+		                      <input type="Date" class="form-control" placeholder="Member Birth" name="memberBirth">
 		                    </div>
 	                  </div>
 	                  <div class="form-group row">
 	                    <label for="inputPassword3" class="col-sm-2 col-form-label">회원 레벨</label>
 		                    <div class="col-sm-10">
-		                      <input type="text" class="form-control" placeholder="Member Level">
+		                      <input type="text" class="form-control" placeholder="level Code" name="levelCode">
 		                    </div>
 	                  </div>
 	                  <div class="form-group row">
 	                    <label for="inputPassword3" class="col-sm-2 col-form-label">주소</label>
 		                    <div class="col-sm-10">
-		                      <input type="email" class="form-control" placeholder="Member Address">
+		                      <input type="email" class="form-control" placeholder="Member Address" name="memberAddress">
 		                    </div>
 	                  </div>
 	                  <div class="form-group row">
 	                    <label for="inputPassword3" class="col-sm-2 col-form-label">전화번호</label>
 		                    <div class="col-sm-10">
-		                      <input type="email" class="form-control" placeholder="Member Tel">
+		                      <input type="email" class="form-control" placeholder="Member Tel" name="memberTel">
 		                    </div>
 	                  </div>
 	                  <div class="form-group row">
 	                    <label for="inputPassword3" class="col-sm-2 col-form-label">이메일</label>
 		                    <div class="col-sm-10">
-		                      <input type="email" class="form-control" placeholder="Member Email">
+		                      <input type="email" class="form-control" placeholder="Member Email" name="memberEmail">
 		                    </div>
 	                  </div>
 	                  <div class="form-group row">
                   		<label for="inputPassword3" class="col-sm-2 col-form-label">현재대여중</label>
 		                  	<div class="col-sm-4">
-		                  		<button type="button" class="fc-today-button btn btn-danger">3권</button>
+		                  		<button type="button" class="fc-today-button btn btn-danger" name="rentCount"></button>
 		                  	</div>
                   			<label for="inputPassword3" class="col-sm-3 col-form-label">대여가능권수</label>                 	
-                  			<button type="button" class="fc-today-button btn btn-danger">2권</button>               
+                  			<button type="button" class="fc-today-button btn btn-danger" name="rentCan"></button>               
                   	  </div>	            
 	                </div>
 	                <!-- /.card-body -->
@@ -417,6 +417,77 @@
   			  alert( "Request failed: " + textStatus );
   			});
 		})
+		
+		//회원 아이디로 검색시 회원 정보 검색하여 화면에 출력
+		$('#searchMember').on('click',function(){
+			var value = $('#searchMemberId').val();
+			console.log(value);
+			if(value == '' || value == null || value == undefined || value == 0 || value == NaN){
+				alert('회원 id를 입력하세요');				
+			}else {
+				var request = $.ajax({
+		  			  url: "/rent/getSelectMember",
+		  			  method: "get",
+		  			  data: { memberId : value },
+		  			  dataType: "json"
+		  			});
+				request.done(function( data ) {
+	  				console.log(JSON.stringify(data) + " <- ajax");
+	  				$('[name=memberId]').val(data.memberId);
+	  				$('[name=memberName]').val(data.memberName);
+	  				$('[name=memberBirth]').val(data.memberBirth);
+	  				$('[name=levelCode]').val(data.levelCode);
+	  				$('[name=memberAddress]').val(data.memberAddress);
+	  				$('[name=memberTel]').val(data.memberTel);
+	  				$('[name=memberEmail]').val(data.memberEmail);
+	  				$('[name=rentCount]').val(data.rentCount);
+	  				$('[name=rentCount]').html(data.rentCount);
+	  				
+	  				//레벨이 일반회원일때(5,6,7) 대여가능횟수는 5권
+	  				if(data.levelCode == '5' || data.levelCode == '6' || data.levelCode == '7'){
+	  					var rentCanCount = 5; //대여가능횟수
+	  					console.log("data.rentCount = " + data.rentCount); //현재 대여권수
+	  					var rentCan = rentCanCount-data.rentCount; //남은 대여가능 횟수
+	  					console.log("rentCan = " + rentCan);
+	  					$('[name=levelCode]').val('일반회원');
+	  					$('[name=rentCan]').val(rentCan);
+	  					$('[name=rentCan]').html(rentCan);
+	  				//레벨이 우수회원일때(4) 대여가능횟수는 7권
+	  				}else if(data.levelCode == '4'){
+	  					var rentCanCount = 7; //대여가능횟수
+	  					console.log("data.rentCount = " + data.rentCount); //현재 대여권수
+	  					var rentCan = rentCanCount-data.rentCount; //남은 대여가능 횟수
+	  					console.log("rentCan = " + rentCan);
+	  					$('[name=levelCode]').val('우수회원');
+	  					$('[name=rentCan]').val(rentCan);
+	  					$('[name=rentCan]').html(rentCan);
+	  				//레벨이 제재회원일때(8) 대여가능횟수는 3권
+	  				}else if(data.levelCode == '8'){
+	  					var rentCanCount = 3; //대여가능횟수
+	  					console.log("rentCanCount = " + rentCanCount);
+	  					console.log("data.rentCount = " + data.rentCount); //현재 대여권수
+	  					var rentCan = rentCanCount-data.rentCount; //남은 대여가능 횟수
+	  					console.log("rentCan = " + rentCan); 
+	  					$('[name=levelCode]').val('제재회원');
+	  					$('[name=rentCan]').val(rentCan);
+	  					$('[name=rentCan]').html(rentCan);
+	  				}else{
+	  					var rentCanCount = 0; //대여가능횟수
+	  					console.log("data.rentCount = " + data.rentCount); //현재 대여권수
+	  					var rentCan = rentCanCount-data.rentCount; //남은 대여가능 횟수
+	  					console.log("rentCan = " + rentCan);
+	  					$('[name=levelCode]').val('휴먼회원');
+	  					$('[name=rentCan]').val(rentCan);
+	  					$('[name=rentCan]').html(rentCan);
+	  				}
+			});
+				request.fail(function( jqXHR, textStatus ) {
+		  			  alert( "회원 정볼를 찾을 수 없습니다.  :  " + textStatus );
+		  			});
+			};
+			//도서로 검색시 도서정보 검색하여 화면에 출력
+			
+		});
 	})
 </script>
 </th:block>
