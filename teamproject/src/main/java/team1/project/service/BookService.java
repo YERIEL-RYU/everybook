@@ -36,7 +36,11 @@ public class BookService {
 	@Autowired private PublisherMapper publisherMapper;
 	@Autowired private CategoryMapper categoryMapper;
 	
-
+	public List<Book> isbnSelectBook(String bookIsbn, String libraryCode){
+		return bookMapper.isbnSelectBook(bookIsbn, libraryCode);
+		
+	}
+	
 	/**
 	 * 책 추가
 	 * @param book

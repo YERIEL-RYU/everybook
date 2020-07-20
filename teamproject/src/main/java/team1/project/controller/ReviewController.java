@@ -43,9 +43,9 @@ public class ReviewController {
 	//도서평등록화면(회원)
 	@GetMapping("/addReview")
 	public String addReview(@RequestParam("send_code")String rentCode,Model model) {
-		//Book bookName = bookService.getBookName(rentCode);
-		//System.out.println("대여코드로 가져온 도서 이름 >>> "+bookName);
-		//model.addAttribute("bookName", bookName);
+		Book bookName = bookService.getBookName(rentCode);
+		System.out.println("대여코드로 가져온 도서 이름 >>> "+bookName);
+		model.addAttribute("bookName", bookName);
 		return "review/addReview";
 	}
 	
