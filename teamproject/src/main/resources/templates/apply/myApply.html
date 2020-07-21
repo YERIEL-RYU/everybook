@@ -83,7 +83,7 @@
 									<td th:text="${A.applyCode}"></td>
 									<td th:text="${A.bookName}"> </td>
 									<td th:text="${A.bookIsbn}"></td>
-									<td th:text="${#dates.format(A.applyRegDate, 'YYYY-MM-dd')}"></td>
+									<td th:text="${A.applyRegDate}"></td>
 									<td><button class="btn btn-info btn-sm deleteBookApplyBtn" type="submit" th:value="${A.applyCode}">취소</button></td>
 								</tr>	
 			                </table>

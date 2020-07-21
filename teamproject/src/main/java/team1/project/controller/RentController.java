@@ -1,6 +1,7 @@
 package team1.project.controller;
 
 import java.util.List;
+import java.util.jar.Attributes.Name;
 
 import javax.servlet.http.HttpSession;
 
@@ -27,6 +28,13 @@ public class RentController {
 	@Autowired private RentService rentService;
 	@Autowired private MemberService memberService;
 	@Autowired private BookService bookService;
+	
+	//대여처리
+	@PostMapping("/addBookRent")
+	public String addBookRent(Rent rent, HttpSession session) {
+		logger.info("대여처리 --> " + rent);
+		return "rent/officeBookRent";
+	}
 	
 	//청구기호로 검색시 도서 정보 검색하여 화면에 출력
 	@GetMapping("/rent/getSelectBook")

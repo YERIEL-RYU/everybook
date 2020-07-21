@@ -10,6 +10,7 @@
 		<result property="libraryCode" column="library_code"/>
 		<result property="bookLibraryCode" column="book_library_code"/>
 		<result property="bookName" column="book_name"/>
+		<result property="categoryName" column="category_name"/>
 		<result property="categoryNumber" column="category_number"/>
 		<result property="categoryCode" column="category_code"/>
 		<result property="writerName" column="writer_name"/>

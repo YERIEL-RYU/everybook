@@ -27,6 +27,7 @@
 	 	<!-- Main content -->
 		<section class="content" style="background-color: white">
 			<div class="row">
+		
 				<div class="col-md-6">				
 				  <!-- Book Serch Form -->
 		            <div class="card card-white">
@@ -50,66 +51,66 @@
 	              		</div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form class="form-horizontal">
+              <form class="form-horizontal" method="post">
                 <div class="card-body">
 	              <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">청구기호</label>
 	                    <div class="col-sm-10">
-	                      <input type="text" class="form-control" placeholder="Library Book Code" name="bookLibraryCode">
+	                      <input type="text" class="form-control" placeholder="Library Book Code" name="bookLibraryCode" id="bookLibraryCode">
 	                    </div>
                   </div>
                   <div class="form-group row">
                   	<label for="inputEmail3" class="col-sm-2 col-form-label">도서 코드</label>
 	                	<div class="col-sm-10">
-	                      <input type="text" class="form-control" placeholder="Book Code" name="bookCode">
+	                      <input type="text" class="form-control" placeholder="Book Code" name="bookCode" id="bookCode">
 	                    </div>
 	                  </div>
 	              <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">ISBN</label>
 	                    <div class="col-sm-10">
-	                      <input type="text" class="form-control" placeholder="ISBN" name="bookIsbn">
+	                      <input type="text" class="form-control" placeholder="ISBN" name="bookIsbn" id="bookIsbn">
 	                    </div>
                   </div>
                   <div class="form-group row">
                     <label for="inputPassword3" class="col-sm-2 col-form-label">도서이름</label>
 	                    <div class="col-sm-10">
-	                      <input type="text" class="form-control" placeholder="Book Name" name="bookName">
+	                      <input type="text" class="form-control" placeholder="Book Name" name="bookName" id="bookName">
 	                    </div>
                   </div>
                   <div class="form-group row">
                     <label for="inputPassword3" class="col-sm-2 col-form-label">출판사</label>
 	                    <div class="col-sm-10">
-	                      <input type="text" class="form-control" placeholder="Publisher Code" name="publisherName">
+	                      <input type="text" class="form-control" placeholder="Publisher Code" name="publisherName" id="publisherName">
 	                    </div>
                   </div>
                   <div class="form-group row">
                     <label for="inputPassword3" class="col-sm-2 col-form-label">저자</label>
 	                    <div class="col-sm-4">
-	                      <input type="text" class="form-control" placeholder="Writer Name" name="writerName">
+	                      <input type="text" class="form-control" placeholder="Writer Name" name="writerName" id="writerName">
 	                    </div>
                     <label for="inputPassword3" class="col-sm-2 col-form-label">가격</label>
 	                    <div class="col-sm-4">
-	                      <input type="text" class="form-control" placeholder="Book Price" name="bookPrice">
+	                      <input type="text" class="form-control" placeholder="Book Price" name="bookPrice" id="bookPrice">
 	                    </div>
                   </div>
                   <div class="form-group row">
                     <label for="inputPassword3" class="col-sm-2 col-form-label">출간날짜</label>
 	                    <div class="col-sm-4">
-	                      <input type="text" class="form-control" placeholder="Book Publish Date" name="bookPublishDate">
+	                      <input type="text" class="form-control" placeholder="Book Publish Date" name="bookPublishDate" id="bookPublishDate">
 	                    </div>
                     <label for="inputPassword3" class="col-sm-2 col-form-label">등록날짜</label>
 	                    <div class="col-sm-4">
-	                      <input type="text" class="form-control" placeholder="Book Reg Date" name="bookRegDate">
+	                      <input type="text" class="form-control" placeholder="Book Reg Date" name="bookRegDate" id="bookRegDate">
 	                    </div>
                   </div>
                   <div class="form-group row">
                   	<label for="inputPassword3" class="col-sm-2 col-form-label">도서상태</label>
                   	<div class="col-sm-4">
-                  		<button type="button" class="fc-today-button btn btn-primary" name="bookSituation"></button>
+                  		<button type="button" class="fc-today-button btn btn-primary" name="bookSituation" id="bookSituation"></button>
                   	</div>
                   	<label for="inputPassword3" class="col-sm-2 col-form-label">대여여부</label>
                   	<div class="col-sm-4">
-                  		<button type="button" class="fc-today-button btn btn-primary" name="rentCanSituation"></button>
+                  		<button type="button" class="fc-today-button btn btn-primary" name="rentCanSituation" id="rentCanSituation"></button>
                   	</div>
                   </div>                 
                 </div>
@@ -143,7 +144,7 @@
 	              		</div>
 	              <!-- /.card-header -->
 	              <!-- form start -->
-	              <form class="form-horizontal">
+	              <form class="form-horizontal" method="post">
 	                <div class="card-body">
 	                  <div class="form-group row">
 	                    <label for="inputEmail3" class="col-sm-2 col-form-label">회원 아이디</label>
@@ -320,8 +321,8 @@
 	      		</div>
 	      				      	
                 <div class="modal fade" id="deleteModal">
-			        <div class="modal-dialog">
 			        <form action="/officeRentDelete" method="post">
+			        <div class="modal-dialog">
 			          <div class="modal-content bg-default" style="width: 70%;">
 			            <div class="modal-header">
 			              <h4 class="modal-title">대여도서관리</h4>
@@ -339,14 +340,15 @@
 			            </div>
 			          </div>
 			          <!-- /.modal-content -->
-			        </form>
 			        </div>
+			        </form>
 			        <!-- /.modal-dialog -->
 	      		</div>		      	
           <!-- modal -->
 			<div class="modal fade" id="modalRent">
 		        <div class="modal-dialog">
-		        <form action="/addBookRent" method="post">
+		        <form  action="/addBookRent" method="post">
+		        
 		          <div class="modal-content bg-default">
 		            <div class="modal-header">
 		              	<h4 class="modal-title">대여관리</h4>
@@ -358,11 +360,11 @@
 		            </div>
 		            <div class="modal-footer justify-content-between">
 		              <button type="button" class="btn" data-dismiss="modal" style="background-color: Snow; border: outset;">Close</button>
-		              <button type="button" class="btn" style="background-color: Snow; border: outset;">#대여하기</button>
+		              <button type="button" id="addRentBtn" class="btn" style="background-color: Snow; border: outset;">#대여하기</button>
 		            </div>
 		          </div>
-		          <!-- /.modal-content -->
-		          </form>
+		          <!-- /.modal-content -->	
+		          </form>       
 		        </div>
 		        <!-- /.modal-dialog -->
       		</div>
@@ -493,6 +495,11 @@
 		  			  alert( "회원 정볼를 찾을 수 없습니다.  :  " + textStatus );
 		  			});
 			};
+			
+			$('#addRentBtn').click(function(){
+				$('.form-horizontal').submit();
+			});
+			
 		});
 			//도서로 검색시 도서정보 검색하여 화면에 출력
 			$('#searchBook').on('click',function(){
