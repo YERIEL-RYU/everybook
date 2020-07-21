@@ -2,11 +2,9 @@ package team1.project.scheduler;
 
 import java.text.ParseException;
 import java.time.Duration;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.Period;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
+
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import team1.project.service.PointService;
 import team1.project.service.RtcanReserveService;
+import team1.project.vo.PointHistory;
 import team1.project.vo.RtcanReserve;
 
 @Component
@@ -22,13 +22,15 @@ public class CommonScheduler {
 	
 	private final static Logger logger = LoggerFactory.getLogger(CommonScheduler.class);
 	@Autowired RtcanReserveService rtcanReserveService;
+	@Autowired PointService pointService;
 
-	@Scheduled(cron = "0 0/3 * * * ?")
+	@Scheduled(cron = "0/30 * * * * ?")
 	public void reservate() throws ParseException {
 		logger.info("예약 조회 및 처리 : {}");
 		List<RtcanReserve> rtcanReserveTime = rtcanReserveService.getRtcanReserveTime();
 		LocalDateTime currentTime = LocalDateTime.now();
 		//DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssZ");
+		//logger.info("rtcanReserveTime : {}", rtcanReserveTime);
 		for(int i =0; i <rtcanReserveTime.size(); i++) {
 			//LocalDateTime reserveDate = LocalDateTime.parse(rtcanReserveTime.get(i).getRtcanRegDate(),formatter);
 			String tt = rtcanReserveTime.get(i).getRtcanRegDate();
@@ -51,6 +53,17 @@ public class CommonScheduler {
 				logger.info("경고메세지를 보내고");
 			}else if(duration.getSeconds() > 86400) {
 				logger.info("예약 취소 및 벌점 긔긔");
+			
+				PointHistory pointHistory = new PointHistory();
+				pointHistory.setMemberId(rtcanReserveTime.get(i).getMemberId());
+				pointHistory.setLibraryCode(rtcanReserveTime.get(i).getLibraryCode());
+				pointHistory.setPsCode("point_standard_006");
+				pointService.addPh(pointHistory); 
+				RtcanReserve rtcanReserve = new RtcanReserve();
+				rtcanReserve.setRtcanSituation("취소");
+				rtcanReserve.setRtcanCode(rtcanReserveTime.get(i).getRtcanCode());
+				rtcanReserveService.modifyRtcanReserve(rtcanReserve);
+				 
 			}
 			
 		}

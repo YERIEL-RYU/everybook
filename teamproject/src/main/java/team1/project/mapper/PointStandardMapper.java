@@ -4,21 +4,21 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import team1.project.vo.Point;
+import team1.project.vo.PointStandard;
 
 @Mapper
 public interface PointStandardMapper {
 	
-	public List<Point> searchPs(String sk, String sv);
+	public List<PointStandard> searchPs(String sk, String sv);
 	
-	public int deletePs(Point point);
+	public int deletePs(PointStandard point);
 	
-	public int modifyPs(Point point);
+	public int modifyPs(PointStandard point);
 	
-	public Point getSelectPs(String psCode);
+	public PointStandard getSelectPs(String psCode);
 	
-	public int addPs(Point point);
+	public int addPs(PointStandard point);
 	
-	public List<Point> getPsList();
+	public List<PointStandard> getPsList();
 
 }

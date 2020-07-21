@@ -8,6 +8,9 @@
 </th:block>
 
 <th:block layout:fragment="customCss">
+<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
 </th:block>
 
 <th:block layout:fragment="customContents">
@@ -35,16 +38,21 @@
 									<div class="row">
 										<div class="col-sm-3">
 											<div class="form-group">
-						                        <select class="form-control custom-select">
-						                          <option>option 1</option>
-						                          <option>option 2</option>
+						                        <select class="form-control custom-select" name="sk">
+						                          <option>상벌점 내역 코드</option>
+						                          <option>회원 아이디</option>
+						                          <option>상벌점 기준 코드</option>
+						                          <option>상벌점 기준 이름</option>
+						                          <option>점수</option>
+						                          <option>상태</option>
+						                          <option>등록 직원</option>
 						                        </select>
 						                    </div>
 										</div>
 										<div class="col-sm-9">
 											<div class="row">
 												<div class="col-sm-10">
-													<input class="form-control" type="search">
+													<input class="form-control" type="text" name="sv">
 												</div>
 												<div class="col-sm-2">
 													<div class="input-group-append">
@@ -166,10 +174,10 @@
 					</div>
 					
 					<div class="card-body">
-						<table id="example2" class="table table-bordered table-hover">
+						<table id="list-table" class="table table-bordered table-hover" style="text-align: center;">
 		                  <thead>
 			                  <tr>
-			                  	<th><input type="checkbox"></th>
+			                  	<th><input type="checkbox" name="checkAll"></th>
 			                    <th>상벌점 내역 코드</th>
 			                    <th>회원 아이디</th>
 			                    <th>상벌점 기준 코드</th>
@@ -181,21 +189,21 @@
 			                  </tr>
 		                  </thead>
 		                  <tbody>
-			                  <tr>
-			                  	<td><input type="checkbox"></td>
-			                    <td>history001</td>
-			                    <td>member001</td>
-			                    <td>1</td>
-			                    <td>도서평작성</td>
-			                    <td>+1</td>
-			                    <td>대기</td>
-			                    <td>2020.06.09</td>
-			                    <td>office_001</td>
+			                  <tr th:each="p : ${phList}">
+			                  	<td><input type="checkbox" name="checkRow" th:value="${p.phCode}"></td>
+			                    <td>[[${p.phCode}]]</td>
+			                    <td>[[${p.memberId}]]</td>
+			                    <td>[[${p.psCode}]]</td>
+			                    <td>[[${p.psName}]]</td>
+			                    <td>[[${p.psScore}]]</td>
+			                    <td>[[${p.phCondition}]]</td>
+			                    <td>[[${p.phRegDate}]]</td>
+			                    <td>[[${p.officerId}]]</td>
 			                  </tr>
 		                  </tbody>
 		                  <tfoot>
 			                  <tr>
-			                  	<th><input type="checkbox"></th>
+			                  	<th></th>
 			                    <th>상벌점 내역 코드</th>
 			                    <th>회원 아이디</th>
 			                    <th>상벌점 기준 코드</th>
@@ -203,27 +211,38 @@
 			                    <th>점수</th>
 			                    <th>상태</th>
 			                    <th>등록날짜</th>
-			                    <th>등록자</th>
+			                    <th>등록 직원</th>
 			                  </tr>
 		                  </tfoot>
 		                </table>
 					</div>
 					<!-- /.card-body -->
-					<div class="card-footer clearfix">
-						<ul class="pagination pagination-sm m-0 float-right">
-							<li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-							<li class="page-item"><a class="page-link" href="#">1</a></li>
-							<li class="page-item"><a class="page-link" href="#">2</a></li>
-							<li class="page-item"><a class="page-link" href="#">3</a></li>
-							<li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-						</ul>
-					</div>
 				</div>
 			</div>
 		</section>
 		<!-- /.content -->
 	</div>
 	<!-- /.content-wrapper -->
+</th:block>
+<th:block layout:fragment="customFooterScript">
+<script src="/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="/dist/js/checkbox.js"></script>
+<script src="/dist/js/commonAjax.js"></script>
+<script>
+//반응형 테이블
+$("#list-table").DataTable({
+	"paging": true,
+    "lengthChange": false,
+    "searching": false,
+    "ordering": true,
+    "info": true,
+    "autoWidth": false,
+    "responsive": true,
+});
+</script>
 </th:block>
 
 </html>

@@ -4,7 +4,7 @@
 <!-- 온라인 예약 RtcanReserve resultMap -->
 <resultMap type="RtcanReserve" id="rtcanReserveSelect">
 	<result property="rtcanCode" column="rtcan_reserve_code"/>
-	<result property="library_code" column="libraryCode"/>
+	<result property="libraryCode" column="library_code"/>
 	<result property="memberId" column="member_id"/>
 	<result property="rtcanDate" column="reserve_date"/>
 	<result property="rtcanSituation" column="rtcan_situation"/>
@@ -112,8 +112,10 @@
 	UPDATE tb_rtcan_reserve
 	SET
 		rtcan_situation= #{rtcanSituation},
-		reserve_reg_date= NOW(),
-		officer_id= #{officerId}
+		<if test="officerId != null and officerId neq ''.toString()">
+			officer_id= #{officerId},
+		</if>
+		reserve_reg_date= NOW()
 	WHERE 
 		rtcan_reserve_code = #{rtcanCode}
 </update>
