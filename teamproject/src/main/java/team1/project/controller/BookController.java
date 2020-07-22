@@ -20,7 +20,7 @@ import team1.project.vo.Unicode;
 
 @Controller
 public class BookController {
-	private final static Logger logger = LoggerFactory.getLogger(ReserveController.class);
+	private final static Logger logger = LoggerFactory.getLogger(BookController.class);
 	
 	@Autowired private BookService bookService;
 
@@ -69,7 +69,10 @@ public class BookController {
 	}
 	
 	@GetMapping("/bookDetail")
-	public String bookDetail() {
+	public String bookDetail(Model model, @RequestParam(name="bookCode") String bookCode) {
+		logger.info("bookCode : {}",bookCode);
+		Book bookDetail = bookService.getBookDetail(bookCode);
+		model.addAttribute("bookDetail", bookDetail);
 		return "book/bookDetail";
 	}
 	@GetMapping("/bookList")

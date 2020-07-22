@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="team1.project.mapper.PointStandardMapper">
-	<resultMap type="Point" id="PsSelect">
+	<resultMap type="PointStandard" id="PsSelect">
 		<result property="psCode" column="point_standard_code"/>
 		<result property="psDivision" column="point_standard_division"/>
 		<result property="psName" column="point_standard_name"/>
@@ -34,7 +34,7 @@
 						 AND officer_pw=#{officer.officerPw})
 	</delete>
 	<!-- 상벌점 기준 update -->
-	<update id="modifyPs" parameterType="Point">
+	<update id="modifyPs" parameterType="PointStandard">
 		UPDATE tb_point_standard
 			<trim prefix="set" suffixOverrides=",">
 				<if test="psDivision != null and psDivision != ''.toString()">point_standard_division = #{psDivision},</if>
@@ -56,7 +56,7 @@
 			point_standard_code = #{psCode}	
 	</select>
 	<!-- 상벌점 기준 등록 insert -->
-	<insert id="addPs" parameterType="Point">
+	<insert id="addPs" parameterType="PointStandard">
 		<!-- 코드 자동 증가 -->
 		<selectKey order="BEFORE" keyProperty="psCode" resultType="String">
 			<![CDATA[

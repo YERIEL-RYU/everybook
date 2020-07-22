@@ -2,7 +2,7 @@ package team1.project.vo;
 
 import java.util.Date;
 
-public class Point {
+public class PointStandard {
 	private String psCode;
 	private String psDivision;
 	private String psName;
