@@ -24,6 +24,44 @@
 		<result property="bookDescription" column="book_description"/>
 		<result property="officerId" column="officer_id"/>
 	</resultMap>
+	<select id="getBookDetail" parameterType="String" resultMap="bookResultMap">
+		SELECT 
+			b.book_code, 
+			b.library_code, 
+			b.book_library_code, 
+			b.book_image,
+			b.book_name, 
+			c.category_number, 
+			w.writer_name, 
+			p.publisher_name, 
+			b.book_publish_date, 
+			b.book_price, 
+			b.book_ISBN, 
+			b.book_description, 
+			b.book_situation, 
+			b.book_reg_date,
+			l.library_name
+		FROM
+			tb_book AS b
+			inner join
+			tb_category AS c
+			INNER join
+			tb_writer AS w
+			INNER join
+			tb_publisher AS p
+			INNER join
+			tb_library AS l
+			on
+			b.category_code = c.category_code
+			and
+			b.writer_code = w.writer_code
+			and
+			b.publisher_code = p.publisher_code
+			and
+			b.library_code = l.library_code
+		WHERE
+			book_code=#{bookCode}
+	</select>
 	<select id="isbnSelectBook" parameterType="String" resultMap="bookResultMap">
 	SELECT
 		b.book_library_code,

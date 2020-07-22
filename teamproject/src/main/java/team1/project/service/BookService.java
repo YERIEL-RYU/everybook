@@ -36,9 +36,12 @@ public class BookService {
 	@Autowired private PublisherMapper publisherMapper;
 	@Autowired private CategoryMapper categoryMapper;
 	
+	public Book getBookDetail(String bookCode) {
+		return bookMapper.getBookDetail(bookCode);
+	}
+	
 	public List<Book> isbnSelectBook(String bookIsbn, String libraryCode){
 		return bookMapper.isbnSelectBook(bookIsbn, libraryCode);
-		
 	}
 	
 	/**

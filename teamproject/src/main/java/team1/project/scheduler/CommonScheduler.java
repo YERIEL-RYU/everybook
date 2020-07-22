@@ -24,7 +24,7 @@ public class CommonScheduler {
 	@Autowired RtcanReserveService rtcanReserveService;
 	@Autowired PointService pointService;
 
-	@Scheduled(cron = "0/30 * * * * ?")
+	@Scheduled(cron = "0 0/3 * * * ?")
 	public void reservate() throws ParseException {
 		logger.info("예약 조회 및 처리 : {}");
 		List<RtcanReserve> rtcanReserveTime = rtcanReserveService.getRtcanReserveTime();

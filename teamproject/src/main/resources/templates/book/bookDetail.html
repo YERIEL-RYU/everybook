@@ -58,11 +58,11 @@
 
 			<!-- Course -->		
 			<div class="course_container">
-				<div class="course_title">더 해빙=The Having : 부와 행운을 끌어당기는 힘</div>
+				<div class="course_title" th:text="${bookDetail.bookName}"></div>
 				<div class="row">
 					<div class="col-lg-4">
 						<!-- Course Image -->
-						<div class="course_image" style="align-content: center;"><img src="images/book_1.PNG" alt=""></div>
+						<div class="course_image" style="align-content: center;"><img th:src="${bookDetail.bookImageURL}" alt="book_cover"></div>
 					</div>
 				
 					<div class="col-lg-8">
@@ -77,13 +77,13 @@
 									<!-- Feature -->
 									<div class="feature d-flex flex-row align-items-center justify-content-start">
 										<div class="feature_title"><span th:text="저자사항"></span></div>
-										<div class="feature_text ml-auto">이서윤,홍주연 [공]지음</div>
+										<div class="feature_text ml-auto" th:text="${bookDetail.writerName}"></div>
 									</div>
 
 									<!-- Feature -->
 									<div class="feature d-flex flex-row align-items-center justify-content-start">
 										<div class="feature_title"><span th:text="발행사항"></span></div>
-										<div class="feature_text ml-auto">수오서재, 2020</div>
+										<div class="feature_text ml-auto" th:text="|${bookDetail.publisherName},${bookDetail.bookPublishDate}|"></div>
 									</div>
 
 									<!-- Feature -->
@@ -94,24 +94,13 @@
 
 									<!-- Feature -->
 									<div class="feature d-flex flex-row align-items-center justify-content-start">
-										<div class="feature_title"><span th:text="형태사항"></span></div>
-										<div class="feature_text ml-auto">344 p.; 21 cm</div>
-									</div>
-
-									<!-- Feature -->
-									<div class="feature d-flex flex-row align-items-center justify-content-start">
 										<div class="feature_title"><span th:text="ISBN"></span></div>
-										<div class="feature_text ml-auto">9791190382175</div>
-									</div>
-									<!-- Feature -->
-									<div class="feature d-flex flex-row align-items-center justify-content-start">
-										<div class="feature_title"><span th:text="등록번호"></span></div>
-										<div class="feature_text ml-auto">LA0000079680</div>
+										<div class="feature_text ml-auto" th:text="${bookDetail.bookIsbn}"></div>
 									</div>
 									<!-- Feature -->
 									<div class="feature d-flex flex-row align-items-center justify-content-start">
 										<div class="feature_title"><span th:text="소장기관"></span></div>
-										<div class="feature_text ml-auto">전주시립 아중도서관</div>
+										<div class="feature_text ml-auto" th:text="${bookDetail.libraryName}"></div>
 									</div>
 
 								</div>
@@ -133,22 +122,15 @@
 							<ul class="dropdowns">
 								<li>
 									<div class="dropdown_item">
-										<div class="dropdown_item_title" th:text="구분"><span></span></div>
+										<div class="dropdown_item_title"><span>청구기호</span></div>
 										<div class="dropdown_item_text">
-											<p>LA0000079680</p>
-										</div>
-									</div>
-									<div class="dropdown_item">
-										<div class="dropdown_item_title"><span>자료실/청구기호</span></div>
-										<div class="dropdown_item_text">
-											<p>일반실</p>
-											<p>G. 325.2113-이755ㄷ</p>
+											<p th:text="${bookDetail.bookLibraryCode}"></p>
 										</div>
 									</div>
 									<div class="dropdown_item">
 										<div class="dropdown_item_title"><span th:text="자료상태"></span></div>
 										<div class="dropdown_item_text">
-											<p style="color: red;">대출가능</p>
+											<p style="color: red;" th:text="${bookDetail.bookSituation}"></p>
 										</div>
 									</div>
 									<div class="dropdown_item">
@@ -204,7 +186,7 @@
 						<div class="tab_panel_title">상세정보</div>
 						<div class="tab_panel_content">
 							<div class="tab_panel_text">
-								<p>마음가짐을 다듬으며 원하는 것을 얻는 놀라운 가르침!부와 행운을 만나는 출발점, 마법의 감정 HAVING! 국내 최초로 미국에서 선(先)출간되어 세계가 먼저 찾아 읽은 『더 해빙(THE HAVING)』. 세계적인 부자들이 성공 비결로 꼽았다는 ‘운’. 행운은 타고나는 것일까? 소수에게만 주어지는 것일까? 물려받은...</p>
+								<p th:text="${bookDetail.bookDescription}"></p>
 							</div>
 						</div>
 					</div>
