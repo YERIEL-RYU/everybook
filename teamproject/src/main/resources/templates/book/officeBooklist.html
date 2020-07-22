@@ -58,9 +58,9 @@
 				                    	  <td th:text="${B.bookLibraryCode}"></td>
 					                      <td th:text="${B.bookName}"></td>
 					                      <td th:text="${B.bookIsbn}"></td>
-					                      <td th:text="${B.category}"></td>
-					                      <td th:text="${B.writer}"></td>
-					                      <td th:text="${B.publisher}"></td>
+					                      <td th:text="${B.categoryName}"></td>
+					                      <td th:text="${B.writerName}"></td>
+					                      <td th:text="${B.publisherName}"></td>
 					                      <td th:text="${B.bookPrice}"></td>
 					                      <td th:text="${B.bookSituation}"></td>
 					                      <td th:text="${B.bookRegDate}"></td>
@@ -133,8 +133,8 @@
   		</section>
 	</div>
   <!-- /.content-wrapper -->
-</th:block>
 </div>
+</th:block>
 <!-- ./content-wrapper -->
 
 <th:block layout:fragment="customFooterScript">

@@ -6,6 +6,7 @@ public class Book {
 	private String libraryCode;
 	private String bookLibraryCode;
 	private String bookName;
+	private String categoryName;
 	private String categoryNumber;
 	private String categoryCode;
 	private String writerName;
@@ -41,6 +42,12 @@ public class Book {
 	}
 	public void setBookName(String bookName) {
 		this.bookName = bookName;
+	}
+	public String getCategoryName() {
+		return categoryName;
+	}
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
 	}
 	public String getCategoryNumber() {
 		return categoryNumber;
@@ -165,9 +172,9 @@ public class Book {
 	@Override
 	public String toString() {
 		return "Book [bookCode=" + bookCode + ", libraryName=" + libraryName + ", libraryCode=" + libraryCode
-				+ ", bookLibraryCode=" + bookLibraryCode + ", bookName=" + bookName + ", categoryNumber="
-				+ categoryNumber + ", categoryCode=" + categoryCode + ", writerName=" + writerName + ", writerCode="
-				+ writerCode + ", publisherName=" + publisherName + ", publisherCode=" + publisherCode
+				+ ", bookLibraryCode=" + bookLibraryCode + ", bookName=" + bookName + ", categoryName=" + categoryName
+				+ ", categoryNumber=" + categoryNumber + ", categoryCode=" + categoryCode + ", writerName=" + writerName
+				+ ", writerCode=" + writerCode + ", publisherName=" + publisherName + ", publisherCode=" + publisherCode
 				+ ", bookPublishDate=" + bookPublishDate + ", bookPrice=" + bookPrice + ", bookIsbn=" + bookIsbn
 				+ ", bookSituation=" + bookSituation + ", bookRegDate=" + bookRegDate + ", group=" + group + ", budget="
 				+ budget + ", officerId=" + officerId + ", reserveCount=" + reserveCount + ", bookImageURL="

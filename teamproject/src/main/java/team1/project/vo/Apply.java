@@ -1,7 +1,5 @@
 package team1.project.vo;
 
-import java.util.Date;
-
 public class Apply {
 
 	private String applyCode;

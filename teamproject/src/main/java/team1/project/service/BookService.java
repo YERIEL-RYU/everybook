@@ -27,7 +27,7 @@ import team1.project.vo.Writer;
 @Service
 @Transactional
 public class BookService {
-	private final static Logger logger = LoggerFactory.getLogger(ReserveController.class);
+	private final static Logger logger = LoggerFactory.getLogger(BookService.class);
 	private List<Map<String, Integer>> intList;
 	private List<Map<String, Character>> charList;
 	
@@ -221,6 +221,15 @@ public class BookService {
 			e.printStackTrace();
 		}
 		return book;
+	}
+	//청구기호로 도서 정보 검색
+	public Book bookLibraryCodeSelectBook(String bookLibraryCode) {
+		logger.info("bookLibraryCodeSelectBook BookService.java");
+		logger.info("bookLibraryCode --> "+ bookLibraryCode);
+		Book book = bookMapper.bookLibraryCodeSelectBook(bookLibraryCode);
+		logger.info("book --> "+ book);
+		return book;
+		
 	}
 	
 	//도서 코드로 도서 정보 검색 -영주

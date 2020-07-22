@@ -10,6 +10,7 @@
 		<result property="libraryCode" column="library_code"/>
 		<result property="bookLibraryCode" column="book_library_code"/>
 		<result property="bookName" column="book_name"/>
+		<result property="categoryName" column="category_name"/>
 		<result property="categoryNumber" column="category_number"/>
 		<result property="categoryCode" column="category_code"/>
 		<result property="writerName" column="writer_name"/>
@@ -23,7 +24,6 @@
 		<result property="group" column="book_reg_date"/>
 		<result property="bookDescription" column="book_description"/>
 		<result property="officerId" column="officer_id"/>
-	</resultMap>
 	<select id="getBookDetail" parameterType="String" resultMap="bookResultMap">
 		SELECT 
 			b.book_code, 
@@ -61,7 +61,8 @@
 			b.library_code = l.library_code
 		WHERE
 			book_code=#{bookCode}
-	</select>
+	</select>	
+
 	<select id="isbnSelectBook" parameterType="String" resultMap="bookResultMap">
 	SELECT
 		b.book_library_code,
@@ -91,6 +92,7 @@
 		AND
 		b.library_code = #{libraryCode}
 	</select>
+		
 	<insert id="addBook">
 	<selectKey order="BEFORE" keyProperty="bookCode" resultType="String">
 	<![CDATA[
@@ -111,10 +113,6 @@
 		VALUES (#{bookCode}, #{libraryCode}, #{bookLibraryCode}, #{bookImageURL}, #{bookName}, #{categoryCode}, #{writerCode}, #{publisherCode}, #{bookPublishDate}, #{bookPrice}, #{bookIsbn}, '보유 중', #{bookDescription}, NOW(), #{officerId})
 	</insert>
 
-	
-	<resultMap type="Rent" id="rentResultMap">
-		<result property="rentCode" column="rent_code"/>
-	</resultMap>	
 	
 	<!-- 대여코드로 북 이름과 ISBN 출력 -->
 	<select id="getBookName" parameterType="String" resultMap="bookResultMap">

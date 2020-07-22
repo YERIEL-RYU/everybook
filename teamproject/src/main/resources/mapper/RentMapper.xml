@@ -13,16 +13,11 @@
 		<result property="writer" column="writer_name"/>
 		<result property="category" column="category_name"/>
 		<result property="publisher" column="publisher_name"/>
-		
-		<association property="library" javaType="Library">
-			<result property="libraryName" column="library_name"/>
-		</association>
-		<association property="member" javaType="Member">
-			<result property="memberId" column="member_id"/>
-		</association>				
-		<association property="officer" javaType="Officer">
-			<result property="officerId" column="officer_id"/>
-		</association>	
+		<result property="libraryName" column="library_name"/>
+		<result property="libraryCode" column="library_code"/>
+		<result property="memberId" column="member_id"/>
+		<result property="officerId" column="officer_id"/>
+
 		<association property="book" javaType="Book">
 			<result property="bookCode" column="book_code"/>
 			<result property="bookName" column="book_name"/>
@@ -31,6 +26,44 @@
 			<result property="bookIsbn" column="book_ISBN"/>
 		</association>
 	</resultMap>
+	
+	<!-- 대여관리 - 대여처리 -->
+	<insert id="addBookRent">
+	<selectKey order="BEFORE" keyProperty="rentCode" resultType="String">
+	<![CDATA[
+	SELECT 
+		(case 
+		when COUNT(*) = 0 then 'rent_0001'
+		when COUNT(*) < 9 then CONCAT('rent_000',(MAX(SUBSTR(rent_code,6))+1))
+		when COUNT(*) < 99 then CONCAT('rent_00',(MAX(SUBSTR(rent_code,6))+1))
+		when COUNT(*) < 999 then CONCAT('rent_0',(MAX(SUBSTR(rent_code,6))+1))
+		ELSE CONCAT('bk_',(MAX(SUBSTR(rent_code,6))+1))
+		END) AS rent_code
+	FROM
+		tb_rent
+	]]>	
+	</selectKey>
+	INSERT INTO tb_rent(
+		rent_code
+		, library_code
+		, member_id
+		, book_code
+		, rent_date
+		, rent_return_date
+		, rent_reg_date
+		, officer_id
+	)VALUES(
+		#{rentCode}
+		, #{libraryCode}
+		, #{memberId}
+		, #{bookCode}
+		, CURDATE()
+		, DATE_ADD(CURDATE(), INTERVAL 7 DAY)
+		, NOW()
+		, #{officerId}
+	)
+	</insert>
+	
 	<!-- 추천 도서 : 최근 5건의 대여 도서의 isbn select -->
 	  <select id="selectIsbn" parameterType="String" resultType="String">
 	  	SELECT
@@ -42,7 +75,7 @@
 			on
 			r.book_code = b.book_code
 		WHERE
-			r.member_id = #{member}
+			r.member_id = #{memberId}
 		ORDER BY 
 			r.rent_date desc
 		LIMIT 5	
