@@ -9,6 +9,9 @@ import team1.project.vo.Review;
 @Mapper
 public interface ReviewMapper {
 
+	//ISBN이 같은 도서의 도서평 내역
+	public List<Review> ISBNReveiwList(String bookCode);
+	
 	//같은 도서관 코드가진 회원의 도서평 내역(직원)
 	public List<Review> officeReviewList(String libraryCode);
 	

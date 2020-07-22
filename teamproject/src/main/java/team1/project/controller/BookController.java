@@ -1,5 +1,6 @@
 package team1.project.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -15,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import team1.project.service.BookService;
+import team1.project.service.ReviewService;
 import team1.project.vo.Book;
+import team1.project.vo.Review;
 import team1.project.vo.Unicode;
 
 @Controller
@@ -23,7 +26,7 @@ public class BookController {
 	private final static Logger logger = LoggerFactory.getLogger(BookController.class);
 	
 	@Autowired private BookService bookService;
-
+	@Autowired private ReviewService reviewService;
 	
 	@GetMapping("/addBook")
 	public String addBook(Book book, HttpSession session){
@@ -73,6 +76,10 @@ public class BookController {
 		logger.info("bookCode : {}",bookCode);
 		Book bookDetail = bookService.getBookDetail(bookCode);
 		model.addAttribute("bookDetail", bookDetail);
+		
+		List<Review> reviewList = new ArrayList<Review>();
+		reviewList = reviewService.ISBNReveiwList(bookCode);
+		model.addAttribute("reviewList", reviewList);
 		return "book/bookDetail";
 	}
 	@GetMapping("/bookList")
