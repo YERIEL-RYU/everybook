@@ -13,17 +13,11 @@
 		<result property="writer" column="writer_name"/>
 		<result property="category" column="category_name"/>
 		<result property="publisher" column="publisher_name"/>
-		
-		<association property="library" javaType="Library">
-			<result property="libraryName" column="library_name"/>
-			<result property="libraryCode" column="library_code"/>
-		</association>
-		<association property="member" javaType="Member">
-			<result property="memberId" column="member_id"/>
-		</association>				
-		<association property="officer" javaType="Officer">
-			<result property="officerId" column="officer_id"/>
-		</association>	
+		<result property="libraryName" column="library_name"/>
+		<result property="libraryCode" column="library_code"/>
+		<result property="memberId" column="member_id"/>
+		<result property="officerId" column="officer_id"/>
+
 		<association property="book" javaType="Book">
 			<result property="bookCode" column="book_code"/>
 			<result property="bookName" column="book_name"/>
@@ -81,7 +75,7 @@
 			on
 			r.book_code = b.book_code
 		WHERE
-			r.member_id = #{member}
+			r.member_id = #{memberId}
 		ORDER BY 
 			r.rent_date desc
 		LIMIT 5	

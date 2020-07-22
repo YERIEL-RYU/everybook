@@ -32,7 +32,10 @@ public class RentController {
 	//대여처리
 	@PostMapping("/addBookRent")
 	public String addBookRent(Rent rent, HttpSession session) {
+		String Sid = (String) session.getAttribute("SID");
+		rent.setOfficerId(Sid);
 		logger.info("대여처리 --> " + rent);
+		rentService.addBookRent(rent);
 		return "rent/officeBookRent";
 	}
 	
