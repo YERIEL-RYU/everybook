@@ -206,11 +206,34 @@
 		<!-- /.row -->
 			<!-- modalRent_button -->
 				<div class="col-md-12" style="text-align: center; margin-bottom: 10px">				
-					<button type="submit" class="fc-today-button btn btn-info" disabled="disabled" id="rentBtn">대여하기</button>			
+					<button type="button" class="fc-today-button btn btn-info" data-toggle="modal" data-target="#modalRent" disabled="disabled" id="rentBtn">대여하기</button>			
 				<div class="btnText" style="color: red">
 				</div>
 				</div>
-			<!-- /modalRent_button -->      
+			<!-- /modalRent_button --> 
+			<!-- modal -->
+			 <div class="modal fade" id="modalRent">
+		        <div class="modal-dialog">
+		          <div class="modal-content bg-default">
+		            <div class="modal-header">
+		              	<h4 class="modal-title">대여관리</h4>
+		              	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		                <span aria-hidden="true">&times;</span></button>
+		            </div>
+		            <div class="modal-body">
+		              	<p>대여 하시겠습니까?</p>
+		            </div>
+		            <div class="modal-footer justify-content-between">
+		              <button type="button" class="btn" data-dismiss="modal" style="background-color: Snow; border: outset;">Close</button>
+		              <button type="submit" id="addRentBtn" class="btn" style="background-color: Snow; border: outset;">대여하기</button>
+		            </div>
+		          </div>
+		         <!-- /.modal-content -->	
+		                
+		        </div>
+		       <!-- /.modal-dialog -->
+      		</div>
+      		<!-- /.modal -->     
 			</form>
      	
      	<div class="col-12">
@@ -344,31 +367,7 @@
 			        </form>
 			        <!-- /.modal-dialog -->
 	      		</div>		      	
-          <!-- modal -->
-			<!-- <div class="modal fade" id="modalRent">
-		        <div class="modal-dialog">
-		        
-		        
-		          <div class="modal-content bg-default">
-		            <div class="modal-header">
-		              	<h4 class="modal-title">대여관리</h4>
-		              	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-		                <span aria-hidden="true">&times;</span></button>
-		            </div>
-		            <div class="modal-body">
-		              	<p>대여 하시겠습니까?</p>
-		            </div>
-		            <div class="modal-footer justify-content-between">
-		              <button type="button" class="btn" data-dismiss="modal" style="background-color: Snow; border: outset;">Close</button>
-		              <button type="button" id="addRentBtn" class="btn" style="background-color: Snow; border: outset;">#대여하기</button>
-		            </div>
-		          </div>
-		          /.modal-content	
-		                
-		        </div>
-		        /.modal-dialog
-      		</div> -->
-      		<!-- /.modal -->
+          
 	</section>
 </div>
 <!-- /.content-wrapper -->
@@ -494,7 +493,8 @@
 			};
 			
 			$('#addRentBtn').click(function(){
-				$('.form-horizontal').submit();
+				$('#modalRent').submit();
+				$('#modalRent').modal();
 			});
 			
 		});

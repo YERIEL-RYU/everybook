@@ -6,6 +6,7 @@ public class Rent {
 	private String libraryName;
 	private String memberId;
 	private String bookCode;
+	private String bookLibraryCode;
 	private String rentDate;
 	private String rentReturnDate;
 	private String rentRegDate;
@@ -43,6 +44,12 @@ public class Rent {
 	}
 	public void setBookCode(String bookCode) {
 		this.bookCode = bookCode;
+	}
+	public String getBookLibraryCode() {
+		return bookLibraryCode;
+	}
+	public void setBookLibraryCode(String bookLibraryCode) {
+		this.bookLibraryCode = bookLibraryCode;
 	}
 	public String getRentDate() {
 		return rentDate;
@@ -95,11 +102,11 @@ public class Rent {
 	@Override
 	public String toString() {
 		return "Rent [rentCode=" + rentCode + ", libraryCode=" + libraryCode + ", libraryName=" + libraryName
-				+ ", memberId=" + memberId + ", bookCode=" + bookCode + ", rentDate=" + rentDate + ", rentReturnDate="
-				+ rentReturnDate + ", rentRegDate=" + rentRegDate + ", publisher=" + publisher + ", writer=" + writer
-				+ ", category=" + category + ", officerId=" + officerId + ", book=" + book + "]";
+				+ ", memberId=" + memberId + ", bookCode=" + bookCode + ", bookLibraryCode=" + bookLibraryCode
+				+ ", rentDate=" + rentDate + ", rentReturnDate=" + rentReturnDate + ", rentRegDate=" + rentRegDate
+				+ ", publisher=" + publisher + ", writer=" + writer + ", category=" + category + ", officerId="
+				+ officerId + ", book=" + book + "]";
 	}
-	
 	
 }
 

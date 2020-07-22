@@ -17,12 +17,12 @@
 		<result property="libraryCode" column="library_code"/>
 		<result property="memberId" column="member_id"/>
 		<result property="officerId" column="officer_id"/>
+		<result property="bookCode" column="book_code"/>
+		<result property="bookLibraryCode" column="book_library_code"/>
 
 		<association property="book" javaType="Book">
-			<result property="bookCode" column="book_code"/>
 			<result property="bookName" column="book_name"/>
 			<result property="bookSituation" column="book_situation"/>
-			<result property="bookLibraryCode" column="book_library_code"/>
 			<result property="bookIsbn" column="book_ISBN"/>
 		</association>
 	</resultMap>

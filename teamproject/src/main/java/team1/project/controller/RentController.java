@@ -1,7 +1,6 @@
 package team1.project.controller;
 
 import java.util.List;
-import java.util.jar.Attributes.Name;
 
 import javax.servlet.http.HttpSession;
 
@@ -42,10 +41,13 @@ public class RentController {
 	//청구기호로 검색시 도서 정보 검색하여 화면에 출력
 	@GetMapping("/rent/getSelectBook")
 	@ResponseBody
-	public Book getSelectBook(String bookLibraryCode) {
+	public Book getSelectBook(String bookLibraryCode, HttpSession session) {
 		logger.info("getSelectBook RentController.java");
-		Book book = bookService.bookLibraryCodeSelectBook(bookLibraryCode);
-		logger.info("book : "+ book);
+		String libraryCode = (String)session.getAttribute("SLIBRARY");
+		logger.info("SLIBRARY --> " + libraryCode);
+		Book book = bookService.officeBookSerch(bookLibraryCode, libraryCode);
+		logger.info("book -> " + book);
+		
 		return book;
 	}
 	
