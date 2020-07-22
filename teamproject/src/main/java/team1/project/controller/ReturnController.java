@@ -2,6 +2,8 @@ package team1.project.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,14 +11,43 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import team1.project.service.BookService;
+import team1.project.service.MemberService;
 import team1.project.service.ReturnService;
+import team1.project.vo.Book;
+import team1.project.vo.Member;
 import team1.project.vo.Return;
 
 @Controller
 public class ReturnController {
 	private final static Logger logger = LoggerFactory.getLogger(OfficerController.class);
 	@Autowired private ReturnService returnService;
+	@Autowired private MemberService memberService;
+	@Autowired private BookService bookService;
+	
+	//청구기호로 검색시 도서 정보 검색하여 화면에 출력
+		@GetMapping("/rent/getSelectBook")
+		@ResponseBody
+		public Book getSelectBook(String bookLibraryCode, HttpSession session) {
+			logger.info("getSelectBook RentController.java");
+			String libraryCode = (String)session.getAttribute("SLIBRARY");
+			logger.info("SLIBRARY --> " + libraryCode);
+			Book book = bookService.officeBookSerch(bookLibraryCode, libraryCode);
+			logger.info("book -> " + book);
+			
+			return book;
+		}
+	
+	//회원 아이디로 검색시 회원 정보 검색하여 화면에 출력
+		@GetMapping("/return/getSelectMember")
+		@ResponseBody
+		public Member getSelectMember(String memberId) {
+			Member member = memberService.selectgetMember(memberId);
+			logger.info("member -> " + member);
+			return member;
+		}
 	
 	//반납관리 - 반납도서리스트 검색
 	@GetMapping("/officeReturnListSearch")
