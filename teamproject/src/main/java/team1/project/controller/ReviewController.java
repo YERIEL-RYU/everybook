@@ -27,14 +27,13 @@ public class ReviewController {
 	public String officeWarningList() {
 		return "review/officeWarningList";
 	}
-	
-	@GetMapping("/officeModifyReview")
-	public String officeModifyReview() {
-		return "review/officeModifyReview";
-	}
-	
+
+	//같은 도서관 코드가진 회원의 도서평 내역(직원)
 	@GetMapping("/officeReviewList")
-	public String officeReviewList() {
+	public String officeReviewList(HttpSession session,Model model) {
+		String libraryCode = (String)session.getAttribute("SLIBRARY");
+		
+		model.addAttribute("reviewList", reviewService.officeReviewList(libraryCode));
 		return "review/officeReviewList";
 	}
 	

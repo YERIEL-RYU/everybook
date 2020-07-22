@@ -9,6 +9,9 @@ import team1.project.vo.Review;
 @Mapper
 public interface ReviewMapper {
 
+	//같은 도서관 코드가진 회원의 도서평 내역(직원)
+	public List<Review> officeReviewList(String libraryCode);
+	
 	//도서평 삭제(회원)
 	public int deleteReview(String reviewCode);
 	

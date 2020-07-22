@@ -80,7 +80,7 @@ public class LoginController {
 				session.setAttribute("SCODE", login.getLoginCode());
 				System.out.println("SCODE>>"+session.getAttribute("SCODE"));
 				
-				return "admin/indexAdmin";
+				return "redirect:/office";
 			}
 		}
 		return "redirect:/";
@@ -119,7 +119,7 @@ public class LoginController {
 				session.setAttribute("SCODE", login.getLoginCode());
 				System.out.println("SCODE>>"+session.getAttribute("SCODE"));
 			
-				return "index";
+				return "redirect:/index";
 			}
 		}
 		return "redirect:/";
