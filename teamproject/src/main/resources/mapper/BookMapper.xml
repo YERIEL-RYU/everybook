@@ -24,6 +24,7 @@
 		<result property="group" column="book_reg_date"/>
 		<result property="bookDescription" column="book_description"/>
 		<result property="officerId" column="officer_id"/>
+	</resultMap>	
 	<select id="getBookDetail" parameterType="String" resultMap="bookResultMap">
 		SELECT 
 			b.book_code, 
