@@ -102,9 +102,11 @@ public class OfficerController {
 	
 	//직원리스트조회
 	@GetMapping("/officerList")
-	public String getOfficerList(Model model) {
+	public String getOfficerList(Model model, HttpSession session) {
 		logger.info("==== 직원리스트 조회 ====");
-		List<Officer> list = officerService.getOfficerList();
+		String SLIBRARY = (String) session.getAttribute("SLIBRARY");
+		logger.info("SLIBRARY --> " + SLIBRARY);
+		List<Officer> list = officerService.getOfficerList(SLIBRARY);
 		logger.info("list --> "+ list);
 		model.addAttribute("officerList", list);
 		return "office/officerList";

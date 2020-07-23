@@ -42,8 +42,8 @@ public class OfficerService {
 		}
 		
 		//직원리스트
-		public List<Officer> getOfficerList(){
-			return officerMapper.getOfficerList();
+		public List<Officer> getOfficerList(String SLIBRARY){
+			return officerMapper.getOfficerList(SLIBRARY);
 		}
 	
 		//직원등록
