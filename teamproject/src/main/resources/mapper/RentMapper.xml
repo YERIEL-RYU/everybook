@@ -37,7 +37,7 @@
 		when COUNT(*) < 9 then CONCAT('rent_000',(MAX(SUBSTR(rent_code,6))+1))
 		when COUNT(*) < 99 then CONCAT('rent_00',(MAX(SUBSTR(rent_code,6))+1))
 		when COUNT(*) < 999 then CONCAT('rent_0',(MAX(SUBSTR(rent_code,6))+1))
-		ELSE CONCAT('bk_',(MAX(SUBSTR(rent_code,6))+1))
+		ELSE CONCAT('rent_',(MAX(SUBSTR(rent_code,6))+1))
 		END) AS rent_code
 	FROM
 		tb_rent
@@ -59,7 +59,7 @@
 		, #{bookCode}
 		, CURDATE()
 		, DATE_ADD(CURDATE(), INTERVAL 7 DAY)
-		, NOW()
+		, CURDATE()
 		, #{officerId}
 	)
 	</insert>

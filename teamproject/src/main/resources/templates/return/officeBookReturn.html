@@ -65,7 +65,7 @@
 	       <!-- /.card-header -->
 	       
               <!-- form start -->
-              <form class="form-horizontal">
+              <form action="/addBookReturn" method="post">
               <div class="row">
 	              <div class="col-md-6">				
 			            <div class="card card-white">
@@ -127,7 +127,7 @@
                   	</div>
                   	<label for="inputPassword3" class="col-sm-2 col-form-label">연체일수</label>
                   	<div class="col-sm-4">
-                  		<button type="button" class="fc-today-button btn btn-primary"></button>
+                  		<button type="button" class="fc-today-button btn btn-primary" name="rentCanSituation"></button>
                   	</div>
                   </div>                 
                 </div>
@@ -203,6 +203,8 @@
 			<div class="row">
 				<div class="col-md-12" style="text-align: center; margin-bottom: 10px">				
 					<button type="button" class="fc-today-button btn btn-info" data-toggle="modal" data-target="#modal-Return" disabled="disabled" id="returnBtn">#반납하기</button>			
+				<div class="btnText" style="color: red">
+				</div>
 				</div>
 			</div>
 			<!-- modal-Return_button -->
@@ -219,8 +221,8 @@
 		              <p>반납 하시겠습니까?</p>
 		            </div>
 		            <div class="modal-footer justify-content-between">
-		              <button type="button" class="btn" data-dismiss="modal">Close</button>
-		              <button type="button" class="btn">#반납하기</button>
+		              <button type="button" class="btn" data-dismiss="modal" style="background-color: Snow; border: outset;">Close</button>
+		              <button type="submit" class="btn" style="background-color: Snow; border: outset;">#반납하기</button>
 		            </div>
 		          </div>
 		          <!-- /.modal-content -->
@@ -472,16 +474,16 @@
 	  					console.log($('[name=rentCan]').html());
 	  				}
 	  				//대여가능 권수가 0권이 아니거나 도서상태가 대여 가능이면 대여하기 버튼 활성화
-	  				if($('[name=rentCan]').html() != "0권" && $('[name=rentCanSituation]').html() == '대여가능' && $('[name=rentCan]').html() != ''){
-	  					$('#rentBtn').removeAttr("disabled");
+	  				if($('[name=rentCount]').html() != "0권" && $('[name=rentCanSituation]').html() == '반납가능' && $('[name=rentCount]').html() != ''){
+	  					$('#returnBtn').removeAttr("disabled");
 	  					$('.btnText').text("");
-	  				}else if($('[name=rentCan]').html() == "0권"){
+	  				}else if($('[name=rentCount]').html() == "0권"){
 	  					$('#returnBtn').attr("disabled","disabled");
-	  					$('.btnText').text("회원의 대여 가능 횟수가 제한됩니다.");
+	  					$('.btnText').text("대여한 도서가 없습니다.");
 	  				} 
 			});
 				request.fail(function( jqXHR, textStatus ) {
-		  			  alert( "회원 정볼를 찾을 수 없습니다.  :  " + textStatus );
+		  			  alert( "회원 정보를 찾을 수 없습니다.  :  " + textStatus );
 		  			});
 				};
 			});
@@ -511,19 +513,19 @@
 	  				$('[name=bookRegDate]').val(data.bookRegDate);
 	  				$('[name=bookSituation]').html(data.bookSituation);
 	  				
-	  				if(data.bookSituation == '예약 중'|| data.bookSituation == '대여 중'){
-	  					$('[name=rentCanSituation]').html('대여불가');
+	  				if(data.bookSituation == '보유 중'|| data.bookSituation == '예약 중'){
+	  					$('[name=rentCanSituation]').html('반납불가');
 	  				}else{
-	  					$('[name=rentCanSituation]').html('대여가능');
+	  					$('[name=rentCanSituation]').html('반납가능');
 	  				}
 	  				//대여가능 권수가 0이 아니거나 도서상태가 대여 가능이면 대여하기 버튼 활성화
-	  				if($('[name=rentCanSituation]').html() == '대여가능' && $('[name=rentCan]').html() != "0권" && $('[name=rentCan]').html() != ''){
-	  					$('#rentBtn').removeAttr("disabled");
+	  				if($('[name=rentCanSituation]').html() == '반납가능' && $('[name=rentCount]').html() != "0권" && $('[name=rentCan]').html() != ''){
+	  					$('#returnBtn').removeAttr("disabled");
 	  					$('.btnText').text("");
-	  				}else if($('[name=rentCanSituation]').html() == '대여불가'){
-	  					$('#rentBtn').attr("disabled","disabled");
-	  					$('.btnText').text("해당 도서는 "+data.bookSituation+" 상태로 대여할 수 없습니다.");
-	  				}else if($('[name=rentCanSituation]').html() == '대여가능'){
+	  				}else if($('[name=rentCanSituation]').html() == '반납불가'){
+	  					$('#returnBtn').attr("disabled","disabled");
+	  					$('.btnText').text("해당 도서는 "+data.bookSituation+" 상태로 반납할 수 없습니다.");
+	  				}else if($('[name=rentCanSituation]').html() == '반납가능'){
 	  					$('.btnText').text("");
 	  				}
 	  				});
