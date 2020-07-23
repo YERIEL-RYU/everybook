@@ -11,15 +11,42 @@
 		<result property="warningContent" column="warning_content"/>
 		<result property="warningRegDate" column="warning_reg_date"/>
 	</resultMap>
-
-	<!-- 도서평코드로 신고횟수 출력 -->
-	<select id="countWarnignList" parameterType="Warning">
-		SELECT 
-			COUNT(*)
+	
+	<!-- 도서평신고 삭제 -->
+	<delete id="deleteWarning" parameterType="String">
+		DELETE 
 		FROM 
-			tb_warning
+			tb_warning 
+		WHERE 
+			warning_code = #{warningCode}
+	</delete>
+	
+	
+	<!-- 같은 도서관 코드를 가진 회원의 도서평 신고 내역(직원) -->
+	<select id="officeWarningList" parameterType="String" resultMap="WarningResultMap">
+		SELECT 
+			warning_code
+			,(
+			 	select
+			 		b.book_name
+			 	from
+			 		tb_book AS b
+			 	where
+				 	b.book_code = w.book_code
+		 	) AS book_code 
+			, review_code
+			, warning_suspect
+			, warning_blower
+			, warning_content
+			, warning_reg_date
+		FROM
+			tb_warning AS w
+			INNER JOIN 
+			tb_member AS m
 		WHERE
-			review_code = #{reviewCode}
+			w.warning_suspect = m.member_id
+		AND
+			m.library_code = #{libraryCode}		
 	</select>
 
 	<!-- 도서평신고 등록 -->
