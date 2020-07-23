@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 import team1.project.mapper.BookMapper;
 import team1.project.mapper.LibraryMapper;
 import team1.project.mapper.RentMapper;
+import team1.project.vo.Book;
 
 @Service
 public class RecommendService {
@@ -28,6 +29,11 @@ public class RecommendService {
 	@Autowired LibraryMapper libraryMapper;
 	@Autowired RentMapper rentMapper;
 	@Autowired BookMapper bookMapper;
+	
+	public List<Book> vogueBookLimitList(){
+		logger.info("인기도서 : {}", rentMapper.vogueBookLimitList());
+		return rentMapper.vogueBookLimitList();
+	}
 	
 	public List<String> recommendList(String memberId){
 		List<String> bookIsbn = rentMapper.selectIsbn(memberId);

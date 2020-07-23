@@ -58,9 +58,11 @@ public class MainController {
 				recommondBook.addAll(getBook);
 			}
 		}
+		List<Book> vogueBook = recommendService.vogueBookLimitList();
 		model.addAttribute("majorList", majorList);
 		model.addAttribute("regionList", regionList);
 		model.addAttribute("recommondBook", recommondBook);
+		model.addAttribute("vogueBook", vogueBook);
 		return "index";
 	}
 
