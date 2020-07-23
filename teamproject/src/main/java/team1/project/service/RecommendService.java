@@ -7,7 +7,6 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -21,7 +20,6 @@ import org.springframework.stereotype.Service;
 import team1.project.mapper.BookMapper;
 import team1.project.mapper.LibraryMapper;
 import team1.project.mapper.RentMapper;
-import team1.project.vo.Book;
 
 @Service
 public class RecommendService {

@@ -1,6 +1,7 @@
 package team1.project.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -117,7 +118,16 @@ public class PointController {
 	}
 	
 	@GetMapping("/myPoint")
-	public String myPoint() {
+	public String myPoint(HttpSession session, Model model,@RequestParam(value="currentPage", 
+				required=false, defaultValue="1") int currentPage) {
+		logger.info("개인 상벌점 리스트");
+		String memberId = (String) session.getAttribute("SID");
+		Map<String, Object> returnMap = pointService.getMemberPointHistory(memberId,currentPage);
+		model.addAttribute("list", returnMap.get("list"));
+    	model.addAttribute("currentPage",returnMap.get("currentPage"));
+    	model.addAttribute("lastPage",returnMap.get("lastPage"));
+    	model.addAttribute("startPageNum",returnMap.get("startPageNum"));
+    	model.addAttribute("lastPageNum", returnMap.get("lastPageNum"));
 		return "point/myPoint";
 	}
 }

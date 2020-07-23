@@ -26,7 +26,7 @@ public class CommonScheduler {
 
 	@Scheduled(cron = "0 0/3 * * * ?")
 	public void reservate() throws ParseException {
-		logger.info("예약 조회 및 처리 : {}");
+		logger.info("예약 조회 및 처리 ");
 		List<RtcanReserve> rtcanReserveTime = rtcanReserveService.getRtcanReserveTime();
 		LocalDateTime currentTime = LocalDateTime.now();
 		//DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssZ");
