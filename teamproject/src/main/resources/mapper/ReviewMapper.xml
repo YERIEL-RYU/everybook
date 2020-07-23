@@ -13,11 +13,19 @@
 	<!-- ISBN이 같은 도서의 도서평 내역 -->
 	<select id="ISBNReveiwList" parameterType="String" resultMap="reviewSelect">
 		SELECT 
-			r.review_code
-			, r.book_code
-			, r.member_id
-			, r.review_content
-			, r.review_reg_date
+			r.review_code 
+			, r.book_code 
+			, r.member_id 
+			, r.review_content 
+			, r.review_reg_date 
+			,(
+				SELECT 
+					COUNT(*)
+				FROM 
+					tb_warning AS w
+				WHERE
+					w.review_code = r.review_code 
+			) AS warningCount
 		FROM 
 			tb_review AS r
 			INNER join
