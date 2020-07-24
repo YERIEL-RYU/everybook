@@ -10,7 +10,7 @@ import team1.project.vo.Rent;
 @Mapper
 public interface RentMapper {
 	
-	public List<Book> vogueBookList(String libraryCode);
+	public List<Book> vogueBookList(String libraryCode, String startDate, String endDate);
 	
 	public List<Book> vogueBookLimitList();
 	

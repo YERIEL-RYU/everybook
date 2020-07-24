@@ -30,8 +30,8 @@ public class RecommendService {
 	@Autowired RentMapper rentMapper;
 	@Autowired BookMapper bookMapper;
 	
-	public List<Book> vogueBookList(String libraryCode){
-		return null;
+	public List<Book> vogueBookList(String libraryCode, String startDate, String endDate){
+		return rentMapper.vogueBookList(libraryCode, startDate, endDate);
 	}
 	
 	public List<Book> vogueBookLimitList(){

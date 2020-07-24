@@ -22,14 +22,15 @@
 
 		<association property="book" javaType="Book">
 			<result property="bookName" column="book_name"/>
-			<result property="bookImage" column="book_image"/>			
+			<result property="bookImageURL" column="book_image"/>			
 			<result property="bookSituation" column="book_situation"/>
 			<result property="bookIsbn" column="book_ISBN"/>
+			<result property="bookLibraryCode" column="book_library_code"/>
 		</association>
 	</resultMap>
 	
 	<select id="vogueBookList" resultType="Book" parameterType="String">
-	CALL pro_rent_rank(#{libraryCode},(now() + interval -(1) month),NOW())
+	CALL pro_rent_rank(#{libraryCode},#{startDate},#{endDate})
 	</select>
 	
 	<!-- 인기도서 대여 랭킹 갯수 제한 -->
