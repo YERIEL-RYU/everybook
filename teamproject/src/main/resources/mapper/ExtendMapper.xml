@@ -11,16 +11,11 @@
 	<result property="rentRegDate" column="rent_reg_date"/>
 	<result property="rentReturnDate" column="rent_return_date"/>
 	<result property="officerId" column="officer_id"/>
-		
-		<association property="library" javaType="Library">
-			<result property="libraryName" column="library_name"/>
-		</association>
-		<association property="member" javaType="Member">
-			<result property="memberId" column="member_id"/>
-		</association>				
-		<association property="officer" javaType="Officer">
-			<result property="officerId" column="officer_id"/>
-		</association>	
+	<result property="libraryName" column="library_name"/>
+	<result property="libraryCode" column="library_code"/>
+	<result property="memberId" column="member_id"/>				
+	<result property="officerId" column="officer_id"/>
+			
 		<association property="book" javaType="Book">
 			<result property="bookName" column="book_name"/>
 			<result property="bookSituation" column="book_situation"/>
