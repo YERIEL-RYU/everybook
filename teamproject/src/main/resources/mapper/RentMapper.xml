@@ -28,6 +28,10 @@
 		</association>
 	</resultMap>
 	
+	<select id="vogueBookList" resultType="Book" parameterType="String">
+	CALL pro_rent_rank(#{libraryCode},(now() + interval -(1) month),NOW())
+	</select>
+	
 	<!-- 인기도서 대여 랭킹 갯수 제한 -->
 	<select id="vogueBookLimitList" resultType="Book">
 		SELECT
