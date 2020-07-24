@@ -24,7 +24,9 @@ public class RecommendController {
 	@Autowired BookService bookService;
 	
 	@GetMapping("/vogueBookList")
-	public String getVogueBookList() {
+	public String getVogueBookList(HttpSession session, Model model) {
+		String libraryCode = (String) session.getAttribute("SLIBRARY");
+		
 		return "recommend/vogueBookList";
 	}
 	
