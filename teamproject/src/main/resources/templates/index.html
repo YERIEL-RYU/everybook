@@ -141,8 +141,8 @@
 				<!-- 책카드 -->
 				<div class="xscroll">
 					<div class="course" style="width: 250px; display: inline-block;" th:each="v : ${vogueBook}">
-						<div class="course_image" th:if="${v.bookImageURL} != 'nothing'"><img th:src="${v.bookImageURL}" alt="book_cover" style="height: 200px;"></div>
-						<div class="course_image" th:unless="${v.bookImageURL} != 'nothing'"><img src="images/no_image.gif" alt="book_cover" style="height: 200px;"></div>
+						<div class="course_image" th:if="${v.bookImageURL} != null"><img th:src="${v.bookImageURL}" alt="book_cover" style="height: 200px;"></div>
+						<div class="course_image" th:unless="${v.bookImageURL} != null"><img src="images/no_image.gif" alt="book_cover" style="height: 200px;"></div>
 						<div class="course_body">
 							<h3 class="course_title"><a th:href="@{/bookDetail(bookCode=${v.bookCode})}" th:text="${v.bookName}"></a></h3>
 							<div class="course_teacher" th:text="${v.writerName}"></div>
