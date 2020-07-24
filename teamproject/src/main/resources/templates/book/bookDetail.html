@@ -11,6 +11,11 @@
 <link rel="stylesheet" type="text/css" href="styles/course_responsive.css">
 <link rel="stylesheet" type="text/css" href="styles/blog_single.css">
 <link rel="stylesheet" type="text/css" href="styles/blog_single_responsive.css">
+<style>
+	.code{
+		display: none;
+	}
+</style>
 </th:block>
 <th:block layout:fragment="customTitle">
 
@@ -201,45 +206,66 @@
 						
 						<!-- Comments -->
 						<div class="comments_container">
-							<h4>도서평 수     <small>1</small></h4>
-							<ul class="comments_list">
+							<h4>도서평 수     <small>[[${#lists.size(reviewList)}]]</small></h4>
+							<ul class="comments_list" th:each="r : ${reviewList}">
 								<li>
 									<div class="comment_item d-flex flex-row align-items-start jutify-content-start">
 										<div class="comment_content">
 											<div class="comment_title_container d-flex flex-row align-items-center justify-content-start">
-												<div class="comment_author"><a>작성자 member_001</a></div>
-												<div class="comment_time ml-auto">작성날짜 2020.07.20</div>
+												<div class="comment" th:text="${r.memberId}"></div>
+												<div class="comment_time ml-auto" th:text="${r.reviewRegDate}"></div>
 											</div>
 											<div class="comment_text">
-												<p>[이 책에서 배운 내용]1. 없음보다 있음에 집중하기.2. 편안함 살피기.3. 운의 작동방식을 알고 노력하기.</p>
+												<p th:text="${r.reviewContent}"></p>
 											</div>
 											<div class="comment_extras d-flex flex-row align-items-center justify-content-start">
-												<div class="comment_extra comment_likes"><a href="#modal" data-toggle="modal"><i class="fa fa-thumbs-down" aria-hidden="true"></i>신고하기</a><span>숫자</span></div>
-												<div class="modal fade bs-example-modal-sm" id="modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-	 												<div class="modal-dialog modal-sm">
-	    												<div class="modal-content">
-	    													<div class="modal-header">
-														        <h5 class="modal-title">도서평 신고하기</h5>
-														        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-														     </div>
-														     <div class="modal-body">
-														        <p>신고 이유</p>
-														        <input type="radio"> 왜신고 하눈뎅??
-														     </div>
-														     <div class="modal-footer">
-														        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-														        <button type="button" class="btn btn-primary">신고</button>
-														     </div>
-	   													</div>
-													</div>
-												</div>
+												<div class="comment_extra comment_likes"><a href="#modal" data-toggle="modal" th:data-id="${r.memberId}" th:data-review="${r.reviewCode}" th:data-book="${r.bookCode}"><i class="fa fa-thumbs-down" aria-hidden="true"></i>신고하기</a><span>숫자</span></div>
 											</div>
 										</div>
 									</div>
 	 							</li>
 							</ul>
 						</div>
-						
+						<!-- 신고 모달 -->
+						<div class="modal fade bs-example-modal-sm" id="modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+							<div class="modal-dialog modal-sm">
+								<div class="modal-content">
+									<div class="modal-header">
+									    <h5 class="modal-title">도서평 신고하기</h5>
+									    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									 </div>
+									<form action="/addWarning" method="post">
+										<div class="modal-body">
+											<div class="code">
+											   <p>해당 도서 코드</p>
+											   <input type="text" id="bookCode" name="bookCode">
+											</div>
+											<div class="code">
+											   <p>해당 도서평 코드</p>
+											   <input type="text" id="reviewCode" name="reviewCode">
+											</div>
+											<div>
+											   <p>해당 도서평 작성자 아이디</p>
+											   <input type="text" class="form-control" id="memberId" name="warningSuspect" readonly>
+											</div>
+											<div>
+											   <p>신고 이유</p>
+											   <textarea class="form-control" name="warningContent"></textarea>
+											</div>
+											<div>
+											   <p>신고자 아이디</p>
+											   <input type="text" class="form-control" th:value="${session.SID}" name="warningBlower" readonly>
+											</div>
+										</div>
+										<div class="modal-footer">
+										   <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+										   <button type="submit" class="btn btn-primary">신고</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+						<!-- /신고 모달 -->
 					</div>
 				</div>
 			</div>
@@ -271,6 +297,19 @@
 				$('.bs-example-modal-lg').modal();
 			}
 		});
+		
+		//모달에 내용 보여주기
+		$('#modal').on('show.bs.modal', function (event) {
+			var button = $(event.relatedTarget)
+			var id = button.data('id') 
+			var book = button.data('book') 
+			var review = button.data('review') 
+			
+			var modal = $(this)
+			modal.find('#memberId').val(id)
+			modal.find('#bookCode').val(book)
+			modal.find('#reviewCode').val(review)
+		})
 	});
 </script>
 	</th:block>
