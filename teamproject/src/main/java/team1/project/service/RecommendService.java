@@ -7,7 +7,6 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -30,6 +29,11 @@ public class RecommendService {
 	@Autowired LibraryMapper libraryMapper;
 	@Autowired RentMapper rentMapper;
 	@Autowired BookMapper bookMapper;
+	
+	public List<Book> vogueBookLimitList(){
+		logger.info("인기도서 : {}", rentMapper.vogueBookLimitList());
+		return rentMapper.vogueBookLimitList();
+	}
 	
 	public List<String> recommendList(String memberId){
 		List<String> bookIsbn = rentMapper.selectIsbn(memberId);

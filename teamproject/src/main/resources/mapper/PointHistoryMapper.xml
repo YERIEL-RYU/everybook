@@ -12,7 +12,32 @@
 		<result property="phCondition" column="point_history_condition"/>
 		<result property="officerId" column="officer_id"/>
 	</resultMap>
-	<!-- 상벌점 기준 검색 select -->
+	<!--  -->
+	<select id="getMemberPointHistoryCount" parameterType="String" resultType="int">
+	SELECT 
+		COUNT(*)
+	FROM tb_point_history
+	WHERE 
+		member_id = #{memberId}
+		and
+		point_history_condition ='승인'
+	</select>
+	<!-- 회원 한 명 상벌점 내역 select -->
+	<select id="getMemberPointHistory" parameterType="Map" resultMap="PhSelect">
+		SELECT 
+			point_history_code, 
+			library_code, 
+			point_standard_code, 
+			point_history_reg_date
+		FROM tb_point_history
+		WHERE 
+			member_id = #{memberId}
+			and
+			point_history_condition ='승인'
+		ORDER BY point_history_code ASC 
+		LIMIT #{currentPage}, #{rowPerPage}	
+	</select>
+	<!-- 상벌점 내역 검색 select -->
 	<select id="searchPs"  parameterType="String" resultMap="PhSelect">
 		SELECT
 			*

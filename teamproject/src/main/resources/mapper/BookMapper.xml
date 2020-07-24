@@ -66,6 +66,7 @@
 
 	<select id="isbnSelectBook" parameterType="String" resultMap="bookResultMap">
 	SELECT
+		b.book_code,
 		b.book_library_code,
 		b.book_image,
 		b.book_name,

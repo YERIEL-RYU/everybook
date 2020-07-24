@@ -26,10 +26,10 @@
 	<th:block layout:fragment="customHeader">
 		<nav class="main_nav_contaner ml-auto">
 			<ul class="main_nav">
-				<li><a href="bookList">!통합검색(서)</a></li>
-				<li><a href="myLibrary">!나의 도서관(서)</a></li>
+				<li><a href="bookList">통합검색(서)</a></li>
+				<li><a href="myLibrary">나의 도서관(서)</a></li>
 				<li><a href="#">#공지사항</a></li>
-				<li><a href="libraryList">!이용안내(유)</a></li>
+				<li><a href="libraryList">이용안내(유)</a></li>
 				<li><a href="#">#도서관 위치</a></li>
 			</ul>
 			<div class="search_button"><i class="fa fa-search" aria-hidden="true"></i></div>
@@ -134,36 +134,21 @@
 				<div class="row">
 					<div class="col">
 						<div class="section_title_container text-center">
-							<h2 class="section_title">인기 도서 (유)</h2>
+							<h2 class="section_title">전국 도서관 인기 도서 (유)</h2>
 						</div>
 					</div>
 				</div>
-					<!-- 책카드 -->
-					<div class="xscroll">
-						<div class="course" style="width: 300px; display: inline-block;">
-							<div class="course_image"><img src="images/book_1.PNG" alt=""></div>
-								<div class="course_body">
-									<h3 class="course_title"><a href="#">더 해빙</a></h3>
-									<div class="course_teacher">저자 이서윤, 홍주연</div>
-									<div class="course_text">
-									<p>부와 행운을 끌어당기는 힘</p>
-								</div>
-							</div>
-							<div class="course_footer">
-								<div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
-									<div class="course_info">
-										<i class="fa fa-graduation-cap" aria-hidden="true"></i>
-										<span>대여 횟수 20 회</span>
-									</div>
-									<div class="course_info">
-										<i class="fa fa-star" aria-hidden="true"></i>
-										<span>도서평 수 10</span>
-									</div>
-
-								</div>
-							</div>
+				<!-- 책카드 -->
+				<div class="xscroll">
+					<div class="course" style="width: 250px; display: inline-block;" th:each="v : ${vogueBook}">
+						<div class="course_image" th:if="${v.bookImageURL} != null"><img th:src="${v.bookImageURL}" alt="book_cover" style="height: 200px;"></div>
+						<div class="course_image" th:unless="${v.bookImageURL} != null"><img src="images/no_image.gif" alt="book_cover" style="height: 200px;"></div>
+						<div class="course_body">
+							<h3 class="course_title"><a th:href="@{/bookDetail(bookCode=${v.bookCode})}" th:text="${v.bookName}"></a></h3>
+							<div class="course_teacher" th:text="${v.writerName}"></div>
 						</div>
 					</div>
+				</div>
 				<div class="row">
 					<div class="col">
 						<div class="courses_button"><a href="/vogueBookList">모든 인기 도서 보기</a></div>
@@ -185,27 +170,11 @@
 				</div>
 					<!-- 책 카드 -->
 					<div class="xscroll">
-						<div class="course" style="width: 300px; display: inline-block;">
-							<div class="course_image"><img src="images/book_1.PNG" alt=""></div>
-								<div class="course_body">
-									<h3 class="course_title"><a href="#">더 해빙</a></h3>
-									<div class="course_teacher">저자 이서윤, 홍주연</div>
-									<div class="course_text">
-									<p>부와 행운을 끌어당기는 힘</p>
-								</div>
-							</div>
-							<div class="course_footer">
-								<div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
-									<div class="course_info">
-										<i class="fa fa-graduation-cap" aria-hidden="true"></i>
-										<span>대여 횟수 20 회</span>
-									</div>
-									<div class="course_info">
-										<i class="fa fa-star" aria-hidden="true"></i>
-										<span>도서평 수 10</span>
-									</div>
-
-								</div>
+						<div class="course" style="width: 250px; display: inline-block;"  th:each="r : ${recommondBook}">
+							<div class="course_image"><img th:src="${r.bookImageURL}" alt="book_cover" style="height: 200px;"></div>
+							<div class="course_body">
+								<h3 class="course_title"><a th:href="@{/bookDetail(bookCode=${r.bookCode})}" th:text="${r.bookName}"></a></h3>
+								<div class="course_teacher" th:text="${r.writerName}"></div>
 							</div>
 						</div>
 					</div>
