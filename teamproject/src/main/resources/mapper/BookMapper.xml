@@ -24,10 +24,20 @@
 		<result property="group" column="book_reg_date"/>
 		<result property="bookDescription" column="book_description"/>
 		<result property="officerId" column="officer_id"/>
+		<result property="rentCode" column="rent_code"/>
 	</resultMap>
 	
+	<!-- 반납처리 후 도서 상태 변환 -->
+	<update id="bookSituationReturnModify" parameterType="Book">
+		UPDATE tb_book
+		SET
+			book_situation='보유 중'
+		WHERE 
+			book_library_code = #{bookLibraryCode};
+	</update>
+	
 	<!-- 대여처리 후 도서 상태 변환 -->
-	<update id="bookSituationModify" parameterType="Book">
+	<update id="bookSituationRentModify" parameterType="Book">
 		UPDATE tb_book
 		SET
 			book_situation='대여 중'
@@ -205,6 +215,7 @@
 		, b.book_isbn
 		, b.book_library_code
 		, b.book_name
+		, r.rent_code
 		, p.publisher_name
 		, w.writer_name
 		, b.book_price
@@ -217,10 +228,14 @@
 		tb_publisher AS p
 		INNER JOIN
 		tb_writer AS w
+		INNER JOIN
+		tb_rent AS r
 		on
 		b.publisher_code = p.publisher_code
 		and
 		b.writer_code = w.writer_code
+		and
+		b.book_code = r.book_code
 	WHERE
 		b.book_library_code = #{bookLibraryCode}
 		and

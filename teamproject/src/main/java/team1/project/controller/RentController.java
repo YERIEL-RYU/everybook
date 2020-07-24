@@ -39,17 +39,15 @@ public class RentController {
 		return "rent/officeBookRent";
 	}
 	
-	  //청구기호로 검색시 도서 정보 검색하여 화면에 출력
-	  
-	  @GetMapping("/rent/getSelectBook")
-	  
-	  @ResponseBody public Book getSelectBook(String bookLibraryCode, HttpSession session) { 
-		  logger.info("======== getSelectBook RentController.java ========");
-		  String libraryCode = (String)session.getAttribute("SLIBRARY");
-		  logger.info("SLIBRARY --> " + libraryCode);
-		  Book book = bookService.officeBookSerch(bookLibraryCode, libraryCode);
-		  logger.info("book -> " + book);
-		  return book; 
+	//청구기호로 검색시 도서 정보 검색하여 화면에 출력
+    @GetMapping("/rent/getSelectBook")
+    @ResponseBody public Book getSelectBook(String bookLibraryCode, HttpSession session) { 
+    logger.info("======== getSelectBook RentController.java ========");
+    String libraryCode = (String)session.getAttribute("SLIBRARY");
+    logger.info("SLIBRARY --> " + libraryCode);
+    Book book = bookService.officeBookSerch(bookLibraryCode, libraryCode);
+    logger.info("book -> " + book);
+    return book; 
 	}
 	 
 	

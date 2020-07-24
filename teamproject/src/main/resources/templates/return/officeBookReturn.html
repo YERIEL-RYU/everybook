@@ -101,9 +101,9 @@
 			                    </div>
 		                    </div>
                   <div class="form-group row">
-                    <label for="inputPassword3" class="col-sm-2 col-form-label">저자</label>
+                    <label for="inputPassword3" class="col-sm-2 col-form-label">대여코드</label>
 	                    <div class="col-sm-4">
-	                      <input type="text" class="form-control" placeholder="Writer Name" name="writerName">
+	                      <input type="text" class="form-control" placeholder="Rent Code" name="rentCode">
 	                    </div>
                     <label for="inputPassword3" class="col-sm-2 col-form-label">가격</label>
 	                    <div class="col-sm-4">
@@ -202,7 +202,7 @@
 			<!-- modal-Return_button -->
 			<div class="row">
 				<div class="col-md-12" style="text-align: center; margin-bottom: 10px">				
-					<button type="button" class="fc-today-button btn btn-info" data-toggle="modal" data-target="#modal-Return" disabled="disabled" id="returnBtn">#반납하기</button>			
+					<button type="button" class="fc-today-button btn btn-info" data-toggle="modal" data-target="#modal-Return" disabled="disabled" id="returnBtn">반납하기</button>			
 				<div class="btnText" style="color: red">
 				</div>
 				</div>
@@ -222,7 +222,7 @@
 		            </div>
 		            <div class="modal-footer justify-content-between">
 		              <button type="button" class="btn" data-dismiss="modal" style="background-color: Snow; border: outset;">Close</button>
-		              <button type="submit" class="btn" style="background-color: Snow; border: outset;">#반납하기</button>
+		              <button type="submit" class="btn" style="background-color: Snow; border: outset;">반납하기</button>
 		            </div>
 		          </div>
 		          <!-- /.modal-content -->
@@ -507,7 +507,7 @@
 	  				$('[name=bookIsbn]').val(data.bookIsbn);
 	  				$('[name=bookName]').val(data.bookName);
 	  				$('[name=libraryCode]').val(data.libraryCode);
-	  				$('[name=writerName]').val(data.writerName);
+	  				$('[name=rentCode]').val(data.rentCode);
 	  				$('[name=bookPrice]').val(data.bookPrice);
 	  				$('[name=bookPublishDate]').val(data.bookPublishDate);
 	  				$('[name=bookRegDate]').val(data.bookRegDate);
