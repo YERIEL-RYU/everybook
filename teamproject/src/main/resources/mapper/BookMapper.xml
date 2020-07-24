@@ -24,7 +24,17 @@
 		<result property="group" column="book_reg_date"/>
 		<result property="bookDescription" column="book_description"/>
 		<result property="officerId" column="officer_id"/>
-	</resultMap>	
+	</resultMap>
+	
+	<!-- 대여처리 후 도서 상태 변환 -->
+	<update id="bookSituationModify" parameterType="Book">
+		UPDATE tb_book
+		SET
+			book_situation='대여 중'
+		WHERE 
+			book_library_code = #{bookLibraryCode};
+	</update>
+		
 	<select id="getBookDetail" parameterType="String" resultMap="bookResultMap">
 		SELECT 
 			b.book_code, 

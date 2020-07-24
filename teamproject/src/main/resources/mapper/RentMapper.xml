@@ -17,16 +17,20 @@
 		<result property="libraryCode" column="library_code"/>
 		<result property="memberId" column="member_id"/>
 		<result property="officerId" column="officer_id"/>
+		<result property="bookCode" column="book_code"/>
+		<result property="bookLibraryCode" column="book_library_code"/>
 
 		<association property="book" javaType="Book">
-			<result property="bookCode" column="book_code"/>
 			<result property="bookName" column="book_name"/>
 			<result property="bookImage" column="book_image"/>			
 			<result property="bookSituation" column="book_situation"/>
-			<result property="bookLibraryCode" column="book_library_code"/>
 			<result property="bookIsbn" column="book_ISBN"/>
 		</association>
 	</resultMap>
+	
+	<select id="vogueBookList" resultType="Book" parameterType="String">
+	CALL pro_rent_rank(#{libraryCode},(now() + interval -(1) month),NOW())
+	</select>
 	
 	<!-- 인기도서 대여 랭킹 갯수 제한 -->
 	<select id="vogueBookLimitList" resultType="Book">
@@ -48,7 +52,7 @@
 		when COUNT(*) < 9 then CONCAT('rent_000',(MAX(SUBSTR(rent_code,6))+1))
 		when COUNT(*) < 99 then CONCAT('rent_00',(MAX(SUBSTR(rent_code,6))+1))
 		when COUNT(*) < 999 then CONCAT('rent_0',(MAX(SUBSTR(rent_code,6))+1))
-		ELSE CONCAT('bk_',(MAX(SUBSTR(rent_code,6))+1))
+		ELSE CONCAT('rent_',(MAX(SUBSTR(rent_code,6))+1))
 		END) AS rent_code
 	FROM
 		tb_rent
@@ -70,7 +74,7 @@
 		, #{bookCode}
 		, CURDATE()
 		, DATE_ADD(CURDATE(), INTERVAL 7 DAY)
-		, NOW()
+		, CURDATE()
 		, #{officerId}
 	)
 	</insert>

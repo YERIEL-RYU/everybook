@@ -143,6 +143,8 @@
 		ON
 		o.library_code = l.library_code
 		AND
+		o.library_code = #{SLIBRARY}
+		AND
 		o.level_code = v.level_code
 	</select>
 	

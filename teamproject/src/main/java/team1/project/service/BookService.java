@@ -20,6 +20,7 @@ import team1.project.mapper.PublisherMapper;
 import team1.project.mapper.WriterMapper;
 import team1.project.vo.Book;
 import team1.project.vo.Publisher;
+import team1.project.vo.Rent;
 import team1.project.vo.Unicode;
 import team1.project.vo.Writer;
 
@@ -220,15 +221,6 @@ public class BookService {
 			e.printStackTrace();
 		}
 		return book;
-	}
-	//청구기호로 도서 정보 검색
-	public Book bookLibraryCodeSelectBook(String bookLibraryCode) {
-		logger.info("bookLibraryCodeSelectBook BookService.java");
-		logger.info("bookLibraryCode --> "+ bookLibraryCode);
-		Book book = bookMapper.bookLibraryCodeSelectBook(bookLibraryCode);
-		logger.info("book --> "+ book);
-		return book;
-		
 	}
 	
 	//도서 코드로 도서 정보 검색 -영주

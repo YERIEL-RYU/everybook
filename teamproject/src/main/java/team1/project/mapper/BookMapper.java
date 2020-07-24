@@ -5,14 +5,16 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import team1.project.vo.Book;
+import team1.project.vo.Rent;
 
 @Mapper
 public interface BookMapper {
+	
+	//대여처리 후 도서 상태 변환
+	public int bookSituationModify(Rent rent);
+	
 	//도서코드로 책 하나 검색
 	public Book getBookDetail(String bookCode);
-	
-	//청구기호로 도서 검색
-	public Book bookLibraryCodeSelectBook(String bookLibraryCode);
 	
 	//isbn과 도서관 코드로 책 검색
 	public List<Book> isbnSelectBook(String bookIsbn, String libraryCode);

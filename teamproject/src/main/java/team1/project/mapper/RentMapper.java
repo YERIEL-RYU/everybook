@@ -9,6 +9,9 @@ import team1.project.vo.Rent;
 
 @Mapper
 public interface RentMapper {
+	
+	public List<Book> vogueBookList(String libraryCode);
+	
 	public List<Book> vogueBookLimitList();
 	
 	//대여처리
