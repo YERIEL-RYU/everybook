@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import team1.project.controller.ReserveController;
 import team1.project.mapper.BookMapper;
 import team1.project.mapper.CategoryMapper;
 import team1.project.mapper.PublisherMapper;
@@ -95,6 +94,12 @@ public class BookService {
 		return bookMapper.addBook(book);
 	}
 
+
+	public Book getBookName(String rentCode) {
+		return bookMapper.getBookName(rentCode);
+	}
+	
+
 	/**
 	 * 책 이를을 같은 책을 보유하고 있는지 조회
 	 * @param libraryCode
@@ -102,12 +107,6 @@ public class BookService {
 	 * @param writer
 	 * @return
 	 */
-
-	public Book getBookName(String rentCode) {
-		return bookMapper.getBookName(rentCode);
-	}
-	
-
 	public int sameNameCount(String libraryCode, String bookName, String writer) {
 		return bookMapper.sameNameCount(libraryCode, bookName, writer);
 	}
@@ -193,7 +192,7 @@ public class BookService {
 		try {
 			//도서관 정보나루 api
 			Document naru = Jsoup.connect(naruUrl).data("isbn",isbn).get();
-			//국립도서곤 api
+			//국립도서관 api
 			Document seoji = Jsoup.connect(seojiUrl).data("isbn",isbn).get();
 			String bookName = seoji.select("TITLE").text();
 			String bookPrice = seoji.select("PRE_PRICE").text();

@@ -22,11 +22,22 @@
 
 		<association property="book" javaType="Book">
 			<result property="bookName" column="book_name"/>
+			<result property="bookImage" column="book_image"/>			
 			<result property="bookSituation" column="book_situation"/>
 			<result property="bookIsbn" column="book_ISBN"/>
 		</association>
 	</resultMap>
 	
+	<!-- 인기도서 대여 랭킹 갯수 제한 -->
+	<select id="vogueBookLimitList" resultType="Book">
+		SELECT
+			book_code as bookCode,
+			book_image as bookImageURL,
+			book_name as bookName,
+			writer_name as writerName
+		FROM
+			view_rent_count
+	</select>
 	<!-- 대여관리 - 대여처리 -->
 	<insert id="addBookRent">
 	<selectKey order="BEFORE" keyProperty="rentCode" resultType="String">
