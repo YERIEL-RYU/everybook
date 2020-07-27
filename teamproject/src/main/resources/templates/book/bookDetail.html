@@ -158,7 +158,7 @@
 														        <p><small>예약 시간 내에 대여가 불가능 하시다면 예약 취소로 취소 해주세요.</small></p>
 														        <input type="hidden" name="libraryCode" th:value="${session.SLIBRARY}">
 														        <input type="hidden" name="memberId" th:value="${session.SID}">
-														        <input type="hidden" name="bookCode" th:value="bk_0001">
+														        <input type="hidden" name="book.bookCode" th:value="${bookDetail.bookCode}">
 														        <p>예약 하시겠습니까?</p>
 														     </div>
 														     <div class="modal-footer">

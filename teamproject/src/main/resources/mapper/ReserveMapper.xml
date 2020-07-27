@@ -160,6 +160,6 @@
 	</selectKey>
 	INSERT INTO tb_rtcan_reserve
 		(rtcan_reserve_code, library_code, member_id, book_code, reserve_date, rtcan_situation)
-		VALUES (#{rtcanCode}, #{libraryCode}, #{memberId}, #{bookCode}, NOW(), '대기')
+		VALUES (#{rtcanCode}, #{libraryCode}, #{memberId}, #{book.bookCode}, NOW(), '대기')
 </insert>
 </mapper>
