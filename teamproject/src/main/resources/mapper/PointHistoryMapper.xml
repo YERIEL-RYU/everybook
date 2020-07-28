@@ -80,7 +80,7 @@
 		WHERE
 			point_history_code = #{phCode}	
 	</select>
-	<select id="getStandbyPsList" resultMap="PhSelect" parameterType="String">
+	<select id="getStandbyPhList" resultMap="PhSelect" parameterType="String">
 		SELECT
 			ph.*,
 			ps.point_standard_code,
