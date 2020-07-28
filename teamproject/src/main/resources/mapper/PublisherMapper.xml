@@ -1,7 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="team1.project.mapper.PublisherMapper">
-
+	
+	<resultMap type="Publisher" id="publisherResultMap">
+		<result property="publisherCode" column="publisher_code"/>
+		<result property="publisherName" column="publisher_name"/>
+		<result property="publisherPage" column="publisher_page"/>
+		<result property="publisherRegDate" column="publisher_reg_date"/>
+		<result property="officer" column="officer_id"/>
+	</resultMap>
+	
+	<!-- 출판사 삭제 -->
+	<delete id="deletePublisher" parameterType="String">
+		DELETE 
+		FROM 
+			tb_publisher
+		WHERE 
+			publisher_code= #{publisherCode}
+	</delete>
+	
+	<!-- 출판사 수정 -->
+	<update id="modifyPublisher" parameterType="Publisher">
+		UPDATE 
+		tb_publisher
+		SET
+			publisher_name= #{publisherName}
+			,publisher_page= #{publisherPage}
+			,publisher_reg_date=NOW()
+			,officer_id= #{officer}
+		WHERE publisher_code= #{publisherCode}
+	</update>
+	
+	<!-- 출판사 리스트 출력 -->
+	<select id="publisherList" resultMap="publisherResultMap">
+		SELECT 
+			publisher_code
+			, publisher_name
+			, publisher_page
+			, publisher_reg_date
+			, officer_id
+		FROM
+			tb_publisher
+	</select>
+	
 	<!-- 출판사 코드 등록 -->
 	<insert id="addPublisher" parameterType="Publisher">
 		<selectKey order="BEFORE" keyProperty="publisherCode" resultType="String">

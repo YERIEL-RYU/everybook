@@ -73,17 +73,17 @@
 										<th> 대여일시 </th>
 										<th> 반납기한 </th>
 										<th> 도서상태 </th>
-										<th> #연장하기(서)</th>
+										<th> 연장하기(서)</th>
 									</tr>	
 								</thead>
 									<tr th:each="r : ${myRentList}">				
 										<td th:text="${r.rentCode}"></td>										
-										<td>[[${r.library.libraryName}]]</td>
+										<td>[[${r.libraryName}]]</td>
 										<td>[[${r.book.bookName}]]</td>
 										<td th:text="${r.rentRegDate}"></td>
 										<td th:text="${r.rentReturnDate}"></td>
 										<td>[[${r.book.bookSituation}]] </td>
-										<td><button type="button" class="btn btn-info btn-sm addBookExtendBtn" th:value="${SLEVEL}">#연장 신청</button></td>
+										<td><button type="button" class="btn btn-info btn-sm addBookExtendBtn" th:value="${SLEVEL}">연장 신청</button></td>
 									</tr>	
 			                </table>   							
 						</div>

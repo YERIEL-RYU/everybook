@@ -9,6 +9,14 @@ import team1.project.vo.Rent;
 
 @Mapper
 public interface RentMapper {
+	
+	public List<Book> vogueBookList(String libraryCode, String startDate, String endDate);
+	
+	public List<Book> vogueBookLimitList();
+	
+	//대여처리
+	public int addBookRent(Rent rent);
+	
 	//회원이 대여한 최근 5건 도서의 isbn 조회
 	public List<String> selectIsbn(String memberId);
 	

@@ -4,7 +4,7 @@
 <!-- 온라인 예약 RtcanReserve resultMap -->
 <resultMap type="RtcanReserve" id="rtcanReserveSelect">
 	<result property="rtcanCode" column="rtcan_reserve_code"/>
-	<result property="library_code" column="libraryCode"/>
+	<result property="libraryCode" column="library_code"/>
 	<result property="memberId" column="member_id"/>
 	<result property="rtcanDate" column="reserve_date"/>
 	<result property="rtcanSituation" column="rtcan_situation"/>
@@ -19,11 +19,9 @@
 	</association>
 </resultMap>
 <select id="getRtcanReserveTime" resultMap="rtcanReserveSelect">
-	SELECT 
-		member_id 
-		,reserve_reg_date
-		,rtcan_situation
+	SELECT	*
 	FROM tb_rtcan_reserve
+	WHERE rtcan_situation='승인'
 </select>
 <!-- 조건에 따른 예약 검색 -->
 <select id="getSearchRtcanReserve"  parameterType="String" resultMap="rtcanReserveSelect">
@@ -114,8 +112,10 @@
 	UPDATE tb_rtcan_reserve
 	SET
 		rtcan_situation= #{rtcanSituation},
-		reserve_reg_date= NOW(),
-		officer_id= #{officerId}
+		<if test="officerId != null and officerId neq ''.toString()">
+			officer_id= #{officerId},
+		</if>
+		reserve_reg_date= NOW()
 	WHERE 
 		rtcan_reserve_code = #{rtcanCode}
 </update>
@@ -160,6 +160,6 @@
 	</selectKey>
 	INSERT INTO tb_rtcan_reserve
 		(rtcan_reserve_code, library_code, member_id, book_code, reserve_date, rtcan_situation)
-		VALUES (#{rtcanCode}, #{libraryCode}, #{memberId}, #{bookCode}, NOW(), '대기')
+		VALUES (#{rtcanCode}, #{libraryCode}, #{memberId}, #{book.bookCode}, NOW(), '대기')
 </insert>
 </mapper>

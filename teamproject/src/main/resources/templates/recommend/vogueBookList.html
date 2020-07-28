@@ -98,9 +98,9 @@
 					<div class="col">
 						<div class="breadcrumbs">
 							<ul>
-								<li><a href="index">!EveryBook</a></li>
-								<li><a href="bookList">!통합검색</a></li>
-								<li><a href="recommendList">!인기 도서</a></li>
+								<li><a href="index">EveryBook</a></li>
+								<li><a href="bookList">통합검색</a></li>
+								<li><a href="vogueBookList">인기 도서</a></li>
 							</ul>
 						</div>
 					</div>
@@ -119,28 +119,12 @@
 			<!-- Main Content -->
 			<div class="col-lg-8">
 				<!-- start 검색 폼 -->
-				<div class="courses_content_title">인기 도서</div>
+				<div class="courses_content_title"><h3>인기 도서</h3></div>
 				<div class="search_container">
 					<form action="#" id="courses_search_form" class="search_form d-flex flex-row align-items-center justify-content-start">
-						<div class="row">
-							<div class="col-md-4">
-								<select class="search_select courses_search_input">
-									<option>권장대상</option>
-								</select>
-								<select class="search_select courses_search_input">
-									<option>분류</option>
-								</select>
-							</div>
-							<div class="col-md-8">
-								<select id="courses_search_select" class="search_select courses_search_input">
-									<option>제목</option>
-									<option>Category2</option>
-									<option>Category3</option>
-								</select>
-								<input type="search" class="search_input" placeholder="Search Courses" required="required">
-								<button action="submit" class="search_form_button">검색</button>
-							</div>
-						</div>
+						<input type="date" class="courses_search_input" placeholder="도서명" required="required">
+						<input type="date" class="courses_search_input" placeholder="도서명" required="required">
+						<button type="submit" class="courses_search_button ml-auto">search now</button>
 					</form>
 				<!-- end 검색폼 -->	
 				</div>
@@ -152,17 +136,17 @@
 						
 						<!-- 카드 -->
 						<div class="col-sm-12 course_col">
-							<div class="course">
+							<div class="course" th:each="v : ${vougeList}">
 								<div class="row">
 									<div class="col-sm-2">
-										<div class="course_image"><img src="images/book_1.png" alt=""></div>
+										<div class="course_image"><img th:src="${v.bookImageURL}" alt="book_cover"></div>
 									</div>
 									<div class="col-sm-10">
 										<div class="course_body">
-											<h3 class="course_title"><a href="course.html">7년의 밤</a></h3>
-											<div class="course_teacher">저자 : <span>조유정</span></div>
+											<h3 class="course_title"><a th:href="@{/bookDetail(bookCode=${v.bookCode})}" th:text="${v.bookName}"></a></h3>
+											<div class="course_teacher">저자 : <span>[[${v.writerName}]]</span></div>
 											<div class="course_text">
-												<p>출판사 : </p>
+												<p>출판사 : [[${v.publisherName}]] </p>
 											</div>
 										</div>
 									</div>
@@ -212,11 +196,11 @@
 												</div>
 		
 												<div class="accordion_container">
-													<div class="accordion d-flex flex-row align-items-center active"><div><a href="#">인기 도서</a></div></div>
+													<div class="accordion d-flex flex-row align-items-center active"><div><a href="vogueBookList">인기 도서</a></div></div>
 												</div>
 		
 												<div class="accordion_container">
-													<div class="accordion d-flex flex-row align-items-center"><div><a href="#">추천도서</a></div></div>
+													<div class="accordion d-flex flex-row align-items-center"><div><a href="recommendBookList">추천도서</a></div></div>
 												</div>
 		
 											</div>

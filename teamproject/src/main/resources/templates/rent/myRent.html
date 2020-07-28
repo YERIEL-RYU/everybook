@@ -105,8 +105,8 @@
 								</tr>	
 							  </thead>
 								<tr th:each="r : ${rentHistory}">
-									<td th:text="${r.rentCode}" th:data-renturl="'addReview?send_code='+${r.rentCode}"></td>				
-									<td>[[${r.library.libraryName}]]</td>
+									<td th:text="${r.rentCode}"></td>				
+									<td>[[${r.libraryName}]]</td>
 									<td>[[${r.book.bookName}]]</td>
 									<td th:text="${r.rentDate}"></td>									
 									<td th:text="${r.rentReturnDate}"></td>

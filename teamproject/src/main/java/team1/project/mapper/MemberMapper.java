@@ -6,10 +6,18 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 import team1.project.vo.Member;
+import team1.project.vo.Rent;
+import team1.project.vo.Return;
 
 @Mapper
 public interface MemberMapper {
-
+	
+	//반납 처리 후 회원의 대여 도서 수 감소
+	public int memberRentCountMinus(Return returnVo);
+	
+	//대여 처리 후 회원의 대여 도서 수 증가
+	public int memberRentCountPlus(Rent rent);
+	
 	/**
 	 * 회원리스트(직원) - 직원과 같은 도서관 소속인 회원만
 	 * */

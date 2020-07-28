@@ -1,7 +1,12 @@
 package team1.project.controller;
 
 import java.util.List;
+import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,98 +17,117 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import team1.project.service.PointService;
 import team1.project.vo.Officer;
-import team1.project.vo.Point;
+import team1.project.vo.PointHistory;
+import team1.project.vo.PointStandard;
 
 @Controller
 public class PointController {
 	
+	private final static Logger logger = LoggerFactory.getLogger(PointController.class);
 	@Autowired private PointService pointService;
 	
 	@GetMapping("/searchPsInfo")
 	public String searchPsInfo(Model model, @RequestParam("sk") String sk, @RequestParam("sv") String sv) {
-		System.out.println("==== 상벌점 기준 검색 컨트롤러 ====");
-		System.out.println(sk + " <- sk;  "+sv +" <- sv;");
-		List<Point> psList = pointService.searchPs(sk, sv);
+		logger.info("==== 상벌점 기준 검색 컨트롤러 ====");
+		logger.info(sk + " <- sk;  "+sv +" <- sv;");
+		List<PointStandard> psList = pointService.searchPs(sk, sv);
 		model.addAttribute("psList", psList);
 		return "information/pointStandardList";
 	}
 	
 	@GetMapping("/searchPs")
 	public String searchPs(Model model, @RequestParam("sk") String sk, @RequestParam("sv") String sv) {
-		System.out.println("==== 상벌점 기준 검색 컨트롤러 ====");
-		System.out.println(sk + " <- sk;  "+sv +" <- sv;");
-		List<Point> psList = pointService.searchPs(sk, sv);
+		logger.info("==== 상벌점 기준 검색 컨트롤러 ====");
+		logger.info(sk + " <- sk;  "+sv +" <- sv;");
+		List<PointStandard> psList = pointService.searchPs(sk, sv);
 		model.addAttribute("psList", psList);
 		return "point/officePointStandard";
 	}
 	
 	@PostMapping("/deletePs")
-	public String deletePs(Point point, Officer officer) {
-		System.out.println("==== 상벌점 기준 삭제 컨트롤러 ====");
+	public String deletePs(PointStandard point, Officer officer) {
+		logger.info("==== 상벌점 기준 삭제 컨트롤러 ====");
 		point.setOfficer(officer);
-		System.out.println(point.toString() +" deletePs PointController.java");
+		logger.info(point.toString() +" deletePs PointController.java");
 		int i = pointService.deletePs(point);
-		System.out.println("실행결과 : " + i);
+		logger.info("실행결과 : {}",i);
 		return "redirect:/officePointStandard";
 	}
 	
 	@PostMapping("/modifyPs")
-	public String modifyPs(Point point, Officer officer) {
-		System.out.println("==== 상벌점 기준 수정 컨트롤러 ====");
+	public String modifyPs(PointStandard point, Officer officer) {
+		logger.info("==== 상벌점 기준 수정 컨트롤러 ====");
 		point.setOfficer(officer);
-		System.out.println(point.toString() +" modifyPs PointController.java");
+		logger.info(point.toString() +" modifyPs PointController.java");
 		int i = pointService.modifyPs(point);
-		System.out.println("실행결과 : " + i);
+		logger.info("실행결과 : " + i);
 		return "redirect:/officePointStandard";
 	}
 	
 	@GetMapping("/getSelectPs")
 	@ResponseBody
-	public Point getSelectPs(@RequestParam("psCode") String psCode) {
-		System.out.println(psCode + " <- psCode pointController.java");
-		Point point = pointService.getSelectPs(psCode);
+	public PointStandard getSelectPs(@RequestParam("psCode") String psCode) {
+		logger.info(psCode + " <- psCode pointController.java");
+		PointStandard point = pointService.getSelectPs(psCode);
 		return point;
 	}
 	
 	@PostMapping("/addPs")
-	public String addPs(Point point, Officer officer) {
-		System.out.println("===== 상벌점 기준 등록 =====");
+	public String addPs(PointStandard point, Officer officer) {
+		logger.info("===== 상벌점 기준 등록 =====");
 		point.setOfficer(officer);
-		System.out.println(point.toString() +" <- point.java pointController.java");
+		logger.info(point.toString() +" <- point.java pointController.java");
 		int i = pointService.addPs(point);
-		System.out.println("실행 결과 : " + i);
+		logger.info("실행 결과 : " + i);
 		return "redirect:/officePointStandard";
 	}
 	
 	@GetMapping("/pointStandard")
 	public String getPsList(Model model) {
-		System.out.println("======== getPsList PointController.java ========");
-		List<Point> psList = pointService.getPsList();
+		logger.info("======== getPsList PointController.java ========");
+		List<PointStandard> psList = pointService.getPsList();
 		model.addAttribute("psList", psList);
 		return "information/pointStandardList";
 	}
 	
 	@GetMapping("/officePointHistoryList")
-	public String getPhList() {
+	public String getPhList(Model model, HttpSession session) {
+		logger.info("상벌점 내역 리스트");
+		String libraryCode = (String) session.getAttribute("SLIBRARY");
+		List<PointHistory> phList = pointService.getPhList(libraryCode);
+		model.addAttribute("phList", phList);
 		return "point/officePointHistoryList";
 	}
 	
 	@GetMapping("/officePointHistoryAdd")
-	public String getOfficePhAdd() {
+	public String getOfficePhAdd(Model model, HttpSession session) {
+		logger.info("대기중인 상벌점 내역");
+		String libraryCode = (String) session.getAttribute("SLIBRARY");
+		List<PointHistory> psStandbyPhList = pointService.getStandbyPsList(libraryCode);
+		model.addAttribute("psStandbyPhList", psStandbyPhList);
 		return "point/officePointHistoryAdd";
 	}
 	
 	@GetMapping("/officePointStandard")
 	public String getOfficePsList(Model model) {
-		System.out.println("======== getOfficePsList PointController.java ========");
-		List<Point> psList = pointService.getPsList();
+		logger.info("======== getOfficePsList PointController.java ========");
+		List<PointStandard> psList = pointService.getPsList();
 		model.addAttribute("psList", psList);
 		
 		return "point/officePointStandard";
 	}
 	
 	@GetMapping("/myPoint")
-	public String myPoint() {
+	public String myPoint(HttpSession session, Model model,@RequestParam(value="currentPage", 
+				required=false, defaultValue="1") int currentPage) {
+		logger.info("개인 상벌점 리스트");
+		String memberId = (String) session.getAttribute("SID");
+		Map<String, Object> returnMap = pointService.getMemberPointHistory(memberId,currentPage);
+		model.addAttribute("list", returnMap.get("list"));
+    	model.addAttribute("currentPage",returnMap.get("currentPage"));
+    	model.addAttribute("lastPage",returnMap.get("lastPage"));
+    	model.addAttribute("startPageNum",returnMap.get("startPageNum"));
+    	model.addAttribute("lastPageNum", returnMap.get("lastPageNum"));
 		return "point/myPoint";
 	}
 }

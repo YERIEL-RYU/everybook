@@ -12,6 +12,14 @@
 		<link rel="stylesheet" type="text/css" href="styles/blog_responsive.css">
 		<link rel="stylesheet" type="text/css" href="styles/blog_single.css">
 		<link rel="stylesheet" type="text/css" href="styles/blog_single_responsive.css">
+		<style>
+			.del{
+				background-color: red;
+			}
+			.form-control{
+				color: black;
+			}
+		</style>
   	</th:block>
   	
 	<th:block layout:fragment="customTitle">
@@ -63,84 +71,28 @@
 							<div class="blog_title" style="padding-bottom: 30px;">나의 도서평 내역</div>					
 						</div>
 						<div class="col">
-							<div class="blog_post_container">
+							<div class="blog_post_container" th:each=" r : ${reviewList}">
 								<div class="blog_post_body">
-									<form action="#" method="post">
-										<div class="blog_post_title"><a href="bookDetail">Here’s What You Need to Know About Online Testing</a></div>
-										<div class="blog_post_meta">
-											<ul>
-												<li>admin</a></li>
-												<li>november 11, 2017</a></li>
-											</ul>
-										</div>
-										<div class="blog_post_text">
-											<p>Policy analysts generally agree on a need for reform, but not on which path policymakers should take...</p>
-										</div>
-										<div style=" text-align: right;">
-											<button type="submit" class="comment_button trans_200">수정하기</button>
-											<button type="submit" class="comment_button trans_200">삭제하기</button>
-										</div>
-									</form>
+									<div class="blog_post_title"><a href="bookDetail" th:text="${r.bookCode}"></a></div>
+									<div class="blog_post_meta">
+										<ul>
+											<li th:text="${r.memberId}"></a></li>
+											<li th:text="${r.reviewRegDate}"></a></li>
+										</ul>
+									</div>
+									<div class="blog_post_text">
+										<p th:text="${r.reviewContent}"></p>
+									</div>
+									<div style=" text-align: right;">
+										<button type="button" class="comment_button trans_200" data-toggle="modal" data-target="#exampleModal" th:data-code="${r.reviewCode}" th:data-bookname="${r.bookCode}" th:data-content="${r.reviewContent}">수정하기</button>
+										<button type="button" class="comment_button trans_200 del" th:data-send="${r.reviewCode}">삭제하기</button>
+									</div>
 								</div>
 								<hr>
-								<div class="blog_post_body">
-									<form action="#" method="post">
-										<div class="blog_post_title"><a href="bookDetail">Here’s What You Need to Know About Online Testing</a></div>
-										<div class="blog_post_meta">
-											<ul>
-												<li>admin</a></li>
-												<li>november 11, 2017</a></li>
-											</ul>
-										</div>
-										<div class="blog_post_text">
-											<p>Policy analysts generally agree on a need for reform, but not on which path policymakers should take...</p>
-										</div>
-										<div style=" text-align: right;">
-											<button type="submit" class="comment_button trans_200">수정하기</button>
-											<button type="submit" class="comment_button trans_200">삭제하기</button>
-										</div>
-									</form>
-								</div>
-								<hr>
-								<div class="blog_post_body">
-									<form action="#" method="post">
-										<div class="blog_post_title"><a href="bookDetail">Here’s What You Need to Know About Online Testing</a></div>
-										<div class="blog_post_meta">
-											<ul>
-												<li>admin</a></li>
-												<li>november 11, 2017</a></li>
-											</ul>
-										</div>
-										<div class="blog_post_text">
-											<p>Policy analysts generally agree on a need for reform, but not on which path policymakers should take...</p>
-										</div>
-										<div style=" text-align: right;">
-											<button type="submit" class="comment_button trans_200">수정하기</button>
-											<button type="submit" class="comment_button trans_200">삭제하기</button>
-										</div>
-									</form>
-								</div>
-								<hr>
-								<div class="blog_post_body">
-									<form action="#" method="post">
-										<div class="blog_post_title"><a href="bookDetail">Here’s What You Need to Know About Online Testing</a></div>
-										<div class="blog_post_meta">
-											<ul>
-												<li>admin</a></li>
-												<li>november 11, 2017</a></li>
-											</ul>
-										</div>
-										<div class="blog_post_text">
-											<p>Policy analysts generally agree on a need for reform, but not on which path policymakers should take...</p>
-										</div>
-										<div style=" text-align: right;">
-											<button type="submit" class="comment_button trans_200">수정하기</button>
-											<button type="submit" class="comment_button trans_200">삭제하기</button>
-										</div>
-									</form>
-								</div>
 							</div>
-						</div>	
+						</div>
+						
+						<!-- 페이징 부분 -->	
 						<div class="row pagination_row">
 							<div class="col">
 								<div class="pagination_container d-flex flex-row align-items-center justify-content-start">
@@ -165,6 +117,39 @@
 								</div>
 							</div>
 						</div>
+						<!-- /페이징 부분 -->	
+						
+						<!-- 모달 부분 -->
+						<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+								  		<h5 class="modal-title" id="exampleModalLabel">도서평 수정</h5>
+								  		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									    	<span aria-hidden="true">&times;</span>
+									  	</button>
+									</div>
+									<form action="/modifyReview" method="post">
+										<div class="modal-body">
+												<input type="hidden" class="form-control" id="reviewCode" name="reviewCode"/>
+												<div class="form-group">
+													<label for="recipient-name" class="col-form-label">도서 제목:</label>
+													<input type="text" class="form-control" id="recipient-name" readonly>
+												</div>
+												<div class="form-group">
+													<label for="message-text" class="col-form-label">도서평 내용:</label>
+													<textarea class="form-control" id="message-text" name="reviewContent"></textarea>
+												</div>
+										</div>
+										<div class="modal-footer">
+									  		<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+									  		<button type="submit" class="btn btn-primary">수정완료</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+						<!-- /모달 부분 -->
 					</div>
 					
 					<!-- Courses Sidebar -->
@@ -225,7 +210,63 @@
 		<script src="plugins/colorbox/jquery.colorbox-min.js"></script>
 		<script src="js/courses.js"></script>
 		<script src="js/course.js"></script>
-		
+		<!-- sweetalert -->
+		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+		<script>
+			$(function(){
+				
+				//모달에 내용보여주기
+				$('#exampleModal').on('show.bs.modal', function (event) {
+					var button = $(event.relatedTarget)
+					var bookname = button.data('bookname') 
+					var content = button.data('content') 
+					var code = button.data('code')
+					
+					var modal = $(this)
+					modal.find('#recipient-name').val(bookname)
+					modal.find('#message-text').val(content)
+					modal.find('#reviewCode').val(code)
+				})
+				
+				//삭제버튼 클릭시 뜨는 alert 창 
+				   $('.del').click(function(){
+				    	swal ({
+				    		title : "삭제하시겠습니까?"
+				    		,icon : "error"
+				    		, buttons: {
+				    		    cancel: "취소",
+				    		    confirm: "삭제",
+				    		  }
+				    		,closeOnClickOutside : false
+				    	})
+				    	.then((del) => {
+					    		if(del){
+					    			console.log($(this).data('send'));
+						    		$.ajax({
+						                url: "/deleteReview",
+						                type: "get",
+						                data: { reviewCode : $(this).data('send')},
+						                dataType: "json",
+						                success: function (data) {
+						                	console.log(data);
+						                    if(data > 0){
+						                		swal("삭제 성공", " ", "success");
+						                		location.reload(true);
+						                    }else{
+						                    	swal("삭제실패!", " ", "error");
+						                    }
+						                },
+						                error: function (xhr, ajaxOptions, thrownError) {
+						                    swal("Error deleting!", "Please try again", "error");
+						                }
+						            });
+					    		}
+					    	}
+		    			);
+				   });
+				
+			})
+		</script>
 		
 	</th:block>
 	

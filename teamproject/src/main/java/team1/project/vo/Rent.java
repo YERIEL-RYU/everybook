@@ -2,16 +2,18 @@ package team1.project.vo;
 
 public class Rent {
 	private String rentCode;
-	private Library library;
-	private Member member;
+	private String libraryCode;
+	private String libraryName;
+	private String memberId;
 	private String bookCode;
+	private String bookLibraryCode;
 	private String rentDate;
 	private String rentReturnDate;
 	private String rentRegDate;
 	private String publisher;
 	private String writer;
 	private String category;	
-	private Officer officer;
+	private String officerId;
 	private Book book;
 	public String getRentCode() {
 		return rentCode;
@@ -19,23 +21,35 @@ public class Rent {
 	public void setRentCode(String rentCode) {
 		this.rentCode = rentCode;
 	}
-	public Library getLibrary() {
-		return library;
+	public String getLibraryCode() {
+		return libraryCode;
 	}
-	public void setLibrary(Library library) {
-		this.library = library;
+	public void setLibraryCode(String libraryCode) {
+		this.libraryCode = libraryCode;
 	}
-	public Member getMember() {
-		return member;
+	public String getLibraryName() {
+		return libraryName;
 	}
-	public void setMember(Member member) {
-		this.member = member;
+	public void setLibraryName(String libraryName) {
+		this.libraryName = libraryName;
+	}
+	public String getMemberId() {
+		return memberId;
+	}
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
 	public String getBookCode() {
 		return bookCode;
 	}
 	public void setBookCode(String bookCode) {
 		this.bookCode = bookCode;
+	}
+	public String getBookLibraryCode() {
+		return bookLibraryCode;
+	}
+	public void setBookLibraryCode(String bookLibraryCode) {
+		this.bookLibraryCode = bookLibraryCode;
 	}
 	public String getRentDate() {
 		return rentDate;
@@ -73,11 +87,11 @@ public class Rent {
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	public Officer getOfficer() {
-		return officer;
+	public String getOfficerId() {
+		return officerId;
 	}
-	public void setOfficer(Officer officer) {
-		this.officer = officer;
+	public void setOfficerId(String officerId) {
+		this.officerId = officerId;
 	}
 	public Book getBook() {
 		return book;
@@ -87,12 +101,12 @@ public class Rent {
 	}
 	@Override
 	public String toString() {
-		return "Rent [rentCode=" + rentCode + ", library=" + library + ", member=" + member + ", bookCode=" + bookCode
+		return "Rent [rentCode=" + rentCode + ", libraryCode=" + libraryCode + ", libraryName=" + libraryName
+				+ ", memberId=" + memberId + ", bookCode=" + bookCode + ", bookLibraryCode=" + bookLibraryCode
 				+ ", rentDate=" + rentDate + ", rentReturnDate=" + rentReturnDate + ", rentRegDate=" + rentRegDate
-				+ ", publisher=" + publisher + ", writer=" + writer + ", category=" + category + ", officer=" + officer
-				+ ", book=" + book + "]";
+				+ ", publisher=" + publisher + ", writer=" + writer + ", category=" + category + ", officerId="
+				+ officerId + ", book=" + book + "]";
 	}
 	
-						
 }
 

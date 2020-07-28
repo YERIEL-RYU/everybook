@@ -11,6 +11,11 @@
 <link rel="stylesheet" type="text/css" href="styles/course_responsive.css">
 <link rel="stylesheet" type="text/css" href="styles/blog_single.css">
 <link rel="stylesheet" type="text/css" href="styles/blog_single_responsive.css">
+<style>
+	.code{
+		display: none;
+	}
+</style>
 </th:block>
 <th:block layout:fragment="customTitle">
 
@@ -21,10 +26,10 @@
 	<th:block layout:fragment="customHeader">
 		<nav class="main_nav_contaner ml-auto">
 			<ul class="main_nav">
-				<li class="active"><a href="bookList">!통합검색(서)</a></li>
-				<li><a href="myLibrary">!나의 도서관(서)</a></li>
+				<li class="active"><a href="bookList">통합검색(서)</a></li>
+				<li><a href="myLibrary">나의 도서관(서)</a></li>
 				<li><a href="#">#공지사항</a></li>
-				<li><a href="libraryList">!이용안내(유)</a></li>
+				<li><a href="libraryList">이용안내(유)</a></li>
 				<li><a href="#">#도서관 위치</a></li>
 			</ul>
 			<div class="search_button"><i class="fa fa-search" aria-hidden="true"></i></div>
@@ -40,8 +45,8 @@
 					<div class="col">
 						<div class="breadcrumbs">
 							<ul>
-								<li><a href="index">!EveryBook</a></li>
-								<li><a href="bookList">!통합검색</a></li>
+								<li><a href="index">EveryBook</a></li>
+								<li><a href="bookList">통합검색</a></li>
 								<li><a href="#">상세 보기</a></li>
 							</ul>
 						</div>
@@ -58,11 +63,11 @@
 
 			<!-- Course -->		
 			<div class="course_container">
-				<div class="course_title">더 해빙=The Having : 부와 행운을 끌어당기는 힘</div>
+				<div class="course_title" th:text="${bookDetail.bookName}"></div>
 				<div class="row">
 					<div class="col-lg-4">
 						<!-- Course Image -->
-						<div class="course_image" style="align-content: center;"><img src="images/book_1.PNG" alt=""></div>
+						<div class="course_image" style="align-content: center;"><img th:src="${bookDetail.bookImageURL}" alt="book_cover"></div>
 					</div>
 				
 					<div class="col-lg-8">
@@ -77,13 +82,13 @@
 									<!-- Feature -->
 									<div class="feature d-flex flex-row align-items-center justify-content-start">
 										<div class="feature_title"><span th:text="저자사항"></span></div>
-										<div class="feature_text ml-auto">이서윤,홍주연 [공]지음</div>
+										<div class="feature_text ml-auto" th:text="${bookDetail.writerName}"></div>
 									</div>
 
 									<!-- Feature -->
 									<div class="feature d-flex flex-row align-items-center justify-content-start">
 										<div class="feature_title"><span th:text="발행사항"></span></div>
-										<div class="feature_text ml-auto">수오서재, 2020</div>
+										<div class="feature_text ml-auto" th:text="|${bookDetail.publisherName},${bookDetail.bookPublishDate}|"></div>
 									</div>
 
 									<!-- Feature -->
@@ -94,24 +99,13 @@
 
 									<!-- Feature -->
 									<div class="feature d-flex flex-row align-items-center justify-content-start">
-										<div class="feature_title"><span th:text="형태사항"></span></div>
-										<div class="feature_text ml-auto">344 p.; 21 cm</div>
-									</div>
-
-									<!-- Feature -->
-									<div class="feature d-flex flex-row align-items-center justify-content-start">
 										<div class="feature_title"><span th:text="ISBN"></span></div>
-										<div class="feature_text ml-auto">9791190382175</div>
-									</div>
-									<!-- Feature -->
-									<div class="feature d-flex flex-row align-items-center justify-content-start">
-										<div class="feature_title"><span th:text="등록번호"></span></div>
-										<div class="feature_text ml-auto">LA0000079680</div>
+										<div class="feature_text ml-auto" th:text="${bookDetail.bookIsbn}"></div>
 									</div>
 									<!-- Feature -->
 									<div class="feature d-flex flex-row align-items-center justify-content-start">
 										<div class="feature_title"><span th:text="소장기관"></span></div>
-										<div class="feature_text ml-auto">전주시립 아중도서관</div>
+										<div class="feature_text ml-auto" th:text="${bookDetail.libraryName}"></div>
 									</div>
 
 								</div>
@@ -133,22 +127,15 @@
 							<ul class="dropdowns">
 								<li>
 									<div class="dropdown_item">
-										<div class="dropdown_item_title" th:text="구분"><span></span></div>
+										<div class="dropdown_item_title"><span>청구기호</span></div>
 										<div class="dropdown_item_text">
-											<p>LA0000079680</p>
-										</div>
-									</div>
-									<div class="dropdown_item">
-										<div class="dropdown_item_title"><span>자료실/청구기호</span></div>
-										<div class="dropdown_item_text">
-											<p>일반실</p>
-											<p>G. 325.2113-이755ㄷ</p>
+											<p th:text="${bookDetail.bookLibraryCode}"></p>
 										</div>
 									</div>
 									<div class="dropdown_item">
 										<div class="dropdown_item_title"><span th:text="자료상태"></span></div>
 										<div class="dropdown_item_text">
-											<p style="color: red;">대출가능</p>
+											<p style="color: red;" th:text="${bookDetail.bookSituation}"></p>
 										</div>
 									</div>
 									<div class="dropdown_item">
@@ -176,7 +163,7 @@
 														        <p><small>예약 시간 내에 대여가 불가능 하시다면 예약 취소로 취소 해주세요.</small></p>
 														        <input type="hidden" name="libraryCode" th:value="${session.SLIBRARY}">
 														        <input type="hidden" name="memberId" th:value="${session.SID}">
-														        <input type="hidden" name="bookCode" th:value="bk_0001">
+														        <input type="hidden" name="book.bookCode" th:value="${bookDetail.bookCode}">
 														        <p>예약 하시겠습니까?</p>
 														     </div>
 														     <div class="modal-footer">
@@ -204,7 +191,7 @@
 						<div class="tab_panel_title">상세정보</div>
 						<div class="tab_panel_content">
 							<div class="tab_panel_text">
-								<p>마음가짐을 다듬으며 원하는 것을 얻는 놀라운 가르침!부와 행운을 만나는 출발점, 마법의 감정 HAVING! 국내 최초로 미국에서 선(先)출간되어 세계가 먼저 찾아 읽은 『더 해빙(THE HAVING)』. 세계적인 부자들이 성공 비결로 꼽았다는 ‘운’. 행운은 타고나는 것일까? 소수에게만 주어지는 것일까? 물려받은...</p>
+								<p th:text="${bookDetail.bookDescription}"></p>
 							</div>
 						</div>
 					</div>
@@ -219,45 +206,66 @@
 						
 						<!-- Comments -->
 						<div class="comments_container">
-							<h4>도서평 수     <small>??</small></h4>
-							<ul class="comments_list">
+							<h4>도서평 수     <small>[[${#lists.size(reviewList)}]]</small></h4>
+							<ul class="comments_list" th:each="r : ${reviewList}">
 								<li>
 									<div class="comment_item d-flex flex-row align-items-start jutify-content-start">
 										<div class="comment_content">
 											<div class="comment_title_container d-flex flex-row align-items-center justify-content-start">
-												<div class="comment_author"><a>작성자</a></div>
-												<div class="comment_time ml-auto">작성날짜</div>
+												<div class="comment" th:text="${r.memberId}"></div>
+												<div class="comment_time ml-auto" th:text="${r.reviewRegDate}"></div>
 											</div>
 											<div class="comment_text">
-												<p>There are many variations of passages of Lorem Ipsum available, but the majority have alteration in some form, by injected humour.</p>
+												<p th:text="${r.reviewContent}"></p>
 											</div>
 											<div class="comment_extras d-flex flex-row align-items-center justify-content-start">
-												<div class="comment_extra comment_likes"><a href="#modal" data-toggle="modal"><i class="fa fa-thumbs-down" aria-hidden="true"></i>신고하기</a><span>숫자</span></div>
-												<div class="modal fade bs-example-modal-sm" id="modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-	 												<div class="modal-dialog modal-sm">
-	    												<div class="modal-content">
-	    													<div class="modal-header">
-														        <h5 class="modal-title">도서평 신고하기</h5>
-														        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-														     </div>
-														     <div class="modal-body">
-														        <p>신고 이유</p>
-														        <input type="radio"> 왜신고 하눈뎅??
-														     </div>
-														     <div class="modal-footer">
-														        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-														        <button type="button" class="btn btn-primary">신고</button>
-														     </div>
-	   													</div>
-													</div>
-												</div>
+												<div class="comment_extra comment_likes"><a href="#modal" data-toggle="modal" th:data-id="${r.memberId}" th:data-review="${r.reviewCode}" th:data-book="${r.bookCode}"><i class="fa fa-thumbs-down" aria-hidden="true"></i>신고하기</a><span>숫자</span></div>
 											</div>
 										</div>
 									</div>
 	 							</li>
 							</ul>
 						</div>
-						
+						<!-- 신고 모달 -->
+						<div class="modal fade bs-example-modal-sm" id="modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+							<div class="modal-dialog modal-sm">
+								<div class="modal-content">
+									<div class="modal-header">
+									    <h5 class="modal-title">도서평 신고하기</h5>
+									    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									 </div>
+									<form action="/addWarning" method="post">
+										<div class="modal-body">
+											<div class="code">
+											   <p>해당 도서 코드</p>
+											   <input type="text" id="bookCode" name="bookCode">
+											</div>
+											<div class="code">
+											   <p>해당 도서평 코드</p>
+											   <input type="text" id="reviewCode" name="reviewCode">
+											</div>
+											<div>
+											   <p>해당 도서평 작성자 아이디</p>
+											   <input type="text" class="form-control" id="memberId" name="warningSuspect" readonly>
+											</div>
+											<div>
+											   <p>신고 이유</p>
+											   <textarea class="form-control" name="warningContent"></textarea>
+											</div>
+											<div>
+											   <p>신고자 아이디</p>
+											   <input type="text" class="form-control" th:value="${session.SID}" name="warningBlower" readonly>
+											</div>
+										</div>
+										<div class="modal-footer">
+										   <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+										   <button type="submit" class="btn btn-primary">신고</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+						<!-- /신고 모달 -->
 					</div>
 				</div>
 			</div>
@@ -289,6 +297,19 @@
 				$('.bs-example-modal-lg').modal();
 			}
 		});
+		
+		//모달에 내용 보여주기
+		$('#modal').on('show.bs.modal', function (event) {
+			var button = $(event.relatedTarget)
+			var id = button.data('id') 
+			var book = button.data('book') 
+			var review = button.data('review') 
+			
+			var modal = $(this)
+			modal.find('#memberId').val(id)
+			modal.find('#bookCode').val(book)
+			modal.find('#reviewCode').val(review)
+		})
 	});
 </script>
 	</th:block>
