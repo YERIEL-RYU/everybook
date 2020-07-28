@@ -175,7 +175,7 @@ public class ReserveController {
 	/**
 	 * 회원화면 : 온라인 예약 등록 insert
 	 * @param rtcanReserve
-	 * @return"book/bookDetail"
+	 * @return"reserve/myReserve"
 	 * detail : 책 상세페이지에서 예약 버튼 클릭시 현재 시간으로 대기 상태의 예약이 등록됨
 	 */
 	@PostMapping("/rtcanReserveAdd")
@@ -183,7 +183,7 @@ public class ReserveController {
 		logger.info("온라인 예약 insert : {}",rtcanReserve.toString());
 		int i = rtcanReserveService.addRtcanReserve(rtcanReserve);
 		logger.info("실행경과 : {}", i);
-		return "book/bookDetail";
+		return "reserve/myReserve";
 	}
 	
 	//회원 화면 : 회원 예약 리스트 출력

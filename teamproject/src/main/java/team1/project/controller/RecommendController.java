@@ -26,7 +26,9 @@ public class RecommendController {
 	@GetMapping("/vogueBookList")
 	public String getVogueBookList(HttpSession session, Model model) {
 		String libraryCode = (String) session.getAttribute("SLIBRARY");
-		
+		List<Book> vougeList = recommendservice.vogueBookList(libraryCode, "(now() + interval -(1) month)","NOW()");
+		//logger.info("vougeList : {}", vougeList);
+		model.addAttribute("vougeList", vougeList);
 		return "recommend/vogueBookList";
 	}
 	
