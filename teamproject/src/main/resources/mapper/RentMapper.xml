@@ -43,6 +43,7 @@
 		FROM
 			view_rent_count
 	</select>
+	
 	<!-- 대여관리 - 대여처리 -->
 	<insert id="addBookRent">
 	<selectKey order="BEFORE" keyProperty="rentCode" resultType="String">

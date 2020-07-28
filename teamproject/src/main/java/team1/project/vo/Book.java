@@ -25,6 +25,14 @@ public class Book {
 	private String bookImageURL;
 	private String bookDescription;
 	private String seriesNo;
+	private String rentCode;
+	
+	public String getRentCode() {
+		return rentCode;
+	}
+	public void setRentCode(String rentCode) {
+		this.rentCode = rentCode;
+	}
 	public String getBookCode() {
 		return bookCode;
 	}
@@ -178,7 +186,8 @@ public class Book {
 				+ ", bookPublishDate=" + bookPublishDate + ", bookPrice=" + bookPrice + ", bookIsbn=" + bookIsbn
 				+ ", bookSituation=" + bookSituation + ", bookRegDate=" + bookRegDate + ", group=" + group + ", budget="
 				+ budget + ", officerId=" + officerId + ", reserveCount=" + reserveCount + ", bookImageURL="
-				+ bookImageURL + ", bookDescription=" + bookDescription + ", seriesNo=" + seriesNo + "]";
+				+ bookImageURL + ", bookDescription=" + bookDescription + ", seriesNo=" + seriesNo + ", rentCode="
+				+ rentCode + "]";
 	}
 			
 	

@@ -31,6 +31,15 @@
 		<result property="officerId" column="officer_id"/>
 	</resultMap>
 	
+	<!-- 반납처리 후 대여 중 도서 수 -1 -->
+	<update id="memberRentCountMinus" parameterType="Member">
+		UPDATE tb_member
+	SET
+		rent_count=rent_count-1
+	WHERE 
+		member_id = #{memberId};
+	</update>
+	
 	<!-- 대여처리 후 대여 중 도서 수 +1 -->
 	<update id="memberRentCountPlus" parameterType="Member">
 		UPDATE tb_member

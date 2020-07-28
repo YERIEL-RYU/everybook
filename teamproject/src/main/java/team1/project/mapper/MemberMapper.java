@@ -7,10 +7,14 @@ import org.apache.ibatis.annotations.Mapper;
 
 import team1.project.vo.Member;
 import team1.project.vo.Rent;
+import team1.project.vo.Return;
 
 @Mapper
 public interface MemberMapper {
-
+	
+	//반납 처리 후 회원의 대여 도서 수 감소
+	public int memberRentCountMinus(Return returnVo);
+	
 	//대여 처리 후 회원의 대여 도서 수 증가
 	public int memberRentCountPlus(Rent rent);
 	
